@@ -1,0 +1,170 @@
+{
+  "resourceType": "Bundle",
+  "id": "cecef81d-ab68-4d5a-9e22-7b3e8edce6e6",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/eeb/StructureDefinition/EEBBescheinigungBundle"
+    ]
+  },
+  "type": "message",
+  "identifier": {
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:cecef81d-ab68-4d5a-9e22-7b3e8edce6e6"
+  },
+  "timestamp": "2022-08-29T02:09:37.157+02:00",
+  "entry": [
+    {
+      "fullUrl": "https://gematik.de/fhir/MessageHeader/aafed78c-696c-4805-9e7b-d454e1aeb538",
+      "resource": {
+        "resourceType": "MessageHeader",
+        "id": "aafed78c-696c-4805-9e7b-d454e1aeb538",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/eeb/StructureDefinition/EEBBescheinigungHeader"
+          ]
+        },
+        "response": {
+          "code": "ok",
+          "identifier": "79939e34-c5cc-4da6-ba55-f4bd85832760"
+        },
+        "eventCoding": {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/PractitionerProfessionOID",
+          "code": "1.2.276.0.76.4.49",
+          "display": "Versicherte/-r"
+        },
+        "source": {
+          "endpoint": "https://Test-Krankenkasse.de/KIM"
+        },
+        "focus": [
+          {
+            "reference": "Patient/e36f9476-0d04-4394-a626-8b4706b005b0"
+          },
+          {
+            "reference": "Coverage/d7fbdcd7-f220-4a11-8526-d846e4db2a82"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://gematik.de/fhir/Patient/e36f9476-0d04-4394-a626-8b4706b005b0",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "e36f9476-0d04-4394-a626-8b4706b005b0",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Patient|1.1.0"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/identifier-type-de-basis",
+                  "code": "PKV"
+                }
+              ]
+            },
+            "system": "http://fhir.de/sid/pkv/kvid-10",
+            "value": "A987654321"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Meier",
+            "_family": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-name",
+                  "valueString": "Meier"
+                }
+              ]
+            },
+            "given": [
+              "Hans"
+            ]
+          }
+        ],
+        "address": [
+          {
+            "type": "both",
+            "line": [
+              "Musterstraße 1"
+            ],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                    "valueString": "1"
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                    "valueString": "Musterstraße"
+                  }
+                ]
+              }
+            ],
+            "city": "Dortmund",
+            "postalCode": "44227",
+            "country": "D"
+          }
+        ],
+        "birthDate": "1965-04-11"
+      }
+    },
+    {
+      "fullUrl": "https://gematik.de/fhir/Coverage/d7fbdcd7-f220-4a11-8526-d846e4db2a82",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "d7fbdcd7-f220-4a11-8526-d846e4db2a82",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/eeb/StructureDefinition/EEBCoverageEgk"
+          ]
+        },
+        "status": "active",
+        "extension": [
+          {
+            "url": "http://fhir.de/StructureDefinition/gkv/version-vsdm",
+            "valueString": "5.2.0"
+          },
+          {
+            "url": "https://gematik.de/fhir/eeb/StructureDefinition/PersoenlicheVersichertendaten",
+            "valueBase64Binary": "H4sIAOXZU2QA/41R0Y7TMBD8lcjvjZuQ3LVo46q6IK7S5YqoKLxVJlkuEbGNvE45+Fl+pZujLS3igRc7M5mdHY1h8Wz6aI+eOmcLkcRTEaGtXdPZp0KsNuvJbJbPJ0kuIgraNrp3FgvxA0ksFHy4273jUYe27+oWt6MN3z4gK/n4VD1Ed2W12755v1mtHwuRx+m4gXdaKkQbwrfXUn6n+AmNDt3XuEH5Rcs9NWY85J71QsGFr79Cdrcq1XI+u73Js1dpAvLvf/ASzyp4i58HH4hTDUYl85t8miWsv6Jh67zVBtW9tsReRwSPum5fvirs0IM8Y3aluu2xboOqRrMzgk3wmgjtsvHINwdxFHrswk/d9irL0vQW5BUHax9U6Xwwg21AjggeuHEFH11riVW95lrR8+OgKkH+iwb5e+S4XlUDcWfE6BeCPLFwrweygzFcJ5dwgc6aP8HlqcLLckflfzy+OgDTCNF/XwIAAA=="
+          },
+          {
+            "url": "https://gematik.de/fhir/eeb/StructureDefinition/AllgemeineVersicherungsdaten",
+            "valueBase64Binary": "H4sIACSWtmQA/71SXW+bQBD8K+jezQENqV0dZ7l2VFnEH6pTWvUFXWANyLBUd2c39a/3gawIHMvJU19As7MzO7pdNn6pSusAUhU1BsS1HWIBJnVaYBaQ+WY1GA790cD1iaW0wFSUNUJA/oEiY85+TONJWWZQQYEQNSZJDnKPmUqFBvy1eLSms0UcPXzfzFfLgPi21wwwI1EFJNf6zxdK/yrbOAhd7OwU6FbQg0qr5kMPpp9w9mqsQXZQM0Yl+V4fOfsKWYHIPcdzHNdxGT0XWFgrE0RLAVkj7sEdIBoTPvx879998ozqKt0XlQIwBWleCPjsQtHl2FJUwJ9AaWsdRlYoBRrDnVAKGG05NnmWkOTYaj6Sc3QO+r9z0htB+8YGX13P770S+ljgtlY98C2MeutFITU3e7gsdTXxOY3xj1v9z9WaOw6jzZ/RW51d8k2hm709NPr+dfMTAkWMED8DAAA="
+          }
+        ],
+        "payor": [
+          {
+            "identifier": {
+              "system": "http://fhir.de/sid/arge-ik/iknr",
+              "value": "23456789"
+            },
+            "display": "Test PKV Krankenkasse"
+          }
+        ],
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/versicherungsart-de-basis",
+              "code": "PKV",
+              "display": "private Krankenversicherung"
+            }
+          ]
+        },
+        "period": {
+          "start": "2022-04-01",
+          "end": "2022-04-01"
+        },
+        "beneficiary": {
+          "reference": "Patient/e36f9476-0d04-4394-a626-8b4706b005b0"
+        }
+      }
+    }
+  ]
+}

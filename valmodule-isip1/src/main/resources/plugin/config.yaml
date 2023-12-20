@@ -1,0 +1,10 @@
+configSpecVersion: "1.0"
+id: "isip1"
+author: "gematik GmbH"
+description: "Referenzvalidator-Plugin für die Spezifikation 'Informationstechnische Systeme in der Pflege (ISIP) Stufe 1'"
+specUrl: "https://simplifier.net/packages/de.gematik.isip/1.0.2"
+version: "${project.version}"
+validation:
+  fhirPackage: "de.gematik.isip#1.0.2"
+  errorOnUnknownProfile: "false"
+  anyExtensionsAllowed: "true"

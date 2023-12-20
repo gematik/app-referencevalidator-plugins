@@ -1,0 +1,53 @@
+{
+  "resourceType": "Coverage",
+  "id": "2d4da53a-413a-48fe-b908-2e67b5761523",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/eeb/StructureDefinition/EEBCoverageEgk"
+    ]
+  },
+  "status": "active",
+  "extension": [
+    {
+      "url": "http://fhir.de/StructureDefinition/gkv/version-vsdm",
+      "valueString": "5.2.0"
+    },
+    {
+      "url": "https://gematik.de/fhir/eeb/StructureDefinition/PersoenlicheVersichertendaten",
+      "valueBase64Binary": "H4sIAN/UU2QA/41RXY/TMBD8K5HfL05Cc3dBG5/gWkFFPxCFwltlkiWJsDfIdnrAD+e5m3JXWsQDL17PeHZ2NYa779ZEe3S+66kUaZyICKnq646aUsw366vb27y4SnMR+aCp1qYnLMUP9OJOwYf73Vtu7ZFMV7W4HW24uoCs5OPTchHdT5e77ezdZr5elSKPs3ECzyRfijaEb8+lfPBxg1aH7mtco/yi5d7XdjzknvVCwZmvu0C0m0/V+ySb3BRpkeQg/36D43qk4BV+HlzwvNVgVVo8y5PrLAN5QcO2d6QtqsVQN+jY7RHDSlft8fbmF3WND9gRyBPJ5r5qDVZtUMvR84RgE5z2HulF7ZAr79P7YLALP3VrVHY9yW5AXnCwdkHNuMWDHK+w4NQVfOxb8iwxmqNFxx+EagryXzTI3y2Ps9VLM1ikB2xAPlHwWg+eBms5z3QC8gyeRH92lk8hnsc7Kv/j+9UBL5cSPWECAAA="
+    },
+    {
+      "url": "https://gematik.de/fhir/eeb/StructureDefinition/AllgemeineVersicherungsdaten",
+      "valueBase64Binary": "H4sIAKnUU2QA/71S32+qMBT+V0jfpYDjTpdS4/RmMU5d5q5b9kI6OAIRDjdtdXf+9RZiFnDG3ae9QL7z9fuRnrLBvyK3diBVVmJAXNshFmBUxhkmAZksF51ez+93XJ9YSguMRV4iBOQDFBlw9mcUDvM8gQIyhFVlEqUgt5ioWGjAl9m9NRrPwtXvx+VkMQ+Ib3tVgIlEFZBU6783lL4r2zgInW3sGOha0J2Ki+pDd+Y84ezTWINsoCpGRelW7zm7hSRD5J7jOY7ruIweB2xaKlNESwFJJW7BDSAaE+563Sv/13WP0bN0W5QLwBikuSHg4xNFk2NzUQB/AqWtu+nKmkqBxnAjlAJGa44N3yREKdaa/+l5rNn/6Z70QtG2scFn1/O6VULvM1yXqgVMYmu9KKTmZnuno6YmPLYx/mGtf1488K5ZXvVn9NLJJvll0OxePzT6/evmBylH1Y4/AwAA"
+    },
+    {
+      "url": "https://gematik.de/fhir/eeb/StructureDefinition/GeschuetzteVersichertendaten",
+      "valueBase64Binary": "H4sIABPVU2QA/4VP70vDMBD9V8p9X28TCptcMmSKDJwDh0P2ZYT2bMrSVJpr1f71S1FQUfDLu+Tu8X7Q8q12Sc9tqBqvYJZOIWGfN0XlSwXr3XYyn2eLySyDJIjxhXGNZwXvHGCp6XF1vOWQ245lEN6PKrnlVjgSIzxt7pLV9ea4v3nYrbf3CrL0YjSIlj4osCIvl4ivIS25NlKd0oLx2WAfinoE7CMfNB26wVjX+TLECNIFTbuPOSX8fBH+QWLHJ6n6WE5awyVruuJ2EBcz6gXh14cOxnrz/fZzEW1+a+H/5fUZUb40hF4BAAA="
+    }
+  ],
+  "payor": [
+    {
+      "identifier": {
+        "system": "http://fhir.de/sid/arge-ik/iknr",
+        "value": "12345678"
+      },
+      "display": "Test GKV Krankenkasse"
+    }
+  ],
+  "type": {
+    "coding": [
+      {
+        "system": "http://fhir.de/CodeSystem/versicherungsart-de-basis",
+        "code": "GKV",
+        "display": "gesetzliche Krankenversicherung"
+      }
+    ]
+  },
+  "period": {
+    "start": "2022-04-01",
+    "end": "2027-07-31"
+  },
+  "beneficiary": {
+    "reference": "Patient/437f2555-2396-4c64-a656-e9553161ca3c"
+  }
+}
