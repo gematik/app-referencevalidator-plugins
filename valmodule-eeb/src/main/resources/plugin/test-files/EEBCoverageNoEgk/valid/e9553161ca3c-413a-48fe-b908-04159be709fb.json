@@ -1,0 +1,81 @@
+{
+  "resourceType": "Coverage",
+  "id": "e9553161ca3c-413a-48fe-b908-04159be709fb",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/eeb/StructureDefinition/EEBCoverageNoEgk"
+    ]
+  },
+  "status": "active",
+  "extension": [
+    {
+      "url": "http://fhir.de/StructureDefinition/gkv/versichertenart",
+      "valueCoding": {
+        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_VERSICHERTENSTATUS",
+        "code": "1"
+      }
+    },
+    {
+      "url": "http://fhir.de/StructureDefinition/gkv/wop",
+      "valueCoding": {
+        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_ITA_WOP",
+        "code": "38",
+        "display": "Nordrhein"
+      }
+    },
+    {
+      "url": "http://fhir.de/StructureDefinition/gkv/besondere-personengruppe",
+      "valueCoding": {
+        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_PERSONENGRUPPE",
+        "code": "06",
+        "display": "BVG"
+      }
+    },
+    {
+      "url": "http://fhir.de/StructureDefinition/gkv/zuzahlungsstatus",
+      "extension": [
+        {
+          "url": "status",
+          "valueBoolean": true
+        },
+        {
+          "url": "gueltigBis",
+          "valueDate": "2020-12-31"
+        }
+      ]
+    }
+  ],
+  "payor": [
+    {
+      "identifier": {
+        "system": "http://fhir.de/sid/arge-ik/iknr",
+        "value": "12345678"
+      },
+      "extension": [
+        {
+          "url": "http://fhir.de/StructureDefinition/AbrechnendeIK",
+          "valueIdentifier": {
+            "system": "http://fhir.de/sid/arge-ik/iknr",
+            "value": "756756324"
+          }
+        }
+      ],
+      "display": "Test Krankenkasse"
+    }
+  ],
+  "type": {
+    "coding": [
+      {
+        "system": "http://fhir.de/CodeSystem/versicherungsart-de-basis",
+        "code": "GKV"
+      }
+    ]
+  },
+  "period": {
+    "start": "2022-04-01",
+    "end": "2022-07-31"
+  },
+  "beneficiary": {
+    "reference": "Patient/d62d9d82-2396-4c64-a656-2e67b5761523"
+  }
+}

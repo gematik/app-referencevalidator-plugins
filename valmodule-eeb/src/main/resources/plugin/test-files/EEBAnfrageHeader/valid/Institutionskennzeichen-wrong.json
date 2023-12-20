@@ -1,0 +1,42 @@
+{
+  "resourceType": "MessageHeader",
+  "id": "bb03a437-fe56-46f9-8622-ffc3766e7c70",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/eeb/StructureDefinition/EEBAnfrageHeader"
+    ]
+  },
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/eeb/StructureDefinition/Leistungsdatum",
+      "valueDate": "2022-02-01"
+    },
+    {
+      "url": "https://gematik.de/fhir/eeb/StructureDefinition/Einverstaendnis",
+      "valueBoolean": true
+    },
+    {
+      "url": "https://gematik.de/fhir/eeb/StructureDefinition/Institutionskennzeichen",
+      "valueIdentifier": {
+        "system": "http://fhir.de/sid/arge-ik/iknr",
+        "value": "ABC123"
+      }
+    }
+  ],
+  "eventCoding": {
+    "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+    "code": "1.2.276.0.76.4.50",
+    "display": "Betriebsstätte Arzt"
+  },
+  "sender": {
+    "reference": "Organisation/fad15347-a4b3-4899-a454-9fb43bdb0f30"
+  },
+  "source": {
+    "endpoint": "https://pvs.de/KIM"
+  },
+  "focus": [
+    {
+      "reference": "Patient/b8f0f69c-af1a-480b-8abf-44ab11aa23c5"
+    }
+  ]
+}

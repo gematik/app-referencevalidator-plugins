@@ -1,0 +1,29 @@
+{
+  "resourceType": "MessageHeader",
+  "id": "bd901c08-0133-4276-b34b-eb810a62deda",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/eeb/StructureDefinition/EEBBescheinigungHeader"
+    ]
+  },
+  "response": {
+    "code": "ok",
+    "identifier": "79939e34-c5cc-4da6-ba55-f4bd85832760"
+  },
+  "eventCoding": {
+    "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+    "code": "1.2.276.0.76.4.88888",
+    "display": "North Pole"
+  },
+  "source": {
+    "endpoint": "https://Test-Krankenkasse.de/KIM"
+  },
+  "focus": [
+    {
+      "reference": "Patient/437f2555-2396-4c64-a656-e9553161ca3c"
+    },
+    {
+      "reference": "Coverage/2d4da53a-413a-48fe-b908-2e67b5761523"
+    }
+  ]
+}

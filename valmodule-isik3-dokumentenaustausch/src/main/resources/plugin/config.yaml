@@ -1,0 +1,30 @@
+configSpecVersion: "1.0"
+id: "isik3-dokumentenaustausch"
+author: "gematik GmbH"
+description: "Referenzvalidator-Plugin für die Spezifikation 'Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Dokumentenaustausch)'"
+specUrl: "https://simplifier.net/packages/de.gematik.isik-dokumentenaustausch/3.0.0"
+version: "${project.version}"
+validation:
+  fhirPackage: "de.gematik.isik-dokumentenaustausch#3.0.0"
+  errorOnUnknownProfile: "false"
+  anyExtensionsAllowed: "true"
+  ignoredCodeSystems:
+    - "http://snomed.info/sct"
+    - "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
+    - "http://fhir.de/CodeSystem/bfarm/atc"
+    - "http://fhir.de/CodeSystem/bfarm/ops"
+  ignoredValueSets:
+    - "https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/ProzedurenCodesSCT" # Erfordert eine Expansion von SNOMED-CT (aktuell nicht implementiert)
+    - "https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/DiagnosesSCT"
+    - "https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/ProzedurenKategorieSCT"
+    - "https://gematik.de/fhir/isik/v3/Terminplanung/ValueSet/ISiKTerminPriority" # Erfordert eine Expansion von SNOMED-CT (aktuell nicht implementiert)
+    - "http://fhir.de/ValueSet/bfarm/ops" # Das Code System ist als FHIR nicht vorhanden
+    - "https://gematik.de/fhir/isik/v3/Medikation/ValueSet/SctRouteOfAdministration"
+  validationMessageTransformations:
+    - severityLevelFrom: "error"
+      severityLevelTo: "information"
+      locatorString: "urn:ihe:iti:xds:2017:mimeTypeSufficient"
+      messageId: "Terminology_TX_Confirm_4a"
+snapshotDependencies:
+  - "hl7.terminology.r4#4.0.0"
+  - "hl7.terminology.r4#5.0.0"

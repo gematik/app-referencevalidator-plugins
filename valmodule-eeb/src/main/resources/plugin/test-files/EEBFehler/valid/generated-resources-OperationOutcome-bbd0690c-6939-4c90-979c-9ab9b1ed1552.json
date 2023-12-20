@@ -1,0 +1,38 @@
+{
+  "resourceType": "OperationOutcome",
+  "id": "bbd0690c-6939-4c90-979c-9ab9b1ed1552",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/eeb/StructureDefinition/EEBFehler"
+    ]
+  },
+  "issue": [
+    {
+      "severity": "fatal",
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/eeb/StructureDefinition/EEBOperationOutcomeIssueIdentifier",
+          "extension": [
+            {
+              "valueIdentifier": {
+                "system": "urn:ietf:rfc:3986",
+                "value": "urn:uuid:79939e34-c5cc-4da6-ba55-f4bd85832760"
+              },
+              "url": "Bundle-Identifier"
+            }
+          ]
+        }
+      ],
+      "code": "processing",
+      "details": {
+        "coding": [
+          {
+            "code": "100",
+            "system": "https://gematik.de/fhir/eeb/CodeSystem/EEBErrorcodeCS",
+            "display": "Der Patient ist nicht bei der adressierten Krankenkasse versichert."
+          }
+        ]
+      }
+    }
+  ]
+}

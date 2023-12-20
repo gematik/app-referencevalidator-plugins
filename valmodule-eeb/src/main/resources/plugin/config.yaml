@@ -1,0 +1,10 @@
+configSpecVersion: "1.0"
+id: "eeb"
+author: "gematik GmbH"
+description: "Referenzvalidator-Plugin für die Spezifikation 'Definition Versichertenstammdaten zum Versand via KIM für GKV VSDM Ersatzbescheinigung und PKV Online Check-In'"
+specUrl: "https://simplifier.net/isik-basis-v1"
+version: "${project.version}"
+validation:
+  fhirPackage: "de.gematik.elektronische-versicherungsbescheinigung#1.0.0"
+  errorOnUnknownProfile: "true"
+  anyExtensionsAllowed: "false"

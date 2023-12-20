@@ -1,0 +1,158 @@
+{
+  "resourceType": "Bundle",
+  "id": "1f311c40-fee9-4b03-b0c4-c29d432f2371",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/eeb/StructureDefinition/EEBAnfrageBundle"
+    ]
+  },
+  "type": "message",
+  "identifier": {
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:79939e34-c5cc-4da6-ba55-f4bd85832760"
+  },
+  "timestamp": "2022-08-29T02:10:37.154+02:00",
+  "entry": [
+    {
+      "fullUrl": "https://gematik.de/fhir/MessageHeader/bb03a437-fe56-46f9-8622-ffc3766e7c70",
+      "resource": {
+        "resourceType": "MessageHeader",
+        "id": "bb03a437-fe56-46f9-8622-ffc3766e7c70",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/eeb/StructureDefinition/EEBAnfrageHeader"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://gematik.de/fhir/eeb/StructureDefinition/Leistungsdatum",
+            "valueDate": "2022-02-01"
+          },
+          {
+            "url": "https://gematik.de/fhir/eeb/StructureDefinition/Einverstaendnis",
+            "valueBoolean": true
+          },
+          {
+            "url": "https://gematik.de/fhir/eeb/StructureDefinition/Institutionskennzeichen",
+            "valueIdentifier": {
+              "system": "http://fhir.de/sid/arge-ik/iknr",
+              "value": "12345678"
+            }
+          }
+        ],
+        "eventCoding": {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+          "code": "1.2.276.0.76.4.50",
+          "display": "Betriebsstätte Arzt"
+        },
+        "sender": {
+          "reference": "Organisation/fad15347-a4b3-4899-a454-9fb43bdb0f30"
+        },
+        "source": {
+          "endpoint": "https://pvs.de/KIM"
+        },
+        "focus": [
+          {
+            "reference": "Patient/b8f0f69c-af1a-480b-8abf-44ab11aa23c5"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://gematik.de/fhir/Patient/b8f0f69c-af1a-480b-8abf-44ab11aa23c5",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "b8f0f69c-af1a-480b-8abf-44ab11aa23c5",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/eeb/StructureDefinition/EEBKnownPatient"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/identifier-type-de-basis",
+                  "code": "GKV"
+                }
+              ]
+            },
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "T024791905"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://gematik.de/fhir/Organisation/fad15347-a4b3-4899-a454-9fb43bdb0f30",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "fad15347-a4b3-4899-a454-9fb43bdb0f30",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Organization|1.1.0"
+          ]
+        },
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "0123456789"
+          }
+        ],
+        "address": [
+          {
+            "type": "both",
+            "line": [
+              "Testweg 10"
+            ],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                    "valueString": "10"
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                    "valueString": "Testweg"
+                  }
+                ]
+              }
+            ],
+            "city": "Berlin",
+            "postalCode": "10115",
+            "country": "D"
+          }
+        ],
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "PRN"
+                }
+              ]
+            },
+            "system": "https://gematik.de/fhir/sid/telematik-id",
+            "value": "123456"
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "BSNR"
+                }
+              ]
+            },
+            "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_BSNR",
+            "value": "123456789"
+          }
+        ],
+        "name": "Praxis Test"
+      }
+    }
+  ]
+}

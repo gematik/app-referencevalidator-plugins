@@ -1,0 +1,39 @@
+{
+  "resourceType": "OperationOutcome",
+  "id": "3f624395-be34-4fac-9773-d735cb3a1f73",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/eeb/StructureDefinition/EEBFehler"
+    ]
+  },
+  "issue": [
+    {
+      "severity": "fatal",
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/eeb/StructureDefinition/EEBOperationOutcomeIssueIdentifier",
+          "extension": [
+            {
+              "valueIdentifier": {
+                "system": "https://gematik.de/fhir/eeb/StructureDefinition/Message_ID_KIM",
+                "value": "96d6a790-afc2-4556-ab73-301e51a7bf30@kim.de"
+              },
+              "url": "Message-ID"
+            }
+          ]
+        }
+      ],
+      "code": "processing",
+      "details": {
+        "coding": [
+          {
+            "code": "311",
+            "system": "https://gematik.de/fhir/eeb/CodeSystem/EEBErrorcodeCS",
+            "display": "Die Integrität der Nachricht wurde verletzt. Die Prüfung der Signatur hat ergeben, dass die Nachricht manipuliert wurde."
+          }
+        ],
+        "text": "Hier könnte ihr Stacktrace stehen"
+      }
+    }
+  ]
+}
