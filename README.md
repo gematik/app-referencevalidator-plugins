@@ -1,10 +1,14 @@
+![gematik GmbH](docs/Gematik_Logo_Flag.png)
+
+# gematik Referenzvalidator Plugins
+
 In diesem Projekt sind Plugins für den [gematik Referenzvalidator](https://github.com/gematik/app-referencevalidator) und ein Werkzeug enthalten, mit dem eigene Plugins erstellt werden können. 
 
 Siehe auch [Release Notes](ReleaseNotes.md).
 
 # Verfügbare Plugins
 
-Die Plugins können unter [Releases](/releases) heruntergeladen werden. 
+Die Plugins können unter [Releases](https://github.com/gematik/app-referencevalidator-plugins/releases) heruntergeladen werden. 
 
 | **Plugin**                                                                                  | **Version** | **ID**                    |
 |---------------------------------------------------------------------------------------------|-------------|---------------------------|
