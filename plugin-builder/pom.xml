@@ -4,7 +4,7 @@
     <parent>
         <groupId>de.gematik.refv.plugins</groupId>
         <artifactId>parent-pom</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>plugin-builder</artifactId>
