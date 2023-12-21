@@ -2,6 +2,12 @@
 
 # Release Notes
 
+## PluginBuilder 1.0.1
+
+### fixed
+- fixed a bug during snapshot generation if dependencies habe upper case characters in their name
+
+
 ## PluginBuilder 1.0.0
 
 ### added
