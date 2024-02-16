@@ -30,37 +30,26 @@ Die Bezeichnung in der Spalte `ID` dient dem Aufruf des Plugins aus der Referenz
 
 ## Besonderheiten der Plugins
 
-### ISIP1
-
-#### Anpassungen der Packages:
-- Alle Packages enthalten Snapshots
-
 ### ISIK3
 
 Abweichend vom allgemeinen Prüfumfang verhalten sich die ISIK3-Plugins wie folgt:
-- Codes aus den CodeSystemen `http://snomed.info/sct`, `http://fhir.de/CodeSystem/bfarm/icd-10-gm`, `http://fhir.de/CodeSystem/bfarm/atc` und `http://fhir.de/CodeSystem/bfarm/ops` werden nicht validiert
+- Codes aus den CodeSystemen `http://snomed.info/sct`, `http://fhir.de/CodeSystem/bfarm/icd-10-gm`, `http://fhir.de/CodeSystem/bfarm/atc`, `http://fhir.de/CodeSystem/ifa/pzn` und `http://fhir.de/CodeSystem/bfarm/ops` werden nicht validiert
 - Folgende ValueSets werden nicht validiert: `https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/ProzedurenCodesSCT`, `https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/DiagnosesSCT`, `https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/ProzedurenKategorieSCT`, `https://gematik.de/fhir/isik/v3/Terminplanung/ValueSet/ISiKTerminPriority`, `https://gematik.de/fhir/isik/v3/Medikation/ValueSet/SctRouteOfAdministration` und `http://fhir.de/ValueSet/bfarm/ops`
-
-#### Anpassungen der Packages:
-- Alle Packages enthalten Snapshots
+- Validierung ausgewählter [KBV-Schlüsseltabellen](https://applications.kbv.de/overview.xhtml), siehe Package gematik.kbv.sfhir.cs.vs im Plugin
 
 ### ISIK2
 
 Abweichend vom allgemeinen Prüfumfang verhalten sich die ISIK2-Plugins wie folgt:
-- Codes aus den CodeSystemen `http://snomed.info/sct`, `http://fhir.de/CodeSystem/bfarm/icd-10-gm`, `http://fhir.de/CodeSystem/bfarm/atc` und `http://fhir.de/CodeSystem/bfarm/ops` werden nicht validiert
+- Codes aus den CodeSystemen `http://snomed.info/sct`, `http://fhir.de/CodeSystem/bfarm/icd-10-gm`, `http://fhir.de/CodeSystem/bfarm/atc`, `http://fhir.de/CodeSystem/ifa/pzn` und `http://fhir.de/CodeSystem/bfarm/ops` werden nicht validiert
 - Folgende ValueSets werden nicht validiert: `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/ProzedurenCodesSCT`, `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/DiagnosesSCT`, `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/ProzedurenKategorieSCT`, `https://gematik.de/fhir/isik/v2/Terminplanung/ValueSet/ISiKTerminPriority`, `https://gematik.de/fhir/isik/v2/Medikation/ValueSet/SctRouteOfAdministration` und `http://fhir.de/ValueSet/bfarm/ops`
-
-#### Anpassungen der Packages:
-- Alle Packages enthalten Snapshots
+- Validierung ausgewählter [KBV-Schlüsseltabellen](https://applications.kbv.de/overview.xhtml), siehe Package gematik.kbv.sfhir.cs.vs im Plugin
 
 ### ISIK1
 
 Abweichend vom allgemeinen Prüfumfang verhält sich das ISIK1-Plugin wie folgt:
 - Codes aus den CodeSystemen `http://snomed.info/sct`, `http://fhir.de/CodeSystem/bfarm/icd-10-gm` und `http://fhir.de/CodeSystem/bfarm/ops` werden nicht validiert
 - Folgende ValueSets werden nicht validiert: `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/ProzedurenCodesSCT`, `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/DiagnosesSCT`, `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/ProzedurenKategorieSCT` und `http://fhir.de/ValueSet/bfarm/ops`
-
-#### Anpassungen der Packages:
-- Alle Packages enthalten Snapshots
+- Validierung ausgewählter [KBV-Schlüsseltabellen](https://applications.kbv.de/overview.xhtml), siehe Package gematik.kbv.sfhir.cs.vs im Plugin
 
 ### DIGA
 
@@ -69,13 +58,9 @@ Abweichend vom allgemeinen Prüfumfang verhält sich das DIGA-Plugin wie folgt:
 - Instanzen mit unbekannten Profilen führen zum invaliden Ergebnis
 - Instanzen mit unbekannten Extensions führen zum invaliden Ergebnis
 
-#### Anpassungen der Packages:
-- Alle Packages enthalten Snapshots
-
 ### VSDM-Ersatzbescheinigung
 
 #### Anpassungen der Packages:
-- Alle Packages enthalten Snapshots
 - ValueSet-versicherungsart-de-basis.json in de.basisprofil.r4-1.3.2 korrigiert
 
 # Nutzung mit dem Referenzvalidator
