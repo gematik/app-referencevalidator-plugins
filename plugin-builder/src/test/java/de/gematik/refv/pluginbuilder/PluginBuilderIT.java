@@ -103,7 +103,7 @@ class PluginBuilderIT {
                 .withBody(TestResourceLoader.getIsik1Package("de.basisprofil.r4-0.9.13.tgz")));
 
         String pluginDir = "src/test/resources/plugins/correct-plugin";
-        String resultFilepath = pluginBuilder.buildPlugin(pluginDir, getTargetDir());
+        String resultFilepath = pluginBuilder.buildPlugin(pluginDir, getTargetDir()).getCreatedPluginPath();
         File pluginZip = new File(resultFilepath);
 
         assertTrue(pluginZip.exists(), "Plugin zip has not been created");

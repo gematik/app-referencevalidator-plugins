@@ -8,7 +8,7 @@
   <groupId>de.gematik.refv.plugins</groupId>
   <artifactId>parent-pom</artifactId>
   <packaging>pom</packaging>
-  <version>1.0.1</version>
+  <version>1.0.2-SNAPSHOT</version>
   <name>gematik Referenzvalidator Plugins</name>
   <description>Plugin-Repository des gematik Referenzvalidators</description>
   <url>https://github.com/gematik/app-referencevalidator-plugins</url>
@@ -83,11 +83,11 @@
     <version.maven-javadoc-plugin>3.4.1</version.maven-javadoc-plugin>
     <version.maven-assembly-plugin>3.4.2</version.maven-assembly-plugin>
     <version.buildnumber>3.0.0</version.buildnumber>
-    <version.picocli>4.7.0</version.picocli>
     <version.mockito>4.11.0</version.mockito>
     <version.jacoco>0.8.8</version.jacoco>
     <version.maven-failsafe-plugin>3.0.0-M7</version.maven-failsafe-plugin>
     <version.maven-enforcer-plugin>3.3.0</version.maven-enforcer-plugin>
+    <version.picocli>4.7.0</version.picocli>
 
     <sonar.coverage.jacoco.xmlReportPaths>**/site/jacoco-it/jacoco.xml,**/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     <sonar.junit.reportPaths>
@@ -97,6 +97,7 @@
     <version.maven-gpg-plugin>3.0.1</version.maven-gpg-plugin>
     <version.dependency-check-maven>8.4.0</version.dependency-check-maven>
     <version.referencevalidator>2.0.1</version.referencevalidator>
+    <version.snapshot-generator>0.2.1</version.snapshot-generator>
     <checker-qual.version>3.39.0</checker-qual.version>
     <commons-codec.version>1.16.0</commons-codec.version>
     <error_prone_annotations.version>2.22.0</error_prone_annotations.version>
@@ -332,16 +333,23 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
           <version>${exec-maven-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>build-plugin</id>
+              <phase>compile</phase>
+              <goals>
+                <goal>exec</goal>
+              </goals>
+            </execution>
+          </executions>
           <configuration>
-            <includePluginDependencies>true</includePluginDependencies>
-            <includeProjectDependencies>true</includeProjectDependencies>
-            <executableDependency>
-              <groupId>de.gematik.refv.plugins</groupId>
-              <artifactId>plugin-builder</artifactId>
-            </executableDependency>
-            <mainClass>de.gematik.refv.pluginbuilder.PluginBuilderCli</mainClass>
+            <executable>java</executable>
+            <workingDirectory>../plugin-builder/target</workingDirectory>
             <arguments>
+              <argument>-jar</argument>
+              <argument>${project.basedir}/../plugin-builder/target/plugin-builder-${parent.version}-jar-with-dependencies.jar</argument>
               <argument>${project.basedir}/target/plugin/</argument>
+              <argument>-t</argument>
               <argument>${project.basedir}/target/</argument>
             </arguments>
           </configuration>
@@ -445,6 +453,11 @@
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-reload4j</artifactId>
         <version>${version.slf4j-log4j}</version>
+      </dependency>
+      <dependency>
+        <groupId>info.picocli</groupId>
+        <artifactId>picocli</artifactId>
+        <version>${version.picocli}</version>
       </dependency>
       <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
       <dependency>

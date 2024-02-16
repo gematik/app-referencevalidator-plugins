@@ -29,7 +29,7 @@ import de.gematik.refv.pluginbuilder.helper.FhirPackageDownloader;
 import de.gematik.refv.pluginbuilder.helper.PluginTester;
 import de.gematik.refv.pluginbuilder.helper.PluginZipper;
 import de.gematik.refv.plugins.configuration.MalformedPackageDeclarationException;
-import de.gematik.refv.snapshots.SnapshotGenerator;
+import de.gematik.fhir.snapshots.SnapshotGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 
@@ -73,6 +73,8 @@ public class PluginBuilder {
 
     /**
      * Builds a plugin based on the specified plugin definition directory path and puts it in the target folder.
+     * Initializes paths, copies the plugin directory, finds existing FHIR packages, reads the configuration file,
+     * downloads FHIR packages, generates snapshots, tests the plugin, and creates the final plugin.
      *
      * @param pluginDefinitionDirectoryPath The path to the plugin definition directory.
      * @param targetFolderPath The target folder path for storing the built plugin.
@@ -85,39 +87,17 @@ public class PluginBuilder {
      * @throws ValidationModuleInitializationException If anything goes wrong during the initialization of ValidationModule while testing the plugin.
      * @throws DependencyExtractionException If anything goes wrong during file I/O operations while extracting the dependencies for the current plugin.
      */
-    public String buildPlugin(String pluginDefinitionDirectoryPath, String targetFolderPath) throws IOException, DownloadFailedException, PluginTestFailedException, MalformedPackageDeclarationException, PluginIdentifierException, ValidationModuleInitializationException, DependencyExtractionException {
+    public PluginBuilderResult buildPlugin(String pluginDefinitionDirectoryPath, String targetFolderPath) throws IOException, DownloadFailedException, PluginTestFailedException, MalformedPackageDeclarationException, PluginIdentifierException, ValidationModuleInitializationException, DependencyExtractionException {
         File pluginDefinitionDirectory = new File(pluginDefinitionDirectoryPath);
-
         if (!pluginDefinitionDirectory.exists()) {
             throw new IllegalArgumentException(String.format("No such file or directory: %s", pluginDefinitionDirectoryPath));
         }
-
         if (!pluginDefinitionDirectory.isDirectory()) {
             throw new IllegalArgumentException("Please only pass directories for plugin building!");
         }
 
-        return build(pluginDefinitionDirectory, targetFolderPath);
-    }
-
-    /**
-     * Builds a plugin based on the specified plugin definition directory and target folder path.
-     * Initializes paths, copies the plugin directory, finds existing FHIR packages, reads the configuration file,
-     * downloads FHIR packages, generates snapshots, tests the plugin, and creates the final plugin.
-     *
-     * @param dir The plugin definition directory.
-     * @param targetFolderPath The target folder path for storing the built plugin.
-     * @return The path to the built plugin.
-     * @throws IOException If an I/O error occurs during the build process.
-     * @throws DownloadFailedException If the download process is unsuccessful.
-     * @throws PluginTestFailedException If the plugin testing process fails.
-     * @throws MalformedPackageDeclarationException If FHIR-package declarations inside config.yaml do not follow the correct pattern: packageName#packageVersion.
-     * @throws PluginIdentifierException If the specified ID inside PluginConfigurationData is equal to one of the IDs of the embedded validation modules from the reference validator.
-     * @throws ValidationModuleInitializationException If anything goes wrong during the initialization of ValidationModule while testing the plugin.
-     * @throws DependencyExtractionException If anything goes wrong during file I/O operations while extracting the dependencies for the current plugin.
-     */
-    private String build(File dir, String targetFolderPath) throws IOException, DownloadFailedException, PluginTestFailedException, MalformedPackageDeclarationException, PluginIdentifierException, ValidationModuleInitializationException, DependencyExtractionException {
         initializePaths(targetFolderPath);
-        copyPluginDirectory(dir);
+        copyPluginDirectory(pluginDefinitionDirectory);
         pluginDefinition = PluginDefinitionWrapper.createFrom(getConfigFilePath());
         findExistingFhirPackagesAndAddToThePluginDefinition(packageFolderPath);
         String pluginName = pluginDefinition.getId();
@@ -152,7 +132,7 @@ public class PluginBuilder {
             // Create Final Plugin
             File finalPlugin = pluginZipper.zipPlugin(pluginName, pluginVersion, temporaryExtractionFolder, targetFolderPath, List.of("test-files", SRC_PACKAGE));
             log.info("Finished building plugin '{}' at {}", pluginName, targetFolderPath);
-            return finalPlugin.getAbsolutePath();
+            return new PluginBuilderResult(isTestedSuccessful, finalPlugin.getAbsolutePath());
         } finally {
             // Cleanup
             try {
@@ -267,8 +247,8 @@ public class PluginBuilder {
      */
     private void generateSnapshots(String packageFolderPath, List<String> excludedPackages) throws IOException, MalformedPackageDeclarationException {
         excludedPackages.addAll(pluginDefinition.getSnapshotDependenciesAsFilenames());
-        SnapshotGenerator snapshotGenerator = new SnapshotGenerator(excludedPackages);
-        snapshotGenerator.generateSnapshots(packageFolderPath, packageFolderPath.replace(SRC_PACKAGE, "package"), "");
+        SnapshotGenerator snapshotGenerator = new SnapshotGenerator();
+        snapshotGenerator.generateSnapshots(packageFolderPath, packageFolderPath.replace(SRC_PACKAGE, "package"), "", excludedPackages);
     }
 
     /**

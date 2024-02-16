@@ -5,7 +5,7 @@ description: "Referenzvalidator-Plugin für die Spezifikation 'Informationstechn
 specUrl: "https://simplifier.net/packages/de.gematik.isik-basismodul/3.0.0"
 version: "${project.version}"
 validation:
-  fhirPackage: "de.gematik.isik-basismodul#3.0.0"
+  fhirPackage: "de.gematik.isik-basismodul#3.0.3"
   dependencies:
     - "kbv.basis#1.2.0"
   errorOnUnknownProfile: "false"

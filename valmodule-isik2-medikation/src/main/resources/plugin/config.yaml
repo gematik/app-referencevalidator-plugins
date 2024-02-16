@@ -15,6 +15,7 @@ validation:
     - "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
     - "http://fhir.de/CodeSystem/bfarm/atc"
     - "http://fhir.de/CodeSystem/bfarm/ops"
+    - "http://fhir.de/CodeSystem/ifa/pzn"
   ignoredValueSets:
     - "https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/ProzedurenCodesSCT" # Erfordert eine Expansion von SNOMED-CT (aktuell nicht implementiert)
     - "https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/DiagnosesSCT"
