@@ -15,10 +15,11 @@ limitations under the License.
 */
 package de.gematik.refv.pluginbuilder;
 
+import de.gematik.refv.pluginbuilder.support.TestAppender;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockserver.integration.ClientAndServer;
 import org.mockserver.model.MediaType;
@@ -30,7 +31,8 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 import static de.gematik.refv.pluginbuilder.TestResourceLoader.getIsik1Package;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.mockserver.model.HttpRequest.request;
 import static org.mockserver.model.HttpResponse.response;
 
@@ -57,14 +59,43 @@ class PluginBuilderCliIT {
     }
 
     @Test
-    @Disabled("Disabled until there is a possibility of passing a URL of package server")
-    void testPluginBuilderCli() {
-        String input = "src/test/resources/plugins/correct-plugin";
-        String [] args = {input};
-        PluginBuilderCli.main(args);
+    void testPluginBuilderCliWithoutTargetFolder() {
+        var request1 = request()
+                .withPath("/de.gematik.isik-basismodul-stufe1/1.0.9");
+        var request2 = request()
+                .withPath("/de.basisprofil.r4/1.4.0");
+        var request3 = request()
+                .withPath("/kbv.basis/1.2.0");
+        var request4 = request()
+                .withPath("/de.basisprofil.r4/0.9.13");
+        mockServer.when(request1).respond(response()
+                .withStatusCode(200)
+                .withContentType(MediaType.parse("application/tar+gzip"))
+                .withBody(getIsik1Package("de.gematik.isik-basismodul-stufe1-1.0.9.tgz")));
+        mockServer.when(request2).respond(response()
+                .withStatusCode(200)
+                .withContentType(MediaType.parse("application/tar+gzip"))
+                .withBody(getIsik1Package("de.basisprofil.r4-1.4.0.tgz")));
+        mockServer.when(request3).respond(response()
+                .withStatusCode(200)
+                .withContentType(MediaType.parse("application/tar+gzip"))
+                .withBody(getIsik1Package("kbv.basis-1.2.0.tgz")));
+        mockServer.when(request4).respond(response()
+                .withStatusCode(200)
+                .withContentType(MediaType.parse("application/tar+gzip"))
+                .withBody(getIsik1Package("de.basisprofil.r4-0.9.13.tgz")));
 
-        File plugin = new File("src/test/resources/plugins/correct-plugin.zip");
-        assertTrue(plugin.exists());
+        String inputFolder = getTempDir() + "correct-plugin";
+        PluginBuilderCli.main(new String[]{inputFolder, "-url", getFhirPackageServerUrl(), "--disableSuccessAndErrorCodes"});
+
+        File plugin = new File(getTempDir() + "isik1-plugin-1.0.0.zip");
+        assertThat(plugin).exists();
+        mockServer.verify(request1, VerificationTimes.once());
+        mockServer.verify(request2, VerificationTimes.once());
+        mockServer.verify(request3, VerificationTimes.once());
+        mockServer.verify(request4, VerificationTimes.once());
+
+        plugin.delete();
     }
 
     @Test
@@ -96,13 +127,37 @@ class PluginBuilderCliIT {
 
         String inputFolder = getTempDir() + "correct-plugin";
         String outputFolder = getTempDir() + "correct-plugin-result" + File.separator;
-        PluginBuilderCli.main(new String[]{inputFolder, outputFolder, getFhirPackageServerUrl()});
+        PluginBuilderCli.main(new String[]{inputFolder, "-t", outputFolder, "-url", getFhirPackageServerUrl(), "--disableSuccessAndErrorCodes"});
 
         File plugin = new File(outputFolder + "isik1-plugin-1.0.0.zip");
-        assertTrue(plugin.exists(), "No plugin file created");
+        assertThat(plugin).exists();
         mockServer.verify(request1, VerificationTimes.once());
         mockServer.verify(request2, VerificationTimes.once());
         mockServer.verify(request3, VerificationTimes.once());
         mockServer.verify(request4, VerificationTimes.once());
+    }
+
+    @Test
+    void testPluginBuilderCliWithNoArguments(){
+        TestAppender appender = new TestAppender();
+        Logger.getRootLogger().addAppender(appender);
+
+        PluginBuilderCli.main(new String[]{});
+
+        boolean noExceptionsInLogs = appender.getLogs().stream().noneMatch(e -> e.getMessage().toString().contains("Exception"));
+        assertThat(noExceptionsInLogs).isTrue();
+    }
+
+    @Test
+    void testPluginBuilderCliCatchingException() {
+        TestAppender appender = new TestAppender();
+        Logger.getRootLogger().addAppender(appender);
+
+        String inputFolder = getTempDir() + "%%%%%%%%" + File.separator;
+        assertThatCode(() -> PluginBuilderCli.main(new String[]{inputFolder, "-url", getFhirPackageServerUrl(), "--disableSuccessAndErrorCodes"}))
+                .doesNotThrowAnyException();
+
+        boolean exceptionWasLogged = appender.getLogs().stream().anyMatch(e -> e.getMessage().toString().contains("Something went wrong!"));
+        assertThat(exceptionWasLogged).isTrue();
     }
 }

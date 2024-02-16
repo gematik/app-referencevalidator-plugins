@@ -12,6 +12,9 @@
         "system": "http://fhir.de/CodeSystem/bfarm/atc",
         "code": "V03AB23",
         "display": "Acetylcystein"
+      },
+      { "system": "http://fhir.de/CodeSystem/ifa/pzn",
+        "code": "16852314"
       }
     ]
   },

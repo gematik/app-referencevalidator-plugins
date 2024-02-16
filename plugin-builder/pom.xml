@@ -4,7 +4,7 @@
     <parent>
         <groupId>de.gematik.refv.plugins</groupId>
         <artifactId>parent-pom</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>plugin-builder</artifactId>
@@ -25,9 +25,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>de.gematik.refv</groupId>
-            <artifactId>snapshot-generator</artifactId>
-            <version>${version.referencevalidator}</version>
+            <groupId>de.gematik.fhir</groupId>
+            <artifactId>fhir-snapshots-package-generator-lib</artifactId>
+            <version>${version.snapshot-generator}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -71,6 +71,10 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
             <version>${version.lombok}</version>
+        </dependency>
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>

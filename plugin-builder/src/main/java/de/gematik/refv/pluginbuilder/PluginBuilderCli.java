@@ -17,51 +17,88 @@ package de.gematik.refv.pluginbuilder;
 
 import de.gematik.refv.pluginbuilder.helper.FhirPackageDownloader;
 import de.gematik.refv.pluginbuilder.helper.PluginZipper;
+import lombok.NoArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.hl7.fhir.utilities.npm.PackageServer;
+import picocli.CommandLine;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.List;
 
-
-/**
- * The main class for the <code>PluginBuilder</code>.
- * mandatory arguments:
- * <code>pluginDefinitionDirectoryPath</code> - The filepath to the plugin definition
- * optional arguments:
- * <code>targetFolderPath</code> - The filepath where the final plugin should be saved (default: parent directory of <code>pluginDefinitionFilepath</code>)
- */
+@CommandLine.Command(
+        name="",
+        description = "The PluginBuilder helps to create custom validation modules (plugins) for the gematik ReferenceValidator (cf. https://github.com/gematik/app-referencevalidator-plugins)"
+)
+@NoArgsConstructor
 @Slf4j
-public class PluginBuilderCli {
+public class PluginBuilderCli implements Runnable {
 
+    public static final int ERROR_CODE_TESTS_FAILED = 1;
+    public static final int ERROR_CODE_EXCEPTION = 2;
+    public static final int SUCCESS_CODE = 0;
+    @CommandLine.Parameters(paramLabel = "PLUGIN_DEFINITION_DIRECTORY", description = "Directory with plugin definition file and supporting resources")
+    private String pluginDefinitionDirectoryPath;
+
+    @CommandLine.Option(names = {"-t", "--targetFolderPath"}, description = "Output directory for created plugins (default: parent directory of PLUGIN_DEFINITION_DIRECTORY)")
+    private String targetFolderPath;
+
+    @CommandLine.Option(names = {"-url", "--packageServerUrl"}, description = "The URL of a FHIR package server to use")
+    private String packageServerUrl;
+
+    @CommandLine.Option(names = {"-dse", "--disableSuccessAndErrorCodes"}, description = "Disables success/error codes upon finish (0 and 1)")
+    private boolean areSuccessAndErrorCodesDisabled = false;
+
+    @SneakyThrows
     public static void main(String[] args) {
-        try {
-            if(args.length == 0) {
-                log.error("Mandatory arguments missing: pluginDefinitionDirectoryPath");
-                return;
+        var cli = new CommandLine(new PluginBuilderCli()).setCaseInsensitiveEnumValuesAllowed(true);
+        if(args.length == 0) {
+            try(ByteArrayOutputStream out1 = new ByteArrayOutputStream()) {
+                PrintWriter out = new PrintWriter(out1);
+                cli.usage(out);
+                logWithLineBreak(out1.toString());
             }
+        }
+        else
+            cli.execute(args);
+    }
 
-            String pluginDefinitionDirectoryPath = args[0];
-            String targetFolderPath = getTargetFolderPath(args, pluginDefinitionDirectoryPath);
-            PluginBuilder pluginBuilder = setUpPluginBuilder(args.length > 2 ? args[2] : null);
-            pluginBuilder.buildPlugin(pluginDefinitionDirectoryPath, targetFolderPath);
+    private static void logWithLineBreak(String output) {
+        log.info("\r\n{}", output);
+    }
+
+    @Override
+    public void run() {
+        try {
+            targetFolderPath = !StringUtils.isEmpty(targetFolderPath) ? targetFolderPath :
+                    new File(pluginDefinitionDirectoryPath).getParentFile().getAbsolutePath();
+
+            PluginBuilder pluginBuilder = setUpPluginBuilder();
+            var buildResult = pluginBuilder.buildPlugin(pluginDefinitionDirectoryPath, targetFolderPath);
+
+
+            if (!buildResult.isTestedSuccessfully()) {
+                exit(ERROR_CODE_TESTS_FAILED);
+            } else
+                exit(SUCCESS_CODE);
         } catch (Exception e) {
             log.error("Something went wrong!", e);
-        }
-
-    }
-
-    private static String getTargetFolderPath(String[] args, String pluginDefinitionDirectoryPath) {
-        if(args.length >= 2) {
-            return args[1];
-        } else {
-            File file = new File(pluginDefinitionDirectoryPath);
-            return file.getParentFile().getAbsolutePath();
+            exit(ERROR_CODE_EXCEPTION);
         }
     }
 
-    private static PluginBuilder setUpPluginBuilder(String packageServerUrl) {
-        FhirPackageDownloader fhirPackageDownloader = packageServerUrl == null ? new FhirPackageDownloader() : new FhirPackageDownloader(List.of(new PackageServer(packageServerUrl)));
+    private void exit(int errorCode) {
+        if(!areSuccessAndErrorCodesDisabled)
+            System.exit(errorCode);
+    }
+
+    private PluginBuilder setUpPluginBuilder() {
+        FhirPackageDownloader fhirPackageDownloader = (packageServerUrl == null) ?
+                new FhirPackageDownloader() :
+                new FhirPackageDownloader(List.of(new PackageServer(packageServerUrl)));
         PluginZipper pluginZipper = new PluginZipper();
 
         return new PluginBuilder(
