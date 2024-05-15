@@ -1,0 +1,24 @@
+{
+    "resourceType": "OperationOutcome",
+    "id": "gen1",
+    "meta": {
+        "profile":  [
+            "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-ms-operation-outcome"
+        ]
+    },
+    "implicitRules": "http://hl7.org/fhir/reference",
+    "language": "en-GB",
+    "issue":  [
+        {
+            "severity": "fatal",
+            "code": "structure",
+            "diagnostics": "Hilarious Dog",
+            "location":  [
+                "Crazy Badger"
+            ],
+            "expression":  [
+                "Inventive Elephant"
+            ]
+        }
+    ]
+}

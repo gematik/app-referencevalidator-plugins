@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 gematik GmbH
+Copyright (c) 2023-2024 gematik GmbH
 
 Licensed under the Apache License, Version 2.0 (the License);
 you may not use this file except in compliance with the License.
@@ -15,19 +15,29 @@ limitations under the License.
 */
 package de.gematik.refv.pluginbuilder.helper;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import de.gematik.refv.commons.configuration.PackageReference;
+import de.gematik.refv.plugins.configuration.PluginDefinition;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
+import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
+import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,29 +63,99 @@ public class ProfileUrlExtractor {
         return findAllProfileUrlsIn(packageFolderPath + packageFilename);
     }
 
-    /**
-     * Reads all the profile urls from a given fhir package.
-     * @param packageFilenamePath File path to the fhir package that should be scanned for its profile urls.
-     * @return List of profile urls.
-     * @throws IOException If the IO actions to scan the fhir package for profile urls fail.
-     */
-    private static List<String> findAllProfileUrlsIn(String packageFilenamePath) throws IOException {
+    public static List<String> getAllPluginProfileUrlsFromInputStream(InputStream inputStream) throws IOException {
         List<String> profileUrls = new ArrayList<>();
-        try (TarArchiveInputStream tarInputStream = new TarArchiveInputStream(new GzipCompressorInputStream(new FileInputStream(packageFilenamePath)));
-             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(tarInputStream))) {
-            TarArchiveEntry currentEntry = tarInputStream.getNextEntry();
-            while (currentEntry != null) {
-                String jsonString = buildJsonString(bufferedReader);
-                if(isStructureDefinition(jsonString) && isResource(jsonString)) {
 
+        // Read all contents into memory
+        byte[] zipData;
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                baos.write(buffer, 0, bytesRead);
+            }
+            zipData = baos.toByteArray();
+        }
+
+        try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(zipData);
+             ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(byteArrayInputStream)) {
+
+            PackageReference fhirPackage = getFhirPackageReferenceFromInputStream(zipInputStream);
+            String packageFilename = String.format("%s-%s.tgz", fhirPackage.getPackageName(), fhirPackage.getPackageVersion());
+
+            ZipArchiveInputStream resetZipInputStream = new ZipArchiveInputStream(new ByteArrayInputStream(zipData));
+            ZipArchiveEntry entry;
+            while ((entry = resetZipInputStream.getNextEntry()) != null) {
+                if (entry.getName().equals("package/" + packageFilename)) {
+                    List<String> packageProfileUrls = extractProfileUrlsFromFhirPackage(resetZipInputStream);
+                    profileUrls.addAll(packageProfileUrls);
+                    break;
+                }
+            }
+        }
+
+        return profileUrls;
+    }
+
+    private PackageReference getFhirPackageReferenceFromInputStream(ZipArchiveInputStream zipInputStream) throws IOException {
+        String pluginDefinitionAsString = null;
+        ZipArchiveEntry entry;
+        while ((entry = zipInputStream.getNextEntry()) != null) {
+            if (entry.getName().equals("config.yaml")) {
+                StringBuilder yamlContentBuilder = new StringBuilder();
+                try (BufferedReader reader = new BufferedReader(new InputStreamReader(zipInputStream, StandardCharsets.UTF_8))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        yamlContentBuilder.append(line).append("\n");
+                    }
+                }
+                pluginDefinitionAsString = yamlContentBuilder.toString();
+                break;
+            }
+        }
+
+        if (pluginDefinitionAsString == null) {
+            throw new FileNotFoundException("config.yaml not found in the provided input stream");
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
+        PluginDefinition pluginDefinition = objectMapper.readValue(pluginDefinitionAsString, PluginDefinition.class);
+        String fhirPackageValue = pluginDefinition.getValidation().getFhirPackage();
+
+        String[] split = fhirPackageValue.split("#");
+        return new PackageReference(split[0], split[1]);
+    }
+
+
+    private static List<String> findProfileUrlsInTarArchive(TarArchiveInputStream tarInputStream) throws IOException {
+        List<String> profileUrls = new ArrayList<>();
+        TarArchiveEntry currentEntry;
+        while ((currentEntry = tarInputStream.getNextEntry()) != null) {
+            if (!currentEntry.isDirectory()) {
+                String jsonString = buildJsonString(new BufferedReader(new InputStreamReader(tarInputStream)));
+                if (isStructureDefinition(jsonString) && isResource(jsonString)) {
                     String url = parseJsonFieldAsString(jsonString, "url");
                     String profileVersion = parseJsonFieldAsString(jsonString, "version");
                     String profileUrl = String.format("%s|%s", url, profileVersion);
                     profileUrls.add(profileUrl);
-
                 }
-                currentEntry = tarInputStream.getNextEntry();
             }
+        }
+        return profileUrls;
+    }
+
+    private static List<String> extractProfileUrlsFromFhirPackage(InputStream inputStream) throws IOException {
+        List<String> profileUrls;
+        try (TarArchiveInputStream tarInputStream = new TarArchiveInputStream(new GzipCompressorInputStream(inputStream))) {
+            profileUrls = findProfileUrlsInTarArchive(tarInputStream);
+        }
+        return profileUrls;
+    }
+
+    private static List<String> findAllProfileUrlsIn(String packageFilenamePath) throws IOException {
+        List<String> profileUrls;
+        try (TarArchiveInputStream tarInputStream = new TarArchiveInputStream(new GzipCompressorInputStream(new FileInputStream(packageFilenamePath)))) {
+            profileUrls = findProfileUrlsInTarArchive(tarInputStream);
         }
         return profileUrls;
     }

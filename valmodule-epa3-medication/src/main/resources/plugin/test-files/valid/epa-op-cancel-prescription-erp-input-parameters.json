@@ -1,0 +1,29 @@
+{
+    "resourceType": "Parameters",
+    "id": "gen1",
+    "meta": {
+        "profile":  [
+            "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-cancel-prescription-erp-input-parameters"
+        ]
+    },
+    "implicitRules": "http://hl7.org/fhir/reference",
+    "language": "en-GB",
+    "parameter":  [
+        {
+            "name": "rxPrescription",
+            "part": [
+                {
+                    "name": "prescriptionId",
+                    "valueIdentifier": {
+                        "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+                        "value": "your_prescription_id_here"
+                    }
+                },
+                {
+                    "name": "authoredOn",
+                    "valueDate": "2024-05-03"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+  "_id": "de.basisprofil.r4",
+  "name": "de.basisprofil.r4",
+  "description": "de.basisprofil.r4",
+  "dist-tags": { "latest": "1.3.2" },
+  "versions": {
+    "1.3.0": {
+      "name": "de.basisprofil.r4",
+      "version": "1.3.0",
+      "description": "Test-Package",
+      "dist": {
+        "shasum": "bla",
+        "tarball": "bla"
+      },
+      "fhirVersion": "R4",
+      "url": "bla"
+    },
+    "1.3.1": {
+      "name": "de.basisprofil.r4",
+      "version": "1.3.1",
+      "description": "Test-Package",
+      "dist": {
+        "shasum": "bla",
+        "tarball": "bla"
+      },
+      "fhirVersion": "R4",
+      "url": "bla"
+    },
+    "1.3.3": {
+      "name": "de.basisprofil.r4",
+      "version": "1.3.3",
+      "description": "Test-Package",
+      "dist": {
+        "shasum": "bla",
+        "tarball": "bla"
+      },
+      "fhirVersion": "R4",
+      "url": "bla"
+    },
+    "1.4.0": {
+      "name": "de.basisprofil.r4",
+      "version": "1.4.0",
+      "description": "Test-Package",
+      "dist": {
+        "shasum": "bla",
+        "tarball": "bla"
+      },
+      "fhirVersion": "R4",
+      "url": "bla"
+    }
+  }
+}

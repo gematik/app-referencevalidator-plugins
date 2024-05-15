@@ -1,0 +1,73 @@
+{
+  "resourceType": "AuditEvent",
+  "id": "gen1",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/epa/StructureDefinition/epa-auditevent"
+    ]
+  },
+  "implicitRules": "http://hl7.org/fhir/reference",
+  "language": "en-GB",
+  "type": {
+    "system": "http://terminology.hl7.org/CodeSystem/audit-event-type",
+    "version": "1.0.0",
+    "code": "rest",
+    "display": "RESTful Operation",
+    "userSelected": false
+  },
+  "action": "C",
+  "recorded": "2019-11-01T09:29:23.356+01:00",
+  "outcome": "0",
+  "agent": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleClass",
+            "version": "1.0.0",
+            "code": "PROV",
+            "display": "healthcare provider",
+            "userSelected": false
+          }
+        ]
+      },
+      "who": {
+        "type": "http://hl7.org/fhir/StructureDefinition/Practitioner",
+        "display": "Dr. Max Mustermann",
+        "identifier": {
+          "value": "1-1-ARZT-MaxMustermann01",
+          "system": "https://gematik.de/fhir/sid/telematik-id"
+        }
+      },
+      "name": "Dr. Max Mustermann",
+      "requestor": false
+    }
+  ],
+  "source": {
+    "observer": {
+      "type": "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+      "display": "Elektronische Patientenakte Fachdienst"
+    },
+    "type": [
+      {
+        "system": "https://gematik.de/fhir/epa/CodeSystem/epa-auditevent-sourcetype-cs",
+        "version": "1.0.0",
+        "code": "CDMGMT",
+        "display": "Consent Decision Management",
+        "userSelected": false
+      }
+    ]
+  },
+  "entity": [
+    {
+      "name": "Crazy Mouse",
+      "description": "Energetic Elephant",
+      "detail": [
+        {
+          "type": "Crazy Elephant",
+          "valueString": "Fantastic Zebra"
+        }
+      ]
+    }
+  ]
+}

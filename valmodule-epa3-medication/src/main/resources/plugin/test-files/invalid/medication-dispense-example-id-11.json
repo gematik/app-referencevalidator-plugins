@@ -1,0 +1,230 @@
+{
+  "resourceType": "MedicationDispense",
+  "status": "completed",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense"
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "example-epa-medication-2",
+      "meta": {
+        "profile": [
+          "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
+        ]
+      },
+      "extension": [
+        {
+          "valueIdentifier": {
+            "system": "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+            "value": "160.153.303.257.459_20240122"
+          },
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension"
+        }
+      ],
+      "identifier": [
+        {
+          "system": "https://gematik.de/fhir/epa-medication/sid/epa-medication-unique-identifier",
+          "value": "8F6E41946E798D9C89384A0D2C9C7D9E4F6F0A2DE9EF62B7A4A26A329400735F"
+        },
+        {
+          "system": "https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier",
+          "value": "6ae6a7ca-c9b5-46bf-9411-2ba49d96f988_160.153.303.257.459"
+        }
+      ],
+      "ingredient": [
+        {
+          "strength": {
+            "numerator": {
+              "system": "http://unitsofmeasure.org",
+              "value": 85,
+              "unit": "mg",
+              "code": "mg"
+            },
+            "denominator": {
+              "system": "http://unitsofmeasure.org",
+              "value": 250,
+              "unit": "Milliliter",
+              "code": "mL"
+            }
+          },
+          "itemCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://fhir.de/CodeSystem/bfarm/atc",
+                "code": "L01DB01",
+                "display": "Doxorubicin"
+              }
+            ]
+          },
+          "isActive": true
+        }
+      ],
+      "code": {
+        "text": "Infusion bestehend aus 85mg Doxorubicin aufgeloest zur Verabreichung in 250ml 5-%iger (50 mg/ml) Glucose-Infusionsloesung"
+      },
+      "status": "active",
+      "form": {
+        "coding": [
+          {
+            "system": "http://standardterms.edqm.eu",
+            "code": "11210000",
+            "display": "Solution for infusion"
+          }
+        ]
+      }
+    }
+  ],
+  "performer": [
+    {
+      "actor": {
+        "reference": "Practitioner/3"
+      }
+    }
+  ],
+  "authorizingPrescription": [
+    {
+      "reference": "MedicationRequest/8"
+    }
+  ],
+  "quantity": {
+    "value": 6,
+    "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+    "code": "TAB"
+  },
+  "daysSupply": {
+    "value": 5,
+    "unit": "Day",
+    "system": "http://unitsofmeasure.org",
+    "code": "d"
+  },
+  "note": [
+    {
+      "text": "Patient soll es zum Essen einnehmen"
+    }
+  ],
+  "dosageInstruction": [
+    {
+      "sequence": 1,
+      "text": "Zwei Tabletten auf einmal",
+      "additionalInstruction": [
+        {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "311504000",
+              "display": "Zum Essen"
+            }
+          ]
+        }
+      ],
+      "timing": {
+        "repeat": {
+          "frequency": 1,
+          "period": 1,
+          "periodUnit": "d"
+        }
+      },
+      "route": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "26643006",
+            "display": "Oral Route"
+          }
+        ]
+      },
+      "method": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "421521009",
+            "display": "Swallow - dosing instruction imperative (qualifier value)"
+          }
+        ]
+      },
+      "doseAndRate": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/dose-rate-type",
+                "code": "ordered",
+                "display": "Ordered"
+              }
+            ]
+          },
+          "doseQuantity": {
+            "value": 2,
+            "unit": "TAB",
+            "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+            "code": "TAB"
+          }
+        }
+      ]
+    },
+    {
+      "sequence": 2,
+      "text": "Zwei Tabletten täglich für  4 Tage",
+      "additionalInstruction": [
+        {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "311504000",
+              "display": "Zum Essen"
+            }
+          ]
+        }
+      ],
+      "timing": {
+        "repeat": {
+          "boundsDuration": {
+            "value": 4,
+            "unit": "days",
+            "system": "http://unitsofmeasure.org",
+            "code": "d"
+          },
+          "frequency": 1,
+          "period": 1,
+          "periodUnit": "d"
+        }
+      },
+      "route": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "26643006",
+            "display": "Oral Route"
+          }
+        ]
+      },
+      "doseAndRate": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/dose-rate-type",
+                "code": "ordered",
+                "display": "Ordered"
+              }
+            ]
+          },
+          "doseQuantity": {
+            "value": 1,
+            "unit": "TAB",
+            "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+            "code": "TAB"
+          }
+        }
+      ]
+    }
+  ],
+  "medicationReference": {
+    "reference": "#example-epa-medication-2",
+    "display": "Doxorubicin"
+  },
+  "whenHandedOver": "2024-04-01"
+}

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 gematik GmbH
+Copyright (c) 2023-2024 gematik GmbH
 
 Licensed under the Apache License, Version 2.0 (the License);
 you may not use this file except in compliance with the License.
@@ -49,7 +49,16 @@ class PluginTesterTests {
 
     @Test
     @SneakyThrows
-    void testTestPluginWithFailingTestinstances() {
+    void testTestPluginWithExternalTestFiles() {
+        String pluginFilePath = "src/test/resources/plugins/valmodule-isik1.zip";
+        String externalTestFilesPath = "src/test/resources/plugins/test-files";
+        boolean testedSuccessful = pluginTester.testPlugin(new File(pluginFilePath), new File(externalTestFilesPath));
+        assertTrue(testedSuccessful);
+    }
+
+    @Test
+    @SneakyThrows
+    void testTestPluginWithFailingTestInstances() {
         String pluginFilePath = "src/test/resources/plugins/plugin-with-invalid-test-instances.zip";
         boolean testedSuccessful = pluginTester.testPlugin(new File(pluginFilePath));
         assertFalse(testedSuccessful);
@@ -59,13 +68,6 @@ class PluginTesterTests {
     @SneakyThrows
     void testTestPluginWithMissingTestFilesDirThrowsPluginTestFailedException() {
         String pluginFilePath = "src/test/resources/plugins/test-plugin-missing-test-files-dir.zip";
-        Assertions.assertThrows(PluginTestFailedException.class, () -> pluginTester.testPlugin(new File(pluginFilePath)));
-    }
-
-    @Test
-    @SneakyThrows
-    void testTestPluginWithMissingTestFilesThrowsPluginTestFailedException() {
-        String pluginFilePath = "src/test/resources/plugins/test-plugin-missing-test-files.zip";
         Assertions.assertThrows(PluginTestFailedException.class, () -> pluginTester.testPlugin(new File(pluginFilePath)));
     }
 }

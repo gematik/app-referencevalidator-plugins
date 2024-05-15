@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 gematik GmbH
+Copyright (c) 2023-2024 gematik GmbH
 
 Licensed under the Apache License, Version 2.0 (the License);
 you may not use this file except in compliance with the License.
@@ -86,7 +86,7 @@ class PluginBuilderCliIT {
                 .withBody(getIsik1Package("de.basisprofil.r4-0.9.13.tgz")));
 
         String inputFolder = getTempDir() + "correct-plugin";
-        PluginBuilderCli.main(new String[]{inputFolder, "-url", getFhirPackageServerUrl(), "--disableSuccessAndErrorCodes"});
+        PluginBuilderCli.main(new String[]{"build", inputFolder, "-url", getFhirPackageServerUrl(), "--disableSuccessAndErrorCodes"});
 
         File plugin = new File(getTempDir() + "isik1-plugin-1.0.0.zip");
         assertThat(plugin).exists();
@@ -94,8 +94,6 @@ class PluginBuilderCliIT {
         mockServer.verify(request2, VerificationTimes.once());
         mockServer.verify(request3, VerificationTimes.once());
         mockServer.verify(request4, VerificationTimes.once());
-
-        plugin.delete();
     }
 
     @Test
@@ -127,7 +125,7 @@ class PluginBuilderCliIT {
 
         String inputFolder = getTempDir() + "correct-plugin";
         String outputFolder = getTempDir() + "correct-plugin-result" + File.separator;
-        PluginBuilderCli.main(new String[]{inputFolder, "-t", outputFolder, "-url", getFhirPackageServerUrl(), "--disableSuccessAndErrorCodes"});
+        PluginBuilderCli.main(new String[]{"build", inputFolder, "-t", outputFolder, "-url", getFhirPackageServerUrl(), "--disableSuccessAndErrorCodes"});
 
         File plugin = new File(outputFolder + "isik1-plugin-1.0.0.zip");
         assertThat(plugin).exists();
@@ -142,7 +140,7 @@ class PluginBuilderCliIT {
         TestAppender appender = new TestAppender();
         Logger.getRootLogger().addAppender(appender);
 
-        PluginBuilderCli.main(new String[]{});
+        PluginBuilderCli.main(new String[]{"build"});
 
         boolean noExceptionsInLogs = appender.getLogs().stream().noneMatch(e -> e.getMessage().toString().contains("Exception"));
         assertThat(noExceptionsInLogs).isTrue();
@@ -154,10 +152,24 @@ class PluginBuilderCliIT {
         Logger.getRootLogger().addAppender(appender);
 
         String inputFolder = getTempDir() + "%%%%%%%%" + File.separator;
-        assertThatCode(() -> PluginBuilderCli.main(new String[]{inputFolder, "-url", getFhirPackageServerUrl(), "--disableSuccessAndErrorCodes"}))
+        assertThatCode(() -> PluginBuilderCli.main(new String[]{"build", inputFolder, "-url", getFhirPackageServerUrl(), "--disableSuccessAndErrorCodes"}))
                 .doesNotThrowAnyException();
 
         boolean exceptionWasLogged = appender.getLogs().stream().anyMatch(e -> e.getMessage().toString().contains("Something went wrong!"));
         assertThat(exceptionWasLogged).isTrue();
+    }
+
+    @Test
+    void testTestPlugin() {
+        TestAppender appender = new TestAppender();
+        Logger.getRootLogger().addAppender(appender);
+
+        String plugin = "src/test/resources/plugins/valmodule-isik1.zip";
+        String testFiles = "src/test/resources/plugins/test-files";
+        assertThatCode(() -> PluginBuilderCli.main(new String[]{"test", plugin, testFiles}))
+                .doesNotThrowAnyException();
+
+        boolean testedSuccessful = appender.getLogs().stream().anyMatch(e -> e.getMessage().toString().contains("Finished testing plugin 'valmodule-isik1.zip' successfully."));
+        assertThat(testedSuccessful).isTrue();
     }
 }

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 gematik GmbH
+Copyright (c) 2023-2024 gematik GmbH
 
 Licensed under the Apache License, Version 2.0 (the License);
 you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import de.gematik.refv.pluginbuilder.exceptions.DownloadFailedException;
 import de.gematik.refv.pluginbuilder.exceptions.PluginIdentifierException;
 import de.gematik.refv.pluginbuilder.exceptions.PluginTestFailedException;
 import de.gematik.refv.pluginbuilder.helper.FhirPackageDownloader;
+import de.gematik.refv.pluginbuilder.helper.FileNameToPackageNameHelper;
 import de.gematik.refv.pluginbuilder.helper.PluginTester;
 import de.gematik.refv.pluginbuilder.helper.PluginZipper;
 import de.gematik.refv.plugins.configuration.MalformedPackageDeclarationException;
@@ -37,14 +38,11 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -64,7 +62,8 @@ public class PluginBuilder {
     private String packageFolderPath;
     private String patchesFolderPath;
 
-    private static final String SRC_PACKAGE = "src-packages";
+    private static final String SRC_PACKAGE_DIR_NAME = "src-packages";
+    private static final String TEST_FILES_DIR_NAME = "test-files";
 
     public PluginBuilder(FhirPackageDownloader fhirPackageDownloader, PluginZipper pluginZipper) {
         this.fhirPackageDownloader = fhirPackageDownloader;
@@ -111,14 +110,13 @@ public class PluginBuilder {
 
             // Snapshot Generation
             movePatchesToPackageFolder(patchesFolderPath, packageFolderPath);
-            List<String> excludedPackages = getAlreadyExistingFhirPackagesAsExcludedPackages(packageFolderPath);
-            generateSnapshots(packageFolderPath, excludedPackages);
+            generateSnapshots(packageFolderPath);
             writeCompleteValidationDependenciesList();
 
             // Plugin Testing
-            var temporaryPluginFile = pluginZipper.zipPlugin(pluginDefinition.getId(), pluginDefinition.getVersion(), temporaryExtractionFolder, targetFolderPath, List.of(SRC_PACKAGE));
-
-            // Plugin Testing
+            List<String> excludedFilesAndFolders = pluginDefinition.getSnapshotDependenciesAsFilenames();
+            excludedFilesAndFolders.add(SRC_PACKAGE_DIR_NAME);
+            var temporaryPluginFile = pluginZipper.zipPlugin(pluginDefinition.getId(), pluginDefinition.getVersion(), temporaryExtractionFolder, targetFolderPath, excludedFilesAndFolders);
             PackageReference validationFhirPackageReference = pluginDefinition.getValidationFhirPackageAsPackageReference();
             PluginTester pluginTester = new PluginTester(packageFolderPath, validationFhirPackageReference);
             boolean isTestedSuccessful = pluginTester.testPlugin(temporaryPluginFile);
@@ -130,7 +128,8 @@ public class PluginBuilder {
             Files.delete(temporaryPluginFile.toPath());
 
             // Create Final Plugin
-            File finalPlugin = pluginZipper.zipPlugin(pluginName, pluginVersion, temporaryExtractionFolder, targetFolderPath, List.of("test-files", SRC_PACKAGE));
+            excludedFilesAndFolders.add(TEST_FILES_DIR_NAME);
+            File finalPlugin = pluginZipper.zipPlugin(pluginName, pluginVersion, temporaryExtractionFolder, targetFolderPath, excludedFilesAndFolders);
             log.info("Finished building plugin '{}' at {}", pluginName, targetFolderPath);
             return new PluginBuilderResult(isTestedSuccessful, finalPlugin.getAbsolutePath());
         } finally {
@@ -148,8 +147,11 @@ public class PluginBuilder {
     }
 
     private void writeCompleteValidationDependenciesList() throws IOException {
-        var validationDependencies = pluginDefinition.getDependenciesForDependencyList().stream().filter(
-                d -> !d.equals(pluginDefinition.getValidationFhirPackageAsFilename())).map(this::fileNameToPackageName).collect(Collectors.toList());
+        var validationDependencies = pluginDefinition.getDependenciesForDependencyList().stream()
+                .filter(d -> !d.equals(pluginDefinition.getValidationFhirPackageAsFilename()))
+                .map(FileNameToPackageNameHelper::fileNameToPackageName)
+                .collect(Collectors.toList());
+
         pluginDefinition.getValidation().setDependencies(validationDependencies);
 
         ObjectMapper objectMapper = new YAMLMapper();
@@ -167,15 +169,6 @@ public class PluginBuilder {
         objectMapper.writeValue(new File(getConfigFilePath()), configYaml);
     }
 
-    private String fileNameToPackageName(String fileName) {
-        Pattern pattern = Pattern.compile("^(.+)-(\\d+\\.\\d+\\.\\d+)");
-        Matcher matcher = pattern.matcher(fileName);
-        if(!matcher.find())
-            throw new IllegalArgumentException("Could not map the file name to package name: " + fileName);
-
-        return MessageFormat.format("{0}#{1}", matcher.group(1), matcher.group(2));
-    }
-
     /**
      * Initializes paths for the plugin build process.
      *
@@ -183,7 +176,7 @@ public class PluginBuilder {
      */
     private void initializePaths(String targetFolderPath) {
         temporaryExtractionFolder = targetFolderPath + File.separator + UUID.randomUUID();
-        packageFolderPath = temporaryExtractionFolder + File.separator + SRC_PACKAGE + File.separator;
+        packageFolderPath = temporaryExtractionFolder + File.separator + SRC_PACKAGE_DIR_NAME + File.separator;
         patchesFolderPath = temporaryExtractionFolder + File.separator + "patches" + File.separator;
     }
 
@@ -215,40 +208,15 @@ public class PluginBuilder {
     }
 
     /**
-     * Gets already existing FHIR packages as excluded packages.
-     *
-     * @param packageFolderPath The path to the package folder.
-     * @return The list of already existing FHIR packages as excluded packages.
-     */
-    private List<String> getAlreadyExistingFhirPackagesAsExcludedPackages(String packageFolderPath) {
-        File packageFolder = new File(packageFolderPath);
-        File[] tgzFiles = packageFolder.listFiles((dir, name) -> name.endsWith(".tgz"));
-        List<String> excludedPackages = new ArrayList<>();
-
-        if (tgzFiles != null) {
-            for (File packageFile : tgzFiles) {
-                if (existingFhirPackages.contains(packageFile.getName())) {
-                    log.info("Skipping snapshot generation for package '{}' as it already exists.", packageFile.getName());
-                    excludedPackages.add(packageFile.getName() + ".tgz");
-                }
-            }
-        }
-
-        return excludedPackages;
-    }
-
-    /**
      * Generates snapshots for the package folder.
      *
      * @param packageFolderPath The path to the package folder.
-     * @param excludedPackages The list of excluded packages.
      * @throws IOException If an I/O error occurs during snapshot generation.
      * @throws MalformedPackageDeclarationException If a package declaration inside PluginDefinition does not follow the correct pattern: packageName#packageVersion.
      */
-    private void generateSnapshots(String packageFolderPath, List<String> excludedPackages) throws IOException, MalformedPackageDeclarationException {
-        excludedPackages.addAll(pluginDefinition.getSnapshotDependenciesAsFilenames());
+    private void generateSnapshots(String packageFolderPath) throws IOException, MalformedPackageDeclarationException {
         SnapshotGenerator snapshotGenerator = new SnapshotGenerator();
-        snapshotGenerator.generateSnapshots(packageFolderPath, packageFolderPath.replace(SRC_PACKAGE, "package"), "", excludedPackages);
+        snapshotGenerator.generateSnapshots(packageFolderPath, packageFolderPath.replace(SRC_PACKAGE_DIR_NAME, "package"), "");
     }
 
     /**
