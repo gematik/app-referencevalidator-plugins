@@ -1,0 +1,32 @@
+{
+  "resourceType": "Medication",
+  "id": "example-epa-medication-3",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
+    ]
+  },
+  "extension": [
+    {
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+        "value": "160.153.303.257.459_20240122"
+      },
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension"
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/epa-medication/sid/epa-medication-unique-identifier",
+      "value": "5FD46319BA6C5C0D7626CFB709AF564362667A70D4A261E0F8EE57D9D837F394"
+    },
+    {
+      "system": "https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier",
+      "value": "6ae6a7ca-c9b5-46bf-9411-2ba49d96f988_160.153.303.257.459"
+    }
+  ],
+  "code": {
+    "text": "250ml 5-%iger (50 mg/ml) Glucose-Infusionsloesung"
+  },
+  "status": "active"
+}

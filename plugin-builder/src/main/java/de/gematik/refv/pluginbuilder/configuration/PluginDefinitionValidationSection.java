@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 gematik GmbH
+Copyright (c) 2023-2024 gematik GmbH
 
 Licensed under the Apache License, Version 2.0 (the License);
 you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Validation {
+public class PluginDefinitionValidationSection {
     @NonNull
     private String fhirPackage = "";
     private List<String> dependencies = new LinkedList<>();

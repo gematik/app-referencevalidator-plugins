@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 gematik GmbH
+Copyright (c) 2023-2024 gematik GmbH
 
 Licensed under the Apache License, Version 2.0 (the License);
 you may not use this file except in compliance with the License.
@@ -23,21 +23,21 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ValidationTests {
+class PluginDefinitionValidationSectionTests {
 
     @Test
     void testAllArgsConstructorAndGetters() {
-        Validation validation = new Validation("fhirPackage", List.of("dep1", "dep2"),
+        PluginDefinitionValidationSection pluginDefinitionValidationSection = new PluginDefinitionValidationSection("fhirPackage", List.of("dep1", "dep2"),
                 true, true, List.of("encoding1", "encoding2"), List.of(new ValidationMessageTransformation("", "", "", "")),
                 List.of("codeSystem1", "codeSystem2"), List.of("valueSet1", "valueSet2"));
 
-        assertEquals("fhirPackage", validation.getFhirPackage());
-        assertEquals(List.of("dep1", "dep2"), validation.getDependencies());
-        assertTrue(validation.isErrorOnUnknownProfile());
-        assertTrue(validation.isAnyExtensionsAllowed());
-        assertEquals(List.of("encoding1", "encoding2"), validation.getAcceptedEncodings());
-        assertEquals(List.of(new ValidationMessageTransformation("", "", "", "")), validation.getValidationMessageTransformations());
-        assertEquals(List.of("codeSystem1", "codeSystem2"), validation.getIgnoredCodeSystems());
-        assertEquals(List.of("valueSet1", "valueSet2"), validation.getIgnoredValueSets());
+        assertEquals("fhirPackage", pluginDefinitionValidationSection.getFhirPackage());
+        assertEquals(List.of("dep1", "dep2"), pluginDefinitionValidationSection.getDependencies());
+        assertTrue(pluginDefinitionValidationSection.isErrorOnUnknownProfile());
+        assertTrue(pluginDefinitionValidationSection.isAnyExtensionsAllowed());
+        assertEquals(List.of("encoding1", "encoding2"), pluginDefinitionValidationSection.getAcceptedEncodings());
+        assertEquals(List.of(new ValidationMessageTransformation("", "", "", "")), pluginDefinitionValidationSection.getValidationMessageTransformations());
+        assertEquals(List.of("codeSystem1", "codeSystem2"), pluginDefinitionValidationSection.getIgnoredCodeSystems());
+        assertEquals(List.of("valueSet1", "valueSet2"), pluginDefinitionValidationSection.getIgnoredValueSets());
     }
 }

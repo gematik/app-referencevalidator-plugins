@@ -1,0 +1,10 @@
+configSpecVersion: "1.0"
+id: "epa3-basic"
+author: "gematik GmbH"
+description: "Referenzvalidator-Plugin für die Spezifikation der Basisfunktionalitäten der elektronischen Patientenakte"
+specUrl: "https://simplifier.net/packages/de.gematik.epa/1.0.0"
+version: "${project.version}"
+validation:
+  fhirPackage: "de.gematik.epa#1.0.0"
+  errorOnUnknownProfile: "false"
+  anyExtensionsAllowed: "true"

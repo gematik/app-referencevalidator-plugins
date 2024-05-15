@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 gematik GmbH
+Copyright (c) 2023-2024 gematik GmbH
 
 Licensed under the Apache License, Version 2.0 (the License);
 you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ public class FhirPackageDownloader {
      * @throws MalformedPackageDeclarationException If a package declaration inside of <code>PluginDefinition</code> does not follow the correct pattern: <code>packageName#packageVersion</code>
      * @throws DependencyExtractionException If anything goes wrong during dependency extraction.
      */
-    public void download(String outputFolderPath, PluginDefinitionWrapper pluginDefinition) throws DownloadFailedException, MalformedPackageDeclarationException, DependencyExtractionException {
+    public void download(String outputFolderPath, PluginDefinitionWrapper pluginDefinition) throws DownloadFailedException, MalformedPackageDeclarationException, DependencyExtractionException, IOException {
         List<PackageReference> fhirPackages = new ArrayList<>();
         fhirPackages.add(pluginDefinition.getValidationFhirPackageAsPackageReference());
 
@@ -82,7 +82,7 @@ public class FhirPackageDownloader {
      * @throws MalformedPackageDeclarationException If a package declaration inside of <code>PluginDefinition</code> does not follow the correct pattern: <code>packageName#packageVersion</code>
      * @throws DependencyExtractionException If anything goes wrong during dependency extraction.
      */
-    private void downloadAll(List<PackageReference> fhirPackages, String outputFolderPath, PluginDefinitionWrapper pluginDefinition) throws DownloadFailedException, MalformedPackageDeclarationException, DependencyExtractionException {
+    private void downloadAll(List<PackageReference> fhirPackages, String outputFolderPath, PluginDefinitionWrapper pluginDefinition) throws DownloadFailedException, MalformedPackageDeclarationException, DependencyExtractionException, IOException {
         List<PackageReference> newPackages = getNewPackages(fhirPackages);
 
         if (newPackages.isEmpty()) {
@@ -94,13 +94,21 @@ public class FhirPackageDownloader {
             throw new DownloadFailedException("Could not create output folder " + outputFolderPath);
 
         for (PackageReference pr : newPackages) {
-            String filename = String.format("%s-%s.tgz", pr.getPackageName(), pr.getPackageVersion());
-            downloadPackage(pr, outputFolderPath, filename);
-
-            log.info("Successfully downloaded package: {}-{}.tgz", pr.getPackageName(), pr.getPackageVersion());
-            if(!snapshotDependencies.contains(pr)) {
-                pluginDefinition.getDependenciesForDependencyList().add(String.format("%s-%s.tgz", pr.getPackageName(), pr.getPackageVersion()));
+            String packageVersion = pr.getPackageVersion();
+            if(packageVersion.toLowerCase().endsWith("x")) {
+                for (var packageClient :
+                        packageClients) {
+                    packageVersion = packageClient.getLatestVersion(pr.getPackageName(), packageVersion);
+                }
             }
+            var newPackageReference = new PackageReference(pr.getPackageName(), packageVersion);
+            File downloadedFile = downloadPackage(newPackageReference, outputFolderPath);
+
+            if(!snapshotDependencies.contains(pr)) {
+                pluginDefinition.getDependenciesForDependencyList().add(downloadedFile.getName());
+            }
+
+            log.info("Successfully downloaded package: {}", downloadedFile.getName());
             downloadedPackages.add(pr);
         }
 
@@ -133,44 +141,35 @@ public class FhirPackageDownloader {
      * First trying with primaryPackageClient if this fails trying with secondaryPackageClient.
      * @param packageReference The PackageReference used to download a fhir package
      * @param outputFolderPath The path to the folder where the downloaded fhir packages will be saved.
-     * @param filename The filename that the downloaded fhir package should have.
      * @throws DownloadFailedException If anything goes wrong during the download of the fhir package.
      */
-    private void downloadPackage(PackageReference packageReference, String outputFolderPath, String filename) throws DownloadFailedException {
+    private File downloadPackage(PackageReference packageReference, String outputFolderPath) throws DownloadFailedException {
+        String packageFilePath = String.format("%s%s-%s.tgz", outputFolderPath, packageReference.getPackageName(), packageReference.getPackageVersion());
+        String packageVersion = packageReference.getPackageVersion();
+        File downloadedFile = new File(packageFilePath);
+        if (downloadedFile.exists()) {
+            log.info("Package '{}' already exists at '{}'.", packageFilePath, outputFolderPath);
+            return downloadedFile;
+        }
+
         boolean downloadSuccessful = false;
         for (var packageClient :
                 packageClients) {
             try {
-                downloadPackageWithClient(packageReference, outputFolderPath, filename, packageClient);
+                try (InputStream inputStream = packageClient.fetch(packageReference.getPackageName(), packageVersion);
+                     FileOutputStream outputStream = new FileOutputStream(packageFilePath)) {
+                    writePackage(inputStream, outputStream);
+                }
                 downloadSuccessful = true;
                 break;
             } catch (IOException e) {
-                log.error("Something went wrong while downloading the package with {}. Trying with the next one...", packageClient.url("",""), e);
+                log.warn("Could not download package {} from server {} (Cause: {}). Trying with the next one...", downloadedFile.getName(), packageClient.url("",""), e.getMessage());
             }
         }
         if(!downloadSuccessful)
             throw new DownloadFailedException(String.format("Download of package '%s-%s.tgz' failed", packageReference.getPackageName(), packageReference.getPackageVersion()));
 
-    }
-
-    /**
-     * Downloads a fhir package with the specified packageClient.
-     * @param packageReference The PackageReference used to download a fhir package
-     * @param outputFolderPath The path to the folder where the downloaded fhir packages will be saved.
-     * @param filename The filename that the downloaded fhir package should have.
-     * @param packageClient The specific package client used to download the fhir package.
-     * @throws IOException If anything goes wrong during the download of the fhir package.
-     */
-    private void downloadPackageWithClient(PackageReference packageReference, String outputFolderPath, String filename, PackageClient packageClient) throws IOException {
-        String packageFilePath = outputFolderPath + filename;
-        if (new File(packageFilePath).exists()) {
-            log.info("Package '{}' already exists at '{}'.", filename, outputFolderPath);
-            return;
-        }
-        try (InputStream inputStream = packageClient.fetch(packageReference.getPackageName(), packageReference.getPackageVersion());
-             FileOutputStream outputStream = new FileOutputStream(outputFolderPath + filename)) {
-            writePackage(inputStream, outputStream);
-        }
+        return downloadedFile;
     }
 
     /**

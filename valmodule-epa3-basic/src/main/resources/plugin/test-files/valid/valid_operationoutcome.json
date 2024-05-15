@@ -1,0 +1,27 @@
+{
+    "resourceType": "OperationOutcome",
+    "id": "gen1",
+    "meta": {
+        "profile":  [
+            "https://gematik.de/fhir/epa/StructureDefinition/epa-operation-outcome"
+        ]
+    },
+    "language": "en-GB",
+    "issue":  [
+        {
+            "severity": "information",
+            "code": "login",
+            "details": {
+                "coding":  [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/operation-outcome",
+                        "version": "1.0.0",
+                        "code": "MSG_AUTH_REQUIRED",
+                        "display": "You must authenticate before you can use this service",
+                        "userSelected": false
+                    }
+                ]
+            }
+        }
+    ]
+}

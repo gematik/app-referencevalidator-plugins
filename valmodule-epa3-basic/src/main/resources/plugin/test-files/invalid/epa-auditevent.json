@@ -1,0 +1,116 @@
+{
+    "resourceType": "AuditEvent",
+    "id": "gen1",
+    "meta": {
+        "profile":  [
+            "https://gematik.de/fhir/epa/StructureDefinition/epa-auditevent"
+        ]
+    },
+    "implicitRules": "http://hl7.org/fhir/reference",
+    "language": "en-GB",
+    "type": {
+        "system": "http://hl7.org/fhir/reference",
+        "version": "Hilarious Elephant",
+        "code": "",
+        "display": "Energetic Dog",
+        "userSelected": false
+    },
+    "action": "C",
+    "recorded": "1900",
+    "outcome": "0",
+    "agent":  [
+        {
+            "type": {
+                "coding":  [
+                    {
+                        "system": "http://hl7.org/fhir/reference",
+                        "version": "Energetic Dog",
+                        "code": "",
+                        "display": "Fantastic Zebra",
+                        "userSelected": false
+                    }
+                ],
+                "text": "Inventive Elephant"
+            },
+            "who": {
+                "reference": "Inventive Giraffe",
+                "type": "http://hl7.org/fhir/reference",
+                "identifier": {
+                    "use": "temp",
+                    "type": {
+                        "coding":  [
+                            {
+                                "system": "http://hl7.org/fhir/reference",
+                                "version": "Inventive Elephant",
+                                "code": "",
+                                "display": "Fast Zebra",
+                                "userSelected": false
+                            }
+                        ],
+                        "text": "Fantastic Dog"
+                    },
+                    "system": "http://www.acme.com/identifiers/patient",
+                    "value": "123456",
+                    "period": {
+                        "start": "2017-06-13",
+                        "end": "2004-10-30"
+                    }
+                },
+                "display": "Fantastic Zebra"
+            },
+            "altId": "Slow Giraffe",
+            "name": "Slow Dog",
+            "requestor": false
+        }
+    ],
+    "source": {
+        "site": "Hilarious Giraffe",
+        "observer": {
+            "reference": "Hilarious Badger",
+            "type": "http://hl7.org/fhir/reference",
+            "identifier": {
+                "use": "official",
+                "type": {
+                    "coding":  [
+                        {
+                            "system": "http://hl7.org/fhir/reference",
+                            "version": "Energetic Mouse",
+                            "code": "",
+                            "display": "Fantastic Badger",
+                            "userSelected": false
+                        }
+                    ],
+                    "text": "Slow Badger"
+                },
+                "system": "http://www.acme.com/identifiers/patient",
+                "value": "123456",
+                "period": {
+                    "start": "1987-04-25",
+                    "end": "1970-11-04"
+                }
+            },
+            "display": "Hilarious Zebra"
+        },
+        "type":  [
+            {
+                "system": "http://hl7.org/fhir/reference",
+                "version": "Fantastic Elephant",
+                "code": "",
+                "display": "Slow Mouse",
+                "userSelected": false
+            }
+        ]
+    },
+    "entity":  [
+        {
+            "name": "Fantastic Elephant",
+            "description": "Inventive Dog",
+            "detail":  [
+                {
+                    "type": "Inventive Cat",
+                    "valueString": "Fantastic Badger"
+                }
+            ]
+        }
+    ]
+}

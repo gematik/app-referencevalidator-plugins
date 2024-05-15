@@ -1,0 +1,33 @@
+{
+  "resourceType": "RelatedPerson",
+  "id": "relatedPerson",
+  "meta": {
+    "profile": [
+      "https://referenced-profile1",
+      "https://referenced-profile2",
+      "https://referenced-profile3"
+    ]
+  },
+  "patient": {
+    "reference": "Patient/patient"
+  },
+  "name": [
+    {
+      "family": "Mustermann",
+      "given": [
+        "Maxine"
+      ]
+    }
+  ],
+  "address": [
+    {
+      "type": "physical",
+      "line": [
+        "Milchstr. 42"
+      ],
+      "city": "Beispielstadt",
+      "postalCode": "78143",
+      "country": "DE"
+    }
+  ]
+}

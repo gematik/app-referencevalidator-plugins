@@ -1,75 +1,98 @@
-![gematik GmbH](docs/Gematik_Logo_Flag.png)
+<img align="right" width="250" height="47" src="docs/Gematik_Logo_Flag.png"/> <br/> 
 
 # gematik Referenzvalidator Plugins
 
-In diesem Projekt sind Plugins für den [gematik Referenzvalidator](https://github.com/gematik/app-referencevalidator) und ein Werkzeug enthalten, mit dem eigene Plugins erstellt werden können. 
+<details>
+  <summary>Inhaltsverzeichnis</summary>
+  <ol>
+    <li><a href="#über-das-projekt">Über das Projekt</a></li>
+    <li><a href="#verfügbare-plugins">Verfügbare Plugins</a></li>
+    <li><a href="#nutzung-mit-dem-referenzvalidator">Nutzung mit dem Referenzvalidator</a></li>
+    <li><a href="#erstellung-von-plugins-mittels-plugin-builders">Erstellung von Plugins mittels Plugin-Builders</a></li>
+    <li><a href="#beiträge-zum-projekt">Beiträge zum Projekt</a></li>
+    <li><a href="#lizenz">Lizenz</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ol>
+</details>
 
-Siehe auch [Release Notes](ReleaseNotes.md).
+## Über das Projekt
 
-# Verfügbare Plugins
+In diesem Projekt sind Plugins für den [gematik Referenzvalidator](https://github.com/gematik/app-referencevalidator) und ein Werkzeug (PluginBuilder) enthalten, mit dem eigene Plugins erstellt werden können.
+
+### Release Notes
+
+Siehe [ReleaseNotes.md](./ReleaseNotes.md)
+
+## Verfügbare Plugins
 
 Die Plugins können unter [Releases](https://github.com/gematik/app-referencevalidator-plugins/releases) heruntergeladen werden. 
 
-| **Plugin**                                                                                  | **Version** | **ID**                    |
-|---------------------------------------------------------------------------------------------|-------------|---------------------------|
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 1 (Modul Basis)               | 2.0         | isik1                     |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Basis)               | 2.0         | isik2-basismodul          |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Terminplanung)       | 1.1         | isik2-terminplanung       |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Vitalparameter)      | 1.1         | isik2-vitalparameter      |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Medikation)          | 2.0         | isik2-medikation          |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Basis)               | 0.3         | isik3-basismodul          |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Terminplanung)       | 0.2         | isik3-terminplanung       |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Vitalparameter)      | 0.2         | isik3-vitalparameter      |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Medikation)          | 0.3         | isik3-medikation          |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Dokumentenaustausch) | 0.2         | isik3-dokumentenaustausch |
-| Informationstechnische Systeme in der Pflege (ISIP) Stufe 1                                 | 1.1         | isip1                     |
-| DiGA Toolkit                                                                                | 0.10        | diga                      |
-| VSDM-Ersatzbescheinigung                                                                    | 0.1         | eeb                       |
+| **Plugin**                                                                                 | **Version** | **ID**                   |
+|--------------------------------------------------------------------------------------------|-------------|--------------------------|
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 1 (Modul Basis)              | 2.1         | isik1                    |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Basis)              | 2.1         | isik2-basismodul         |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Terminplanung)      | 1.2         | isik2-terminplanung      |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Vitalparameter)     | 1.1         | isik2-vitalparameter     |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Medikation)         | 2.0         | isik2-medikation         |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Basis)              | 0.5         | isik3-basismodul         |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Terminplanung)      | 0.3         | isik3-terminplanung      |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Vitalparameter)     | 0.3         | isik3-vitalparameter     |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Medikation)         | 0.4         | isik3-medikation         |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Dokumentenaustausch) | 0.4         | isik3-dokumentenaustausch |
+| Informationstechnische Systeme in der Pflege (ISIP) Stufe 1                                | 1.1         | isip1                    |
+| DiGA Toolkit                                                                               | 0.10        | diga                     |
+| VSDM-Ersatzbescheinigung                                                                   | 0.1         | eeb                      |
+| Elektronische Patientenakte Basisfunktionalitäten                                          | 1.0.0       | epa-basic                |
+| Elektronische Patientenakte Medication                                                     | 1.0.0       | epa-medication           |
 
 Die Bezeichnung in der Spalte `ID` dient dem Aufruf des Plugins aus der Referenzvalidator-Konsolenanwendung.
 
-## Besonderheiten der Plugins
+### Besonderheiten der Plugins
 
-### ISIK3
+#### EPA-Medication
+Abweichend vom allgemeinen Prüfumfang verhält sich das EPA-Medication-Plugin wie folgt:
+- Codes aus den Codesystemen `http://fhir.de/CodeSystem/bfarm/atc` und `http://fhir.de/CodeSystem/ask` werden nicht validiert
+
+#### ISIK3
 
 Abweichend vom allgemeinen Prüfumfang verhalten sich die ISIK3-Plugins wie folgt:
 - Codes aus den CodeSystemen `http://snomed.info/sct`, `http://fhir.de/CodeSystem/bfarm/icd-10-gm`, `http://fhir.de/CodeSystem/bfarm/atc`, `http://fhir.de/CodeSystem/ifa/pzn` und `http://fhir.de/CodeSystem/bfarm/ops` werden nicht validiert
 - Folgende ValueSets werden nicht validiert: `https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/ProzedurenCodesSCT`, `https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/DiagnosesSCT`, `https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/ProzedurenKategorieSCT`, `https://gematik.de/fhir/isik/v3/Terminplanung/ValueSet/ISiKTerminPriority`, `https://gematik.de/fhir/isik/v3/Medikation/ValueSet/SctRouteOfAdministration` und `http://fhir.de/ValueSet/bfarm/ops`
 - Validierung ausgewählter [KBV-Schlüsseltabellen](https://applications.kbv.de/overview.xhtml), siehe Package gematik.kbv.sfhir.cs.vs im Plugin
 
-### ISIK2
+#### ISIK2
 
 Abweichend vom allgemeinen Prüfumfang verhalten sich die ISIK2-Plugins wie folgt:
 - Codes aus den CodeSystemen `http://snomed.info/sct`, `http://fhir.de/CodeSystem/bfarm/icd-10-gm`, `http://fhir.de/CodeSystem/bfarm/atc`, `http://fhir.de/CodeSystem/ifa/pzn` und `http://fhir.de/CodeSystem/bfarm/ops` werden nicht validiert
 - Folgende ValueSets werden nicht validiert: `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/ProzedurenCodesSCT`, `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/DiagnosesSCT`, `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/ProzedurenKategorieSCT`, `https://gematik.de/fhir/isik/v2/Terminplanung/ValueSet/ISiKTerminPriority`, `https://gematik.de/fhir/isik/v2/Medikation/ValueSet/SctRouteOfAdministration` und `http://fhir.de/ValueSet/bfarm/ops`
 - Validierung ausgewählter [KBV-Schlüsseltabellen](https://applications.kbv.de/overview.xhtml), siehe Package gematik.kbv.sfhir.cs.vs im Plugin
 
-### ISIK1
+#### ISIK1
 
 Abweichend vom allgemeinen Prüfumfang verhält sich das ISIK1-Plugin wie folgt:
 - Codes aus den CodeSystemen `http://snomed.info/sct`, `http://fhir.de/CodeSystem/bfarm/icd-10-gm` und `http://fhir.de/CodeSystem/bfarm/ops` werden nicht validiert
 - Folgende ValueSets werden nicht validiert: `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/ProzedurenCodesSCT`, `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/DiagnosesSCT`, `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/ProzedurenKategorieSCT` und `http://fhir.de/ValueSet/bfarm/ops`
 - Validierung ausgewählter [KBV-Schlüsseltabellen](https://applications.kbv.de/overview.xhtml), siehe Package gematik.kbv.sfhir.cs.vs im Plugin
 
-### DIGA
+#### DIGA
 
 Abweichend vom allgemeinen Prüfumfang verhält sich das DIGA-Plugin wie folgt:
 - Codes aus den CodeSystemen `http://fhir.de/CodeSystem/ifa/pzn` und `http://fhir.de/CodeSystem/dimdi/atc` werden nicht validiert
 - Instanzen mit unbekannten Profilen führen zum invaliden Ergebnis
 - Instanzen mit unbekannten Extensions führen zum invaliden Ergebnis
 
-### VSDM-Ersatzbescheinigung
+#### VSDM-Ersatzbescheinigung
 
-#### Anpassungen der Packages:
+Anpassungen der Packages:
 - ValueSet-versicherungsart-de-basis.json in de.basisprofil.r4-1.3.2 korrigiert
 
-# Nutzung mit dem Referenzvalidator
+## Nutzung mit dem Referenzvalidator
 
 Siehe Dokumentation vom [gematik Referenzvalidator](https://github.com/gematik/app-referencevalidator).
 
-# Erstellung von Plugins mittels Plugin-Builders
+## Erstellung von Plugins mittels Plugin-Builders
 
-## Vorbereitungen
+### Vorbereitungen
 1. [Die letzte Version](https://github.com/gematik/app-referencevalidator-plugins/releases/latest) vom PluginBuilder herunterladen
 2. Die Ordnerstruktur für das neue Plugin (z.B. mit dem Namen `my-plugin`) vorbereiten:
 
@@ -88,7 +111,7 @@ my-plugin/
 5. (optional) Quell-FHIR-Packages ablegen (siehe [Quell-FHIR-Packages](#quell-fhir-packages))
 6. (optional) Patches für die Ressourcen in den Quell-FHIR-Packages ablegen (siehe [Patches für die Quell-FHIR-Packages](#patches-für-die-quell-fhir-packages))
 
-### Plugin-Definitionsdatei (`config.yaml`)
+#### Plugin-Definitionsdatei (`config.yaml`)
 
 | Eigenschaft                                     | Bezeichnung in config.yaml                  | Pflichtangabe | Beschreibung                                                                                                                                                                                                                                                                                                    | Beispiel                                                                                                                                                                                          |
 |-------------------------------------------------|---------------------------------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -140,15 +163,15 @@ snapshotDependencies:
   - "ein-nur-fuer-snapshot-generierung-benoetigtes-package#x.y.z"
 ```
 
-### Testinstanzen
+#### Testinstanzen
 
 Im Ordner `test-files` müssen mindestens eine valide (im Unterordner `valid`) sowie eine invalide (im Unterordner `invalid`) FHIR-Ressource als Testinstanz von einem Profil aus `validation.fhirPackage` hinterlegt werden, um sicherzustellen, dass die Validierung mit dem gebauten Plugin auch funktioniert. Im besten Fall sollte für jedes enthaltene Profil aus `validation.fhirPackage` jeweils eine valide und eine invalide FHIR-Ressource als Testinstanz hinterlegt werden. Der PluginBuilder weist in seiner Konsolenausgabe auf die Profile mit fehlenden Testinstanzen hin.  
 
-### Quell-FHIR-Packages
+#### Quell-FHIR-Packages
 
 Im Ordner `src-packages` können FHIR-Packages im [FHIR Package Standard](https://confluence.hl7.org/display/FHIR/NPM+Package+Specification) hinterlegt werden. Die hier hinterlegten FHIR-Packages werden zusätzlich zu den Abhängigkeiten des Plugin-Pakets (siehe `validation.fhirPackage`) für die Validaierung von FHIR-Ressourcen verwendet.
 
-### Patches für die Quell-FHIR-Packages
+#### Patches für die Quell-FHIR-Packages
 Hier können einzelne FHIR-Ressourcen hinterlegt werden, die die FHIR-Ressourcen in originellen FHIR-Packages ergänzen oder ersetzen sollten (z.B. für den Fall wenn in einem Profil eines bereits veröffentlichten Quell-FHIR-Package ein Fehler vorliegt, der die Validierung verhindert). 
 
 ** Warning ** 
@@ -163,18 +186,18 @@ my-plugin/
         └── some-profile-with-fixes.json
 ```
 
-## Aufruf des Plugin-Builders zur Erstellung von Plugins
+### Aufruf des Plugin-Builders zur Erstellung von Plugins
 
 > **Warning**
 > Um Abhängigkeiten der FHIR-Pakages zu herunterladen, erfordert der Plugin-Builder direkte Verbindung zum Internet. Derzeit ist keine Proxy-Server-Konfiguration möglich
 
-Beispielaufrufe des Plugin-Builders:
+Beispielaufrufe des Plugin-Builders (build):
 
-`java -jar plugin-builder-cli-X.Y.Z.jar C:\user\plugindefinitions\my-plugin`
+`java -jar plugin-builder-cli-X.Y.Z.jar build C:\user\plugindefinitions\my-plugin`
 
-`java -jar plugin-builder-cli-X.Y.Z.jar C:\user\plugindefinitions\my-plugin -t C:\output`
+`java -jar plugin-builder-cli-X.Y.Z.jar build C:\user\plugindefinitions\my-plugin -t C:\output`
 
-Das erste Argument ist verpflichtend und gibt den Pfad zum Ordner mit Plugin-Ressourcen an. Optional gibt es folgende Parameter:
+Das erste Argument ('build') gibt an, dass der build-Prozess gestartet werden soll. Das zweite Argument ist verpflichtend und gibt den Pfad zum Ordner mit Plugin-Ressourcen an. Optional gibt es folgende Parameter:
 
 | Parameter                          | Beschreibung |
 |------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -183,5 +206,27 @@ Das erste Argument ist verpflichtend und gibt den Pfad zum Ordner mit Plugin-Res
 
 Neben Konsolenausgabe schreibt der Plugin-Builder während der Ausführung ein Protokoll mit Warnungen (`warn.log`).
 
-## Bauen von Plugins mit Hilfe von Maven
-Alle bereits integrierten Plugins können mit dem Aufruf `mvn clean compile -Pbuild-plugins` gebaut werden. Um ein einzelnes, spezielles Plugin zu bauen wird folgender Aufruf benötigt: `mvn clean compile -pl :valmodule-eeb -Pbuild-plugins`. Dieser Aufruf würde das `valmodule-eeb` einzeln bauen.
+### Testen von Plugins mittels des Plugin-Builders
+Mithilfe des Plugin-Builders können auch bereits gebaute Plugins getestet werden.
+
+Beispielaufrufe des Plugin-Builders (test):
+
+`java -jar plugin-builder-cli-X.Y.Z.jar test C:\user\plugindefinitions\my-plugin.zip C:\user\test-files`
+
+Das erste Argument ('test') gibt an, dass der test-Prozess gestartet werden soll. Hier sind auch die beiden folgenden Argumente verpflichtend. Das zweite gibt den Pfad zum zu testenden Plugin an und das dritte ist der Pfad zum Ordner, der die Testinstanzen enthält.
+
+### Bauen von Plugins mit Hilfe von Maven
+Alle bereits integrierten Plugins können mit dem Aufruf `mvn clean install -Pbuild-plugins` gebaut werden. Um ein einzelnes, spezielles Plugin zu bauen wird folgender Aufruf benötigt: `mvn clean install -pl :valmodule-eeb -Pbuild-plugins`. Dieser Aufruf würde das `valmodule-eeb` einzeln bauen.
+
+## Beiträge zum Projekt
+
+Für Beiträge zum PluginBuilder oder den Plugins siehe [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+## Lizenz
+
+Siehe [LICENSE](./LICENSE).
+
+## Kontakt
+
+Fragen, Anregungen, Bug Reports und Feature requests sind willkommen und können gerne über die [GitHub Issues](https://github.com/gematik/app-referencevalidator-plugins/issues) oder über [referenzvalidator&commat;gematik.de](mailto:referenzvalidator&commat;gematik.de) eingereicht werden.
+

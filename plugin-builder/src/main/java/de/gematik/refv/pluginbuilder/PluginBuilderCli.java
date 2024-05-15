@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 gematik GmbH
+Copyright (c) 2023-2024 gematik GmbH
 
 Licensed under the Apache License, Version 2.0 (the License);
 you may not use this file except in compliance with the License.
@@ -15,42 +15,23 @@ limitations under the License.
 */
 package de.gematik.refv.pluginbuilder;
 
-import de.gematik.refv.pluginbuilder.helper.FhirPackageDownloader;
-import de.gematik.refv.pluginbuilder.helper.PluginZipper;
+import de.gematik.refv.pluginbuilder.subcommands.PluginBuildCommand;
+import de.gematik.refv.pluginbuilder.subcommands.PluginTestCommand;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.hl7.fhir.utilities.npm.PackageServer;
 import picocli.CommandLine;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.PrintWriter;
-import java.util.List;
 
 @CommandLine.Command(
-        name="",
-        description = "The PluginBuilder helps to create custom validation modules (plugins) for the gematik ReferenceValidator (cf. https://github.com/gematik/app-referencevalidator-plugins)"
-)
+        name = "", subcommands = { PluginBuildCommand.class,
+        PluginTestCommand.class }
+        )
 @NoArgsConstructor
 @Slf4j
-public class PluginBuilderCli implements Runnable {
-
-    public static final int ERROR_CODE_TESTS_FAILED = 1;
-    public static final int ERROR_CODE_EXCEPTION = 2;
-    public static final int SUCCESS_CODE = 0;
-    @CommandLine.Parameters(paramLabel = "PLUGIN_DEFINITION_DIRECTORY", description = "Directory with plugin definition file and supporting resources")
-    private String pluginDefinitionDirectoryPath;
-
-    @CommandLine.Option(names = {"-t", "--targetFolderPath"}, description = "Output directory for created plugins (default: parent directory of PLUGIN_DEFINITION_DIRECTORY)")
-    private String targetFolderPath;
-
-    @CommandLine.Option(names = {"-url", "--packageServerUrl"}, description = "The URL of a FHIR package server to use")
-    private String packageServerUrl;
-
-    @CommandLine.Option(names = {"-dse", "--disableSuccessAndErrorCodes"}, description = "Disables success/error codes upon finish (0 and 1)")
-    private boolean areSuccessAndErrorCodesDisabled = false;
+public class PluginBuilderCli {
 
     @SneakyThrows
     public static void main(String[] args) {
@@ -68,42 +49,5 @@ public class PluginBuilderCli implements Runnable {
 
     private static void logWithLineBreak(String output) {
         log.info("\r\n{}", output);
-    }
-
-    @Override
-    public void run() {
-        try {
-            targetFolderPath = !StringUtils.isEmpty(targetFolderPath) ? targetFolderPath :
-                    new File(pluginDefinitionDirectoryPath).getParentFile().getAbsolutePath();
-
-            PluginBuilder pluginBuilder = setUpPluginBuilder();
-            var buildResult = pluginBuilder.buildPlugin(pluginDefinitionDirectoryPath, targetFolderPath);
-
-
-            if (!buildResult.isTestedSuccessfully()) {
-                exit(ERROR_CODE_TESTS_FAILED);
-            } else
-                exit(SUCCESS_CODE);
-        } catch (Exception e) {
-            log.error("Something went wrong!", e);
-            exit(ERROR_CODE_EXCEPTION);
-        }
-    }
-
-    private void exit(int errorCode) {
-        if(!areSuccessAndErrorCodesDisabled)
-            System.exit(errorCode);
-    }
-
-    private PluginBuilder setUpPluginBuilder() {
-        FhirPackageDownloader fhirPackageDownloader = (packageServerUrl == null) ?
-                new FhirPackageDownloader() :
-                new FhirPackageDownloader(List.of(new PackageServer(packageServerUrl)));
-        PluginZipper pluginZipper = new PluginZipper();
-
-        return new PluginBuilder(
-                fhirPackageDownloader,
-                pluginZipper
-        );
     }
 }

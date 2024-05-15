@@ -8,7 +8,7 @@
   <groupId>de.gematik.refv.plugins</groupId>
   <artifactId>parent-pom</artifactId>
   <packaging>pom</packaging>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>1.1.1</version>
   <name>gematik Referenzvalidator Plugins</name>
   <description>Plugin-Repository des gematik Referenzvalidators</description>
   <url>https://github.com/gematik/app-referencevalidator-plugins</url>
@@ -96,8 +96,8 @@
     <version.nexus-staging-maven-plugin>1.6.13</version.nexus-staging-maven-plugin>
     <version.maven-gpg-plugin>3.0.1</version.maven-gpg-plugin>
     <version.dependency-check-maven>8.4.0</version.dependency-check-maven>
-    <version.referencevalidator>2.0.1</version.referencevalidator>
-    <version.snapshot-generator>0.2.1</version.snapshot-generator>
+    <version.referencevalidator>2.1.1</version.referencevalidator>
+    <version.snapshot-generator>0.4.0</version.snapshot-generator>
     <checker-qual.version>3.39.0</checker-qual.version>
     <commons-codec.version>1.16.0</commons-codec.version>
     <error_prone_annotations.version>2.22.0</error_prone_annotations.version>
@@ -105,8 +105,10 @@
 
     <!-- These transitive dependencies have been fixed in reference validator (due to security issues) -->
     <guava.version>33.0.0-jre</guava.version>
-    <version.commons-compress>1.25.0</version.commons-compress>
+    <version.commons-compress>1.26.1</version.commons-compress>
     <thymeleaf.version>3.1.2.RELEASE</thymeleaf.version>
+    <version.commons-io>2.15.1</version.commons-io>
+    <version.commons-lang3>3.14.0</version.commons-lang3>
     <!-- End of fixed transitive dependencies -->
 
     <exec-maven-plugin.version>3.1.1</exec-maven-plugin.version>
@@ -348,6 +350,7 @@
             <arguments>
               <argument>-jar</argument>
               <argument>${project.basedir}/../plugin-builder/target/plugin-builder-${parent.version}-jar-with-dependencies.jar</argument>
+              <argument>build</argument>
               <argument>${project.basedir}/target/plugin/</argument>
               <argument>-t</argument>
               <argument>${project.basedir}/target/</argument>
@@ -403,6 +406,16 @@
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-compress</artifactId>
         <version>${version.commons-compress}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${version.commons-io}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${version.commons-lang3}</version>
       </dependency>
       <dependency>
         <groupId>com.fasterxml.jackson.dataformat</groupId>
@@ -536,6 +549,8 @@
         <module>valmodule-isik3-medikation</module>
         <module>valmodule-isik3-terminplanung</module>
         <module>valmodule-isik3-vitalparameter</module>
+        <module>valmodule-epa3-basic</module>
+        <module>valmodule-epa3-medication</module>
       </modules>
     </profile>
 

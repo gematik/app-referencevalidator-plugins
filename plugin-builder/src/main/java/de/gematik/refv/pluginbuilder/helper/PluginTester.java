@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 gematik GmbH
+Copyright (c) 2023-2024 gematik GmbH
 
 Licensed under the Apache License, Version 2.0 (the License);
 you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ import ca.uhn.fhir.parser.IParser;
 import ca.uhn.fhir.rest.api.EncodingEnum;
 import de.gematik.refv.Plugin;
 import de.gematik.refv.ValidationModuleFactory;
-import de.gematik.refv.commons.Profile;
 import de.gematik.refv.commons.configuration.PackageReference;
 import de.gematik.refv.commons.exceptions.ValidationModuleInitializationException;
 import de.gematik.refv.commons.validation.ValidationModule;
@@ -31,17 +30,17 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
 import org.apache.commons.io.IOUtils;
 import org.hl7.fhir.instance.model.api.IBaseResource;
-import org.hl7.fhir.instance.model.api.IPrimitiveType;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * Handles the testing process during the <code>PluginBuilder</code> build process and provides users with information about the test results and also about missing test resources for profiles that are part of their plugin.
@@ -49,14 +48,16 @@ import java.util.Map;
 @Slf4j
 public class PluginTester {
 
-    private final List<String> allProfileUrls;
-    private final Map<String, ValidationResult> failingTests = new HashMap<>();
-    private final List<String> testedValidPluginProfileUrls = new ArrayList<>();
-    private final List<String> testedInvalidPluginProfileUrls = new ArrayList<>();
+    private final TestedProfileTracker testedProfileTracker;
     private final ValidationModuleFactory validationModuleFactory = new ValidationModuleFactory();
+    private final Map<String, ValidationResult> failingTests = new HashMap<>();
 
-    public PluginTester(String packageFolderPath, PackageReference validationFhirPackageReference) throws IOException {
-        this.allProfileUrls = ProfileUrlExtractor.getAllPluginProfileUrls(packageFolderPath, validationFhirPackageReference);
+    public PluginTester(String packageFolderPath, PackageReference validationFhirPackageReference) {
+        this.testedProfileTracker = new TestedProfileTracker(packageFolderPath, validationFhirPackageReference);
+    }
+
+    public PluginTester(InputStream pluginInputStream) {
+        this.testedProfileTracker = new TestedProfileTracker(pluginInputStream);
     }
 
     /**
@@ -72,68 +73,46 @@ public class PluginTester {
         Plugin plugin = Plugin.createFromZipFile(new java.util.zip.ZipFile(pluginFileToTest));
         ValidationModule validationModule = validationModuleFactory.createValidationModuleFromPlugin(plugin);
 
-        processTestFiles(pluginFileToTest, validationModule);
+        processInternalTestFiles(pluginFileToTest, validationModule);
 
-        if(testedValidPluginProfileUrls.isEmpty() || testedInvalidPluginProfileUrls.isEmpty()) {
+        return evaluateTestResults(pluginFileToTest.getName());
+    }
+
+    public boolean testPlugin(File pluginFileToTest, File testFiles) throws IOException, PluginTestFailedException, ValidationModuleInitializationException {
+        log.info("Started testing plugin: '{}'", pluginFileToTest.getName());
+        Plugin plugin = Plugin.createFromZipFile(new java.util.zip.ZipFile(pluginFileToTest));
+        ValidationModule validationModule = validationModuleFactory.createValidationModuleFromPlugin(plugin);
+
+        processExternalTestFiles(testFiles, validationModule);
+
+        return evaluateTestResults(pluginFileToTest.getName());
+    }
+
+    private boolean evaluateTestResults(String pluginFileToTestName) throws PluginTestFailedException, IOException {
+        if(testedProfileTracker.getValidProfileUrlsFoundInTestFiles().isEmpty() || testedProfileTracker.getInvalidProfileUrlsFoundInTestFiles().isEmpty()) {
             throw new PluginTestFailedException("You must add at least one valid and one invalid test resource to your test-files directory!");
         }
 
-        logMissingExamples();
+        testedProfileTracker.logMissingTestCaseExamples();
 
         if (!failingTests.isEmpty()) {
             logFailingTests();
             return false;
         }
 
-        log.info("Finished testing plugin '{}' successfully.", pluginFileToTest.getName());
+        log.info("Finished testing plugin '{}' successfully.", pluginFileToTestName);
         return true;
-    }
-
-    /**
-     * Logs information for the user about profiles in the plugin where a test case is missing.
-     */
-    private void logMissingExamples() {
-        List<String> missingProfilesValid = getMissingProfiles(true);
-        List<String> missingProfilesInvalid = getMissingProfiles(false);
-        if(!missingProfilesValid.isEmpty() || !missingProfilesInvalid.isEmpty()){
-            log.warn("Some of the profiles in your plugin have no corresponding test-files (valid missing: {} / {} | invalid missing: {} / {}):", missingProfilesValid.size(), allProfileUrls.size(), missingProfilesInvalid.size(), allProfileUrls.size());
-            for (String profile : missingProfilesValid) {
-                log.warn("No valid test example found for : {}", profile);
-            }
-            for (String profile : missingProfilesInvalid) {
-                log.warn("No invalid test example found for : {}", profile);
-            }
-        }
-    }
-
-    /**
-     * Gets a list of profiles where test cases are missing.
-     * @param validity The validity (valid = true, invalid = false)
-     * @return Returns a list of profiles where test cases are missing.
-     */
-    private List<String> getMissingProfiles(boolean validity) {
-        List<String> missingProfiles = new ArrayList<>();
-        List<String> testedProfiles = validity ? testedValidPluginProfileUrls : testedInvalidPluginProfileUrls;
-
-        for (String profileString : allProfileUrls) {
-            Profile profile = Profile.parse(profileString);
-            if (!testedProfiles.contains(profile.getBaseCanonical())) {
-                missingProfiles.add(profile.getBaseCanonical());
-            }
-        }
-
-        return missingProfiles;
     }
 
     /**
      * Logs information about failing test cases.
      */
     private void logFailingTests() {
-        log.error("There were issues with some of your test files. See more info below:");
+        log.error("There are issues with {} of your test files. See more info below:", failingTests.size());
         for (Map.Entry<String, ValidationResult> entry : failingTests.entrySet()) {
             String fileName = entry.getKey();
             ValidationResult result = entry.getValue();
-            boolean expectedValidity = fileName.contains("/valid/");
+            boolean expectedValidity = !fileName.contains("/invalid");
             log.error("File: {} | Expected validity: {} | Validation result: {}", fileName, expectedValidity, result);
         }
     }
@@ -145,9 +124,9 @@ public class PluginTester {
      * @throws IOException If IO actions with plugin zipFile fail.
      * @throws PluginTestFailedException If a test case fails.
      */
-    private void processTestFiles(File zipFile, ValidationModule validationModule) throws IOException, PluginTestFailedException {
+    private void processInternalTestFiles(File zipFile, ValidationModule validationModule) throws IOException, PluginTestFailedException {
         boolean testFilesDirExists = false;
-        try (ZipFile zip = new ZipFile(zipFile)) {
+        try (ZipFile zip = ZipFile.builder().setFile(zipFile).get()) {
             Enumeration<? extends ZipArchiveEntry> fileEntries = zip.getEntries();
             while (fileEntries.hasMoreElements()) {
                 ZipArchiveEntry fileEntry = fileEntries.nextElement();
@@ -159,6 +138,28 @@ public class PluginTester {
         }
         if(!testFilesDirExists)
             throw new PluginTestFailedException("Test files directory is missing in " + zipFile.getName());
+    }
+
+    private void processExternalTestFiles(File testFiles, ValidationModule validationModule) {
+        try (Stream<Path> pathStream = Files.walk(testFiles.toPath())) {
+            pathStream
+                    .filter(Files::isRegularFile)
+                    .forEach(filePath -> {
+                        try {
+                            String fileContent = Files.readString(filePath, StandardCharsets.UTF_8);
+                            ValidationResult result = validationModule.validateString(fileContent);
+                            boolean isValid = result.isValid();
+                            boolean expectedValidity = !filePath.toFile().getParent().contains("invalid");
+
+                            evaluateTestResult(fileContent, result, filePath.getFileName().toString(), isValid, expectedValidity);
+                        } catch (IOException e) {
+                            log.error("Failed to process test file: {}", filePath, e);
+                        }
+                    });
+        } catch (IOException e) {
+            log.error("Failed to traverse test files directory: {}", testFiles.getAbsolutePath(), e);
+        }
+
     }
 
     /**
@@ -175,36 +176,24 @@ public class PluginTester {
             ValidationResult result = validationModule.validateString(fileContent);
             String fileName = fileEntry.getName();
             boolean isValid = result.isValid();
-            boolean expectedValidity = fileName.contains("/valid/");
+            boolean expectedValidity = !fileName.contains("/invalid");
 
-            IParser parser = EncodingEnum.detectEncoding(fileContent).newParser(FhirContext.forR4());
-            IBaseResource resource = parser.parseResource(fileContent);
-            var profile = resource.getMeta().getProfile().get(0);
-
-            if(profile.hasValue() && expectedValidity){
-                String profileUrl = getProfileValueAsString(profile);
-                testedValidPluginProfileUrls.add(profileUrl);
-            }
-            if(profile.hasValue() && !expectedValidity) {
-                String profileUrl = getProfileValueAsString(profile);
-                testedInvalidPluginProfileUrls.add(profileUrl);
-            }
-
-            if (isValid == expectedValidity) {
-                log.info("Test for {} succeeded!", fileName);
-            } else {
-                log.error("Test for {} failed. Expected validity: {} | Validation result: {} ", fileName, expectedValidity, isValid);
-                failingTests.put(fileName, result);
-            }
+            evaluateTestResult(fileContent, result, fileName, isValid, expectedValidity);
         }
     }
 
-    /**
-     * @param profile The profile.
-     * @return Returns the baseCanonical of the profile.
-     */
-    private String getProfileValueAsString(IPrimitiveType<String> profile) {
-        String profileAsString = profile.getValueAsString();
-        return Profile.parse(profileAsString).getBaseCanonical();
+    private void evaluateTestResult(String fileContent, ValidationResult result, String fileName, boolean isValid, boolean expectedValidity) {
+        IParser parser = EncodingEnum.detectEncoding(fileContent).newParser(FhirContext.forR4());
+        IBaseResource resource = parser.parseResource(fileContent);
+
+        testedProfileTracker.trackProfiles(resource, expectedValidity);
+
+        if (isValid == expectedValidity) {
+            log.info("Test for {} succeeded!", fileName);
+        } else {
+            log.error("Test for {} failed. Expected validity: {} | Validation result: {} ",
+                    fileName, expectedValidity, isValid);
+            failingTests.put(fileName, result);
+        }
     }
 }

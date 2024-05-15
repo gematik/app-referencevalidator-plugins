@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 gematik GmbH
+Copyright (c) 2023-2024 gematik GmbH
 
 Licensed under the Apache License, Version 2.0 (the License);
 you may not use this file except in compliance with the License.
@@ -41,6 +41,13 @@ class DependencyExtractorTests {
         List<PackageReference> dependencies = dependencyExtractor.getAllDependenciesFromPackageJson("src/test/resources/package/");
         PackageReference packageReference = new PackageReference("test-dependency", "1.0.0");
         assertTrue(dependencies.contains(packageReference));
+    }
+
+    @Test
+    @SneakyThrows
+    void testNoDependenciesFromPackageJson() {
+        List<PackageReference> dependencies = dependencyExtractor.getAllDependenciesFromPackageJson("src/test/resources/package-with-no-dependencies/");
+        assertTrue(dependencies.isEmpty());
     }
 
     @Test

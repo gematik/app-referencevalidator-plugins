@@ -1,0 +1,17 @@
+configSpecVersion: "1.0"
+id: "epa3-medication"
+author: "gematik GmbH"
+description: "Referenzvalidator-Plugin für die ePA-Medication Spezifikation"
+specUrl: "https://simplifier.net/packages/de.gematik.epa.medication/1.0.0"
+version: "${project.version}"
+validation:
+  fhirPackage: "de.gematik.epa.medication#1.0.0"
+  dependencies:
+    - "hl7.fhir.uv.ips#1.1.0"
+  errorOnUnknownProfile: "false"
+  anyExtensionsAllowed: "true"
+  ignoredCodeSystems:
+  - "http://fhir.de/CodeSystem/bfarm/atc"
+  - "http://fhir.de/CodeSystem/ask"
+snapshotDependencies:
+  - "hl7.terminology.r4#5.0.0"

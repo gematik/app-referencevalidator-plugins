@@ -1,0 +1,28 @@
+{
+    "resourceType": "OperationOutcome",
+    "id": "gen1",
+    "meta": {
+        "profile":  [
+            "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-ms-operation-outcome"
+        ]
+    },
+    "implicitRules": "http://hl7.org/fhir/reference",
+    "language": "en-GB",
+    "issue":  [
+        {
+            "severity": "fatal",
+            "code": "structure",
+            "details": {
+                "coding":  [
+                    {
+                        "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-ms-operation-outcome-codes-cs",
+                        "version": "1.0.0",
+                        "code": "MEDICATIONSVC_OPERATION_SUCCESS",
+                        "display": "Operation Successfully Completed in Medication Service",
+                        "userSelected": false
+                    }
+                ]
+            }
+        }
+    ]
+}
