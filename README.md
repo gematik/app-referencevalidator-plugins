@@ -31,7 +31,7 @@ Die Plugins können unter [Releases](https://github.com/gematik/app-referenceval
 |--------------------------------------------------------------------------------------------|-------------|--------------------------|
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 1 (Modul Basis)              | 2.1         | isik1                    |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Basis)              | 2.1         | isik2-basismodul         |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Terminplanung)      | 1.2         | isik2-terminplanung      |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Terminplanung)      | 1.3         | isik2-terminplanung      |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Vitalparameter)     | 1.1         | isik2-vitalparameter     |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Medikation)         | 2.0         | isik2-medikation         |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Basis)              | 0.5         | isik3-basismodul         |

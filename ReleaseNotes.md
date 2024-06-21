@@ -2,6 +2,11 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## ISIK Stufe 2 - Terminplanung 1.3 (2024-06)
+
+### changed
+- Updated the FHIR package to 2.0.5
+
 ## PluginBuilder 1.1.1
 
 ### added
