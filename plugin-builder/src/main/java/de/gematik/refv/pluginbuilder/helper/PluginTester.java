@@ -89,15 +89,15 @@ public class PluginTester {
     }
 
     private boolean evaluateTestResults(String pluginFileToTestName) throws PluginTestFailedException, IOException {
-        if(testedProfileTracker.getValidProfileUrlsFoundInTestFiles().isEmpty() || testedProfileTracker.getInvalidProfileUrlsFoundInTestFiles().isEmpty()) {
-            throw new PluginTestFailedException("You must add at least one valid and one invalid test resource to your test-files directory!");
-        }
-
         testedProfileTracker.logMissingTestCaseExamples();
 
         if (!failingTests.isEmpty()) {
             logFailingTests();
             return false;
+        }
+
+        if(testedProfileTracker.getValidProfileUrlsFoundInTestFiles().isEmpty() || testedProfileTracker.getInvalidProfileUrlsFoundInTestFiles().isEmpty()) {
+            throw new PluginTestFailedException("You must add at least one valid and one invalid test resource to your test-files directory!");
         }
 
         log.info("Finished testing plugin '{}' successfully.", pluginFileToTestName);
