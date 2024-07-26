@@ -1,0 +1,133 @@
+{
+  "resourceType": "Medication",
+  "id": "gen1",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pharmaceutical-product"
+    ]
+  },
+  "implicitRules": "http://hl7.org/fhir/reference",
+  "language": "en-GB",
+  "identifier": [
+    {
+      "use": "usual",
+      "type": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Crazy Dog",
+            "display": "Energetic Dog",
+            "userSelected": false
+          }
+        ],
+        "text": "Fantastic Zebra"
+      },
+      "system": "http://www.acme.com/identifiers/patient",
+      "value": "123456",
+      "period": {
+        "start": "1960-12-10",
+        "end": "1975-12-23"
+      }
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "https://terminologieserver.bfarm.de/fhir/CodeSystem/arzneimittel-referenzdaten-pharmazeutisches-produkt",
+        "version": "Crazy Cat",
+        "code": "1234",
+        "display": "Slow Cat",
+        "userSelected": false
+      }
+    ],
+    "text": "Fast Zebra"
+  },
+  "status": "active",
+  "manufacturer": {
+    "reference": "Slow Giraffe",
+    "type": "http://hl7.org/fhir/StructureDefinition/Organization",
+    "identifier": {
+      "use": "temp",
+      "type": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Crazy Mouse",
+            "display": "Energetic Elephant",
+            "userSelected": false
+          }
+        ],
+        "text": "Hilarious Giraffe"
+      },
+      "system": "http://www.acme.com/identifiers/patient",
+      "value": "123456",
+      "period": {
+        "start": "1955-10-14",
+        "end": "2016-03-17"
+      }
+    },
+    "display": "Energetic Mouse"
+  },
+  "form": {
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/reference",
+        "version": "Hilarious Mouse",
+        "display": "Inventive Elephant",
+        "userSelected": false
+      }
+    ],
+    "text": "Fast Badger"
+  },
+  "amount": {
+    "numerator": {
+      "comparator": "<",
+      "unit": "Fantastic Elephant",
+      "system": "http://hl7.org/fhir/reference"
+    },
+    "denominator": {
+      "comparator": "<",
+      "unit": "Slow Badger",
+      "system": "http://hl7.org/fhir/reference"
+    }
+  },
+  "ingredient": [
+    {
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-darreichungsform-extension",
+          "valueString": "Slow Zebra"
+        }
+      ],
+      "itemCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Energetic Zebra",
+            "display": "Energetic Cat",
+            "userSelected": false
+          }
+        ],
+        "text": "Energetic Mouse"
+      },
+      "isActive": false,
+      "strength": {
+        "numerator": {
+          "value": 20,
+          "unit": "mg",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg"
+        },
+        "denominator": {
+          "value": 1,
+          "system": "http://unitsofmeasure.org",
+          "code": "pc"
+        }
+      }
+    }
+  ],
+  "batch": {
+    "lotNumber": "20230705A",
+    "expirationDate": "2025-08-27"
+  }
+}

@@ -27,23 +27,23 @@ Siehe [ReleaseNotes.md](./ReleaseNotes.md)
 
 Die Plugins können unter [Releases](https://github.com/gematik/app-referencevalidator-plugins/releases) heruntergeladen werden. 
 
-| **Plugin**                                                                                 | **Version** | **ID**                   |
-|--------------------------------------------------------------------------------------------|-------------|--------------------------|
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 1 (Modul Basis)              | 2.1         | isik1                    |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Basis)              | 2.1         | isik2-basismodul         |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Terminplanung)      | 1.3         | isik2-terminplanung      |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Vitalparameter)     | 1.1         | isik2-vitalparameter     |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Medikation)         | 2.0         | isik2-medikation         |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Basis)              | 0.5         | isik3-basismodul         |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Terminplanung)      | 0.3         | isik3-terminplanung      |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Vitalparameter)     | 0.3         | isik3-vitalparameter     |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Medikation)         | 0.4         | isik3-medikation         |
+| **Plugin**                                                                                 | **Version** | **ID**                    |
+|--------------------------------------------------------------------------------------------|-------------|---------------------------|
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 1 (Modul Basis)              | 2.1         | isik1                     |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Basis)              | 2.1         | isik2-basismodul          |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Terminplanung)      | 1.3         | isik2-terminplanung       |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Vitalparameter)     | 1.1         | isik2-vitalparameter      |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Medikation)         | 2.0         | isik2-medikation          |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Basis)              | 0.5         | isik3-basismodul          |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Terminplanung)      | 0.3         | isik3-terminplanung       |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Vitalparameter)     | 0.3         | isik3-vitalparameter      |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Medikation)         | 0.4         | isik3-medikation          |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Dokumentenaustausch) | 0.4         | isik3-dokumentenaustausch |
-| Informationstechnische Systeme in der Pflege (ISIP) Stufe 1                                | 1.1         | isip1                    |
-| DiGA Toolkit                                                                               | 0.10        | diga                     |
-| VSDM-Ersatzbescheinigung                                                                   | 0.1         | eeb                      |
-| Elektronische Patientenakte Basisfunktionalitäten                                          | 1.0.0       | epa-basic                |
-| Elektronische Patientenakte Medication                                                     | 1.0.0       | epa-medication           |
+| Informationstechnische Systeme in der Pflege (ISIP) Stufe 1                                | 1.1         | isip1                     |
+| DiGA Toolkit                                                                               | 0.10        | diga                      |
+| VSDM-Ersatzbescheinigung                                                                   | 0.1         | eeb                       |
+| Elektronische Patientenakte Basisfunktionalitäten                                          | 1.1.0       | epa3-basic                |
+| Elektronische Patientenakte Medication                                                     | 1.1.0       | epa3-medication           |
 
 Die Bezeichnung in der Spalte `ID` dient dem Aufruf des Plugins aus der Referenzvalidator-Konsolenanwendung.
 
@@ -51,7 +51,7 @@ Die Bezeichnung in der Spalte `ID` dient dem Aufruf des Plugins aus der Referenz
 
 #### EPA-Medication
 Abweichend vom allgemeinen Prüfumfang verhält sich das EPA-Medication-Plugin wie folgt:
-- Codes aus den Codesystemen `http://fhir.de/CodeSystem/bfarm/atc` und `http://fhir.de/CodeSystem/ask` werden nicht validiert
+- Codes aus den Codesystemen `http://fhir.de/CodeSystem/bfarm/atc`, `http://fhir.de/CodeSystem/ask`, `http://fhir.de/CodeSystem/ifa/pzn` werden nicht validiert
 
 #### ISIK3
 

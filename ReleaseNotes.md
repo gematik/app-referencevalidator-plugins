@@ -2,6 +2,17 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## ePA Medication 1.1.0 (2024-07)
+
+### changed
+- Updated the FHIR packages to 1.0.2
+- Ignoring PZN codes during validation
+
+## ePA Basic 1.1.0 (2024-07)
+
+### changed
+- Updated the FHIR packages to 1.0.2
+
 ## ISIK Stufe 2 - Terminplanung 1.3 (2024-06)
 
 ### changed
