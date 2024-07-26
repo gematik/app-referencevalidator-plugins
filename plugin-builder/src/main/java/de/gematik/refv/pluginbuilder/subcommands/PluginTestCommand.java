@@ -40,6 +40,10 @@ public class PluginTestCommand implements Runnable{
 
     @Override
     public void run() {
+        if(!testFilesDirectory.exists()) {
+            log.error("No such directory: {}", testFilesDirectory);
+            return;
+        }
         if (!testFilesDirectory.isDirectory()) {
             logTestFilesBlueprint();
             return;
@@ -64,8 +68,8 @@ public class PluginTestCommand implements Runnable{
 
     private void logTestFilesBlueprint() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\r\nTest files are only accepted as a directory in the following format:");
-        sb.append(".\n" +
+        sb.append("\r\nTest files are only accepted as a directory and must be in the following format:");
+        sb.append("\n.\n" +
                 "└── test-files/\n" +
                 "    ├── invalid/\n" +
                 "    └── valid/");

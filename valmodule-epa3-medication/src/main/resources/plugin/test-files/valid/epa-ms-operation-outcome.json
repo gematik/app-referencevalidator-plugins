@@ -21,8 +21,16 @@
                         "display": "Operation Successfully Completed in Medication Service",
                         "userSelected": false
                     }
-                ]
-            }
+                ],
+                "text": "Energetic Dog"
+            },
+            "diagnostics": "Hilarious Dog",
+            "location":  [
+                "Crazy Badger"
+            ],
+            "expression":  [
+                "Inventive Elephant"
+            ]
         }
     ]
 }

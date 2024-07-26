@@ -10,7 +10,7 @@
   "language": "en-GB",
   "type": {
     "system": "http://terminology.hl7.org/CodeSystem/audit-event-type",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "code": "rest",
     "display": "RESTful Operation",
     "userSelected": false
