@@ -8,7 +8,7 @@
   <groupId>de.gematik.refv.plugins</groupId>
   <artifactId>parent-pom</artifactId>
   <packaging>pom</packaging>
-  <version>1.2.0</version>
+  <version>1.2.1-SNAPSHOT</version>
   <name>gematik Referenzvalidator Plugins</name>
   <description>Plugin-Repository des gematik Referenzvalidators</description>
   <url>https://github.com/gematik/app-referencevalidator-plugins</url>
