@@ -8,7 +8,7 @@
   <groupId>de.gematik.refv.plugins</groupId>
   <artifactId>parent-pom</artifactId>
   <packaging>pom</packaging>
-  <version>1.1.2-SNAPSHOT</version>
+  <version>1.2.0</version>
   <name>gematik Referenzvalidator Plugins</name>
   <description>Plugin-Repository des gematik Referenzvalidators</description>
   <url>https://github.com/gematik/app-referencevalidator-plugins</url>
@@ -65,29 +65,29 @@
     <maven.compiler.release>11</maven.compiler.release>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
-    <version.surefire>3.1.2</version.surefire>
+    <version.surefire>3.5.1</version.surefire>
     <version.compiler>3.10.1</version.compiler>
     <version.hapi-fhir-validation>6.6.2</version.hapi-fhir-validation>
     <version.lombok>1.18.32</version.lombok>
     <version.log4j2>2.21.0</version.log4j2>
     <version.slf4j-api>2.0.7</version.slf4j-api>
     <version.slf4j-log4j>2.0.9</version.slf4j-log4j>
-    <version.junit-jupiter-api>5.9.3</version.junit-jupiter-api>
-    <version.jackson>2.16.0</version.jackson>
+    <version.junit-jupiter-api>5.11.2</version.junit-jupiter-api>
+    <version.jackson>2.18.0</version.jackson>
     <version.woodstox>6.5.0</version.woodstox>
     <version.site>3.12.1</version.site>
-    <version.maven-release>2.5.3</version.maven-release>
+    <version.maven-release>3.1.1</version.maven-release>
     <version.jar>3.3.0</version.jar>
-    <version.build.helper>3.3.0</version.build.helper>
+    <version.build.helper>3.6.0</version.build.helper>
     <version.maven-source-plugin>3.2.1</version.maven-source-plugin>
     <version.maven-javadoc-plugin>3.4.1</version.maven-javadoc-plugin>
-    <version.maven-assembly-plugin>3.4.2</version.maven-assembly-plugin>
-    <version.buildnumber>3.0.0</version.buildnumber>
+    <version.maven-assembly-plugin>3.7.1</version.maven-assembly-plugin>
+    <version.buildnumber>3.2.1</version.buildnumber>
     <version.mockito>4.11.0</version.mockito>
-    <version.jacoco>0.8.8</version.jacoco>
-    <version.maven-failsafe-plugin>3.0.0-M7</version.maven-failsafe-plugin>
-    <version.maven-enforcer-plugin>3.3.0</version.maven-enforcer-plugin>
-    <version.picocli>4.7.0</version.picocli>
+    <version.jacoco>0.8.12</version.jacoco>
+    <version.maven-failsafe-plugin>3.5.1</version.maven-failsafe-plugin>
+    <version.maven-enforcer-plugin>3.5.0</version.maven-enforcer-plugin>
+    <version.picocli>4.7.6</version.picocli>
 
     <sonar.coverage.jacoco.xmlReportPaths>**/site/jacoco-it/jacoco.xml,**/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     <sonar.junit.reportPaths>
@@ -95,28 +95,28 @@
     </sonar.junit.reportPaths>
     <version.nexus-staging-maven-plugin>1.6.13</version.nexus-staging-maven-plugin>
     <version.maven-gpg-plugin>3.0.1</version.maven-gpg-plugin>
-    <version.dependency-check-maven>8.4.0</version.dependency-check-maven>
-    <version.referencevalidator>2.1.1</version.referencevalidator>
-    <version.snapshot-generator>0.4.0</version.snapshot-generator>
-    <checker-qual.version>3.39.0</checker-qual.version>
+    <version.dependency-check-maven>10.0.4</version.dependency-check-maven>
+    <version.referencevalidator>2.6.0</version.referencevalidator>
+    <version.snapshot-generator>0.5.0</version.snapshot-generator>
+    <checker-qual.version>3.48.0</checker-qual.version>
     <commons-codec.version>1.16.0</commons-codec.version>
-    <error_prone_annotations.version>2.22.0</error_prone_annotations.version>
+    <error_prone_annotations.version>2.33.0</error_prone_annotations.version>
     <mockserver-junit-jupiter.version>5.15.0</mockserver-junit-jupiter.version>
 
     <!-- These transitive dependencies have been fixed in reference validator (due to security issues) -->
-    <guava.version>33.0.0-jre</guava.version>
-    <version.commons-compress>1.26.1</version.commons-compress>
+    <guava.version>33.3.1-jre</guava.version>
+    <version.commons-compress>1.27.1</version.commons-compress>
     <thymeleaf.version>3.1.2.RELEASE</thymeleaf.version>
-    <version.commons-io>2.15.1</version.commons-io>
-    <version.commons-lang3>3.14.0</version.commons-lang3>
+    <commons-io.version>2.16.1</commons-io.version>
+    <commons-lang3.version>3.16.0</commons-lang3.version>
     <!-- End of fixed transitive dependencies -->
 
-    <exec-maven-plugin.version>3.1.1</exec-maven-plugin.version>
+    <exec-maven-plugin.version>3.4.1</exec-maven-plugin.version>
     <build-helper-maven-plugin.version>3.5.0</build-helper-maven-plugin.version>
     <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
     <maven-deploy-plugin.version>3.1.1</maven-deploy-plugin.version>
     <version.maven-gpg-plugin>3.0.1</version.maven-gpg-plugin>
-    <assertj-core.version>3.24.2</assertj-core.version>
+    <assertj-core.version>3.26.3</assertj-core.version>
     <spotless-maven-plugin.version>2.41.1</spotless-maven-plugin.version>
   </properties>
 
@@ -376,6 +376,45 @@
 
   <dependencyManagement>
     <dependencies>
+      <!-- The following dependencies have been explicitely fixed due to convergence problems -->
+      <dependency>
+        <groupId>ca.uhn.hapi.fhir</groupId>
+        <artifactId>hapi-fhir-base</artifactId>
+        <version>${version.hapi-fhir-validation}</version>
+      </dependency>
+      <dependency>
+        <groupId>ca.uhn.hapi.fhir</groupId>
+        <artifactId>hapi-fhir-structures-r4</artifactId>
+        <version>${version.hapi-fhir-validation}</version>
+      </dependency>
+      <dependency>
+        <groupId>ca.uhn.hapi.fhir</groupId>
+        <artifactId>hapi-fhir-caching-api</artifactId>
+        <version>${version.hapi-fhir-validation}</version>
+      </dependency>
+      <dependency>
+        <groupId>ca.uhn.hapi.fhir</groupId>
+        <artifactId>hapi-fhir-validation</artifactId>
+        <version>${version.hapi-fhir-validation}</version>
+      </dependency>
+      <dependency>
+        <groupId>ca.uhn.hapi.fhir</groupId>
+        <artifactId>hapi-fhir-caching-caffeine</artifactId>
+        <version>${version.hapi-fhir-validation}</version>
+      </dependency>
+      <dependency>
+        <groupId>ca.uhn.hapi.fhir</groupId>
+        <artifactId>hapi-fhir-validation-resources-r4</artifactId>
+        <version>${version.hapi-fhir-validation}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${version.junit-jupiter-api}</version>
+        <scope>test</scope>
+      </dependency>
+      <!-- End of dependencies with convergence problems -->
+
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
@@ -410,12 +449,12 @@
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
-        <version>${version.commons-io}</version>
+        <version>${commons-io.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
-        <version>${version.commons-lang3}</version>
+        <version>${commons-lang3.version}</version>
       </dependency>
       <dependency>
         <groupId>com.fasterxml.jackson.dataformat</groupId>
@@ -446,11 +485,6 @@
         <groupId>org.thymeleaf</groupId>
         <artifactId>thymeleaf</artifactId>
         <version>${thymeleaf.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>ca.uhn.hapi.fhir</groupId>
-        <artifactId>hapi-fhir-base</artifactId>
-        <version>${version.hapi-fhir-validation}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>

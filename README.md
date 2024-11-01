@@ -43,7 +43,7 @@ Die Plugins können unter [Releases](https://github.com/gematik/app-referenceval
 | DiGA Toolkit                                                                               | 0.10        | diga                      |
 | VSDM-Ersatzbescheinigung                                                                   | 0.1         | eeb                       |
 | Elektronische Patientenakte Basisfunktionalitäten                                          | 1.1.0       | epa3-basic                |
-| Elektronische Patientenakte Medication                                                     | 1.1.0       | epa3-medication           |
+| Elektronische Patientenakte Medication                                                     | 1.2.0       | epa3-medication           |
 
 Die Bezeichnung in der Spalte `ID` dient dem Aufruf des Plugins aus der Referenzvalidator-Konsolenanwendung.
 
@@ -51,7 +51,12 @@ Die Bezeichnung in der Spalte `ID` dient dem Aufruf des Plugins aus der Referenz
 
 #### EPA-Medication
 Abweichend vom allgemeinen Prüfumfang verhält sich das EPA-Medication-Plugin wie folgt:
-- Codes aus den Codesystemen `http://fhir.de/CodeSystem/bfarm/atc`, `http://fhir.de/CodeSystem/ask`, `http://fhir.de/CodeSystem/ifa/pzn` werden nicht validiert
+- Codes aus den folgenden Codesystemen werden nicht validiert:
+  - `http://fhir.de/CodeSystem/bfarm/atc`
+  - `http://fhir.de/CodeSystem/ask`
+  - `http://fhir.de/CodeSystem/ifa/pzn`
+  - "http://snomed.info/sct"
+  - "https://terminologieserver.bfarm.de/fhir/CodeSystem/arzneimittel-referenzdaten-pharmazeutisches-produkt"
 
 #### ISIK3
 
@@ -204,7 +209,7 @@ Das erste Argument ('build') gibt an, dass der build-Prozess gestartet werden so
 | `-t` oder<br/>`--targetFolderPath` | Ausgabeverzeichnis. Standardmäßig wird das Parent-Verzeichnis vom Plugin-Ressourcen-Ordner als Ausgabeverzeichnis verwendet                  |
 | `-url` oder<br/>`--packageServerUrl`   | URL eines alternativen FHIR Package Servers. Standardmäßig werden http://packages.fhir.org und https://packages2.fhir.org/packages verwendet |
 
-Neben Konsolenausgabe schreibt der Plugin-Builder während der Ausführung ein Protokoll mit Warnungen (`warn.log`).
+Neben Konsolenausgabe schreibt der Plugin-Builder während der Ausführung ein Protokoll mit WARN- und ERROR-Meldungen, die von der zugrundeliegenden HAPI-Bibliothek während der Snapshot-Generierung produziert wurden (`warn.log`).
 
 ### Testen von Plugins mittels des Plugin-Builders
 Mithilfe des Plugin-Builders können auch bereits gebaute Plugins getestet werden.

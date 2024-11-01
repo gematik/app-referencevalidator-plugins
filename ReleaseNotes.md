@@ -2,6 +2,21 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## PluginBuilder 1.2.0 (2024-11)
+
+### changed
+- Errors thrown by the underlying HAPI engine during snapshot generation do not stop the plugin generation process anymore (these can be false positives). Instead, they are logged and the process continues.
+- Using version 2.6.1 of the reference validator for plugin tests
+- Bumping dependencies
+
+## ePA Medication 1.2.0 (2024-10)
+
+### added
+- Validator issues INFO validation messages for CodeSystems with missing definitions (cf. [README.md](./README.md#epa-medication))
+
+### changed
+- Updated the FHIR package de.gematik.epa.medication from 1.0.2 to [1.0.3](https://simplifier.net/packages/de.gematik.epa.medication/1.0.3)
+
 ## ePA Medication 1.1.0 (2024-07)
 
 ### changed
