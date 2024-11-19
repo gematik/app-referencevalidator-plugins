@@ -2,6 +2,11 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## ePA Medication 1.3.0 (2024-11)
+
+### fixed
+- The plugin failed to validate the KBV_VS_SFHIR_KBV_NORMGROESSE value set. The issue has been fixed by referencing the corresponding KBV terminology package.
+
 ## PluginBuilder 1.2.0 (2024-11)
 
 ### changed

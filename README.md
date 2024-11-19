@@ -43,7 +43,7 @@ Die Plugins können unter [Releases](https://github.com/gematik/app-referenceval
 | DiGA Toolkit                                                                               | 0.10        | diga                      |
 | VSDM-Ersatzbescheinigung                                                                   | 0.1         | eeb                       |
 | Elektronische Patientenakte Basisfunktionalitäten                                          | 1.1.0       | epa3-basic                |
-| Elektronische Patientenakte Medication                                                     | 1.2.0       | epa3-medication           |
+| Elektronische Patientenakte Medication                                                     | 1.3.0       | epa3-medication           |
 
 Die Bezeichnung in der Spalte `ID` dient dem Aufruf des Plugins aus der Referenzvalidator-Konsolenanwendung.
 
