@@ -2,17 +2,15 @@
   "resourceType": "Observation",
   "id": "ISiKEkgExample",
   "meta": {
-    "profile": [
-      "https://gematik.de/fhir/isik/v3/VitalparameterUndKoerpermasze/StructureDefinition/ISiKEkg",
-      "http://fhir.de/StructureDefinition/observation-de-ekg"
+    "profile":  [
+      "https://gematik.de/fhir/isik/v3/VitalparameterUndKoerpermasze/StructureDefinition/ISiKEkg"
     ]
   },
   "code": {
-    "coding": [
+    "coding":  [
       {
         "system": "http://loinc.org",
-        "code": "LP6244-0",
-        "display": "Electrocardiogram (EKG)"
+        "code": "11524-6"
       }
     ]
   },
@@ -20,9 +18,9 @@
     "reference": "Patient/PatientinMusterfrau"
   },
   "status": "final",
-  "category": [
+  "category":  [
     {
-      "coding": [
+      "coding":  [
         {
           "code": "procedure",
           "system": "http://terminology.hl7.org/CodeSystem/observation-category"
@@ -34,13 +32,13 @@
     "reference": "Device/ExampleDevice"
   },
   "effectiveDateTime": "2019-07-02",
-  "component": [
+  "component":  [
     {
       "code": {
-        "coding": [
+        "coding":  [
           {
-            "code": "LP7386-8",
-            "system": "http://loinc.org",
+            "code": "272729005",
+            "system": "http://snomed.info/sct",
             "display": "Lead I"
           }
         ]
@@ -56,10 +54,10 @@
     },
     {
       "code": {
-        "coding": [
+        "coding":  [
           {
-            "code": "LP7386-6",
-            "system": "http://loinc.org",
+            "code": "272730000",
+            "system": "http://snomed.info/sct",
             "display": "Lead II"
           }
         ]
@@ -75,10 +73,10 @@
     },
     {
       "code": {
-        "coding": [
+        "coding":  [
           {
-            "code": "LP7386-4",
-            "system": "http://loinc.org",
+            "code": "272731001",
+            "system": "http://snomed.info/sct",
             "display": "Lead III"
           }
         ]

@@ -2,6 +2,31 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## ISIK3 Basismodul 1.0 (2025-02)
+
+### changed
+- Updated FHIR Package version from 3.0.5 to 3.0.6
+
+## ISIK3 Terminplanung 1.0 (2025-02)
+
+### changed
+- Updated FHIR Package version from 3.0.3 to 3.0.6
+
+## ISIK3 Vitalparameter 1.0 (2025-02)
+
+### changed
+- Updated FHIR Package version from 3.0.2 to 3.0.4
+
+## ISIK3 Medikation 1.0 (2025-02)
+
+### changed
+- Updated FHIR Package version from 3.0.1 to 3.0.4
+
+## ISIK3 Dokumentenaustausch 1.0 (2025-02)
+
+### changed
+- Updated FHIR Package version from 3.0.3 to 3.0.4
+
 ## ePA Medication 1.3.0 (2024-11)
 
 ### fixed
