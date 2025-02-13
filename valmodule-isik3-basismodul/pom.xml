@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>valmodule-isik3-basismodul</artifactId>
-    <version>0.6.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <build>
         <plugins>
