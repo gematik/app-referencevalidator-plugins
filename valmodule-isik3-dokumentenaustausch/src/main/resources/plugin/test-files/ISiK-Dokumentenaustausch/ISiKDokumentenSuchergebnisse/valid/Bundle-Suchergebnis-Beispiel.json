@@ -10,7 +10,7 @@
   "total": 1,
   "entry": [
     {
-      "fullUrl": "http://meinfhirserver.de/DocumentReference/dok-beispiel",
+      "fullUrl": "http://meinfhirserver.de/DocumentReference/dok-beispiel-server",
       "resource": {
         "resourceType": "DocumentReference",
         "id": "dok-beispiel-server",

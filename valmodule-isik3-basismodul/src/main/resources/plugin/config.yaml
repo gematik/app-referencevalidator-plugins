@@ -2,10 +2,10 @@ configSpecVersion: "1.0"
 id: "isik3-basismodul"
 author: "gematik GmbH"
 description: "Referenzvalidator-Plugin für die Spezifikation 'Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Basis)'"
-specUrl: "https://simplifier.net/packages/de.gematik.isik-basismodul/3.0.5"
+specUrl: "https://simplifier.net/packages/de.gematik.isik-basismodul/3.0.6"
 version: "${project.version}"
 validation:
-  fhirPackage: "de.gematik.isik-basismodul#3.0.5"
+  fhirPackage: "de.gematik.isik-basismodul#3.0.6"
   dependencies:
     - "kbv.basis#1.2.0"
   errorOnUnknownProfile: "false"
