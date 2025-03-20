@@ -29,3 +29,7 @@ validation:
       severityLevelTo: "information"
       locatorString: "urn:ihe:iti:xds:2017:mimeTypeSufficient"
       messageId: "Terminology_TX_NoValid_12"
+snapshotDependencies:
+  - "hl7.terminology.r4#4.0.0"
+  - "hl7.terminology.r4#5.0.0"
+  - "hl7.terminology.r4#5.3.0"

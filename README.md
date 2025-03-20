@@ -38,7 +38,7 @@ Die Plugins können unter [Releases](https://github.com/gematik/app-referenceval
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Terminplanung)      | 1.0         | isik3-terminplanung       |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Vitalparameter)     | 1.0         | isik3-vitalparameter      |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Medikation)         | 1.0         | isik3-medikation          |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Dokumentenaustausch) | 1.0         | isik3-dokumentenaustausch |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Dokumentenaustausch) | 2.0         | isik3-dokumentenaustausch |
 | Informationstechnische Systeme in der Pflege (ISIP) Stufe 1                                | 1.1         | isip1                     |
 | DiGA Toolkit                                                                               | 0.10        | diga                      |
 | VSDM-Ersatzbescheinigung                                                                   | 0.1         | eeb                       |
@@ -64,6 +64,7 @@ Abweichend vom allgemeinen Prüfumfang verhalten sich die ISIK3-Plugins wie folg
 - Codes aus den CodeSystemen `http://snomed.info/sct`, `http://fhir.de/CodeSystem/bfarm/icd-10-gm`, `http://fhir.de/CodeSystem/bfarm/atc`, `http://fhir.de/CodeSystem/ifa/pzn` und `http://fhir.de/CodeSystem/bfarm/ops` werden nicht validiert
 - Folgende ValueSets werden nicht validiert: `https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/ProzedurenCodesSCT`, `https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/DiagnosesSCT`, `https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/ProzedurenKategorieSCT`, `https://gematik.de/fhir/isik/v3/Terminplanung/ValueSet/ISiKTerminPriority`, `https://gematik.de/fhir/isik/v3/Medikation/ValueSet/SctRouteOfAdministration` und `http://fhir.de/ValueSet/bfarm/ops`
 - Validierung ausgewählter [KBV-Schlüsseltabellen](https://applications.kbv.de/overview.xhtml), siehe Package gematik.kbv.sfhir.cs.vs im Plugin
+- Dokumentenaustausch: Aus Performancegründen werden derzeit keine Codes und ValueSets aus den folgenden Terminologiepackages validiert: `hl7.terminology.r4-4.0.0`, `hl7.terminology.r4-5.0.0` und `hl7.terminology.r4-5.3.0`
 
 #### ISIK2
 
