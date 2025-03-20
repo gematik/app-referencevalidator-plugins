@@ -2,6 +2,11 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## ISIK3 Dokumentenaustausch 2.0 (2025-03)
+
+### changed
+- Removed the following packages due to performance issues: `hl7.terminology.r4-4.0.0`, `hl7.terminology.r4-5.0.0`, `hl7.terminology.r4-5.3.0`
+
 ## ISIK3 Basismodul 1.0 (2025-02)
 
 ### changed
