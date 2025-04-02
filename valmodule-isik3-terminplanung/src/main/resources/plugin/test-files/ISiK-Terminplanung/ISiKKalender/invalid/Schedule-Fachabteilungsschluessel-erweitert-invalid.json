@@ -3,7 +3,7 @@
   "id": "ISiKKalenderExample",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/isik/v2/Terminplanung/StructureDefinition/ISiKKalender"
+      "https://gematik.de/fhir/isik/v3/Terminplanung/StructureDefinition/ISiKKalender"
     ]
   },
   "active": true,
@@ -28,13 +28,13 @@
     },
     {
       "coding": [
-        {
-          "system": "http://fhir.de/CodeSystem/dkgev/Fachabteilungsschluessel-erweitert",
-          "code": "2800",
-          "display": "Neurologie"
-        }
+          {
+              "system": "http://fhir.de/CodeSystem/dkgev/Fachabteilungsschluessel-erweitert",
+              "code": "NON-EXISTING",
+              "display": "NON-EXISTING"
+          }
       ]
-    }
+  }
   ],
   "actor": [
     {

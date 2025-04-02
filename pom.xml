@@ -243,18 +243,6 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.owasp</groupId>
-          <artifactId>dependency-check-maven</artifactId>
-          <version>${version.dependency-check-maven}</version>
-          <configuration>
-            <format>ALL</format>
-            <failBuildOnCVSS>0</failBuildOnCVSS>
-            <suppressionFiles>
-              <suppressionsFile>owasp-suppressions.xml</suppressionsFile>
-            </suppressionFiles>
-          </configuration>
-        </plugin>
-        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>${version.build.helper}</version>
@@ -517,16 +505,6 @@
   </dependencyManagement>
 
   <profiles>
-
-    <profile>
-      <id>owasp</id>
-      <build>
-        <plugins>
-
-        </plugins>
-      </build>
-    </profile>
-
     <profile>
       <id>external</id>
       <build>

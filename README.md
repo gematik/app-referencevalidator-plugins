@@ -31,11 +31,11 @@ Die Plugins können unter [Releases](https://github.com/gematik/app-referenceval
 |--------------------------------------------------------------------------------------------|-------------|---------------------------|
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 1 (Modul Basis)              | 2.1         | isik1                     |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Basis)              | 2.1         | isik2-basismodul          |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Terminplanung)      | 1.3         | isik2-terminplanung       |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Terminplanung)      | 1.4         | isik2-terminplanung       |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Vitalparameter)     | 1.1         | isik2-vitalparameter      |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Medikation)         | 2.0         | isik2-medikation          |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Basis)              | 1.0         | isik3-basismodul          |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Terminplanung)      | 1.0         | isik3-terminplanung       |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Terminplanung)      | 1.1         | isik3-terminplanung       |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Vitalparameter)     | 1.0         | isik3-vitalparameter      |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Medikation)         | 1.0         | isik3-medikation          |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Dokumentenaustausch) | 2.0         | isik3-dokumentenaustausch |
@@ -64,7 +64,7 @@ Abweichend vom allgemeinen Prüfumfang verhalten sich die ISIK3-Plugins wie folg
 - Codes aus den CodeSystemen `http://snomed.info/sct`, `http://fhir.de/CodeSystem/bfarm/icd-10-gm`, `http://fhir.de/CodeSystem/bfarm/atc`, `http://fhir.de/CodeSystem/ifa/pzn` und `http://fhir.de/CodeSystem/bfarm/ops` werden nicht validiert
 - Folgende ValueSets werden nicht validiert: `https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/ProzedurenCodesSCT`, `https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/DiagnosesSCT`, `https://gematik.de/fhir/isik/v3/Basismodul/ValueSet/ProzedurenKategorieSCT`, `https://gematik.de/fhir/isik/v3/Terminplanung/ValueSet/ISiKTerminPriority`, `https://gematik.de/fhir/isik/v3/Medikation/ValueSet/SctRouteOfAdministration` und `http://fhir.de/ValueSet/bfarm/ops`
 - Validierung ausgewählter [KBV-Schlüsseltabellen](https://applications.kbv.de/overview.xhtml), siehe Package gematik.kbv.sfhir.cs.vs im Plugin
-- Dokumentenaustausch: Aus Performancegründen werden derzeit keine Codes und ValueSets aus den folgenden Terminologiepackages validiert: `hl7.terminology.r4-4.0.0`, `hl7.terminology.r4-5.0.0` und `hl7.terminology.r4-5.3.0`
+- Dokumentenaustausch: Aus Performancegründen werden derzeit keine Codes und ValueSets aus dem Terminologiepackage `hl7.terminology.r4` validiert
 
 #### ISIK2
 
@@ -222,7 +222,10 @@ Beispielaufrufe des Plugin-Builders (test):
 Das erste Argument ('test') gibt an, dass der test-Prozess gestartet werden soll. Hier sind auch die beiden folgenden Argumente verpflichtend. Das zweite gibt den Pfad zum zu testenden Plugin an und das dritte ist der Pfad zum Ordner, der die Testinstanzen enthält.
 
 ### Bauen von Plugins mit Hilfe von Maven
-Alle bereits integrierten Plugins können mit dem Aufruf `mvn clean install -Pbuild-plugins` gebaut werden. Um ein einzelnes, spezielles Plugin zu bauen wird folgender Aufruf benötigt: `mvn clean install -pl :valmodule-eeb -Pbuild-plugins`. Dieser Aufruf würde das `valmodule-eeb` einzeln bauen.
+
+Vor dem Bauen der Plugins muss zuerst das PluginBuilder-Projekt gebaut werden. Dazu wird der Befehl `mvn clean package -pl :plugin-builder` im Hauptverzeichnis des PluginBuilder-Projekts aufgerufen.
+
+Alle bereits integrierten Plugins können anschließend mit dem Aufruf `mvn clean install -Pbuild-plugins` gebaut werden. Um ein einzelnes, spezielles Plugin zu bauen wird folgender Aufruf benötigt: `mvn clean install -pl :valmodule-eeb -Pbuild-plugins`. Dieser Aufruf würde das `valmodule-eeb` einzeln bauen.
 
 ## Beiträge zum Projekt
 
