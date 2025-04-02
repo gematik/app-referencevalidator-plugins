@@ -2,6 +2,20 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## ISIK3 Terminplanung 1.1 (2025-04)
+
+### changed
+- Codes from the [Fachabteilungsschluessel-erweitert](https://simplifier.net/Basisprofil-DE-R4/Fachabteilungsschluessel-erweitert/~xml) code system were ignored and not validated by the plugin. The issue has been fixed.
+- Updated the FHIR package to 2.0.6
+
+## ISIK2 Terminplanung 1.4 (2025-04)
+
+### changed
+- Updated the FHIR package to 2.0.6
+ 
+### fixed
+- ISIKKalender and ISIKAppointment resources, which contained a specialty code from the [Fachabteilungsschluessel-erweitert](https://simplifier.net/Basisprofil-DE-R4/Fachabteilungsschluessel-erweitert/~xml) code system, failed the validation due to a problem in HAPI with processing of "fragment" code systems. The issue has been temorarily fixed by patching the affected CodeSystem.
+
 ## ISIK3 Dokumentenaustausch 2.0 (2025-03)
 
 ### changed
