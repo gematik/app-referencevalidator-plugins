@@ -2,6 +2,9 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## EEB (VSDM-Ersatzbescheinigung) 0.2 (2025-06)
+- Updated the FHIR package to [1.0.1](https://simplifier.net/packages/de.gematik.elektronische-versicherungsbescheinigung/1.0.1/) 
+
 ## ISIK3 Terminplanung 1.1 (2025-04)
 
 ### changed

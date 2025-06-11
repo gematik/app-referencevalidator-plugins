@@ -1,0 +1,161 @@
+{
+  "resourceType": "Bundle",
+  "id": "07ddeb8a-e41e-473a-8724-a513ffb7afce",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/eeb/StructureDefinition/EEBBescheinigungBundle"
+    ]
+  },
+  "identifier": {
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:5b9794d3-f292-4692-bc6f-18c1320fd592"
+  },
+  "type": "message",
+  "timestamp": "2024-02-09T05:34:49.645+00:00",
+  "entry": [
+    {
+      "fullUrl": "https://gematik.de/fhir/MessageHeader/c600beab-92f3-4c4f-a0a4-795681533141",
+      "resource": {
+        "resourceType": "MessageHeader",
+        "id": "c600beab-92f3-4c4f-a0a4-795681533141",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/eeb/StructureDefinition/EEBBescheinigungHeader"
+          ]
+        },
+        "eventCoding": {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/PractitionerProfessionOID",
+          "code": "1.2.276.0.76.4.49",
+          "display": "Versicherte/-r"
+        },
+        "source": {
+          "endpoint": "http://www.tk.de"
+        }
+      }
+    },
+    {
+      "fullUrl": "https://gematik.de/fhir/Patient/cb7d4484-bade-47f5-985f-86196b6678a2",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "cb7d4484-bade-47f5-985f-86196b6678a2",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Patient|1.1.0"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/identifier-type-de-basis",
+                  "code": "GKV"
+                }
+              ]
+            },
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "A819745621"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "TK-eEB-QR-Code",
+            "_family": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-name",
+                  "valueString": "TK-eEB-QR-Code"
+                }
+              ]
+            },
+            "given": [
+              "Lisa"
+            ]
+          }
+        ],
+        "birthDate": "1969-02-23",
+        "address": [
+          {
+            "type": "both",
+            "line": [
+              "Berliner Str. 85"
+            ],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                    "valueString": "Berliner Str."
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                    "valueString": "85"
+                  }
+                ]
+              }
+            ],
+            "city": "München",
+            "postalCode": "80805"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://gematik.de/fhir/Coverage/90733223-ef0d-426a-8248-f28c55846933",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "90733223-ef0d-426a-8248-f28c55846933",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/eeb/StructureDefinition/EEBCoverageEgk"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://fhir.de/StructureDefinition/gkv/version-vsdm",
+            "valueString": "5.2.0"
+          },
+          {
+            "url": "https://gematik.de/fhir/eeb/StructureDefinition/AllgemeineVersicherungsdaten",
+            "valueBase64Binary": "H4sIAAAAAAAAALVS30/CMBD+V5a+Q7fhMjBdCYIxZAJGFI0vpG7Htmy7mbag8tfbETSMEPTFlzbf3X0/0h7rf5SFtQGpsgoD4rRtYgFGVZxhEpDxfNbqdr1ey/GIpbTAWBQVQkA+QZE+Z4/D5aAoEighQ1jUIlEKco2JioUGfJ7cWsPRZLm4vp+PZ9OAeG23NjCWqAKSav12Sem7ahsFobO8HQNdCbpRcVkfdGPmCWc/whrkAaptVJSu9ZazK0gyRO7a7oXtuC6j+wILK2WCaCkgqckNmAOiEeGO7Xi+5zk9Rk/2m6xCAMYgzRMBHx0xDntsKkrgDxClmOUgrVAKNIq5UAoY3TXZ4FXW/R3pb0m7Hd/37M5/JA2/U9EzsegxPvkdL2sl9DbDVaUa4CZcNL4ThdTcORDZlw45y30ao7/c8Z9md9w3pPpm9NwkPbamjWC0uVj0923mX0VJQk0vAwAA"
+          },
+          {
+            "url": "https://gematik.de/fhir/eeb/StructureDefinition/PersoenlicheVersichertendaten",
+            "valueBase64Binary": "H4sIAAAAAAAAAI1S21LCMBD9lU7e21C0WJxtGG6jjFwUFH1jYrvSjm3qJAEv3+6DWwQExwdfkpyzm7Mnu4HWW5E7a9QmK1XEfK/GHFRxmWRqGbHBbOKGYdB0/YA5xkqVyLxUGLF3NKwl4K67uKarJao8i1OcVzK0a4uUScvDaOh0e6PFvD+dDSbjiAVevapANZWJWGrtyznnr8ZbYiFt9uwlyJ8kX5ukqBa+pnwm4EBXHyG1GPREO/SbZ6dBo+4D/x2DjT0l4AIfV9oacrUqhN9sNGv1+gnwIxrmpVayQDHMjCStLYKxjNPN6fbKxX7HvZm63TJB4PsAyZs4zTFOrbivVPcIZlZLY1C1E420k6PS2Bwz+yHTXIS1sBYAP+Jgoq0YfSp6hgJeARhS5wXcl6kylJRLai9qGhKKHvC/aODfV7bVRQd1ninUDhEe8B0Nl3Jl1KooqK8h+TiA+6Qf53zXTH48EP6PbyC+AA9oidhpAgAA"
+          },
+          {
+            "url": "https://gematik.de/fhir/eeb/StructureDefinition/GeschuetzteVersichertendaten",
+            "valueBase64Binary": "H4sIAAAAAAAAAIVPXWvCQBD8K+HezWohoGXvpGgpQq3QUBFf5EjWXPByKblN2ubX90ILtSj4Mvs1zMzi/LOyUUeNL2snxSQei4hcVuelK6RYpZvRdJrMRpNERJ61y7WtHUnxRV7MFb4tDk/kM9MS90zbQSUz1DAFYoDd+jlaLNeH7eNrutq8SJHEd4NBsHReCsP8fg/w4eOCKs3lKc4Jjho6n1cDQBf4QuG+7bWxrSt8iMCtV5j+1DHCb4dwhUSWTlx24TluNBWk8IGanm3IqGYIfwPutXH6/PZ/EWwuteD28+obUb40hF4BAAA="
+          }
+        ],
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/versicherungsart-de-basis",
+              "code": "GKV",
+              "display": "gesetzliche Krankenversicherung"
+            }
+          ]
+        },
+        "beneficiary": {
+          "reference": "Patient/cb7d4484-bade-47f5-985f-86196b6678a2"
+        },
+        "period": {
+          "start": "2024-02-09",
+          "end": "2024-03-31"
+        },
+        "payor": [
+          {
+            "identifier": {
+              "system": "http://fhir.de/sid/arge-ik/iknr",
+              "value": "101575519"
+            },
+            "display": "Techniker Krankenkasse"
+          }
+        ]
+      }
+    }
+  ]
+}

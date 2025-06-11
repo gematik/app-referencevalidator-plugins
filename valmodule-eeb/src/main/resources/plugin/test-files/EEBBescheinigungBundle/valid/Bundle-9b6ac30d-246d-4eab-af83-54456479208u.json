@@ -1,6 +1,6 @@
 {
   "resourceType": "Bundle",
-  "id": "9b6ac30d-246d-4eab-af83-544564792089",
+  "id": "9b6ac30d-246d-4eab-af83-54456479208u",
   "meta": {
     "profile": [
       "https://gematik.de/fhir/eeb/StructureDefinition/EEBBescheinigungBundle"
@@ -9,15 +9,15 @@
   "type": "message",
   "identifier": {
     "system": "urn:ietf:rfc:3986",
-    "value": "urn:uuid:9b6ac30d-246d-4eab-af83-544564792089"
+    "value": "urn:uuid:9b6ac30d-246d-4eab-af83-544564792089u"
   },
   "timestamp": "2022-08-29T00:09:37.157+00:00",
   "entry": [
     {
-      "fullUrl": "https://gematik.de/fhir/MessageHeader/bd901c08-0133-4276-b34b-eb810a62deda",
+      "fullUrl": "https://gematik.de/fhir/MessageHeader/bd901c08-0133-4276-b34b-eb810a62dedu",
       "resource": {
         "resourceType": "MessageHeader",
-        "id": "bd901c08-0133-4276-b34b-eb810a62deda",
+        "id": "bd901c08-0133-4276-b34b-eb810a62dedu",
         "meta": {
           "profile": [
             "https://gematik.de/fhir/eeb/StructureDefinition/EEBBescheinigungHeader"
@@ -28,28 +28,28 @@
           "identifier": "79939e34-c5cc-4da6-ba55-f4bd85832760"
         },
         "eventCoding": {
-          "system": "https://gematik.de/fhir/directory/CodeSystem/PractitionerProfessionOID",
-          "code": "1.2.276.0.76.4.30",
-          "display": "Ärztin/Arzt"
+          "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+          "code": "1.2.276.0.76.4.50",
+          "display": "Betriebsstätte Arzt"
         },
         "source": {
           "endpoint": "https://Test-Krankenkasse.de/KIM"
         },
         "focus": [
           {
-            "reference": "Patient/437f2555-2396-4c64-a656-e9553161ca3u"
+            "reference": "Patient/437f2555-2396-4c64-a656-e9553161ca3c"
           },
           {
-            "reference": "Coverage/2d4da53a-413a-48fe-b908-2e67b576152u"
+            "reference": "Coverage/2d4da53a-413a-48fe-b908-2e67b5761523"
           }
         ]
       }
     },
     {
-      "fullUrl": "https://gematik.de/fhir/Patient/437f2555-2396-4c64-a656-e9553161ca3u",
+      "fullUrl": "https://gematik.de/fhir/Patient/437f2555-2396-4c64-a656-e9553161ca3c",
       "resource": {
         "resourceType": "Patient",
-        "id": "437f2555-2396-4c64-a656-e9553161ca3u",
+        "id": "437f2555-2396-4c64-a656-e9553161ca3c",
         "meta": {
           "profile": [
             "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Patient|1.1.0"
@@ -89,23 +89,6 @@
         "address": [
           {
             "type": "both",
-            "line": [
-              "Blumenweg 14"
-            ],
-            "_line": [
-              {
-                "extension": [
-                  {
-                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
-                    "valueString": "14"
-                  },
-                  {
-                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
-                    "valueString": "Blumenweg"
-                  }
-                ]
-              }
-            ],
             "city": "Esens",
             "postalCode": "26427",
             "country": "D"
@@ -115,13 +98,13 @@
       }
     },
     {
-      "fullUrl": "https://gematik.de/fhir/Coverage/2d4da53a-413a-48fe-b908-2e67b576152u",
+      "fullUrl": "https://gematik.de/fhir/Coverage/2d4da53a-413a-48fe-b908-2e67b5761523",
       "resource": {
         "resourceType": "Coverage",
-        "id": "2d4da53a-413a-48fe-b908-2e67b576152u",
+        "id": "2d4da53a-413a-48fe-b908-2e67b5761523",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/eeb/StructureDefinition/EEBCoverageEgk"
+            "https://gematik.de/fhir/eeb/StructureDefinition/EEBCoverageEgkNoAddressLine"
           ]
         },
         "status": "active",
@@ -166,7 +149,7 @@
           "end": "2027-07-31"
         },
         "beneficiary": {
-          "reference": "Patient/437f2555-2396-4c64-a656-e9553161ca3u"
+          "reference": "Patient/437f2555-2396-4c64-a656-e9553161ca3c"
         }
       }
     }
