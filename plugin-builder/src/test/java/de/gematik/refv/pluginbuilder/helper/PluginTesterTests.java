@@ -24,14 +24,15 @@
 
 package de.gematik.refv.pluginbuilder.helper;
 
-import de.gematik.refv.commons.configuration.PackageReference;
 import de.gematik.refv.pluginbuilder.exceptions.PluginTestFailedException;
+import de.gematik.refv.plugins.configuration.FhirPackage;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -44,8 +45,8 @@ class PluginTesterTests {
     @SneakyThrows
     void setUp() {
         String packageFolderPath = "src/test/resources/package/";
-        PackageReference packageReference = new PackageReference("minimalvalidationmodule.test", "1.0.0");
-        pluginTester = new PluginTester(packageFolderPath, packageReference);
+        FhirPackage packageReference = new FhirPackage("minimalvalidationmodule.test", "1.0.0");
+        pluginTester = new PluginTester(packageFolderPath, List.of(packageReference));
     }
 
     @Test

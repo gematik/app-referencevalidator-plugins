@@ -25,7 +25,7 @@
 package de.gematik.refv.pluginbuilder.helper;
 
 import de.gematik.refv.commons.Profile;
-import de.gematik.refv.commons.configuration.PackageReference;
+import de.gematik.refv.plugins.configuration.FhirPackage;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.hl7.fhir.instance.model.api.IBaseResource;
@@ -34,8 +34,10 @@ import org.hl7.fhir.instance.model.api.IPrimitiveType;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Getter
 @Slf4j
@@ -46,18 +48,18 @@ public class TestedProfileTracker {
     private final List<String> invalidProfileUrlsFoundInTestFiles = new ArrayList<>();
     private final String packageFolderPath;
     private final InputStream pluginInputStream;
-    private final PackageReference validationFhirPackageReference;
+    private final Collection<FhirPackage> validationFhirPackages;
 
-    public TestedProfileTracker(String packageFolderPath, PackageReference validationFhirPackageReference) {
+    public TestedProfileTracker(String packageFolderPath, Collection<FhirPackage> validationFhirPackages) {
         this.packageFolderPath = packageFolderPath;
         this.pluginInputStream = null;
-        this.validationFhirPackageReference = validationFhirPackageReference;
+        this.validationFhirPackages = validationFhirPackages;
     }
 
     public TestedProfileTracker(InputStream pluginInputStream) {
         this.pluginInputStream = pluginInputStream;
         this.packageFolderPath = null;
-        this.validationFhirPackageReference = null;
+        this.validationFhirPackages = null;
     }
 
     /**
@@ -84,8 +86,14 @@ public class TestedProfileTracker {
 
     public void logMissingTestCaseExamples() throws IOException {
         if (packageFolderPath != null) {
-            assert validationFhirPackageReference != null;
-            allProfileUrls = ProfileUrlExtractor.getAllPluginProfileUrls(packageFolderPath, validationFhirPackageReference);
+            assert validationFhirPackages != null;
+            allProfileUrls = validationFhirPackages.stream().flatMap(p -> {
+                try {
+                    return ProfileUrlExtractor.getAllPluginProfileUrls(packageFolderPath, p).stream();
+                } catch (IOException e) {
+                    log.error("Error while extracting profile URLs from package " + p, e);
+                    return Stream.empty();
+                }}).collect(Collectors.toList());
         } else {
             assert pluginInputStream != null;
             allProfileUrls = ProfileUrlExtractor.getAllPluginProfileUrlsFromInputStream(pluginInputStream);

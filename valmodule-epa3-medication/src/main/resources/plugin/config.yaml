@@ -1,14 +1,15 @@
-configSpecVersion: "1.0"
+configSpecVersion: "2.0"
 id: "epa3-medication"
 author: "gematik GmbH"
 description: "Referenzvalidator-Plugin für die ePA-Medication Spezifikation"
 specUrl: "https://simplifier.net/packages/de.gematik.epa.medication/1.0.3"
 version: "${project.version}"
 validation:
-  fhirPackage: "de.gematik.epa.medication#1.0.3"
-  dependencies:
-    - "hl7.fhir.uv.ips#1.1.0"
-    - "kbv.all.st#1.4.0"
+  dependencyLists:
+    - fhirPackage: "de.gematik.epa.medication#1.0.3"
+      dependencies:
+      - "hl7.fhir.uv.ips#1.1.0"
+      - "kbv.all.st#1.4.0"
   errorOnUnknownProfile: "false"
   anyExtensionsAllowed: "true"
   ignoredCodeSystems:

@@ -37,7 +37,7 @@ class PluginDefinitionValidationSectionTests {
     @Test
     void testAllArgsConstructorAndGetters() {
         PluginDefinitionValidationSection pluginDefinitionValidationSection = new PluginDefinitionValidationSection("fhirPackage", List.of("dep1", "dep2"),
-                true, true, List.of("encoding1", "encoding2"), List.of(new ValidationMessageTransformation("", "", "", "")),
+                true, true, List.of("encoding1", "encoding2"), List.of(new ValidationMessageTransformation("", "", "", "","")),
                 List.of("codeSystem1", "codeSystem2"), List.of("valueSet1", "valueSet2"));
 
         assertEquals("fhirPackage", pluginDefinitionValidationSection.getFhirPackage());
@@ -45,7 +45,7 @@ class PluginDefinitionValidationSectionTests {
         assertTrue(pluginDefinitionValidationSection.isErrorOnUnknownProfile());
         assertTrue(pluginDefinitionValidationSection.isAnyExtensionsAllowed());
         assertEquals(List.of("encoding1", "encoding2"), pluginDefinitionValidationSection.getAcceptedEncodings());
-        assertEquals(List.of(new ValidationMessageTransformation("", "", "", "")), pluginDefinitionValidationSection.getValidationMessageTransformations());
+        assertEquals(List.of(new ValidationMessageTransformation("", "", "", "", "")), pluginDefinitionValidationSection.getValidationMessageTransformations());
         assertEquals(List.of("codeSystem1", "codeSystem2"), pluginDefinitionValidationSection.getIgnoredCodeSystems());
         assertEquals(List.of("valueSet1", "valueSet2"), pluginDefinitionValidationSection.getIgnoredValueSets());
     }

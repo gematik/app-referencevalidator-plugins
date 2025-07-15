@@ -24,14 +24,14 @@
 
 package de.gematik.refv.pluginbuilder.helper;
 
-import de.gematik.refv.commons.configuration.PackageReference;
-import de.gematik.refv.pluginbuilder.configuration.PluginDefinitionWrapper;
 import de.gematik.refv.pluginbuilder.exceptions.DependencyExtractionException;
 import de.gematik.refv.pluginbuilder.exceptions.DownloadFailedException;
+import de.gematik.refv.plugins.configuration.FhirPackage;
 import de.gematik.refv.plugins.configuration.MalformedPackageDeclarationException;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.hl7.fhir.utilities.npm.PackageClient;
 import org.hl7.fhir.utilities.npm.PackageServer;
 
@@ -40,6 +40,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,9 +53,8 @@ import java.util.stream.Collectors;
 public class FhirPackageDownloader {
 
     private final List<PackageClient> packageClients = new LinkedList<>();
-    private final List<PackageReference> downloadedPackages = new ArrayList<>();
+    private final List<FhirPackage> downloadedPackages = new ArrayList<>();
     private final DependencyExtractor dependencyGenerator = new DependencyExtractor();
-    private List<PackageReference> snapshotDependencies = new ArrayList<>();
 
     public FhirPackageDownloader(@NonNull List<PackageServer> packageServers) {
         if(packageServers.isEmpty())
@@ -68,31 +68,16 @@ public class FhirPackageDownloader {
     }
 
     /**
-     * Public method to download fhir packages for a PluginDefinition.
-     * @param outputFolderPath The path to the folder where the downloaded fhir packages will be saved.
-     * @param pluginDefinition The PluginDefinition containing all information needed to download the packages.
-     * @throws DownloadFailedException If anything goes wrong during download process.
-     * @throws MalformedPackageDeclarationException If a package declaration inside of <code>PluginDefinition</code> does not follow the correct pattern: <code>packageName#packageVersion</code>
-     * @throws DependencyExtractionException If anything goes wrong during dependency extraction.
-     */
-    public void download(String outputFolderPath, PluginDefinitionWrapper pluginDefinition) throws DownloadFailedException, MalformedPackageDeclarationException, DependencyExtractionException, IOException {
-        List<PackageReference> fhirPackages = new ArrayList<>();
-        fhirPackages.add(pluginDefinition.getValidationFhirPackageAsPackageReference());
-
-        downloadAll(fhirPackages, outputFolderPath, pluginDefinition);
-    }
-
-    /**
      * Recursively downloads all fhir packages and adds fhir packages to the final DependencyList of the plugin.
      * @param fhirPackages List of fhir packages that should be downloaded
      * @param outputFolderPath The path to the folder where the downloaded fhir packages will be saved.
-     * @param pluginDefinition The PluginDefinition containing all information needed to download the packages.
      * @throws DownloadFailedException If anything goes wrong during download process.
      * @throws MalformedPackageDeclarationException If a package declaration inside of <code>PluginDefinition</code> does not follow the correct pattern: <code>packageName#packageVersion</code>
      * @throws DependencyExtractionException If anything goes wrong during dependency extraction.
      */
-    private void downloadAll(List<PackageReference> fhirPackages, String outputFolderPath, PluginDefinitionWrapper pluginDefinition) throws DownloadFailedException, MalformedPackageDeclarationException, DependencyExtractionException, IOException {
-        List<PackageReference> newPackages = getNewPackages(fhirPackages);
+    public void download(List<FhirPackage> fhirPackages, String outputFolderPath, Collection<File> allDownloadedFiles, Collection<FhirPackage> flatDependencyList) throws DownloadFailedException, MalformedPackageDeclarationException, DependencyExtractionException, IOException {
+        flatDependencyList.addAll(fhirPackages.stream().filter(p -> !p.getVersion().endsWith("x")).collect(Collectors.toList())); // Skip wildcard versions, they will be resolved later
+        List<FhirPackage> newPackages = getNewPackages(fhirPackages);
 
         if (newPackages.isEmpty()) {
             return;
@@ -102,48 +87,25 @@ public class FhirPackageDownloader {
         if (!outputFolder.exists() && !outputFolder.mkdirs())
             throw new DownloadFailedException("Could not create output folder " + outputFolderPath);
 
-        for (PackageReference pr : newPackages) {
-            String packageVersion = pr.getPackageVersion();
+        var downloadedFiles = new LinkedList<File>();
+        for (FhirPackage pr : newPackages) {
+            String packageVersion = pr.getVersion();
             if(packageVersion.toLowerCase().endsWith("x")) {
                 for (var packageClient :
                         packageClients) {
-                    packageVersion = packageClient.getLatestVersion(pr.getPackageName(), packageVersion);
+                    packageVersion = packageClient.getLatestVersion(pr.getName(), packageVersion);
+                    if(!StringUtils.isEmpty(packageVersion))
+                        break;
                 }
             }
-            var newPackageReference = new PackageReference(pr.getPackageName(), packageVersion);
-            File downloadedFile = downloadPackage(newPackageReference, outputFolderPath);
-
-            if(!snapshotDependencies.contains(pr)) {
-                pluginDefinition.getDependenciesForDependencyList().add(downloadedFile.getName());
-            }
-
+            File downloadedFile = downloadPackage(new FhirPackage(pr.getName(), packageVersion), outputFolderPath);
+            downloadedFiles.add(downloadedFile);
+            allDownloadedFiles.add(downloadedFile);
             log.info("Successfully downloaded package: {}", downloadedFile.getName());
-            downloadedPackages.add(pr);
         }
 
-        List<PackageReference> dependencies = dependencyGenerator.getAllDependenciesFromPackageJson(outputFolderPath);
-        addDependenciesFromPluginDefinition(pluginDefinition, dependencies);
-        snapshotDependencies = pluginDefinition.getSnapshotDependenciesAsPackageReferences();
-
-        downloadAll(dependencies, outputFolderPath, pluginDefinition);
-    }
-
-    /**
-     * Adding the dependencies specified in the PluginDefinition, so they are downloaded as well.
-     * @param pluginDefinition The PluginDefinition containing all information needed to download the packages.
-     * @param dependencies The list of dependencies where the dependencies from the PluginDefinition should be added.
-     * @throws MalformedPackageDeclarationException If a package declaration inside of <code>PluginDefinition</code> does not follow the correct pattern: <code>packageName#packageVersion</code>
-     */
-    private void addDependenciesFromPluginDefinition(PluginDefinitionWrapper pluginDefinition, List<PackageReference> dependencies) throws MalformedPackageDeclarationException {
-        List<PackageReference> dependenciesFromConfig = new ArrayList<>();
-        dependenciesFromConfig.addAll(pluginDefinition.getSnapshotDependenciesAsPackageReferences());
-        dependenciesFromConfig.addAll(pluginDefinition.getValidationDependenciesAsPackageReferences());
-
-        for (PackageReference pr : dependenciesFromConfig) {
-            if (!downloadedPackages.contains(pr)) {
-                dependencies.add(pr);
-            }
-        }
+        List<FhirPackage> dependencies = dependencyGenerator.getAllDependenciesFromPackageJson(downloadedFiles);
+        download(dependencies, outputFolderPath, allDownloadedFiles, flatDependencyList);
     }
 
     /**
@@ -152,9 +114,9 @@ public class FhirPackageDownloader {
      * @param outputFolderPath The path to the folder where the downloaded fhir packages will be saved.
      * @throws DownloadFailedException If anything goes wrong during the download of the fhir package.
      */
-    private File downloadPackage(PackageReference packageReference, String outputFolderPath) throws DownloadFailedException {
-        String packageFilePath = String.format("%s%s-%s.tgz", outputFolderPath, packageReference.getPackageName(), packageReference.getPackageVersion());
-        String packageVersion = packageReference.getPackageVersion();
+    private File downloadPackage(FhirPackage packageReference, String outputFolderPath) throws DownloadFailedException {
+        String packageFilePath = String.format("%s%s", outputFolderPath, packageReference.toFilename());
+        String packageVersion = packageReference.getVersion();
         File downloadedFile = new File(packageFilePath);
         if (downloadedFile.exists()) {
             log.info("Package '{}' already exists at '{}'.", packageFilePath, outputFolderPath);
@@ -165,7 +127,7 @@ public class FhirPackageDownloader {
         for (var packageClient :
                 packageClients) {
             try {
-                try (InputStream inputStream = packageClient.fetch(packageReference.getPackageName(), packageVersion);
+                try (InputStream inputStream = packageClient.fetch(packageReference.getName(), packageVersion);
                      FileOutputStream outputStream = new FileOutputStream(packageFilePath)) {
                     writePackage(inputStream, outputStream);
                 }
@@ -176,7 +138,7 @@ public class FhirPackageDownloader {
             }
         }
         if(!downloadSuccessful)
-            throw new DownloadFailedException(String.format("Download of package '%s-%s.tgz' failed", packageReference.getPackageName(), packageReference.getPackageVersion()));
+            throw new DownloadFailedException(String.format("Download of package '%s' failed", packageReference.toFilename()));
 
         return downloadedFile;
     }
@@ -201,13 +163,8 @@ public class FhirPackageDownloader {
      * @param packages The list of packages that should be purged of already downloaded packages.
      * @return Returns a list of PackageReferences that haven't been downloaded yet.
      */
-    private List<PackageReference> getNewPackages(List<PackageReference> packages) {
+    private List<FhirPackage> getNewPackages(List<FhirPackage> packages) {
         return packages.stream()
-                .map(packageReference -> {
-                    String packageName = packageReference.getPackageName().toLowerCase();
-                    String packageVersion = packageReference.getPackageVersion().toLowerCase();
-                    return new PackageReference(packageName, packageVersion);
-                })
                 .filter(packageReference -> !downloadedPackages.contains(packageReference))
                 .distinct()
                 .collect(Collectors.toList());

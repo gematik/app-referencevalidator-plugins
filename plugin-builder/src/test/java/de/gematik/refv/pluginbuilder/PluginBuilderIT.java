@@ -25,12 +25,12 @@
 package de.gematik.refv.pluginbuilder;
 
 import de.gematik.refv.Plugin;
-import de.gematik.refv.pluginbuilder.configuration.PluginDefinitionWrapper;
+import de.gematik.refv.pluginbuilder.configuration.PluginDefinitionFactory;
 import de.gematik.refv.pluginbuilder.exceptions.DownloadFailedException;
 import de.gematik.refv.pluginbuilder.exceptions.PluginIdentifierException;
 import de.gematik.refv.pluginbuilder.helper.FhirPackageDownloader;
 import de.gematik.refv.pluginbuilder.helper.PluginZipper;
-import de.gematik.refv.plugins.configuration.MalformedPackageDeclarationException;
+import de.gematik.refv.plugins.configuration.FhirPackage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -48,11 +48,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.zip.ZipFile;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockserver.model.HttpRequest.request;
 import static org.mockserver.model.HttpResponse.response;
 
@@ -83,9 +84,9 @@ class PluginBuilderIT {
         FileUtils.deleteDirectory(new File(getTargetDir()));
     }
 
-    @Test
     @SneakyThrows
-    void testBuildPlugin() {
+    @Test
+    void testBuildPluginV2() {
         var request1 = request()
                 .withPath("/de.gematik.isik-basismodul-stufe1/1.0.9");
         var request2 = request()
@@ -111,39 +112,56 @@ class PluginBuilderIT {
                 .withContentType(MediaType.parse("application/tar+gzip"))
                 .withBody(TestResourceLoader.getIsik1Package("de.basisprofil.r4-0.9.13.tgz")));
 
-        String pluginDir = "src/test/resources/plugins/correct-plugin";
+        String pluginDir = "src/test/resources/plugins/correct-plugin-v2";
         String resultFilepath = pluginBuilder.buildPlugin(pluginDir, getTargetDir()).getCreatedPluginPath();
         File pluginZip = new File(resultFilepath);
 
         assertTrue(pluginZip.exists(), "Plugin zip has not been created");
-        assertEquals("isik1-plugin-1.0.0.zip", pluginZip.getName(), "Wrong plugin file name");
+        assertEquals("isik1-plugin-v2-1.0.0.zip", pluginZip.getName(), "Wrong plugin file name");
 
         //check for downloaded packages and config.yaml
-        assertZipEntryExists(pluginZip, "package/de.basisprofil.r4-0.9.13.tgz");
         assertZipEntryExists(pluginZip, "package/de.basisprofil.r4-1.4.0.tgz");
         assertZipEntryExists(pluginZip, "package/de.gematik.isik-basismodul-stufe1-1.0.9.tgz");
         assertZipEntryExists(pluginZip, "package/kbv.basis-1.2.0.tgz");
         assertZipEntryExists(pluginZip, "config.yaml");
+
+        // This entry is marked as 'snapshot' dependency and should not be included in the plugin zip
+        assertZipEntryDoesntExists(pluginZip, "package/de.basisprofil.r4-0.9.13.tgz");
+
         Plugin p = Plugin.createFromZipFile(new ZipFile(pluginZip));
-        PluginDefinitionWrapper pluginDefinition = PluginDefinitionWrapper.createFrom(p.getResource("config.yaml"));
-        assertFalse(pluginDefinition.getValidation().getDependencies().isEmpty(), "Dependency list has not been filled");
-        assertThat(pluginDefinition.getValidation().getDependencies()).containsExactlyInAnyOrderElementsOf(List.of(
-                "simplevalidationmodule.test#1.0.0",
-                "de.basisprofil.r4#0.9.13",
-                "kbv.basis#1.2.0",
-                "de.basisprofil.r4#1.4.0"
+        var pluginDefinition = PluginDefinitionFactory.createFrom(p.getResource("config.yaml"));
+        assertFalse(pluginDefinition.getValidation().getDependencyLists().get(0).getDependencies().isEmpty(), "Dependency list has not been filled");
+
+        // "de.basisprofil.r4#0.9.13" should not be in the dependency list, because it is a snapshot dependency
+        assertThat(pluginDefinition.getValidation().getDependencyLists().get(0).getDependencies()).containsExactlyInAnyOrderElementsOf(List.of(
+                new FhirPackage("simplevalidationmodule.test#1.0.0"),
+                new FhirPackage("kbv.basis#1.2.0"),
+                new FhirPackage("de.basisprofil.r4#1.4.0")
+        ));
+        assertFalse(pluginDefinition.getValidation().getDependencyLists().get(1).getDependencies().isEmpty(), "Dependency list has not been filled");
+        assertThat(pluginDefinition.getValidation().getDependencyLists().get(1).getDependencies()).containsExactlyInAnyOrderElementsOf(List.of(
+                new FhirPackage("de.basisprofil.r4#1.4.0")
         ));
 
 
         //check if package that was passed in src-packages exists
         assertZipEntryExists(pluginZip, "package/simplevalidationmodule.test-1.0.0.tgz");
-        mockServer.verify(request1, VerificationTimes.once());
-        mockServer.verify(request2, VerificationTimes.once());
-        mockServer.verify(request3, VerificationTimes.once());
-        mockServer.verify(request4, VerificationTimes.once());
+        mockServer.verify(request1, VerificationTimes.exactly(1));
+        mockServer.verify(request2, VerificationTimes.exactly(1));
+        mockServer.verify(request3, VerificationTimes.exactly(1));
+        mockServer.verify(request4, VerificationTimes.exactly(1));
     }
 
-    private static void assertZipEntryExists(File zipFile, String entryPath) throws Exception {
+    @SneakyThrows
+    private void assertZipEntryDoesntExists(File zipFile, String entryPath) {
+        try (ZipFile zf = new ZipFile(zipFile)) {
+            assertNull(zf.getEntry(entryPath), "'" + entryPath + "' found in the plugin zip file");
+        }
+    }
+
+
+    @SneakyThrows
+    private static void assertZipEntryExists(File zipFile, String entryPath) {
         try (ZipFile zf = new ZipFile(zipFile)) {
             assertNotNull(zf.getEntry(entryPath), "'" + entryPath + "' not found in the plugin zip file");
         }
@@ -178,7 +196,7 @@ class PluginBuilderIT {
     void testBuildPluginThrowsMalformedPackageDeclarationException() {
         String pluginDir = "src/test/resources/plugins/malformed-package-declaration";
         String targetDir = getTargetDir();
-        Assertions.assertThrows(MalformedPackageDeclarationException.class, () -> pluginBuilder.buildPlugin(pluginDir, targetDir));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> pluginBuilder.buildPlugin(pluginDir, targetDir));
     }
 
     @Test

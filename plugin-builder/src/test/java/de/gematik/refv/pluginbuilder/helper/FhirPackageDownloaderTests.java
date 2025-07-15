@@ -25,8 +25,9 @@
 package de.gematik.refv.pluginbuilder.helper;
 
 import de.gematik.refv.pluginbuilder.TestResourceLoader;
-import de.gematik.refv.pluginbuilder.configuration.PluginDefinitionWrapper;
+import de.gematik.refv.pluginbuilder.configuration.PluginDefinitionFactory;
 import de.gematik.refv.pluginbuilder.exceptions.DownloadFailedException;
+import de.gematik.refv.plugins.configuration.FhirPackage;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 import org.hl7.fhir.utilities.npm.PackageServer;
@@ -41,6 +42,8 @@ import org.mockserver.verify.VerificationTimes;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -78,15 +81,13 @@ class FhirPackageDownloaderTests {
         String downloadDirPath = getDownloadDir() + UUID.randomUUID() + File.separator;
         File downloadDir = new File(downloadDirPath);
         try {
-            PluginDefinitionWrapper pluginDefinition = PluginDefinitionWrapper.createFrom("src/test/resources/ConfigData-download-test.yaml");
+            var pluginDefinition = PluginDefinitionFactory.createFrom("src/test/resources/ConfigData-download-test.yaml");
 
             var responsePackageAsBytes = TestResourceLoader.getResourceFileAsByteArray("example-fhir-package.tgz");
             var request1 = request()
                     .withPath("/de.basisprofil.r4/1.3.2");
             var request2 = request()
                     .withPath("/de.basisprofil.r4/1.4.0");
-            var request3 = request()
-                    .withPath("/kbv.basis/1.3.0");
             var packageResponse = response()
                     .withStatusCode(200)
                     .withContentType(MediaType.parse("application/tar+gzip"))
@@ -94,20 +95,16 @@ class FhirPackageDownloaderTests {
                     .withBody(responsePackageAsBytes);
             mockServer.when(request1).respond(packageResponse);
             mockServer.when(request2).respond(packageResponse);
-            mockServer.when(request3).respond(packageResponse);
 
-            fhirPackageDownloader.download(downloadDirPath, pluginDefinition);
+            List<FhirPackage> filesToDownload = new ArrayList<>(pluginDefinition.getValidation().getDependencyLists().get(0).getDependencies());
+            filesToDownload.add(pluginDefinition.getValidation().getDependencyLists().get(0).getFhirPackage());
+            fhirPackageDownloader.download(filesToDownload, downloadDirPath, new LinkedList<>(), new LinkedList<>());
 
             assertThat(List.of(Objects.requireNonNull(downloadDir.list())))
                     .contains("de.basisprofil.r4-1.4.0.tgz")
-                    .contains("de.basisprofil.r4-1.3.2.tgz")
-                    .contains("kbv.basis-1.3.0.tgz");
-            assertThat(pluginDefinition.getDependenciesForDependencyList())
-                    .contains("de.basisprofil.r4-1.3.2.tgz")
-                    .doesNotContain("kbv.basis-1.3.0.tgz");
+                    .contains("de.basisprofil.r4-1.3.2.tgz");
             mockServer.verify(request1, VerificationTimes.once());
             mockServer.verify(request2, VerificationTimes.once());
-            mockServer.verify(request3, VerificationTimes.once());
         } finally {
             FileUtils.deleteDirectory(downloadDir);
         }
@@ -119,7 +116,7 @@ class FhirPackageDownloaderTests {
         String downloadDirPath = getDownloadDir() + UUID.randomUUID() + File.separator;
         File downloadDir = new File(downloadDirPath);
         try {
-            PluginDefinitionWrapper pluginDefinition = PluginDefinitionWrapper.createFrom("src/test/resources/download-wildcard-test.yaml");
+            var pluginDefinition = PluginDefinitionFactory.createFrom("src/test/resources/download-wildcard-test.yaml");
 
             var allWildcardMatchingPackagesResponse = FileUtils.readFileToString(new File("src/test/resources/wildcard-response.json"), StandardCharsets.UTF_8);
             var request = request()
@@ -146,7 +143,9 @@ class FhirPackageDownloaderTests {
                     .withHeader("Content-Disposition", "attachment; filename=de.basisprofil.r4-1.3.3.tgz; filename*=UTF-8''de.basisprofil.r4-1.3.3.tgz")
                     .withBody(responsePackageAsBytes));
 
-            fhirPackageDownloader.download(downloadDirPath, pluginDefinition);
+            List<FhirPackage> packagesToDownload = new ArrayList<>(pluginDefinition.getValidation().getDependencyLists().get(0).getDependencies());
+            packagesToDownload.add(pluginDefinition.getValidation().getDependencyLists().get(0).getFhirPackage());
+            fhirPackageDownloader.download(packagesToDownload, downloadDirPath, new LinkedList<>(), new LinkedList<>());
 
             assertThat(List.of(Objects.requireNonNull(downloadDir.list())))
                     .contains("some.package-0.0.1.tgz")
@@ -176,11 +175,9 @@ class FhirPackageDownloaderTests {
                                     .withStatusCode(404)
                     );
 
-            PluginDefinitionWrapper pluginDefinition = PluginDefinitionWrapper.createFrom("src/test/resources/plugin-definition.yaml");
+            var pluginDefinition = PluginDefinitionFactory.createFrom("src/test/resources/plugin-definition.yaml");
             Assertions.assertThrows(DownloadFailedException.class,
-                    () -> fhirPackageDownloader.download(downloadDirPath, pluginDefinition));
-
-            mockServer.verify(request, VerificationTimes.once());
+                    () -> fhirPackageDownloader.download(pluginDefinition.getValidation().getDependencyLists().get(0).getDependencies(), downloadDirPath, new LinkedList<>(), new LinkedList<>()));
         } finally {
             FileUtils.deleteDirectory(downloadDir);
         }

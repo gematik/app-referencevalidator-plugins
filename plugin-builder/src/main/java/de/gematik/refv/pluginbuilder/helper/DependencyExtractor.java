@@ -27,7 +27,7 @@ package de.gematik.refv.pluginbuilder.helper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.gematik.refv.pluginbuilder.exceptions.DependencyExtractionException;
-import de.gematik.refv.commons.configuration.PackageReference;
+import de.gematik.refv.plugins.configuration.FhirPackage;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
@@ -49,32 +49,28 @@ public class DependencyExtractor {
 
     /**
      * Gets the dependencies from the package.json of all packages defined at packageFolderPath.
-     * @param packageFolderPath The path to the folder where the fhir packages are from which the dependencies should be extracted.
-     * @return A list of all dependencies as PackageReferences
+     *
+     * @return A list of all dependencies as FhirPackages
      * @throws DependencyExtractionException If anything goes wrong during the dependency extraction process.
      */
-    public List<PackageReference> getAllDependenciesFromPackageJson(String packageFolderPath) throws DependencyExtractionException {
-        List<PackageReference> allDependencies = new ArrayList<>();
-        File packageFolder = new File(packageFolderPath);
-        File[] tgzFiles = packageFolder.listFiles((dir, name) -> name.endsWith(".tgz"));
-        if (tgzFiles != null) {
-            for (File packageFile : tgzFiles) {
-                List<PackageReference> dependencies = getDependenciesFor(packageFile.getAbsolutePath());
-                allDependencies.addAll(dependencies);
-            }
+    public List<FhirPackage> getAllDependenciesFromPackageJson(List<File> packageFiles) throws DependencyExtractionException {
+        List<FhirPackage> allDependencies = new ArrayList<>();
+        for (File packageFile : packageFiles) {
+            List<FhirPackage> dependencies = getDependenciesFor(packageFile);
+            allDependencies.addAll(dependencies);
         }
         return allDependencies;
     }
 
     /**
      * Gets all dependencies defined in a package.json.
-     * @param tgzFilePath The path to the fhir package from which the dependencies should be extracted.
-     * @return A list of all dependencies as PackageReferences
+     * @param tgzFile The path to the fhir package from which the dependencies should be extracted.
+     * @return A list of all dependencies as FhirPackages
      * @throws DependencyExtractionException If anything goes wrong during the dependency extraction process.
      */
-    private List<PackageReference> getDependenciesFor(String tgzFilePath) throws DependencyExtractionException {
-        List<PackageReference> dependencies = new ArrayList<>();
-        try (FileInputStream fileInputStream = new FileInputStream(tgzFilePath);
+    private List<FhirPackage> getDependenciesFor(File tgzFile) throws DependencyExtractionException {
+        List<FhirPackage> dependencies = new ArrayList<>();
+        try (FileInputStream fileInputStream = new FileInputStream(tgzFile);
              BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
              GzipCompressorInputStream gzipCompressorInputStream = new GzipCompressorInputStream(bufferedInputStream);
              TarArchiveInputStream tarInputStream = new TarArchiveInputStream(gzipCompressorInputStream)) {
@@ -92,18 +88,18 @@ public class DependencyExtractor {
                             String packageName = dependencyEntry.getKey();
                             String version = dependencyEntry.getValue().asText();
                             if (!packageName.equals("hl7.fhir.r4.core")) {
-                                dependencies.add(new PackageReference(packageName, version));
+                                dependencies.add(new FhirPackage(packageName, version));
                             }
                         });
                     }
                     else
-                        log.warn("Package {} does not contain any dependencies", tgzFilePath);
+                        log.warn("Package {} does not contain any dependencies", tgzFile);
 
                     break;
                 }
             }
         } catch (Exception e) {
-            throw new DependencyExtractionException(String.format("Something went wrong during dependency extraction for %s", tgzFilePath), e);
+            throw new DependencyExtractionException(String.format("Something went wrong during dependency extraction for %s", tgzFile), e);
         }
         return dependencies;
     }

@@ -1,11 +1,21 @@
-configSpecVersion: "1.0"
+configSpecVersion: "2.0"
 id: "isik3-terminplanung"
 author: "gematik GmbH"
 description: "Referenzvalidator-Plugin für die Spezifikation 'Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Terminplanung)'"
 specUrl: "https://simplifier.net/packages/de.gematik.isik-terminplanung/3.0.7"
 version: "${project.version}"
 validation:
-  fhirPackage: "de.gematik.isik-terminplanung#3.0.7"
+  dependencyLists:
+    - fhirPackage: "de.gematik.isik-terminplanung#3.0.7"
+      validationMessageTransformations:
+        - severityLevelFrom: "error"
+          severityLevelTo: "information"
+          locatorString: "Appointment.participant:AkteurPatient"
+          messageId: "Validation_VAL_Profile_Minimum"
+        - severityLevelFrom: "error"
+          severityLevelTo: "information"
+          locatorString: "Appointment.participant:AkteurPatient"
+          messageId: "Validation_VAL_Profile_Minimum_SLICE"
   errorOnUnknownProfile: "false"
   anyExtensionsAllowed: "true"
   ignoredCodeSystems:
@@ -20,12 +30,3 @@ validation:
     - "https://gematik.de/fhir/isik/v3/Terminplanung/ValueSet/ISiKTerminPriority" # Erfordert eine Expansion von SNOMED-CT (aktuell nicht implementiert)
     - "http://fhir.de/ValueSet/bfarm/ops" # Das Code System ist als FHIR nicht vorhanden
     - "https://gematik.de/fhir/isik/v3/Medikation/ValueSet/SctRouteOfAdministration"
-  validationMessageTransformations:
-    - severityLevelFrom: "error"
-      severityLevelTo: "information"
-      locatorString: "Appointment.participant:AkteurPatient"
-      messageId: "Validation_VAL_Profile_Minimum"
-    - severityLevelFrom: "error"
-      severityLevelTo: "information"
-      locatorString: "Appointment.participant:AkteurPatient"
-      messageId: "Validation_VAL_Profile_Minimum_SLICE"

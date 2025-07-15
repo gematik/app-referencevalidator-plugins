@@ -1,11 +1,14 @@
-configSpecVersion: "1.0"
+configSpecVersion: "2.0"
 id: "diga"
 author: "gematik GmbH"
 description: "Referenzvalidator-Plugin für die Spezifikation 'Medizinische Informationsobjekte (MIO) DiGA V1.0.0'"
 specUrl: "https://simplifier.net/packages/kbv.mio.diga/1.0.0-festlegung"
 version: "${project.version}"
 validation:
-  fhirPackage: "kbv.mio.diga#1.0.0-festlegung"
+  dependencyLists:
+    - fhirPackage: "kbv.mio.diga#1.0.0-festlegung"
+      dependencies:
+        - "gematik.kbv.sfhir.cs.vs#1.2.0"
   errorOnUnknownProfile: "true"
   anyExtensionsAllowed: "false"
   ignoredCodeSystems:
