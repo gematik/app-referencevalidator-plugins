@@ -1,10 +1,11 @@
-configSpecVersion: "1.0"
+configSpecVersion: "2.0"
 id: "erp"
 version: "1.0.0"
 author: "test"
 description: "description"
 validation:
-  fhirPackage: "de.gematik.isik-basismodul-stufe1#1.0.9"
+  dependencyLists:
+    - fhirPackage: "de.gematik.isik-basismodul-stufe1#1.0.9"
   errorOnUnknownProfile: "false"
   anyExtensionsAllowed: "true"
   ignoredCodeSystems:

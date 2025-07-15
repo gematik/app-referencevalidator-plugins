@@ -2,6 +2,27 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## EEB (VSDM-Ersatzbescheinigung) 1.0 (2025-07)
+
+### added
+- Added support for the [1.1.0 FHIR package](https://simplifier.net/packages/de.gematik.elektronische-versicherungsbescheinigung/1.0.1/). Both 1.0.1 and 1.1.0 FHIR packages are now supported by the plugin (cf. [VSDM-Ersatzbescheinigung in README.md](./README.md#VSDM-Ersatzbescheinigung)).
+
+## PluginBuilder 2.0.0 (2025-07)
+
+> **Warning**
+> Breaking changes! Please read the release notes carefully before updating.
+
+### changed
+- Support for the new plugin description format (configSpecVersion: 2.0), which enables multiple FHIR validation lists in a single plugin. (cf. [README.md](./README.md#Plugin-Definitionsdatei))
+
+### removed
+- Support for the old plugin description format (configSpecVersion: 1.0)
+
+## ISIK1 (2025-07)
+
+### removed
+- Due to deprecation of the ISIK1 specification, the ISIK1 plugin has been removed.
+
 ## EEB (VSDM-Ersatzbescheinigung) 0.2 (2025-06)
 - Updated the FHIR package to [1.0.1](https://simplifier.net/packages/de.gematik.elektronische-versicherungsbescheinigung/1.0.1/) 
 

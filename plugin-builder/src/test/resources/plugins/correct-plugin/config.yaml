@@ -1,12 +1,13 @@
-configSpecVersion: "1.0"
+configSpecVersion: "2.0"
 id: "isik1-plugin"
 version: "1.0.0"
 author: "test"
 description: "description"
 validation:
-  fhirPackage: "de.gematik.isik-basismodul-stufe1#1.0.9"
-  dependencies:
-    - "kbv.basis#1.2.0" # Not a real dependency, just here to test if this additional package with its dependencies gets downloaded
+  dependencyLists:
+    - fhirPackage: "de.gematik.isik-basismodul-stufe1#1.0.9"
+      dependencies:
+        - "kbv.basis#1.2.0" # Not a real dependency, just here to test if this additional package with its dependencies gets downloaded
   errorOnUnknownProfile: "false"
   anyExtensionsAllowed: "true"
   ignoredCodeSystems:

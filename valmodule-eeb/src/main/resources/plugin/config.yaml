@@ -1,10 +1,25 @@
-configSpecVersion: "1.0"
+configSpecVersion: "2.0"
 id: "eeb"
 author: "gematik GmbH"
 description: "Referenzvalidator-Plugin für die Spezifikation 'Definition Versichertenstammdaten zum Versand via KIM für GKV VSDM Ersatzbescheinigung und PKV Online Check-In'"
 specUrl: "https://simplifier.net/packages/de.gematik.elektronische-versicherungsbescheinigung/1.0.1/"
 version: "${project.version}"
 validation:
-  fhirPackage: "de.gematik.elektronische-versicherungsbescheinigung#1.0.1"
+  dependencyLists:
+    - fhirPackage: "de.gematik.elektronische-versicherungsbescheinigung#1.0.1"
+      validFrom: "2022-01-01"
+      validTill: "2026-03-31"
+      creationDateLocators:
+        - profile: "https://gematik.de/fhir/eeb/StructureDefinition/EEBAnfrageBundle"
+          fhirPath: "Bundle.timestamp"
+        - profile: "https://gematik.de/fhir/eeb/StructureDefinition/EEBBescheinigungBundle"
+          fhirPath: "Bundle.timestamp"
+    - fhirPackage: "de.gematik.elektronische-versicherungsbescheinigung#1.1.0"
+      validFrom: "2025-10-01"
+      creationDateLocators:
+        - profile: "https://gematik.de/fhir/eeb/StructureDefinition/EEBAnfrageBundle"
+          fhirPath: "Bundle.timestamp"
+        - profile: "https://gematik.de/fhir/eeb/StructureDefinition/EEBBescheinigungBundle"
+          fhirPath: "Bundle.timestamp"
   errorOnUnknownProfile: "true"
   anyExtensionsAllowed: "false"

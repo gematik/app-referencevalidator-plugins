@@ -24,14 +24,15 @@
 
 package de.gematik.refv.pluginbuilder.helper;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import de.gematik.refv.commons.configuration.PackageReference;
-import de.gematik.refv.plugins.configuration.PluginDefinition;
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import de.gematik.refv.plugins.configuration.DependencyList;
+import de.gematik.refv.plugins.configuration.FhirPackage;
+import de.gematik.refv.plugins.configuration.v2.PluginDefinition;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
@@ -67,8 +68,8 @@ public class ProfileUrlExtractor {
      * @return Returns a list of the profile urls.
      * @throws IOException If the IO actions to scan the fhir package for profile urls fail.
      */
-    public static List<String> getAllPluginProfileUrls(String packageFolderPath, PackageReference fhirPackage) throws IOException {
-        String packageFilename = String.format("%s-%s.tgz", fhirPackage.getPackageName(), fhirPackage.getPackageVersion());
+    public static List<String> getAllPluginProfileUrls(String packageFolderPath, FhirPackage fhirPackage) throws IOException {
+        String packageFilename = String.format("%s-%s.tgz", fhirPackage.getName(), fhirPackage.getVersion());
         return findAllProfileUrlsIn(packageFolderPath + packageFilename);
     }
 
@@ -89,16 +90,16 @@ public class ProfileUrlExtractor {
         try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(zipData);
              ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(byteArrayInputStream)) {
 
-            PackageReference fhirPackage = getFhirPackageReferenceFromInputStream(zipInputStream);
-            String packageFilename = String.format("%s-%s.tgz", fhirPackage.getPackageName(), fhirPackage.getPackageVersion());
-
-            ZipArchiveInputStream resetZipInputStream = new ZipArchiveInputStream(new ByteArrayInputStream(zipData));
-            ZipArchiveEntry entry;
-            while ((entry = resetZipInputStream.getNextEntry()) != null) {
-                if (entry.getName().equals("package/" + packageFilename)) {
-                    List<String> packageProfileUrls = extractProfileUrlsFromFhirPackage(resetZipInputStream);
-                    profileUrls.addAll(packageProfileUrls);
-                    break;
+            var fhirPackages = getFhirPackageReferenceFromInputStream(zipInputStream);
+            for (var fhirPackage : fhirPackages) {
+                ZipArchiveInputStream resetZipInputStream = new ZipArchiveInputStream(new ByteArrayInputStream(zipData));
+                ZipArchiveEntry entry;
+                while ((entry = resetZipInputStream.getNextEntry()) != null) {
+                    if (entry.getName().equals("package/" + fhirPackage.toFilename())) {
+                        List<String> packageProfileUrls = extractProfileUrlsFromFhirPackage(resetZipInputStream);
+                        profileUrls.addAll(packageProfileUrls);
+                        break;
+                    }
                 }
             }
         }
@@ -106,7 +107,7 @@ public class ProfileUrlExtractor {
         return profileUrls;
     }
 
-    private PackageReference getFhirPackageReferenceFromInputStream(ZipArchiveInputStream zipInputStream) throws IOException {
+    private List<FhirPackage> getFhirPackageReferenceFromInputStream(ZipArchiveInputStream zipInputStream) throws IOException {
         String pluginDefinitionAsString = null;
         ZipArchiveEntry entry;
         while ((entry = zipInputStream.getNextEntry()) != null) {
@@ -129,10 +130,7 @@ public class ProfileUrlExtractor {
 
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
         PluginDefinition pluginDefinition = objectMapper.readValue(pluginDefinitionAsString, PluginDefinition.class);
-        String fhirPackageValue = pluginDefinition.getValidation().getFhirPackage();
-
-        String[] split = fhirPackageValue.split("#");
-        return new PackageReference(split[0], split[1]);
+        return pluginDefinition.getValidation().getDependencyLists().stream().map(DependencyList::getFhirPackage).collect(Collectors.toList());
     }
 
 
@@ -200,7 +198,7 @@ public class ProfileUrlExtractor {
         try (JsonParser jsonParser = jsonfactory.createParser(jsonString)) {
             jsonParser.nextToken();
             while (jsonParser.hasCurrentToken()) {
-                String fieldName = jsonParser.getCurrentName();
+                String fieldName = jsonParser.currentName();
                 jsonParser.nextToken();
                 if("extension".equals(fieldName))
                     jsonParser.skipChildren();

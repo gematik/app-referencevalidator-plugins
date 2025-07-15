@@ -24,12 +24,13 @@
 
 package de.gematik.refv.pluginbuilder.helper;
 
-import de.gematik.refv.commons.configuration.PackageReference;
 import de.gematik.refv.pluginbuilder.exceptions.DependencyExtractionException;
+import de.gematik.refv.plugins.configuration.FhirPackage;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -47,21 +48,21 @@ class DependencyExtractorTests {
     @Test
     @SneakyThrows
     void testGetAllDependenciesFromPackageJson() {
-        List<PackageReference> dependencies = dependencyExtractor.getAllDependenciesFromPackageJson("src/test/resources/package/");
-        PackageReference packageReference = new PackageReference("test-dependency", "1.0.0");
-        assertTrue(dependencies.contains(packageReference));
+        List<FhirPackage> dependencies = dependencyExtractor.getAllDependenciesFromPackageJson(List.of(new File("src/test/resources/package/minimalvalidationmodule.test-1.0.0.tgz")));
+        FhirPackage fhirPackage = new FhirPackage("test-dependency", "1.0.0");
+        assertTrue(dependencies.contains(fhirPackage));
     }
 
     @Test
     @SneakyThrows
     void testNoDependenciesFromPackageJson() {
-        List<PackageReference> dependencies = dependencyExtractor.getAllDependenciesFromPackageJson("src/test/resources/package-with-no-dependencies/");
+        List<FhirPackage> dependencies = dependencyExtractor.getAllDependenciesFromPackageJson(List.of(new File("src/test/resources/package-with-no-dependencies/minimalvalidationmodule.test-1.0.0.tgz")));
         assertTrue(dependencies.isEmpty());
     }
 
     @Test
     @SneakyThrows
     void testGetAllDependenciesFromPackageJsonThrowsException() {
-        assertThrows(DependencyExtractionException.class, () -> dependencyExtractor.getAllDependenciesFromPackageJson("src/test/resources/corrupted-package/"));
+        assertThrows(DependencyExtractionException.class, () -> dependencyExtractor.getAllDependenciesFromPackageJson(List.of(new File("src/test/resources/corrupted-package/minimalvalidationmodule.test-1.0.0-corrupted-package-json.tgz"))));
     }
 }

@@ -27,13 +27,14 @@ package de.gematik.refv.pluginbuilder.helper;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.parser.IParser;
 import ca.uhn.fhir.rest.api.EncodingEnum;
+import ca.uhn.fhir.validation.SingleValidationMessage;
 import de.gematik.refv.Plugin;
 import de.gematik.refv.ValidationModuleFactory;
-import de.gematik.refv.commons.configuration.PackageReference;
 import de.gematik.refv.commons.exceptions.ValidationModuleInitializationException;
 import de.gematik.refv.commons.validation.ValidationModule;
 import de.gematik.refv.commons.validation.ValidationResult;
 import de.gematik.refv.pluginbuilder.exceptions.PluginTestFailedException;
+import de.gematik.refv.plugins.configuration.FhirPackage;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
@@ -46,8 +47,10 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -61,8 +64,8 @@ public class PluginTester {
     private final ValidationModuleFactory validationModuleFactory = new ValidationModuleFactory();
     private final Map<String, ValidationResult> failingTests = new HashMap<>();
 
-    public PluginTester(String packageFolderPath, PackageReference validationFhirPackageReference) {
-        this.testedProfileTracker = new TestedProfileTracker(packageFolderPath, validationFhirPackageReference);
+    public PluginTester(String packageFolderPath, Collection<FhirPackage> validationFhirPackages) {
+        this.testedProfileTracker = new TestedProfileTracker(packageFolderPath, validationFhirPackages);
     }
 
     public PluginTester(InputStream pluginInputStream) {
@@ -87,7 +90,7 @@ public class PluginTester {
         return evaluateTestResults(pluginFileToTest.getName());
     }
 
-    public boolean testPlugin(File pluginFileToTest, File testFiles) throws IOException, PluginTestFailedException, ValidationModuleInitializationException {
+    public boolean testPlugin(File pluginFileToTest, File testFiles) throws IOException, ValidationModuleInitializationException {
         log.info("Started testing plugin: '{}'", pluginFileToTest.getName());
         Plugin plugin = Plugin.createFromZipFile(new java.util.zip.ZipFile(pluginFileToTest));
         ValidationModule validationModule = validationModuleFactory.createValidationModuleFromPlugin(plugin);
@@ -97,7 +100,7 @@ public class PluginTester {
         return evaluateTestResults(pluginFileToTest.getName());
     }
 
-    private boolean evaluateTestResults(String pluginFileToTestName) throws PluginTestFailedException, IOException {
+    private boolean evaluateTestResults(String pluginFileToTestName) throws IOException {
         testedProfileTracker.logMissingTestCaseExamples();
 
         if (!failingTests.isEmpty()) {
@@ -106,7 +109,8 @@ public class PluginTester {
         }
 
         if(testedProfileTracker.getValidProfileUrlsFoundInTestFiles().isEmpty() || testedProfileTracker.getInvalidProfileUrlsFoundInTestFiles().isEmpty()) {
-            throw new PluginTestFailedException("You must add at least one valid and one invalid test resource to your test-files directory!");
+            log.error("You must add at least one valid and one invalid test resource to your test-files directory!");
+            return false;
         }
 
         log.info("Finished testing plugin '{}' successfully.", pluginFileToTestName);
@@ -155,13 +159,17 @@ public class PluginTester {
                     .filter(Files::isRegularFile)
                     .forEach(filePath -> {
                         try {
+                            log.info("Testing file: {}...", filePath);
                             String fileContent = Files.readString(filePath, StandardCharsets.UTF_8);
                             ValidationResult result = validationModule.validateString(fileContent);
                             boolean isValid = result.isValid();
                             boolean expectedValidity = !filePath.toFile().getParent().contains("invalid");
 
                             evaluateTestResult(fileContent, result, filePath.getFileName().toString(), isValid, expectedValidity);
-                        } catch (IOException e) {
+                        } catch (Exception e) {
+                            SingleValidationMessage validationMessage = new SingleValidationMessage();
+                            validationMessage.setMessage(e.getMessage());
+                            failingTests.put(filePath.getFileName().toString(), new ValidationResult(List.of(validationMessage)));
                             log.error("Failed to process test file: {}", filePath, e);
                         }
                     });
@@ -179,6 +187,7 @@ public class PluginTester {
      * @throws IOException If IO actions with the zip entries fail.
      */
     private void processTestFile(ZipFile zip, ZipArchiveEntry fileEntry, ValidationModule validationModule) throws IOException {
+        log.info("Testing file: {}...", fileEntry.getName());
         try (InputStream inputStream = zip.getInputStream(fileEntry)) {
             String fileContent = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 

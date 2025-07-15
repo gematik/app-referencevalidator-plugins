@@ -1,0 +1,188 @@
+{
+  "resourceType": "Bundle",
+  "id": "43bb7e49-inva-lide-pati-entstrassed6b",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/eeb/StructureDefinition/EEBBescheinigungBundle"
+    ]
+  },
+  "type": "message",
+  "identifier": {
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:4b06f5c4-dced-4904-b1d2-2e5c64087919"
+  },
+  "timestamp": "2026-04-01T00:09:37.157+00:00",
+  "entry": [
+    {
+      "fullUrl": "https://gematik.de/fhir/MessageHeader/5b3c588d-36f5-42be-a10e-1c48eb800cc3",
+      "resource": {
+        "resourceType": "MessageHeader",
+        "id": "5b3c588d-36f5-42be-a10e-1c48eb800cc3",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/eeb/StructureDefinition/EEBBescheinigungHeader"
+          ]
+        },
+        "response": {
+          "code": "ok",
+          "identifier": "79939e34-c5cc-4da6-ba55-f4bd85832760"
+        },
+        "eventCoding": {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+          "code": "1.2.276.0.76.4.50",
+          "display": "Betriebsstätte Arzt"
+        },
+        "source": {
+          "endpoint": "https://Test-Krankenkasse.de/KIM"
+        },
+        "focus": [
+          {
+            "reference": "Patient/d62d9d82-2396-4c64-a656-2e67b5761523"
+          },
+          {
+            "reference": "Coverage/e9553161ca3c-413a-48fe-b908-04159be709fb"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://gematik.de/fhir/Patient/d62d9d82-2396-4c64-a656-2e67b5761523",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "d62d9d82-2396-4c64-a656-2e67b5761523",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Patient|1.2"
+          ]
+        },
+        "name": [
+          {
+            "use": "official",
+            "family": "Meier",
+            "_family": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-name",
+                  "valueString": "Meier"
+                }
+              ]
+            },
+            "given": [
+              "Max"
+            ]
+          }
+        ],
+        "address": [
+          {
+            "type": "both",
+            "line": [
+              "Teststrasse 2"
+            ],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                    "valueString": "2"
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                    "valueString": "Teststrasse"
+                  }
+                ]
+              }
+            ],
+            "city": "Dortmund",
+            "postalCode": "44227",
+            "country": "D"
+          }
+        ],
+        "birthDate": "1970-04-11"
+      }
+    },
+    {
+      "fullUrl": "https://gematik.de/fhir/Coverage/e9553161ca3c-413a-48fe-b908-04159be709fb",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "e9553161ca3c-413a-48fe-b908-04159be709fb",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/eeb/StructureDefinition/EEBCoverageNoEgk"
+          ]
+        },
+        "status": "active",
+        "extension": [
+          {
+            "url": "http://fhir.de/StructureDefinition/gkv/versichertenart",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_VERSICHERTENSTATUS",
+              "code": "1"
+            }
+          },
+          {
+            "url": "http://fhir.de/StructureDefinition/gkv/wop",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_ITA_WOP",
+              "code": "38",
+              "display": "Nordrhein"
+            }
+          },
+          {
+            "url": "http://fhir.de/StructureDefinition/gkv/besondere-personengruppe",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_PERSONENGRUPPE",
+              "code": "06",
+              "display": "BVG"
+            }
+          },
+          {
+            "url": "http://fhir.de/StructureDefinition/gkv/zuzahlungsstatus",
+            "extension": [
+              {
+                "url": "status",
+                "valueBoolean": true
+              },
+              {
+                "url": "gueltigBis",
+                "valueDate": "2020-12-31"
+              }
+            ]
+          }
+        ],
+        "payor": [
+          {
+            "extension": [
+              {
+                "url": "http://fhir.de/StructureDefinition/AbrechnendeIK",
+                "valueIdentifier": {
+                  "system": "http://fhir.de/sid/arge-ik/iknr",
+                  "value": "756756324"
+                }
+              }
+            ],
+            "identifier": {
+              "system": "http://fhir.de/sid/arge-ik/iknr",
+              "value": "12345678"
+            },
+            "display": "Test Krankenkasse"
+          }
+        ],
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/versicherungsart-de-basis",
+              "code": "GKV"
+            }
+          ]
+        },
+        "period": {
+          "start": "2022-04-01",
+          "end": "2022-07-31"
+        },
+        "beneficiary": {
+          "reference": "Patient/d62d9d82-2396-4c64-a656-2e67b5761523"
+        }
+      }
+    }
+  ]
+}

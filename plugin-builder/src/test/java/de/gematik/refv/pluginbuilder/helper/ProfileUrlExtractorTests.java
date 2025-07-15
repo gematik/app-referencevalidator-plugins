@@ -24,7 +24,7 @@
 
 package de.gematik.refv.pluginbuilder.helper;
 
-import de.gematik.refv.commons.configuration.PackageReference;
+import de.gematik.refv.plugins.configuration.FhirPackage;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -37,7 +37,7 @@ class ProfileUrlExtractorTests {
     @Test
     void testGetAllPluginProfileUrls() throws IOException {
         String packageFolderPath = "src/test/resources/package/";
-        PackageReference fhirPackage = new PackageReference("minimalvalidationmodule.test", "1.0.0");
+        FhirPackage fhirPackage = new FhirPackage("minimalvalidationmodule.test", "1.0.0");
         List<String> profileUrls = ProfileUrlExtractor.getAllPluginProfileUrls(packageFolderPath, fhirPackage);
         assertTrue(profileUrls.contains("http://example.gematik.de/fhir/StructureDefinition/patient-with-birthdate|1.0.0"));
     }

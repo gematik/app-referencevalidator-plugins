@@ -1,10 +1,11 @@
-configSpecVersion: "1.0"
+configSpecVersion: "2.0"
 id: "isik1-test"
 version: "1.0.0"
 author: "test"
 description: "description"
 validation:
-  fhirPackage: "unknown-package#1.0.0"
+  dependencyLists:
+    - fhirPackage: "unknown-package#1.0.0"
   errorOnUnknownProfile: "false"
   anyExtensionsAllowed: "true"
   ignoredCodeSystems:

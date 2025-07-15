@@ -27,7 +27,7 @@ package de.gematik.refv.pluginbuilder.helper;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.parser.IParser;
 import ca.uhn.fhir.rest.api.EncodingEnum;
-import de.gematik.refv.commons.configuration.PackageReference;
+import de.gematik.refv.plugins.configuration.FhirPackage;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 import org.hl7.fhir.instance.model.api.IBaseResource;
@@ -36,6 +36,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -47,8 +48,8 @@ class TestedProfileTrackerTests {
     @SneakyThrows
     void setUp() {
         String packageFolderPath = "src/test/resources/package/";
-        PackageReference packageReference = new PackageReference("minimalvalidationmodule.test", "1.0.0");
-        testedProfileTracker = new TestedProfileTracker(packageFolderPath, packageReference);
+        FhirPackage packageReference = new FhirPackage("minimalvalidationmodule.test", "1.0.0");
+        testedProfileTracker = new TestedProfileTracker(packageFolderPath, List.of(packageReference));
     }
 
     @Test

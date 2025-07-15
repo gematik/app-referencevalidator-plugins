@@ -27,9 +27,9 @@ package de.gematik.refv.pluginbuilder;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
-import de.gematik.refv.commons.configuration.PackageReference;
+import de.gematik.fhir.snapshots.SnapshotGenerator;
 import de.gematik.refv.commons.exceptions.ValidationModuleInitializationException;
-import de.gematik.refv.pluginbuilder.configuration.PluginDefinitionWrapper;
+import de.gematik.refv.pluginbuilder.configuration.PluginDefinitionFactory;
 import de.gematik.refv.pluginbuilder.exceptions.DependencyExtractionException;
 import de.gematik.refv.pluginbuilder.exceptions.DownloadFailedException;
 import de.gematik.refv.pluginbuilder.exceptions.PluginIdentifierException;
@@ -38,8 +38,9 @@ import de.gematik.refv.pluginbuilder.helper.FhirPackageDownloader;
 import de.gematik.refv.pluginbuilder.helper.FileNameToPackageNameHelper;
 import de.gematik.refv.pluginbuilder.helper.PluginTester;
 import de.gematik.refv.pluginbuilder.helper.PluginZipper;
+import de.gematik.refv.plugins.configuration.DependencyList;
+import de.gematik.refv.plugins.configuration.FhirPackage;
 import de.gematik.refv.plugins.configuration.MalformedPackageDeclarationException;
-import de.gematik.fhir.snapshots.SnapshotGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 
@@ -48,6 +49,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -63,12 +65,10 @@ import java.util.stream.Collectors;
 @Slf4j
 public class PluginBuilder {
 
-    private final List<String> existingFhirPackages = new ArrayList<>();
     private final FhirPackageDownloader fhirPackageDownloader;
     private final PluginZipper pluginZipper;
-    private PluginDefinitionWrapper pluginDefinition;
     private String temporaryExtractionFolder;
-    private String packageFolderPath;
+    private String localPackagesFolderPath;
     private String patchesFolderPath;
 
     private static final String SRC_PACKAGE_DIR_NAME = "src-packages";
@@ -106,28 +106,51 @@ public class PluginBuilder {
 
         initializePaths(targetFolderPath);
         copyPluginDirectory(pluginDefinitionDirectory);
-        pluginDefinition = PluginDefinitionWrapper.createFrom(getConfigFilePath());
-        findExistingFhirPackagesAndAddToThePluginDefinition(packageFolderPath);
+        var pluginDefinition = PluginDefinitionFactory.createFrom(getConfigFilePath());
         String pluginName = pluginDefinition.getId();
         String pluginVersion = pluginDefinition.getVersion();
         log.info("Started building plugin: {}", pluginName);
 
+        var localExistingPackages = findExistingPackages(localPackagesFolderPath);
         try {
             // Download Fhir Packages
-            fhirPackageDownloader.download(packageFolderPath, pluginDefinition);
+            var newDependencyLists = new HashMap<String, List<FhirPackage>>();
+            for(var dl: pluginDefinition.getValidation().getDependencyLists()) {
+                List<FhirPackage> packagesToDownload = new LinkedList<>();
+                packagesToDownload.add(dl.getFhirPackage());
+                packagesToDownload.addAll(dl.getDependencies());
+                excludeFromDownload(packagesToDownload, localExistingPackages);
+                var allDownloadedPackages = new LinkedList<File>();
+                var flatDependencyList = new LinkedList< FhirPackage>();
+                fhirPackageDownloader.download(packagesToDownload, localPackagesFolderPath, allDownloadedPackages, flatDependencyList);
+                flatDependencyList.remove(dl.getFhirPackage());
+
+                var completeDependencyList = new ArrayList<>(dl.getDependencies());
+                completeDependencyList.addAll(flatDependencyList);
+                pluginDefinition.getSnapshotDependencies().forEach(completeDependencyList::remove);
+
+                newDependencyLists.put(dl.getFhirPackage().toNameAndVersion(), completeDependencyList);
+            }
+
+            // Download packages for FHIR snapshots
+            fhirPackageDownloader.download(pluginDefinition.getSnapshotDependencies(), localPackagesFolderPath, new LinkedList<>(), new LinkedList<>());
+
             log.info("Finished downloading packages for: {}", pluginName);
 
             // Snapshot Generation
-            movePatchesToPackageFolder(patchesFolderPath, packageFolderPath);
-            generateSnapshots(packageFolderPath);
-            writeCompleteValidationDependenciesList();
+            movePatchesToPackageFolder(patchesFolderPath, localPackagesFolderPath);
+            generateSnapshots(localPackagesFolderPath);
+            writeCompleteValidationDependenciesList(newDependencyLists);
 
             // Plugin Testing
-            List<String> excludedFilesAndFolders = pluginDefinition.getSnapshotDependenciesAsFilenames();
+            List<String> excludedFilesAndFolders = pluginDefinition.getSnapshotDependencies().stream().map(FhirPackage::toFilename).collect(Collectors.toList());
             excludedFilesAndFolders.add(SRC_PACKAGE_DIR_NAME);
             var temporaryPluginFile = pluginZipper.zipPlugin(pluginDefinition.getId(), pluginDefinition.getVersion(), temporaryExtractionFolder, targetFolderPath, excludedFilesAndFolders);
-            PackageReference validationFhirPackageReference = pluginDefinition.getValidationFhirPackageAsPackageReference();
-            PluginTester pluginTester = new PluginTester(packageFolderPath, validationFhirPackageReference);
+
+            var packagesWithProfiles = pluginDefinition.getValidation().getDependencyLists().stream()
+                .map(DependencyList::getFhirPackage)
+                .collect(Collectors.toSet());
+            PluginTester pluginTester = new PluginTester(localPackagesFolderPath, packagesWithProfiles);
             boolean isTestedSuccessful = pluginTester.testPlugin(temporaryPluginFile);
 
             if (!isTestedSuccessful) {
@@ -151,30 +174,42 @@ public class PluginBuilder {
         }
     }
 
+    private void excludeFromDownload(List<FhirPackage> packagesToDownload, List<FhirPackage> localExistingPackages) {
+        localExistingPackages.forEach(
+            existingPackage -> packagesToDownload.removeIf(
+                packageToDownload -> packageToDownload.equals(existingPackage)
+            )
+        );
+    }
+
     private String getConfigFilePath() {
         return temporaryExtractionFolder + File.separator + "config.yaml";
     }
 
-    private void writeCompleteValidationDependenciesList() throws IOException {
-        var validationDependencies = pluginDefinition.getDependenciesForDependencyList().stream()
-                .filter(d -> !d.equals(pluginDefinition.getValidationFhirPackageAsFilename()))
-                .map(FileNameToPackageNameHelper::fileNameToPackageName)
-                .collect(Collectors.toList());
-
-        pluginDefinition.getValidation().setDependencies(validationDependencies);
-
+    private void writeCompleteValidationDependenciesList(HashMap<String, List<FhirPackage>> newDependencyLists) throws IOException {
         ObjectMapper objectMapper = new YAMLMapper();
         Map<String, Object> configYaml = objectMapper.readValue(new File(getConfigFilePath()),
                 new TypeReference<>() {
                 });
-        var validationSection = (Map<String, Object>) configYaml.get("validation");
-        var validationDependenciesSection = (List<String>) validationSection.get("dependencies");
-        if(validationDependenciesSection == null) {
-            validationDependenciesSection = new LinkedList<>();
-            validationSection.put("dependencies", validationDependenciesSection);
+
+        for(var dl: newDependencyLists.entrySet()) {
+            var validationDependencies = dl.getValue().stream()
+                    .map(p -> p.toNameAndVersion().toLowerCase())
+                    .distinct()
+                    .collect(Collectors.toList());
+
+            var validationSection = (Map<String, Object>) configYaml.get("validation");
+            var validationDependenciesSection = (List<Object>) validationSection.get("dependencyLists");
+            for(var yamlDl: validationDependenciesSection) {
+                var yamlDlAsMap = ((Map<String, Object>)yamlDl);
+                if(yamlDlAsMap.get("fhirPackage").equals(dl.getKey())) {
+                    yamlDlAsMap.put("dependencies", validationDependencies);
+                    break;
+                }
+                log.info(yamlDl.toString());
+            }
         }
-        validationDependenciesSection.clear();
-        validationDependenciesSection.addAll(validationDependencies);
+
         objectMapper.writeValue(new File(getConfigFilePath()), configYaml);
     }
 
@@ -185,7 +220,7 @@ public class PluginBuilder {
      */
     private void initializePaths(String targetFolderPath) {
         temporaryExtractionFolder = targetFolderPath + File.separator + UUID.randomUUID();
-        packageFolderPath = temporaryExtractionFolder + File.separator + SRC_PACKAGE_DIR_NAME + File.separator;
+        localPackagesFolderPath = temporaryExtractionFolder + File.separator + SRC_PACKAGE_DIR_NAME + File.separator;
         patchesFolderPath = temporaryExtractionFolder + File.separator + "patches" + File.separator;
     }
 
@@ -229,30 +264,20 @@ public class PluginBuilder {
     }
 
     /**
-     * Retrieves already existing FHIR package filenames and adds them to the PluginDefinition.
-     *
-     * @param packageFolderPath The path to the package folder.
-     */
-    private void findExistingFhirPackagesAndAddToThePluginDefinition(String packageFolderPath) {
-        existingFhirPackages.addAll(findExistingFilenames(packageFolderPath));
-        pluginDefinition.getDependenciesForDependencyList().addAll(existingFhirPackages);
-    }
-
-    /**
      * Finds existing filenames in the specified folder path.
      *
      * @param folderPath The folder path to search for existing filenames.
      * @return The list of existing filenames.
      */
-    private List<String> findExistingFilenames(String folderPath) {
-        List<String> list = new ArrayList<>();
+    private List<FhirPackage> findExistingPackages(String folderPath) {
+        List<FhirPackage> list = new ArrayList<>();
         File folder = new File(folderPath);
         if (folder.exists() && folder.isDirectory()) {
             File[] files = folder.listFiles();
 
             if (files != null) {
                 for (File file : files) {
-                    list.add(file.getName());
+                    list.add(new FhirPackage(FileNameToPackageNameHelper.fileNameToPackageName(file.getName())));
                 }
             }
         }

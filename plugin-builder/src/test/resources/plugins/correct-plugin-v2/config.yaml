@@ -1,0 +1,25 @@
+configSpecVersion: "2.0"
+id: "isik1-plugin-v2"
+version: "1.0.0"
+author: "test"
+description: "description"
+validation:
+  errorOnUnknownProfile: "false"
+  anyExtensionsAllowed: "true"
+  ignoredCodeSystems:
+    - "http://snomed.info/sct"
+  ignoredValueSets:
+    - "http://fhir.de/ValueSet/bfarm/ops"
+  dependencyLists:
+    - fhirPackage: "de.gematik.isik-basismodul-stufe1#1.0.9"
+      dependencies:
+        - "kbv.basis#1.2.0" # Not a real dependency, just here to test if this additional package with its dependencies gets downloaded
+        - "simplevalidationmodule.test#1.0.0" # Not a real dependency, just here to test if a locally available package from src-packages gets added to dependency tree
+      validFrom: "2023-01-01"
+      validTill: "2023-01-31"
+    - fhirPackage: "simplevalidationmodule.test#1.0.0"
+      dependencies:
+        - "de.basisprofil.r4#1.4.0" # Not a real dependency, just here to test if this additional package with its dependencies gets downloaded
+      validFrom: "2023-02-01"
+snapshotDependencies:
+  - "de.basisprofil.r4#0.9.13"
