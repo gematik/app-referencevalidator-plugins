@@ -1,0 +1,79 @@
+{
+  "resourceType": "Medication",
+  "id": "Example-Initial-Medication",
+  "meta": {
+    "profile": [
+      "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.3"
+    ]
+  },
+  "extension": [
+    {
+      "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "version": "http://snomed.info/sct/11000274103/version/20240515",
+            "code": "763158003",
+            "display": "Medicinal product (product)"
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+      "valueCoding": {
+        "code": "00",
+        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"
+      }
+    },
+    {
+      "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+      "valueBoolean": false
+    },
+    {
+      "url": "http://fhir.de/StructureDefinition/normgroesse",
+      "valueCode": "N1"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://fhir.de/CodeSystem/ifa/pzn",
+        "code": "08585997"
+      }
+    ],
+    "text": "Prospan® Hustensaft 100ml"
+  },
+  "form": {
+    "coding": [
+      {
+        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+        "code": "FLE"
+      }
+    ]
+  },
+  "ingredient": [
+    {
+      "itemCodeableConcept": {
+        "coding": [
+          {
+            "code": "R05CA12",
+            "system": "http://fhir.de/CodeSystem/ask"
+          }
+        ],
+        "text": "Hederae folium (Extr.sicc.(5-7.5:1))"
+      },
+      "strength": {
+        "numerator": {
+          "value": 7,
+          "unit": "mg"
+        },
+        "denominator": {
+          "value": 1,
+          "unit": "ml"
+        }
+      }
+    }
+  ]
+}

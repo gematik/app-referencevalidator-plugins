@@ -1,0 +1,365 @@
+{
+  "resourceType": "Bundle",
+  "id": "UC1-MULTI-2-Response-Prescription-Request-2",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-message-container"
+    ]
+  },
+  "type": "message",
+  "identifier": {
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:29888885-6639-481c-934e-4b7b51745084"
+  },
+  "timestamp": "2025-05-14T08:15:12+02:00",
+  "entry": [
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/MessageHeader/UC1-MULTI-Practitioner-to-HealthCareService-MessageHeader-2",
+      "resource": {
+        "resourceType": "MessageHeader",
+        "id": "UC1-MULTI-Practitioner-to-HealthCareService-MessageHeader-2",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-request-header"
+          ]
+        },
+        "source": {
+          "contact": {
+            "system": "email",
+            "value": "info@pvs_solutions.email"
+          },
+          "name": "Practitioner-Source",
+          "software": "Practitioner-Software",
+          "version": "1.0.0",
+          "endpoint": "https://pvs_solutions.com/jira_helpdesk"
+        },
+        "focus": [
+          {
+            "reference": "ServiceRequest/UC1-MULTI-Response-Prescription-Request-2"
+          }
+        ],
+        "sender": {
+          "identifier": {
+            "system": "https://gematik.de/fhir/sid/telematik-id",
+            "value": "1-test-telematik-id"
+          },
+          "display": "Praxis Hans Topp-Glücklich"
+        },
+        "destination": [
+          {
+            "name": "Pflegeheim Immergrün",
+            "endpoint": "mailto:healthcare-service@test.kim.de"
+          }
+        ],
+        "eventCoding": {
+          "code": "eRezept_Rezeptanforderung;Rezeptanfrage_Storno",
+          "system": "https://gematik.de/fhir/atf/CodeSystem/service-identifier-cs"
+        },
+        "responsible": {
+          "reference": "Organization/Example-Practitioner-Organization"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/Organization/Example-Practitioner-Organization",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "Example-Practitioner-Organization",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-organization"
+          ]
+        },
+        "contact": [
+          {
+            "telecom": [
+              {
+                "system": "phone",
+                "value": "0307654321"
+              }
+            ]
+          }
+        ],
+        "identifier": [
+          {
+            "system": "https://gematik.de/fhir/sid/telematik-id",
+            "value": "123456789"
+          }
+        ],
+        "name": "Test Arztpraxis",
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "1.2.276.0.76.4.50",
+                "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+                "display": "Betriebsstätte Arzt"
+              }
+            ]
+          }
+        ],
+        "address": [
+          {
+            "type": "both",
+            "line": [
+              "Musterarztstr. 3"
+            ],
+            "city": "Berlin",
+            "postalCode": "10623"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/ServiceRequest/UC1-MULTI-Response-Prescription-Request-2",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "UC1-MULTI-Response-Prescription-Request-2",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-prescription-request"
+          ]
+        },
+        "intent": "order",
+        "identifier": [
+          {
+            "system": "https://gematik.de/fhir/erp-servicerequest/sid/RequestIdentifier",
+            "value": "multi-2"
+          }
+        ],
+        "requisition": {
+          "system": "https://gematik.de/fhir/erp-servicerequest/sid/ProcedureIdentifier",
+          "value": "GroupID-UC1-MULTI"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "prescription-request",
+              "system": "https://gematik.de/fhir/erp-servicerequest/CodeSystem/service-request-type-cs"
+            }
+          ]
+        },
+        "status": "revoked",
+        "subject": {
+          "reference": "Patient/Example-Patient-2"
+        },
+        "basedOn": [
+          {
+            "reference": "MedicationRequest/Example-Initial-Medication-Request-2"
+          }
+        ],
+        "authoredOn": "2025-05-13",
+        "performer": [
+          {
+            "identifier": {
+              "system": "https://gematik.de/fhir/sid/telematik-id",
+              "value": "1-test-telematik-id"
+            }
+          }
+        ],
+        "reasonCode": [
+          {
+            "text": "Hr. Edgarson braucht das Buscopan nicht mehr, wird abgesetzt und aus dem Medkationsplan entfernt."
+          }
+        ],
+        "note": [
+          {
+            "text": "Sehr geehrte Damen und Herren,\n Die Rezeptanfrage wurde abgelehnt, s. Grund.",
+            "time": "2025-05-14T08:12:23+02:00"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/Patient/Example-Patient-2",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "Example-Patient-2",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-patient"
+          ]
+        },
+        "name": [
+          {
+            "use": "official",
+            "family": "Edgarson",
+            "_family": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-name",
+                  "valueString": "Edgarson"
+                }
+              ]
+            },
+            "given": [
+              "Peter"
+            ]
+          }
+        ],
+        "identifier": [
+          {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "X098765432"
+          }
+        ],
+        "address": [
+          {
+            "line": [
+              "Erikastraße 43"
+            ],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                    "valueString": "43"
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                    "valueString": "Erikastraße"
+                  }
+                ]
+              }
+            ],
+            "type": "both",
+            "city": "Berlin",
+            "postalCode": "10742"
+          }
+        ],
+        "birthDate": "1974-01-31"
+      }
+    },
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/MedicationRequest/Example-Initial-Medication-Request-2",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "Example-Initial-Medication-Request-2",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-medication-request"
+          ]
+        },
+        "status": "active",
+        "intent": "order",
+        "medicationReference": {
+          "reference": "Medication/Example-Initial-Medication-2"
+        },
+        "subject": {
+          "reference": "Patient/Example-Patient-2"
+        },
+        "dispenseRequest": {
+          "quantity": {
+            "value": 2,
+            "code": "{Package}",
+            "system": "http://unitsofmeasure.org",
+            "unit": "Packungen"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/Medication/Example-Initial-Medication-2",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "Example-Initial-Medication-2",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.3"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "version": "http://snomed.info/sct/11000274103/version/20240515",
+                  "code": "763158003",
+                  "display": "Medicinal product (product)"
+                }
+              ]
+            }
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+            "valueCoding": {
+              "code": "00",
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"
+            }
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+            "valueBoolean": false
+          },
+          {
+            "url": "http://fhir.de/StructureDefinition/normgroesse",
+            "valueCode": "N1"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/ifa/pzn",
+              "code": "02483617"
+            }
+          ],
+          "text": "Buscopan PLUS 20 St"
+        },
+        "form": {
+          "coding": [
+            {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+              "code": "FTA"
+            }
+          ]
+        },
+        "ingredient": [
+          {
+            "itemCodeableConcept": {
+              "coding": [
+                {
+                  "code": "A03BB01",
+                  "system": "http://fhir.de/CodeSystem/ask"
+                }
+              ],
+              "text": "Butylscopolaminium-bromid"
+            },
+            "strength": {
+              "numerator": {
+                "value": 10,
+                "unit": "mg"
+              },
+              "denominator": {
+                "value": 1,
+                "unit": "Stück"
+              }
+            }
+          },
+          {
+            "itemCodeableConcept": {
+              "coding": [
+                {
+                  "code": "N02BE01",
+                  "system": "http://fhir.de/CodeSystem/ask"
+                }
+              ],
+              "text": "Paracetamol"
+            },
+            "strength": {
+              "numerator": {
+                "value": 500,
+                "unit": "mg"
+              },
+              "denominator": {
+                "value": 1,
+                "unit": "Stück"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

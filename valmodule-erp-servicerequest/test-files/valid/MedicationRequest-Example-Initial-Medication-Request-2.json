@@ -1,0 +1,25 @@
+{
+  "resourceType": "MedicationRequest",
+  "id": "Example-Initial-Medication-Request-2",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-medication-request"
+    ]
+  },
+  "status": "active",
+  "intent": "order",
+  "medicationReference": {
+    "reference": "Medication/Example-Initial-Medication-2"
+  },
+  "subject": {
+    "reference": "Patient/Example-Patient-2"
+  },
+  "dispenseRequest": {
+    "quantity": {
+      "value": 2,
+      "code": "{Package}",
+      "system": "http://unitsofmeasure.org",
+      "unit": "Packungen"
+    }
+  }
+}
