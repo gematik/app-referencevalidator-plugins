@@ -1,0 +1,32 @@
+{
+  "resourceType": "Practitioner",
+  "id": "Example-Practitioner",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-practitioner"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR",
+      "value": "838382202"
+    },
+    {
+      "system": "https://gematik.de/fhir/sid/telematik-id",
+      "value": "1-838382202"
+    }
+  ],
+  "name": [
+    {
+      "use": "official",
+      "family": "Topp-Glücklich",
+      "given": [
+        "Hans"
+      ],
+      "prefix": [
+        "Dr. med."
+      ],
+      "text": "Dr. med. Hans Topp-Glücklich"
+    }
+  ]
+}

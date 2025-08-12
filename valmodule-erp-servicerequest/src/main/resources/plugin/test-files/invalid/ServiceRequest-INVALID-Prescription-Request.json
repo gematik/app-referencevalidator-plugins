@@ -1,0 +1,52 @@
+{
+  "resourceType": "ServiceRequest",
+  "id": "INVALID-Prescription-Request",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-prescription-request"
+    ]
+  },
+  "intent": "order",
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/erp-servicerequest/sid/RequestIdentifier",
+      "value": "1"
+    }
+  ],
+  "requisition": {
+    "system": "https://gematik.de/fhir/erp-servicerequest/sid/ProcedureIdentifier",
+    "value": "GroupID-UC1"
+  },
+  "code": {
+    "coding": [
+      {
+        "code": "prescription-request",
+        "system": "https://gematik.de/fhir/erp-servicerequest/CodeSystem/service-request-type-cs"
+      }
+    ]
+  },
+  "status": "completed",
+  "basedOn": [
+    {
+      "reference": "MedicationRequest/Example-Response-Medication-Request"
+    }
+  ],
+  "subject": {
+    "reference": "Patient/Example-Patient"
+  },
+  "authoredOn": "2025-05-13",
+  "performer": [
+    {
+      "identifier": {
+        "system": "https://gematik.de/fhir/sid/telematik-id",
+        "value": "1-test-telematik-id"
+      }
+    }
+  ],
+  "note": [
+    {
+      "text": "Wird weiterhin benötigt, bitte um Verlängerung.",
+      "time": "2025-05-14T08:12:23+02:00"
+    }
+  ]
+}

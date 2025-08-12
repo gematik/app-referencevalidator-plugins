@@ -1,0 +1,69 @@
+{
+  "resourceType": "ServiceRequest",
+  "id": "UC1-Initial-Prescription-Request",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-prescription-request"
+    ]
+  },
+  "intent": "order",
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/erp-servicerequest/sid/RequestIdentifier",
+      "value": "1"
+    }
+  ],
+  "requisition": {
+    "system": "https://gematik.de/fhir/erp-servicerequest/sid/ProcedureIdentifier",
+    "value": "GroupID-UC1"
+  },
+  "code": {
+    "coding": [
+      {
+        "code": "prescription-request",
+        "system": "https://gematik.de/fhir/erp-servicerequest/CodeSystem/service-request-type-cs"
+      }
+    ]
+  },
+  "reasonCode": [
+    {
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/remaining-supply-ex",
+          "valueQuantity": {
+            "value": 7,
+            "unit": "Stück"
+          }
+        }
+      ],
+      "coding": [
+        {
+          "code": "exhausted-range",
+          "system": "https://gematik.de/fhir/erp-servicerequest/CodeSystem/medication-request-reason-cs"
+        }
+      ],
+      "text": "Medikament läuft am 15.05.2025 aus. Es sind noch 7 stk übrig."
+    }
+  ],
+  "basedOn": [
+    {
+      "reference": "MedicationRequest/Example-Initial-Medication-Request"
+    }
+  ],
+  "status": "active",
+  "subject": {
+    "reference": "Patient/Example-Patient"
+  },
+  "occurrenceDateTime": "2025-05-14T12:00:00+02:00",
+  "authoredOn": "2025-05-13",
+  "requester": {
+    "reference": "Organization/Example-HealthCareService-Organization"
+  },
+  "priority": "urgent",
+  "note": [
+    {
+      "text": "Wird weiterhin benötigt, bitte um Verlängerung.",
+      "time": "2025-05-13T14:23:12+02:00"
+    }
+  ]
+}

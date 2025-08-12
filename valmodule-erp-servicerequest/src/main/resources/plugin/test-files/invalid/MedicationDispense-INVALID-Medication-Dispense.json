@@ -1,0 +1,33 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "INVALID-Medication-Dispense",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-medication-dispense"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+      "value": "169.100.000.000.002.36"
+    }
+  ],
+  "subject": {
+    "reference": "Patient/Example-Patient"
+  },
+  "status": "completed",
+  "medicationReference": {
+    "reference": "Medication/Example-Initial-Medication"
+  },
+  "quantity": {
+    "value": 1,
+    "unit": "Packung"
+  },
+  "dosageInstruction": [
+    {
+      "text": "1-1-1-0"
+    }
+  ],
+  "whenHandedOver": "2025-02-01",
+  "whenPrepared": "2025-02-02"
+}

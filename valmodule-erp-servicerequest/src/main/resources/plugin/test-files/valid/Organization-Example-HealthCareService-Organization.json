@@ -1,0 +1,51 @@
+{
+  "resourceType": "Organization",
+  "id": "Example-HealthCareService-Organization",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-organization"
+    ]
+  },
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "phone",
+          "value": "0301234567"
+        },
+        {
+          "system": "email",
+          "value": "arbeitsplatz-1@test-pflegeheim.kim.telematik"
+        }
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/sid/telematik-id",
+      "value": "123456789"
+    }
+  ],
+  "name": "Pflegeheim Immergrün",
+  "type": [
+    {
+      "coding": [
+        {
+          "code": "1.2.276.0.76.4.245",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+          "display": "Betriebsstätte Gesundheits-, Kranken- und Altenpflege"
+        }
+      ]
+    }
+  ],
+  "address": [
+    {
+      "type": "both",
+      "line": [
+        "Musterstr. 2"
+      ],
+      "city": "Berlin",
+      "postalCode": "10623"
+    }
+  ]
+}

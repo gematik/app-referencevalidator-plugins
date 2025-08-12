@@ -1,0 +1,22 @@
+{
+  "resourceType": "Practitioner",
+  "id": "INVALID-Practitioner",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-practitioner"
+    ]
+  },
+  "name": [
+    {
+      "use": "official",
+      "family": "Topp-Glücklich",
+      "given": [
+        "Hans"
+      ],
+      "prefix": [
+        "Dr. med."
+      ],
+      "text": "Dr. med. Hans Topp-Glücklich"
+    }
+  ]
+}
