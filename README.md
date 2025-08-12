@@ -43,6 +43,7 @@ Die Plugins können unter [Releases](https://github.com/gematik/app-referenceval
 | VSDM-Ersatzbescheinigung                                                                   | 1.0         | eeb                       |
 | Elektronische Patientenakte Basisfunktionalitäten                                          | 1.1.0       | epa3-basic                |
 | Elektronische Patientenakte Medication                                                     | 1.3.0       | epa3-medication           |
+| [KIM-Nachrichten für das E-Rezept](https://gemspec.gematik.de/ig/fhir/erp-servicerequest/1.2.0/)     | 1.2.0       | erp-servicerequest        |
 
 Die Bezeichnung in der Spalte `ID` dient dem Aufruf des Plugins aus der Referenzvalidator-Konsolenanwendung.
 
