@@ -87,6 +87,17 @@ Mit dem Modul können sowohl die Instanzen der [1.0](https://simplifier.net/pack
 Anpassungen der Packages:
 - ValueSet-versicherungsart-de-basis.json in de.basisprofil.r4-1.3.2 korrigiert
 
+#### KIM-Nachrichten für das E-Rezept
+Abweichend vom allgemeinen Prüfumfang verhält sich das Plugin wie folgt:
+- Codes aus den folgenden Codesystemen werden nicht validiert:
+  - `http://fhir.de/CodeSystem/bfarm/atc`
+  - `http://fhir.de/CodeSystem/ask`
+  - `http://fhir.de/CodeSystem/ifa/pzn`
+  - "http://snomed.info/sct"
+  - "https://terminologieserver.bfarm.de/fhir/CodeSystem/arzneimittel-referenzdaten-pharmazeutisches-produkt"
+
+Zur erfolgreichen Validierung muss zusätzlich die Abgängikeit `kbv.all.st#1.24.0` eingebunden werden.
+
 ## Nutzung mit dem Referenzvalidator
 
 Siehe Dokumentation vom [gematik Referenzvalidator](https://github.com/gematik/app-referencevalidator).
