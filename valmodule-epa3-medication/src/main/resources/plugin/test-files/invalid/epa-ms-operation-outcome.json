@@ -1,24 +1,28 @@
 {
-    "resourceType": "OperationOutcome",
-    "id": "gen1",
-    "meta": {
-        "profile":  [
-            "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-ms-operation-outcome"
-        ]
-    },
-    "implicitRules": "http://hl7.org/fhir/reference",
-    "language": "en-GB",
-    "issue":  [
-        {
-            "severity": "fatal",
-            "code": "structure",
-            "diagnostics": "Hilarious Dog",
-            "location":  [
-                "Crazy Badger"
-            ],
-            "expression":  [
-                "Inventive Elephant"
-            ]
-        }
+  "resourceType": "OperationOutcome",
+  "id": "gen1",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-ms-operation-outcome"
     ]
+  },
+  "implicitRules": "http://hl7.org/fhir/reference",
+  "issue": [
+    {
+      "details": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Fantastic Giraffe",
+            "display": "Inventive Mouse",
+            "userSelected": false
+          }
+        ],
+        "text": "Slow Mouse"
+      },
+      "diagnostics": "Fantastic Zebra",
+      "location": ["Fantastic Dog"],
+      "expression": ["Slow Giraffe"]
+    }
+  ]
 }

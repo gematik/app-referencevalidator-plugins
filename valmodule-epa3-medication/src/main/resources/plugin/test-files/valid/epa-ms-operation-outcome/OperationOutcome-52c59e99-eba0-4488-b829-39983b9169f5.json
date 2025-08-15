@@ -1,0 +1,24 @@
+{
+  "resourceType": "OperationOutcome",
+  "id": "52c59e99-eba0-4488-b829-39983b9169f5",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-ms-operation-outcome"
+    ]
+  },
+  "issue": [
+    {
+      "severity": "error",
+      "code": "not-supported",
+      "details": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/operation-outcome",
+            "code": "MSG_BAD_FORMAT"
+          }
+        ]
+      },
+      "diagnostics": "Invalid request \"%s\" must be a \"%s\""
+    }
+  ]
+}

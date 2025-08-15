@@ -1,0 +1,25 @@
+{
+  "resourceType": "OperationOutcome",
+  "id": "0a30eb5d-289f-44cf-a0bd-ec4ec38edaa8",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-ms-operation-outcome"
+    ]
+  },
+  "issue": [
+    {
+      "severity": "error",
+      "code": "structure",
+      "details": {
+        "coding": [
+          {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-ms-operation-outcome-details",
+            "code": "MEDICATIONSVC_NO_VALID_STRUCTURE",
+            "display": "Invalid Data Structure in Medication Service"
+          }
+        ]
+      },
+      "diagnostics": "Parameters.parameter[0] | Slice 'Parameters.parameter:rxPrescription.part:authoredOn': minimum required = 1, but only found 0 (from https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-prescription-erp-input-parameters|1.1.5);\nParameters.parameter[0] | Parameters.parameter:rxPrescription.part: minimum required = 6, but only found 5 (from https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-prescription-erp-input-parameters|1.1.5);"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "OperationOutcome",
+  "id": "98ca7dff-aa8d-47d0-a074-4055f55cb4db",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-ms-operation-outcome"
+    ]
+  },
+  "issue": [
+    {
+      "severity": "error",
+      "code": "processing",
+      "details": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/operation-outcome",
+            "code": "MSG_RESOURCE_ID_FAIL"
+          }
+        ]
+      },
+      "diagnostics": "Resource id is not known"
+    }
+  ]
+}

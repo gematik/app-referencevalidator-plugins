@@ -42,7 +42,7 @@ Die Plugins können unter [Releases](https://github.com/gematik/app-referenceval
 | DiGA Toolkit                                                                               | 0.10        | diga                      |
 | VSDM-Ersatzbescheinigung                                                                   | 1.0         | eeb                       |
 | Elektronische Patientenakte Basisfunktionalitäten                                          | 1.1.0       | epa3-basic                |
-| Elektronische Patientenakte Medication                                                     | 1.3.0       | epa3-medication           |
+| Elektronische Patientenakte Medication                                                     | 1.4.0       | epa3-medication           |
 | [KIM-Nachrichten für das E-Rezept](https://gemspec.gematik.de/ig/fhir/erp-servicerequest/1.2.0/)     | 1.2.0       | erp-servicerequest        |
 
 Die Bezeichnung in der Spalte `ID` dient dem Aufruf des Plugins aus der Referenzvalidator-Konsolenanwendung.
@@ -57,6 +57,8 @@ Abweichend vom allgemeinen Prüfumfang verhält sich das EPA-Medication-Plugin w
   - `http://fhir.de/CodeSystem/ifa/pzn`
   - "http://snomed.info/sct"
   - "https://terminologieserver.bfarm.de/fhir/CodeSystem/arzneimittel-referenzdaten-pharmazeutisches-produkt"
+
+_Zusatzinformation:_ Das Plugin lädt derzeit zwei große HL7-Terminologiepakete (je ~5 MB), was die Paketgröße und damit die Validierungsdauer deutlich erhöht, obwohl vermutlich nur wenige enthaltene ValueSets/CodeSystems tatsächlich benötigt werden; eine Lösung ist geplant, hat aber aktuell keine Priorität.
 
 #### ISIK3
 
