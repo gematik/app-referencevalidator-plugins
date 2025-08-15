@@ -7,21 +7,15 @@
     ]
   },
   "implicitRules": "http://hl7.org/fhir/reference",
-  "language": "en-GB",
   "parameter": [
+    {
+      "name": "Fantastic Giraffe"
+    },
     {
       "name": "rxPrescription",
       "part": [
         {
-          "name": "prescriptionId",
-          "valueIdentifier": {
-            "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
-            "value": "your_prescription_id_here"
-          }
-        },
-        {
-          "name": "authoredOn",
-          "valueDate": "2024-05-03"
+          "name": "Inventive Mouse"
         }
       ]
     }

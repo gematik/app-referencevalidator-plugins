@@ -2,6 +2,16 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## KIM-Nachrichten für das E-Rezept 1.2.0 (2025-08)
+
+### added
+- new plugin (`erp-servicerequest`) added (cf. [README.md](./README.md))
+
+## ePA Medication 1.4.0 (2025-08)
+
+### added
+- Added support for the [1.1.5 FHIR package](https://simplifier.net/packages/de.gematik.epa.medication/1.1.5).
+
 ## EEB (VSDM-Ersatzbescheinigung) 1.0 (2025-07)
 
 ### added

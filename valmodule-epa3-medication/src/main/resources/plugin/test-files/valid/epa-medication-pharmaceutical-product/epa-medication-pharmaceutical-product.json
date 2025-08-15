@@ -9,23 +9,19 @@
   "implicitRules": "http://hl7.org/fhir/reference",
   "extension": [
     {
-      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension"
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension",
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+        "value": "RX‑123456"
+      }
     },
     {
       "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
       "valueBoolean": false
     },
     {
-      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
-      "valueCoding": {
-        "system": "http://hl7.org/fhir/reference",
-        "version": "Fast Badger",
-        "display": "Energetic Cat",
-        "userSelected": false
-      }
-    },
-    {
-      "url": "http://fhir.de/StructureDefinition/normgroesse"
+      "url": "http://fhir.de/StructureDefinition/normgroesse",
+      "valueCode": "N1"
     },
     {
       "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension",
@@ -78,28 +74,8 @@
     "text": "Inventive Zebra"
   },
   "manufacturer": {
-    "reference": "Slow Dog",
-    "type": "http://hl7.org/fhir/reference",
-    "identifier": {
-      "type": {
-        "coding": [
-          {
-            "system": "http://hl7.org/fhir/reference",
-            "version": "Hilarious Giraffe",
-            "display": "Hilarious Badger",
-            "userSelected": false
-          }
-        ],
-        "text": "Fantastic Dog"
-      },
-      "system": "http://www.acme.com/identifiers/patient",
-      "value": "123456",
-      "period": {
-        "start": "1958-03-21",
-        "end": "1964-08-09"
-      }
-    },
-    "display": "Slow Badger"
+    "reference": "Organization/acme-pharma",
+    "display": "ACME Pharmaceuticals"
   },
   "form": {
     "coding": [
@@ -144,12 +120,14 @@
       "isActive": false,
       "strength": {
         "numerator": {
-          "unit": "Fantastic Giraffe",
-          "system": "http://hl7.org/fhir/reference"
+          "value": 250,
+          "unit": "mg",
+          "system": "http://unitsofmeasure.org"
         },
         "denominator": {
-          "unit": "Fast Zebra",
-          "system": "http://hl7.org/fhir/reference"
+          "value": 1,
+          "unit": "tablet",
+          "system": "http://unitsofmeasure.org"
         }
       }
     }

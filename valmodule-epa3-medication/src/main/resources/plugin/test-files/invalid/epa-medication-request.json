@@ -1,0 +1,806 @@
+{
+  "resourceType": "MedicationRequest",
+  "id": "gen1",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-request"
+    ]
+  },
+  "implicitRules": "http://hl7.org/fhir/reference",
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/multiple-prescription-extension"
+    },
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/indicator-bvg-extension",
+      "valueBoolean": false
+    }
+  ],
+  "identifier": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Fast Badger",
+            "display": "Energetic Cat",
+            "userSelected": false
+          }
+        ],
+        "text": "Hilarious Elephant"
+      },
+      "system": "http://www.acme.com/identifiers/patient",
+      "value": "123456",
+      "period": {
+        "start": "1956-11-20",
+        "end": "1993-09-08"
+      }
+    }
+  ],
+  "statusReason": {
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/reference",
+        "version": "Crazy Badger",
+        "display": "Hilarious Elephant",
+        "userSelected": false
+      }
+    ],
+    "text": "Crazy Dog"
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/reference",
+          "version": "Energetic Dog",
+          "display": "Hilarious Dog",
+          "userSelected": false
+        }
+      ],
+      "text": "Slow Giraffe"
+    }
+  ],
+  "doNotPerform": false,
+  "reportedBoolean": false,
+  "medicationReference": {
+    "reference": "Slow Cat",
+    "type": "http://hl7.org/fhir/reference",
+    "identifier": {
+      "type": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Hilarious Cat",
+            "display": "Inventive Mouse",
+            "userSelected": false
+          }
+        ],
+        "text": "Hilarious Badger"
+      },
+      "system": "http://www.acme.com/identifiers/patient",
+      "value": "123456",
+      "period": {
+        "start": "2004-10-30",
+        "end": "2008-05-24"
+      }
+    },
+    "display": "Fast Badger"
+  },
+  "subject": {
+    "reference": "Crazy Mouse",
+    "type": "http://hl7.org/fhir/reference",
+    "identifier": {
+      "type": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Energetic Zebra",
+            "display": "Fast Elephant",
+            "userSelected": false
+          }
+        ],
+        "text": "Fast Dog"
+      },
+      "system": "http://www.acme.com/identifiers/patient",
+      "value": "123456",
+      "period": {
+        "start": "1966-08-18",
+        "end": "1974-01-14"
+      }
+    },
+    "display": "Crazy Mouse"
+  },
+  "encounter": {
+    "reference": "Fast Elephant",
+    "type": "http://hl7.org/fhir/reference",
+    "identifier": {
+      "type": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Hilarious Elephant",
+            "display": "Inventive Zebra",
+            "userSelected": false
+          }
+        ],
+        "text": "Crazy Badger"
+      },
+      "system": "http://www.acme.com/identifiers/patient",
+      "value": "123456",
+      "period": {
+        "start": "1979-03-04",
+        "end": "2015-01-03"
+      }
+    },
+    "display": "Inventive Elephant"
+  },
+  "supportingInformation": [
+    {
+      "reference": "Fantastic Zebra",
+      "type": "http://hl7.org/fhir/reference",
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/reference",
+              "version": "Slow Mouse",
+              "display": "Fast Badger",
+              "userSelected": false
+            }
+          ],
+          "text": "Slow Elephant"
+        },
+        "system": "http://www.acme.com/identifiers/patient",
+        "value": "123456",
+        "period": {
+          "start": "1950-07-08",
+          "end": "1992-01-21"
+        }
+      },
+      "display": "Inventive Cat"
+    }
+  ],
+  "authoredOn": "2002-08-12",
+  "requester": {
+    "reference": "Fantastic Badger",
+    "type": "http://hl7.org/fhir/reference",
+    "identifier": {
+      "type": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Crazy Zebra",
+            "display": "Fast Zebra",
+            "userSelected": false
+          }
+        ],
+        "text": "Fantastic Badger"
+      },
+      "system": "http://www.acme.com/identifiers/patient",
+      "value": "123456",
+      "period": {
+        "start": "1975-03-22",
+        "end": "1982-04-20"
+      }
+    },
+    "display": "Fast Elephant"
+  },
+  "performer": {
+    "reference": "Fantastic Elephant",
+    "type": "http://hl7.org/fhir/reference",
+    "identifier": {
+      "type": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Crazy Giraffe",
+            "display": "Inventive Mouse",
+            "userSelected": false
+          }
+        ],
+        "text": "Inventive Badger"
+      },
+      "system": "http://www.acme.com/identifiers/patient",
+      "value": "123456",
+      "period": {
+        "start": "2017-09-22",
+        "end": "1971-08-19"
+      }
+    },
+    "display": "Energetic Zebra"
+  },
+  "performerType": {
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/reference",
+        "version": "Energetic Cat",
+        "display": "Fast Zebra",
+        "userSelected": false
+      }
+    ],
+    "text": "Fantastic Giraffe"
+  },
+  "recorder": {
+    "reference": "Fantastic Badger",
+    "type": "http://hl7.org/fhir/reference",
+    "identifier": {
+      "type": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Slow Badger",
+            "display": "Fantastic Giraffe",
+            "userSelected": false
+          }
+        ],
+        "text": "Inventive Mouse"
+      },
+      "system": "http://www.acme.com/identifiers/patient",
+      "value": "123456",
+      "period": {
+        "start": "2017-09-20",
+        "end": "1958-03-30"
+      }
+    },
+    "display": "Energetic Cat"
+  },
+  "reasonCode": [
+    {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/reference",
+          "version": "Fantastic Zebra",
+          "display": "Crazy Elephant",
+          "userSelected": false
+        }
+      ],
+      "text": "Fantastic Giraffe"
+    }
+  ],
+  "reasonReference": [
+    {
+      "reference": "Energetic Dog",
+      "type": "http://hl7.org/fhir/reference",
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/reference",
+              "version": "Fantastic Giraffe",
+              "display": "Crazy Mouse",
+              "userSelected": false
+            }
+          ],
+          "text": "Energetic Dog"
+        },
+        "system": "http://www.acme.com/identifiers/patient",
+        "value": "123456",
+        "period": {
+          "start": "1962-04-15",
+          "end": "1989-10-26"
+        }
+      },
+      "display": "Slow Dog"
+    }
+  ],
+  "instantiatesCanonical": ["http://not-so-random-yet"],
+  "instantiatesUri": ["http://hl7.org/fhir/reference"],
+  "basedOn": [
+    {
+      "reference": "Fast Elephant",
+      "type": "http://hl7.org/fhir/reference",
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/reference",
+              "version": "Hilarious Giraffe",
+              "display": "Fantastic Zebra",
+              "userSelected": false
+            }
+          ],
+          "text": "Energetic Cat"
+        },
+        "system": "http://www.acme.com/identifiers/patient",
+        "value": "123456",
+        "period": {
+          "start": "1971-03-26",
+          "end": "2008-02-27"
+        }
+      },
+      "display": "Fast Zebra"
+    }
+  ],
+  "groupIdentifier": {
+    "type": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/reference",
+          "version": "Inventive Elephant",
+          "display": "Slow Cat",
+          "userSelected": false
+        }
+      ],
+      "text": "Fast Cat"
+    },
+    "system": "http://www.acme.com/identifiers/patient",
+    "value": "123456",
+    "period": {
+      "start": "1955-04-14",
+      "end": "1973-01-05"
+    }
+  },
+  "courseOfTherapyType": {
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/reference",
+        "version": "Hilarious Elephant",
+        "display": "Inventive Badger",
+        "userSelected": false
+      }
+    ],
+    "text": "Slow Zebra"
+  },
+  "insurance": [
+    {
+      "reference": "Energetic Zebra",
+      "type": "http://hl7.org/fhir/reference",
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/reference",
+              "version": "Fast Elephant",
+              "display": "Slow Mouse",
+              "userSelected": false
+            }
+          ],
+          "text": "Slow Zebra"
+        },
+        "system": "http://www.acme.com/identifiers/patient",
+        "value": "123456",
+        "period": {
+          "start": "1972-04-13",
+          "end": "1996-08-04"
+        }
+      },
+      "display": "Crazy Cat"
+    }
+  ],
+  "note": [
+    {
+      "authorReference": {
+        "reference": "Slow Zebra",
+        "type": "http://hl7.org/fhir/reference",
+        "identifier": {
+          "type": {
+            "text": "Crazy Elephant"
+          },
+          "system": "http://www.acme.com/identifiers/patient",
+          "value": "123456",
+          "period": {
+            "start": "1956-07-12",
+            "end": "2014-09-19"
+          }
+        },
+        "display": "Inventive Mouse"
+      },
+      "time": "1964-12-24"
+    },
+    {
+      "authorReference": {
+        "reference": "Inventive Mouse",
+        "type": "http://hl7.org/fhir/reference",
+        "identifier": {
+          "type": {
+            "text": "Crazy Giraffe"
+          },
+          "system": "http://www.acme.com/identifiers/patient",
+          "value": "123456",
+          "period": {
+            "start": "1950-09-28",
+            "end": "1960-02-12"
+          }
+        },
+        "display": "Hilarious Giraffe"
+      },
+      "time": "1960-03-21"
+    }
+  ],
+  "dosageInstruction": [
+    {
+      "text": "Fast Badger",
+      "additionalInstruction": [
+        {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/reference",
+              "version": "Inventive Mouse",
+              "display": "Fast Dog",
+              "userSelected": false
+            }
+          ],
+          "text": "Hilarious Zebra"
+        }
+      ],
+      "patientInstruction": "Hilarious Elephant",
+      "timing": {
+        "event": ["1953-10-31"],
+        "repeat": {
+          "boundsDuration": {
+            "unit": "Fantastic Elephant",
+            "system": "http://hl7.org/fhir/reference"
+          },
+          "count": 1472197184,
+          "countMax": 1763330361,
+          "frequency": 771446750,
+          "frequencyMax": 133216197,
+          "offset": 1097703492
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/reference",
+              "version": "Energetic Zebra",
+              "display": "Slow Badger",
+              "userSelected": false
+            }
+          ],
+          "text": "Crazy Dog"
+        }
+      },
+      "asNeededBoolean": false,
+      "site": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Slow Giraffe",
+            "display": "Crazy Elephant",
+            "userSelected": false
+          }
+        ],
+        "text": "Crazy Elephant"
+      },
+      "route": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Slow Dog",
+            "display": "Crazy Cat",
+            "userSelected": false
+          }
+        ],
+        "text": "Inventive Zebra"
+      },
+      "method": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Fantastic Giraffe",
+            "display": "Hilarious Badger",
+            "userSelected": false
+          }
+        ],
+        "text": "Energetic Badger"
+      },
+      "doseAndRate": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/reference",
+                "version": "Slow Mouse",
+                "display": "Fantastic Dog",
+                "userSelected": false
+              }
+            ],
+            "text": "Fast Badger"
+          },
+          "doseRange": {
+            "low": {
+              "unit": "Fantastic Badger",
+              "system": "http://hl7.org/fhir/reference"
+            },
+            "high": {
+              "unit": "Crazy Badger",
+              "system": "http://hl7.org/fhir/reference"
+            }
+          },
+          "rateRatio": {
+            "numerator": {
+              "unit": "Inventive Mouse",
+              "system": "http://hl7.org/fhir/reference"
+            },
+            "denominator": {
+              "unit": "Energetic Giraffe",
+              "system": "http://hl7.org/fhir/reference"
+            }
+          }
+        }
+      ],
+      "maxDosePerPeriod": {
+        "numerator": {
+          "unit": "Fantastic Dog",
+          "system": "http://hl7.org/fhir/reference"
+        },
+        "denominator": {
+          "unit": "Energetic Elephant",
+          "system": "http://hl7.org/fhir/reference"
+        }
+      },
+      "maxDosePerAdministration": {
+        "unit": "Fast Giraffe",
+        "system": "http://hl7.org/fhir/reference"
+      },
+      "maxDosePerLifetime": {
+        "unit": "Fantastic Elephant",
+        "system": "http://hl7.org/fhir/reference"
+      }
+    },
+    {
+      "text": "Slow Giraffe",
+      "additionalInstruction": [
+        {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/reference",
+              "version": "Crazy Dog",
+              "display": "Fantastic Mouse",
+              "userSelected": false
+            }
+          ],
+          "text": "Fast Dog"
+        }
+      ],
+      "patientInstruction": "Hilarious Giraffe",
+      "timing": {
+        "event": ["2002-09-28"],
+        "repeat": {
+          "boundsDuration": {
+            "unit": "Energetic Zebra",
+            "system": "http://hl7.org/fhir/reference"
+          },
+          "count": 304549732,
+          "countMax": 1779614625,
+          "frequency": 674103857,
+          "frequencyMax": 1408019314,
+          "offset": 1068497020
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/reference",
+              "version": "Energetic Giraffe",
+              "display": "Crazy Zebra",
+              "userSelected": false
+            }
+          ],
+          "text": "Fast Mouse"
+        }
+      },
+      "asNeededBoolean": false,
+      "site": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Energetic Zebra",
+            "display": "Inventive Mouse",
+            "userSelected": false
+          }
+        ],
+        "text": "Slow Badger"
+      },
+      "route": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Energetic Mouse",
+            "display": "Hilarious Giraffe",
+            "userSelected": false
+          }
+        ],
+        "text": "Hilarious Badger"
+      },
+      "method": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Energetic Mouse",
+            "display": "Hilarious Elephant",
+            "userSelected": false
+          }
+        ],
+        "text": "Hilarious Cat"
+      },
+      "doseAndRate": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/reference",
+                "version": "Fast Zebra",
+                "display": "Energetic Elephant",
+                "userSelected": false
+              }
+            ],
+            "text": "Slow Giraffe"
+          },
+          "doseRange": {
+            "low": {
+              "unit": "Crazy Giraffe",
+              "system": "http://hl7.org/fhir/reference"
+            },
+            "high": {
+              "unit": "Energetic Mouse",
+              "system": "http://hl7.org/fhir/reference"
+            }
+          },
+          "rateRatio": {
+            "numerator": {
+              "unit": "Energetic Zebra",
+              "system": "http://hl7.org/fhir/reference"
+            },
+            "denominator": {
+              "unit": "Fantastic Giraffe",
+              "system": "http://hl7.org/fhir/reference"
+            }
+          }
+        }
+      ],
+      "maxDosePerPeriod": {
+        "numerator": {
+          "unit": "Slow Badger",
+          "system": "http://hl7.org/fhir/reference"
+        },
+        "denominator": {
+          "unit": "Energetic Cat",
+          "system": "http://hl7.org/fhir/reference"
+        }
+      },
+      "maxDosePerAdministration": {
+        "unit": "Crazy Mouse",
+        "system": "http://hl7.org/fhir/reference"
+      },
+      "maxDosePerLifetime": {
+        "unit": "Energetic Mouse",
+        "system": "http://hl7.org/fhir/reference"
+      }
+    }
+  ],
+  "dispenseRequest": {
+    "initialFill": {
+      "quantity": {
+        "unit": "Energetic Elephant",
+        "system": "http://hl7.org/fhir/reference"
+      },
+      "duration": {
+        "unit": "Slow Elephant",
+        "system": "http://hl7.org/fhir/reference"
+      }
+    },
+    "dispenseInterval": {
+      "unit": "Crazy Giraffe",
+      "system": "http://hl7.org/fhir/reference"
+    },
+    "validityPeriod": {
+      "start": "2011-03-23",
+      "end": "1965-10-28"
+    },
+    "numberOfRepeatsAllowed": 322750925,
+    "quantity": {
+      "unit": "Fast Cat",
+      "system": "http://hl7.org/fhir/reference"
+    },
+    "expectedSupplyDuration": {
+      "unit": "Crazy Badger",
+      "system": "http://hl7.org/fhir/reference"
+    },
+    "performer": {
+      "reference": "Hilarious Badger",
+      "type": "http://hl7.org/fhir/reference",
+      "identifier": {
+        "type": {
+          "text": "Crazy Zebra"
+        },
+        "system": "http://www.acme.com/identifiers/patient",
+        "value": "123456",
+        "period": {
+          "start": "1981-10-13",
+          "end": "2000-01-28"
+        }
+      },
+      "display": "Fantastic Giraffe"
+    }
+  },
+  "substitution": {
+    "allowedBoolean": false,
+    "reason": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/reference",
+          "version": "Fast Dog",
+          "display": "Hilarious Dog",
+          "userSelected": false
+        }
+      ],
+      "text": "Crazy Cat"
+    }
+  },
+  "priorPrescription": {
+    "reference": "Fast Dog",
+    "type": "http://hl7.org/fhir/reference",
+    "identifier": {
+      "type": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/reference",
+            "version": "Hilarious Zebra",
+            "display": "Energetic Zebra",
+            "userSelected": false
+          }
+        ],
+        "text": "Hilarious Giraffe"
+      },
+      "system": "http://www.acme.com/identifiers/patient",
+      "value": "123456",
+      "period": {
+        "start": "1971-04-25",
+        "end": "1965-06-13"
+      }
+    },
+    "display": "Crazy Mouse"
+  },
+  "detectedIssue": [
+    {
+      "reference": "Crazy Giraffe",
+      "type": "http://hl7.org/fhir/reference",
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/reference",
+              "version": "Hilarious Zebra",
+              "display": "Energetic Giraffe",
+              "userSelected": false
+            }
+          ],
+          "text": "Fantastic Dog"
+        },
+        "system": "http://www.acme.com/identifiers/patient",
+        "value": "123456",
+        "period": {
+          "start": "2017-07-18",
+          "end": "2010-12-07"
+        }
+      },
+      "display": "Fast Giraffe"
+    }
+  ],
+  "eventHistory": [
+    {
+      "reference": "Inventive Zebra",
+      "type": "http://hl7.org/fhir/reference",
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/reference",
+              "version": "Energetic Cat",
+              "display": "Fantastic Zebra",
+              "userSelected": false
+            }
+          ],
+          "text": "Inventive Mouse"
+        },
+        "system": "http://www.acme.com/identifiers/patient",
+        "value": "123456",
+        "period": {
+          "start": "1981-08-25",
+          "end": "1965-03-11"
+        }
+      },
+      "display": "Crazy Giraffe"
+    }
+  ]
+}
