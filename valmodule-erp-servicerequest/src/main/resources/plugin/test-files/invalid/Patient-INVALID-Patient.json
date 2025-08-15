@@ -1,0 +1,50 @@
+{
+  "resourceType": "Patient",
+  "id": "INVALID-Patient",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-patient"
+    ]
+  },
+  "name": [
+    {
+      "use": "official",
+      "family": "Königsstein",
+      "_family": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-name",
+            "valueString": "Königsstein"
+          }
+        ]
+      },
+      "given": [
+        "Ludger"
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://fhir.de/sid/gkv/kvid-10",
+      "value": "X234567890"
+    }
+  ],
+  "address": [
+    {
+      "type": "both",
+      "city": "Berlin",
+      "postalCode": "10623",
+      "_line": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator",
+              "valueString": "Löwenzahn"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "birthDate": "1935-06-22"
+}

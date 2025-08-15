@@ -1,0 +1,21 @@
+---
+configSpecVersion: "2.0"
+id: "erp-servicerequest"
+author: "gematik GmbH"
+description: "Referenzvalidator-Plugin für die Spezifikation 'KIM-Nachrichten für das E-Rezept'\
+  \ FHIR-IG: https://gemspec.gematik.de/ig/fhir/erp-servicerequest/1.2.0/"
+specUrl: "https://simplifier.net/packages/de.gematik.erp-servicerequest/1.2.0"
+version: "1.2.0"
+validation:
+  dependencyLists:
+  - fhirPackage: "de.gematik.erp-servicerequest#1.2.0"
+    dependencies:
+      - "kbv.all.st#1.24.0"
+  ignoredCodeSystems:  
+  - "http://fhir.de/CodeSystem/ifa/pzn"  
+  - "http://fhir.de/CodeSystem/ask"  
+  - "http://fhir.de/CodeSystem/bfarm/atc"
+  - "http://snomed.info/sct"
+  - "https://terminologieserver.bfarm.de/fhir/CodeSystem/arzneimittel-referenzdaten-pharmazeutisches-produkt"
+  ignoredValueSets:  
+  - "http://hl7.org/fhir/uv/ips/ValueSet/medicine-doseform"

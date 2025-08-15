@@ -1,0 +1,517 @@
+{
+  "resourceType": "Bundle",
+  "id": "UC3-2-Fullfilled-Prescription-Request-COPY",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-message-container"
+    ]
+  },
+  "type": "message",
+  "identifier": {
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:2c60b3d3-a901-4df2-92ef-a9c3e525fa43"
+  },
+  "timestamp": "2025-05-14T08:15:12+02:00",
+  "entry": [
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/MessageHeader/UC3-Practitioner-to-HealthCareService-MessageHeader",
+      "resource": {
+        "resourceType": "MessageHeader",
+        "id": "UC3-Practitioner-to-HealthCareService-MessageHeader",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-request-header"
+          ]
+        },
+        "source": {
+          "contact": {
+            "system": "email",
+            "value": "info@pvs_solutions.email"
+          },
+          "name": "Practitioner-Source",
+          "software": "Practitioner-Software",
+          "version": "1.0.0",
+          "endpoint": "https://pvs_solutions.com/jira_helpdesk"
+        },
+        "focus": [
+          {
+            "reference": "Bundle/UC3-2-Fullfilled-Prescription-Request"
+          }
+        ],
+        "sender": {
+          "identifier": {
+            "system": "https://gematik.de/fhir/sid/telematik-id",
+            "value": "1-test-telematik-id"
+          },
+          "display": "Praxis Hans Topp-Glücklich"
+        },
+        "destination": [
+          {
+            "name": "Pflegeheim Immergrün",
+            "endpoint": "mailto:healthcare-service@test.kim.de"
+          }
+        ],
+        "eventCoding": {
+          "code": "eRezept_Rezeptanforderung;NachrichtKopie",
+          "system": "https://gematik.de/fhir/atf/CodeSystem/service-identifier-cs"
+        },
+        "responsible": {
+          "reference": "Organization/Example-Practitioner-Organization"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/Bundle/UC3-2-Fullfilled-Prescription-Request",
+      "resource": {
+        "resourceType": "Bundle",
+        "id": "UC3-2-Fullfilled-Prescription-Request",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-message-container"
+          ]
+        },
+        "type": "message",
+        "identifier": {
+          "system": "urn:ietf:rfc:3986",
+          "value": "urn:uuid:29888885-6639-481c-934e-4b7b51745084"
+        },
+        "timestamp": "2025-05-14T08:15:12+02:00",
+        "entry": [
+          {
+            "fullUrl": "http://erp-servicerequest-test.de/MessageHeader/UC3-Practitioner-to-Pharmacy-MessageHeader",
+            "resource": {
+              "resourceType": "MessageHeader",
+              "id": "UC3-Practitioner-to-Pharmacy-MessageHeader",
+              "meta": {
+                "profile": [
+                  "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-request-header"
+                ]
+              },
+              "source": {
+                "contact": {
+                  "system": "email",
+                  "value": "info@avs_solutions.com"
+                },
+                "name": "Pharmacy-Source",
+                "software": "Pharmacy-Software",
+                "version": "1.0.0",
+                "endpoint": "https://avs_solutions.com/jira_helpdesk"
+              },
+              "focus": [
+                {
+                  "reference": "ServiceRequest/UC3-Response-Prescription-Request"
+                }
+              ],
+              "sender": {
+                "identifier": {
+                  "system": "https://gematik.de/fhir/sid/telematik-id",
+                  "value": "3-test-telematik-id"
+                },
+                "display": "Test Apotheke"
+              },
+              "destination": [
+                {
+                  "name": "Praxis Hans Topp-Glücklich",
+                  "endpoint": "mailto:practitioner@test.kim.de"
+                }
+              ],
+              "eventCoding": {
+                "code": "eRezept_Rezeptanforderung;Rezeptbestaetigung",
+                "system": "https://gematik.de/fhir/atf/CodeSystem/service-identifier-cs"
+              },
+              "responsible": {
+                "reference": "Organization/Example-Practitioner-Organization"
+              }
+            }
+          },
+          {
+            "fullUrl": "http://erp-servicerequest-test.de/Organization/Example-Practitioner-Organization",
+            "resource": {
+              "resourceType": "Organization",
+              "id": "Example-Practitioner-Organization",
+              "meta": {
+                "profile": [
+                  "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-organization"
+                ]
+              },
+              "contact": [
+                {
+                  "telecom": [
+                    {
+                      "system": "phone",
+                      "value": "0307654321"
+                    }
+                  ]
+                }
+              ],
+              "identifier": [
+                {
+                  "system": "https://gematik.de/fhir/sid/telematik-id",
+                  "value": "123456789"
+                }
+              ],
+              "name": "Test Arztpraxis",
+              "type": [
+                {
+                  "coding": [
+                    {
+                      "code": "1.2.276.0.76.4.50",
+                      "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+                      "display": "Betriebsstätte Arzt"
+                    }
+                  ]
+                }
+              ],
+              "address": [
+                {
+                  "type": "both",
+                  "line": [
+                    "Musterarztstr. 3"
+                  ],
+                  "city": "Berlin",
+                  "postalCode": "10623"
+                }
+              ]
+            }
+          },
+          {
+            "fullUrl": "http://erp-servicerequest-test.de/ServiceRequest/UC3-Response-Prescription-Request",
+            "resource": {
+              "resourceType": "ServiceRequest",
+              "id": "UC3-Response-Prescription-Request",
+              "meta": {
+                "profile": [
+                  "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-prescription-request"
+                ]
+              },
+              "intent": "order",
+              "identifier": [
+                {
+                  "system": "https://gematik.de/fhir/erp-servicerequest/sid/RequestIdentifier",
+                  "value": "1"
+                }
+              ],
+              "requisition": {
+                "system": "https://gematik.de/fhir/erp-servicerequest/sid/ProcedureIdentifier",
+                "value": "GroupID-UC3"
+              },
+              "code": {
+                "coding": [
+                  {
+                    "code": "prescription-request",
+                    "system": "https://gematik.de/fhir/erp-servicerequest/CodeSystem/service-request-type-cs"
+                  }
+                ]
+              },
+              "extension": [
+                {
+                  "valueIdentifier": {
+                    "system": "https://gematik.de/fhir/erp/sid/NamingSystemEPrescriptionToken",
+                    "value": "Task/169.100.000.000.002.36/$accept?ac=777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea"
+                  },
+                  "url": "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/eprescription-token-ex"
+                }
+              ],
+              "basedOn": [
+                {
+                  "reference": "MedicationRequest/Example-Response-Medication-Request"
+                }
+              ],
+              "status": "completed",
+              "subject": {
+                "reference": "Patient/Example-Patient"
+              },
+              "authoredOn": "2025-05-13",
+              "performer": [
+                {
+                  "reference": "Practitioner/Example-Practitioner"
+                }
+              ]
+            }
+          },
+          {
+            "fullUrl": "http://erp-servicerequest-test.de/Patient/Example-Patient",
+            "resource": {
+              "resourceType": "Patient",
+              "id": "Example-Patient",
+              "meta": {
+                "profile": [
+                  "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-patient"
+                ]
+              },
+              "name": [
+                {
+                  "use": "official",
+                  "family": "Königsstein",
+                  "_family": {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-name",
+                        "valueString": "Königsstein"
+                      }
+                    ]
+                  },
+                  "given": [
+                    "Ludger"
+                  ]
+                }
+              ],
+              "identifier": [
+                {
+                  "system": "http://fhir.de/sid/gkv/kvid-10",
+                  "value": "X234567890"
+                }
+              ],
+              "address": [
+                {
+                  "line": [
+                    "Musterstr. 1"
+                  ],
+                  "_line": [
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                          "valueString": "1"
+                        },
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                          "valueString": "Musterstr."
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "both",
+                  "city": "Berlin",
+                  "postalCode": "10623"
+                }
+              ],
+              "birthDate": "1935-06-22"
+            }
+          },
+          {
+            "fullUrl": "http://erp-servicerequest-test.de/Practitioner/Example-Practitioner",
+            "resource": {
+              "resourceType": "Practitioner",
+              "id": "Example-Practitioner",
+              "meta": {
+                "profile": [
+                  "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-practitioner"
+                ]
+              },
+              "identifier": [
+                {
+                  "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR",
+                  "value": "838382202"
+                },
+                {
+                  "system": "https://gematik.de/fhir/sid/telematik-id",
+                  "value": "1-838382202"
+                }
+              ],
+              "name": [
+                {
+                  "use": "official",
+                  "family": "Topp-Glücklich",
+                  "given": [
+                    "Hans"
+                  ],
+                  "prefix": [
+                    "Dr. med."
+                  ],
+                  "text": "Dr. med. Hans Topp-Glücklich"
+                }
+              ]
+            }
+          },
+          {
+            "fullUrl": "http://erp-servicerequest-test.de/MedicationRequest/Example-Response-Medication-Request",
+            "resource": {
+              "resourceType": "MedicationRequest",
+              "id": "Example-Response-Medication-Request",
+              "meta": {
+                "profile": [
+                  "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-medication-request"
+                ]
+              },
+              "status": "active",
+              "intent": "order",
+              "medicationReference": {
+                "reference": "Medication/Example-Response-Medication"
+              },
+              "subject": {
+                "reference": "Patient/Example-Patient"
+              },
+              "dispenseRequest": {
+                "quantity": {
+                  "value": 65,
+                  "code": "mL",
+                  "system": "http://unitsofmeasure.org",
+                  "unit": "Milliliter"
+                }
+              },
+              "dosageInstruction": [
+                {
+                  "text": "1-1-1-0"
+                }
+              ]
+            }
+          },
+          {
+            "fullUrl": "http://erp-servicerequest-test.de/Medication/Example-Response-Medication",
+            "resource": {
+              "resourceType": "Medication",
+              "id": "Example-Response-Medication",
+              "meta": {
+                "profile": [
+                  "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.3"
+                ]
+              },
+              "extension": [
+                {
+                  "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://snomed.info/sct",
+                        "version": "http://snomed.info/sct/11000274103/version/20240515",
+                        "code": "763158003",
+                        "display": "Medicinal product (product)"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+                  "valueCoding": {
+                    "code": "00",
+                    "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"
+                  }
+                },
+                {
+                  "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+                  "valueBoolean": false
+                },
+                {
+                  "url": "http://fhir.de/StructureDefinition/normgroesse",
+                  "valueCode": "N1"
+                }
+              ],
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                    "code": "08585997"
+                  }
+                ],
+                "text": "Prospan® Hustensaft 100ml N1"
+              },
+              "form": {
+                "coding": [
+                  {
+                    "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+                    "code": "FLE"
+                  }
+                ]
+              },
+              "ingredient": [
+                {
+                  "itemCodeableConcept": {
+                    "coding": [
+                      {
+                        "code": "A03BB01",
+                        "system": "http://fhir.de/CodeSystem/ask"
+                      }
+                    ],
+                    "text": "Butylscopolaminium-bromid"
+                  },
+                  "strength": {
+                    "numerator": {
+                      "value": 10,
+                      "unit": "mg"
+                    },
+                    "denominator": {
+                      "value": 1,
+                      "unit": "Stück"
+                    }
+                  }
+                },
+                {
+                  "itemCodeableConcept": {
+                    "coding": [
+                      {
+                        "code": "N02BE01",
+                        "system": "http://fhir.de/CodeSystem/ask"
+                      }
+                    ],
+                    "text": "Paracetamol"
+                  },
+                  "strength": {
+                    "numerator": {
+                      "value": 500,
+                      "unit": "mg"
+                    },
+                    "denominator": {
+                      "value": 1,
+                      "unit": "Stück"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/Organization/Example-Practitioner-Organization",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "Example-Practitioner-Organization",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-organization"
+          ]
+        },
+        "contact": [
+          {
+            "telecom": [
+              {
+                "system": "phone",
+                "value": "0307654321"
+              }
+            ]
+          }
+        ],
+        "identifier": [
+          {
+            "system": "https://gematik.de/fhir/sid/telematik-id",
+            "value": "123456789"
+          }
+        ],
+        "name": "Test Arztpraxis",
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "1.2.276.0.76.4.50",
+                "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+                "display": "Betriebsstätte Arzt"
+              }
+            ]
+          }
+        ],
+        "address": [
+          {
+            "type": "both",
+            "line": [
+              "Musterarztstr. 3"
+            ],
+            "city": "Berlin",
+            "postalCode": "10623"
+          }
+        ]
+      }
+    }
+  ]
+}

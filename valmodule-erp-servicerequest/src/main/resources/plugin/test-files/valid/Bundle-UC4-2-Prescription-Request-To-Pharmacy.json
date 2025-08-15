@@ -1,0 +1,397 @@
+{
+  "resourceType": "Bundle",
+  "id": "UC4-2-Prescription-Request-To-Pharmacy",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-message-container"
+    ]
+  },
+  "type": "message",
+  "identifier": {
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:c80f6c55-92f8-4518-ba66-cb193da09336"
+  },
+  "timestamp": "2025-05-14T08:15:12+02:00",
+  "entry": [
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/MessageHeader/UC4-2-Practitioner-to-Pharmacy-MessageHeader",
+      "resource": {
+        "resourceType": "MessageHeader",
+        "id": "UC4-2-Practitioner-to-Pharmacy-MessageHeader",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-request-header"
+          ]
+        },
+        "source": {
+          "contact": {
+            "system": "email",
+            "value": "info@pvs_solutions.email"
+          },
+          "name": "Practitioner-Source",
+          "software": "Practitioner-Software",
+          "version": "1.0.0",
+          "endpoint": "https://pvs_solutions.com/jira_helpdesk"
+        },
+        "focus": [
+          {
+            "reference": "ServiceRequest/UC4-Response-Prescription-Request"
+          }
+        ],
+        "sender": {
+          "identifier": {
+            "system": "https://gematik.de/fhir/sid/telematik-id",
+            "value": "1-test-telematik-id"
+          },
+          "display": "Praxis Hans Topp-Glücklich"
+        },
+        "destination": [
+          {
+            "name": "Test Apotheke",
+            "endpoint": "mailto:pharmacy@test.kim.dee"
+          }
+        ],
+        "eventCoding": {
+          "code": "eRezept_ParenteraleZubereitung;Rezeptbestaetigung",
+          "system": "https://gematik.de/fhir/atf/CodeSystem/service-identifier-cs"
+        },
+        "responsible": {
+          "reference": "Organization/Example-Practitioner-Organization"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/Organization/Example-Practitioner-Organization",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "Example-Practitioner-Organization",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-organization"
+          ]
+        },
+        "contact": [
+          {
+            "telecom": [
+              {
+                "system": "phone",
+                "value": "0307654321"
+              }
+            ]
+          }
+        ],
+        "identifier": [
+          {
+            "system": "https://gematik.de/fhir/sid/telematik-id",
+            "value": "123456789"
+          }
+        ],
+        "name": "Test Arztpraxis",
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "1.2.276.0.76.4.50",
+                "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+                "display": "Betriebsstätte Arzt"
+              }
+            ]
+          }
+        ],
+        "address": [
+          {
+            "type": "both",
+            "line": [
+              "Musterarztstr. 3"
+            ],
+            "city": "Berlin",
+            "postalCode": "10623"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/ServiceRequest/UC4-Response-Prescription-Request",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "UC4-Response-Prescription-Request",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-prescription-request"
+          ]
+        },
+        "intent": "order",
+        "identifier": [
+          {
+            "system": "https://gematik.de/fhir/erp-servicerequest/sid/RequestIdentifier",
+            "value": "1"
+          },
+          {
+            "system": "https://gematik.de/fhir/erp-servicerequest/sid/patient-id",
+            "value": "Patient-ID-e15232e9-01e0-4ce8-b628-71adb9023b21"
+          },
+          {
+            "system": "https://gematik.de/fhir/erp-servicerequest/sid/case-id",
+            "value": "Case-ID-85d39ff7-2f02-4bfc-85d5-0ba2752f6076"
+          },
+          {
+            "system": "https://gematik.de/fhir/erp-servicerequest/sid/process-id",
+            "value": "Process-ID-db6fd21d-cc85-4411-8567-479a7dc1ef74"
+          },
+          {
+            "system": "https://my-very-own-zyto-identifier",
+            "value": "My-ID-bdbdf8a1-ffa4-4f16-a6c4-38e690ac5548"
+          }
+        ],
+        "requisition": {
+          "system": "https://gematik.de/fhir/erp-servicerequest/sid/ProcedureIdentifier",
+          "value": "GroupID-UC4"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "prescription-request",
+              "system": "https://gematik.de/fhir/erp-servicerequest/CodeSystem/service-request-type-cs"
+            }
+          ]
+        },
+        "extension": [
+          {
+            "valueIdentifier": {
+              "system": "https://gematik.de/fhir/erp/sid/NamingSystemEPrescriptionToken",
+              "value": "Task/169.100.000.000.004.36/$accept?ac=777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea"
+            },
+            "url": "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/eprescription-token-ex"
+          }
+        ],
+        "basedOn": [
+          {
+            "reference": "MedicationRequest/Example-Zyto-Medication-Request"
+          }
+        ],
+        "status": "completed",
+        "subject": {
+          "reference": "Patient/Example-Patient"
+        },
+        "authoredOn": "2025-05-13",
+        "performer": [
+          {
+            "reference": "Practitioner/Example-Practitioner"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/Patient/Example-Patient",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "Example-Patient",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-patient"
+          ]
+        },
+        "name": [
+          {
+            "use": "official",
+            "family": "Königsstein",
+            "_family": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-name",
+                  "valueString": "Königsstein"
+                }
+              ]
+            },
+            "given": [
+              "Ludger"
+            ]
+          }
+        ],
+        "identifier": [
+          {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "X234567890"
+          }
+        ],
+        "address": [
+          {
+            "line": [
+              "Musterstr. 1"
+            ],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                    "valueString": "1"
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                    "valueString": "Musterstr."
+                  }
+                ]
+              }
+            ],
+            "type": "both",
+            "city": "Berlin",
+            "postalCode": "10623"
+          }
+        ],
+        "birthDate": "1935-06-22"
+      }
+    },
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/Practitioner/Example-Practitioner",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "Example-Practitioner",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-practitioner"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR",
+            "value": "838382202"
+          },
+          {
+            "system": "https://gematik.de/fhir/sid/telematik-id",
+            "value": "1-838382202"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Topp-Glücklich",
+            "given": [
+              "Hans"
+            ],
+            "prefix": [
+              "Dr. med."
+            ],
+            "text": "Dr. med. Hans Topp-Glücklich"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/MedicationRequest/Example-Zyto-Medication-Request",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "Example-Zyto-Medication-Request",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-medication-request"
+          ]
+        },
+        "status": "active",
+        "intent": "order",
+        "medicationReference": {
+          "reference": "Medication/Example-Zyto-Medication"
+        },
+        "subject": {
+          "reference": "Patient/Example-Patient"
+        },
+        "authoredOn": "2022-05-20",
+        "substitution": {
+          "allowedBoolean": false
+        }
+      }
+    },
+    {
+      "fullUrl": "http://erp-servicerequest-test.de/Medication/Example-Zyto-Medication",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "Example-Zyto-Medication",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Compounding|1.3"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "version": "http://snomed.info/sct/11000274103/version/20240515",
+                  "code": "1208954007",
+                  "display": "Extemporaneous preparation (product)"
+                }
+              ]
+            }
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+            "valueCoding": {
+              "code": "00",
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"
+            }
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+            "valueBoolean": false
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type",
+              "code": "rezeptur"
+            }
+          ]
+        },
+        "amount": {
+          "denominator": {
+            "value": 1
+          },
+          "numerator": {
+            "extension": [
+              {
+                "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
+                "valueString": "500"
+              }
+            ],
+            "unit": "ml"
+          }
+        },
+        "ingredient": [
+          {
+            "strength": {
+              "denominator": {
+                "value": 1
+              },
+              "numerator": {
+                "value": 180,
+                "unit": "mg"
+              }
+            },
+            "itemCodeableConcept": {
+              "text": "Etoposid"
+            }
+          },
+          {
+            "strength": {
+              "denominator": {
+                "value": 1
+              },
+              "numerator": {
+                "value": 500,
+                "unit": "ml"
+              }
+            },
+            "itemCodeableConcept": {
+              "text": "NaCl 0,9 %"
+            }
+          }
+        ],
+        "form": {
+          "text": "Infusionslösung"
+        }
+      }
+    }
+  ]
+}

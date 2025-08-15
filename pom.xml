@@ -592,6 +592,7 @@
         <module>valmodule-diga</module>
         <module>valmodule-isip1</module>
         <module>valmodule-eeb</module>
+        <module>valmodule-erp-servicerequest</module>
         <module>valmodule-isik2-basismodul</module>
         <module>valmodule-isik2-medikation</module>
         <module>valmodule-isik2-terminplanung</module>

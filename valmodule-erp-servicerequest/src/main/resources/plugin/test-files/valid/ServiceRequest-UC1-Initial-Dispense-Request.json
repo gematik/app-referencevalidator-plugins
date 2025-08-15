@@ -1,0 +1,52 @@
+{
+  "resourceType": "ServiceRequest",
+  "id": "UC1-Initial-Dispense-Request",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-dispense-request"
+    ]
+  },
+  "intent": "filler-order",
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/erp-servicerequest/sid/RequestIdentifier",
+      "value": "2"
+    }
+  ],
+  "requisition": {
+    "system": "https://gematik.de/fhir/erp-servicerequest/sid/ProcedureIdentifier",
+    "value": "GroupID-UC1"
+  },
+  "code": {
+    "coding": [
+      {
+        "code": "dispense-request",
+        "system": "https://gematik.de/fhir/erp-servicerequest/CodeSystem/service-request-type-cs"
+      }
+    ]
+  },
+  "extension": [
+    {
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/erp/sid/NamingSystemEPrescriptionToken",
+        "value": "Task/169.100.000.000.002.36/$accept?ac=777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea"
+      },
+      "url": "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/eprescription-token-ex"
+    }
+  ],
+  "status": "active",
+  "subject": {
+    "reference": "Patient/Example-Patient"
+  },
+  "requester": {
+    "reference": "Organization/Example-HealthCareService-Organization"
+  },
+  "authoredOn": "2025-05-14",
+  "priority": "urgent",
+  "note": [
+    {
+      "text": "Wird weiterhin benötigt, bitte um Verlängerung. Bitte um schnelle Bearbeitung",
+      "time": "2025-05-14T08:22:05+02:00"
+    }
+  ]
+}

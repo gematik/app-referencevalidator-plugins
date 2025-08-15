@@ -1,0 +1,57 @@
+{
+  "resourceType": "Patient",
+  "id": "Example-Patient",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-servicerequest/StructureDefinition/erp-service-request-patient"
+    ]
+  },
+  "name": [
+    {
+      "use": "official",
+      "family": "Königsstein",
+      "_family": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-name",
+            "valueString": "Königsstein"
+          }
+        ]
+      },
+      "given": [
+        "Ludger"
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://fhir.de/sid/gkv/kvid-10",
+      "value": "X234567890"
+    }
+  ],
+  "address": [
+    {
+      "line": [
+        "Musterstr. 1"
+      ],
+      "_line": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+              "valueString": "1"
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+              "valueString": "Musterstr."
+            }
+          ]
+        }
+      ],
+      "type": "both",
+      "city": "Berlin",
+      "postalCode": "10623"
+    }
+  ],
+  "birthDate": "1935-06-22"
+}
