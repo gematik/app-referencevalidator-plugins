@@ -2,6 +2,11 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## PluginBuilder 2.0.0 (2025-11)
+
+### changed
+- Updated dependencies and plugins
+
 ## KIM-Nachrichten für das E-Rezept 1.2.0 (2025-08)
 
 ### added

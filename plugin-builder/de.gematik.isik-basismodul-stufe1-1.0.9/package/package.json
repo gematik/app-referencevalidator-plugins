@@ -1,0 +1,12 @@
+{
+  "name": "de.gematik.isik-basismodul-stufe1",
+  "version": "1.0.9",
+  "description": "Informationstechnische Systeme im Krankenhaus",
+  "author": "francoispeverali2",
+  "fhirVersions": [
+    "4.0.1"
+  ],
+  "dependencies": {
+    "de.basisprofil.r4": "1.4.0"
+  }
+}

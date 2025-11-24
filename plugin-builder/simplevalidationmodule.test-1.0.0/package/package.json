@@ -1,0 +1,14 @@
+{
+  "name": "simplevalidatonmodule.test",
+  "version": "1.0.0",
+  "description": "Minimales Package zum Testen vom SimpleValidationModule",
+  "author": "gematik",
+  "fhirVersions": [
+    "4.0.1"
+  ],
+  "devDependencies": null,
+  "canonicals": null,
+  "dependencies": {
+    "hl7.fhir.r4.core": "4.0.1"
+  }
+}
