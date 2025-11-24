@@ -1,0 +1,13 @@
+{
+  "name": "kbv.basis",
+  "version": "1.2.0",
+  "description": "KBV-Basis-Profile V 1.2.0",
+  "author": "maximilianreith",
+  "fhirVersions": [
+    "4.0.1"
+  ],
+  "dependencies": {
+    "de.basisprofil.r4": "0.9.13",
+    "hl7.fhir.r4.core": "4.0.1"
+  }
+}
