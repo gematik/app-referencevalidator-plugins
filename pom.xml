@@ -4,7 +4,7 @@
     <groupId>de.gematik.refv.plugins</groupId>
     <artifactId>parent-pom</artifactId>
     <packaging>pom</packaging>
-    <version>2.0.1</version>
+    <version>2.0.2-SNAPSHOT</version>
     <name>gematik Referenzvalidator Plugins</name>
     <description>Plugin-Repository des gematik Referenzvalidators</description>
     <url>https://github.com/gematik/app-referencevalidator-plugins</url>
@@ -287,25 +287,6 @@
 
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>build-helper-maven-plugin</artifactId>
-                    <version>${version.build.helper}</version>
-                    <executions>
-                        <execution>
-                            <id>remove-old-artifacts</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>remove-project-artifact</goal>
-                            </goals>
-                            <configuration>
-                                <removeAll>true</removeAll><!-- remove all versions of built artifacts
-									including all versions. Install phase will regenerate -->
-                                <failOnError>false</failOnError>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>buildnumber-maven-plugin</artifactId>

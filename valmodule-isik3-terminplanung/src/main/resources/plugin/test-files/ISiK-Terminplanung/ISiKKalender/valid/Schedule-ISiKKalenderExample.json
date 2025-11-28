@@ -21,20 +21,11 @@
     {
       "coding": [
         {
-          "code": "010",
-          "system": "urn:oid:1.2.276.0.76.5.114"
+          "code": "ALLG",
+          "system": "http://ihe-d.de/CodeSystems/AerztlicheFachrichtungen"
         }
       ]
-    },
-    {
-      "coding": [
-          {
-              "system": "http://fhir.de/CodeSystem/dkgev/Fachabteilungsschluessel-erweitert",
-              "code": "2800",
-              "display": "Neurologie"
-          }
-      ]
-  }
+    }
   ],
   "actor": [
     {

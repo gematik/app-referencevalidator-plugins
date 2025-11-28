@@ -33,11 +33,11 @@ Die Plugins können unter [Releases](https://github.com/gematik/app-referenceval
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Terminplanung)      | 1.4         | isik2-terminplanung       |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Vitalparameter)     | 1.1         | isik2-vitalparameter      |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Medikation)         | 2.0         | isik2-medikation          |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Basis)              | 1.0         | isik3-basismodul          |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Terminplanung)      | 1.1         | isik3-terminplanung       |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Vitalparameter)     | 1.0         | isik3-vitalparameter      |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Medikation)         | 1.0         | isik3-medikation          |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Dokumentenaustausch) | 2.0         | isik3-dokumentenaustausch |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Basis)              | 1.1.0       | isik3-basismodul          |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Terminplanung)      | 1.1.1       | isik3-terminplanung       |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Vitalparameter)     | 1.0.1       | isik3-vitalparameter      |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Medikation)         | 1.0.1       | isik3-medikation          |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Dokumentenaustausch) | 2.0.1       | isik3-dokumentenaustausch |
 | Informationstechnische Systeme in der Pflege (ISIP) Stufe 1                                | 1.1         | isip1                     |
 | DiGA Toolkit                                                                               | 0.10        | diga                      |
 | VSDM-Ersatzbescheinigung                                                                   | 1.0         | eeb                       |

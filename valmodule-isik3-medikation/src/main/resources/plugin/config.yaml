@@ -2,14 +2,13 @@ configSpecVersion: "2.0"
 id: "isik3-medikation"
 author: "gematik GmbH"
 description: "Referenzvalidator-Plugin für die Spezifikation 'Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Medikation)'"
-specUrl: "https://simplifier.net/packages/de.gematik.isik-medikation/3.0.4"
+specUrl: "https://simplifier.net/packages/de.gematik.isik-medikation/3.0.6"
 version: "${project.version}"
 validation:
   dependencyLists:
-    - fhirPackage: "de.gematik.isik-medikation#3.0.4"
+    - fhirPackage: "de.gematik.isik-medikation#3.0.6"
       dependencies:
-        - "kbv.basis#1.2.0"
-        - "de.basisprofil.r4#0.9.13"
+        - "de.gematik.isik-basismodul#3.0.8"
         - "de.medizininformatikinitiative.kerndatensatz.medikation#1.0.11"
   errorOnUnknownProfile: "false"
   anyExtensionsAllowed: "true"
