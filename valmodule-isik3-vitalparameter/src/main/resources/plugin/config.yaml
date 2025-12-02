@@ -2,13 +2,11 @@ configSpecVersion: "2.0"
 id: "isik3-vitalparameter"
 author: "gematik GmbH"
 description: "Referenzvalidator-Plugin für die Spezifikation 'Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Vitalparameter)'"
-specUrl: "https://simplifier.net/packages/de.gematik.isik-vitalparameter/3.0.7"
+specUrl: "https://simplifier.net/packages/de.gematik.isik-vitalparameter/3.1.1"
 version: "${project.version}"
 validation:
   dependencyLists:
-    - fhirPackage: "de.gematik.isik-vitalparameter#3.0.7"
-      dependencies:
-        - "de.gematik.isik-basismodul#3.0.8"
+    - fhirPackage: "de.gematik.isik-vitalparameter#3.1.1"
   errorOnUnknownProfile: "false"
   anyExtensionsAllowed: "true"
   ignoredCodeSystems:

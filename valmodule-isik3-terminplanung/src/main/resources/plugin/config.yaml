@@ -2,13 +2,11 @@ configSpecVersion: "2.0"
 id: "isik3-terminplanung"
 author: "gematik GmbH"
 description: "Referenzvalidator-Plugin für die Spezifikation 'Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Terminplanung)'"
-specUrl: "https://simplifier.net/packages/de.gematik.isik-terminplanung/3.0.9"
+specUrl: "https://simplifier.net/packages/de.gematik.isik-terminplanung/3.1.1"
 version: "${project.version}"
 validation:
   dependencyLists:
-    - fhirPackage: "de.gematik.isik-terminplanung#3.0.9"
-      dependencies:
-        - "de.gematik.isik-basismodul#3.0.8"
+    - fhirPackage: "de.gematik.isik-terminplanung#3.1.1"
       validationMessageTransformations:
         - severityLevelFrom: "error"
           severityLevelTo: "information"
