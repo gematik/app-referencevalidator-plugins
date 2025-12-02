@@ -2,13 +2,12 @@ configSpecVersion: "2.0"
 id: "isik3-dokumentenaustausch"
 author: "gematik GmbH"
 description: "Referenzvalidator-Plugin für die Spezifikation 'Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Dokumentenaustausch)'"
-specUrl: "https://simplifier.net/packages/de.gematik.isik-dokumentenaustausch/3.0.5"
+specUrl: "https://simplifier.net/packages/de.gematik.isik-dokumentenaustausch/3.1.1"
 version: "${project.version}"
 validation:
   dependencyLists:
-    - fhirPackage: "de.gematik.isik-dokumentenaustausch#3.0.5"
+    - fhirPackage: "de.gematik.isik-dokumentenaustausch#3.1.1"
       dependencies:
-        - "de.gematik.isik-basismodul#3.0.7"
         - "de.gematik.isik3-dokumentenaustausch-terminology#1.0.0"
       validationMessageTransformations:
         - severityLevelFrom: "error"
