@@ -608,6 +608,7 @@
                 <module>valmodule-isik3-medikation</module>
                 <module>valmodule-isik3-terminplanung</module>
                 <module>valmodule-isik3-vitalparameter</module>
+                <module>valmodule-isik5</module>
                 <module>valmodule-epa3-basic</module>
                 <module>valmodule-epa3-medication</module>
             </modules>
