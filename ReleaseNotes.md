@@ -2,6 +2,11 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## ISIK5 Basismodul 1.0.0 (2025-12)
+
+### added
+- Plugin for ISIK FHIR Package 5.1.1, as unified package for Basismodul, Dokumentenaustausch, Medikation, Terminplanung and Vitalparameter.
+
 ## ISIK3 Basismodul 1.1.1 (2025-12)
 
 ### changed

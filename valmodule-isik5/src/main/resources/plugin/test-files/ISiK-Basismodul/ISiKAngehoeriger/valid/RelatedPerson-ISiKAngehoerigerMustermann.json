@@ -1,0 +1,54 @@
+{
+  "resourceType": "RelatedPerson",
+  "id": "ISiKAngehoerigerMustermann",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/isik/StructureDefinition/ISiKAngehoeriger"
+    ]
+  },
+  "patient": {
+    "reference": "Patient/PatientinMusterfrau"
+  },
+  "relationship": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+          "code": "MTH",
+          "display": "mother"
+        }
+      ],
+      "text": "Mutter"
+    }
+  ],
+  "name": [
+    {
+      "use": "official",
+      "family": "Mustermann",
+      "given": [
+        "Maxine"
+      ],
+      "prefix": [
+        "Frau"
+      ]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "+49-89-1234567",
+      "use": "home"
+    }
+  ],
+  "address": [
+    {
+      "type": "both",
+      "line": [
+        "Milchstr. 42"
+      ],
+      "city": "Beispielstadt",
+      "postalCode": "78143",
+      "country": "DE"
+    }
+  ]
+}
