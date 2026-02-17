@@ -1,1 +1,0 @@
-Ein HAPI-Bug in den Versionen bis mind. 7.6.0 in der Verarbeitung von fragment-CodeSystemen führt dazu, dass die Einordnung von Codes aus diesen Systemen in Slices nicht funktioniert. Als Workaround wird der Typ des CodeSystems auf "complete" gesetzt.
