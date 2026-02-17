@@ -1,3 +1,0 @@
-de.gematik.isik-terminplanung-2.0.5:
-- StructureDefinition-ISiKKalender.json:
-    - Schedule.extension:KalenderName verschoben von der 4. an die 2. Position, sonst kann HAPI kein Snapshot generieren

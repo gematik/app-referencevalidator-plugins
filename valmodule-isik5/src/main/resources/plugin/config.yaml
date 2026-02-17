@@ -1,12 +1,25 @@
 configSpecVersion: "2.0"
 id: "isik5"
 author: "gematik GmbH"
-description: "Referenzvalidator-Plugin für die Spezifikation 'Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Basis)'"
+description: "Referenzvalidator-Plugin für die Spezifikation 'Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 5'"
 specUrl: "https://simplifier.net/packages/de.gematik.isik/5.1.1"
 version: "${project.version}"
 validation:
   dependencyLists:
     - fhirPackage: "de.gematik.isik#5.1.1"
+      validationMessageTransformations:
+        - severityLevelFrom: "error"
+          severityLevelTo: "information"
+          locatorString: "urn:ihe:iti:xds:2017:mimeTypeSufficient"
+          messageId: "Terminology_TX_Confirm_4a"
+        - severityLevelFrom: "error"
+          severityLevelTo: "information"
+          locatorString: "urn:ihe:iti:xds:2017:mimeTypeSufficient"
+          messageId: "Terminology_TX_NoValid_12"
+        - severityLevelFrom: "error"
+          severityLevelTo: "information"
+          locatorString: "urn:ihe:iti:xds:2017:mimeTypeSufficient"
+          messageId: "Terminology_PassThrough_TX_Message"
   errorOnUnknownProfile: "false"
   anyExtensionsAllowed: "true"
   ignoredCodeSystems:
@@ -15,6 +28,7 @@ validation:
     - "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
     - "http://fhir.de/CodeSystem/bfarm/atc"
     - "http://fhir.de/CodeSystem/bfarm/ops"
+    - "http://dvmd.de/fhir/CodeSystem/kdl"
   ignoredValueSets:
     - "https://gematik.de/fhir/isik/ValueSet/ProzedurenCodesSCT" # Erfordert eine Expansion von SNOMED-CT (aktuell nicht implementiert)
     - "https://gematik.de/fhir/isik/ValueSet/DiagnosesSCT"
@@ -22,3 +36,4 @@ validation:
     - "https://gematik.de/fhir/isik/ValueSet/ISiKTerminPriority" # Erfordert eine Expansion von SNOMED-CT (aktuell nicht implementiert)
     - "http://fhir.de/ValueSet/bfarm/ops" # Das Code System ist als FHIR nicht vorhanden
     - "https://gematik.de/fhir/isik/ValueSet/SctRouteOfAdministration"
+    - "http://dvmd.de/fhir/ValueSet/kdl" # Erfordert eine Expansion (aktuell nicht implementiert)
