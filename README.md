@@ -31,10 +31,6 @@ werden.
 
 | **Plugin**                                                                                       | **Version** | **ID**                    |
 |--------------------------------------------------------------------------------------------------|-------------|---------------------------|
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Basis)                    | 2.1         | isik2-basismodul          |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Terminplanung)            | 1.4         | isik2-terminplanung       |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Vitalparameter)           | 1.1         | isik2-vitalparameter      |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 2 (Modul Medikation)               | 2.0         | isik2-medikation          |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Basis)                    | 1.1.1       | isik3-basismodul          |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Terminplanung)            | 1.2.0       | isik3-terminplanung       |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Vitalparameter)           | 1.1.0       | isik3-vitalparameter      |
@@ -69,7 +65,7 @@ benötigt werden; eine Lösung ist geplant, hat aber aktuell keine Priorität.
 
 #### ISIK5
 
-Abweichend vom allgemeinen Prüfumfang verhalten sich das ISIK5-Plugin wie folgt:
+Abweichend vom allgemeinen Prüfumfang verhaltet sich das Plugin wie folgt:
 
 - Codes aus den CodeSystemen `http://snomed.info/sct`, `http://fhir.de/CodeSystem/bfarm/icd-10-gm`,
   `http://fhir.de/CodeSystem/bfarm/atc`, `http://fhir.de/CodeSystem/ifa/pzn`, `http://fhir.de/CodeSystem/bfarm/ops` und
@@ -97,21 +93,6 @@ Abweichend vom allgemeinen Prüfumfang verhalten sich die ISIK3-Plugins wie folg
   gematik.kbv.sfhir.cs.vs im Plugin
 - Dokumentenaustausch: Aus Performancegründen werden derzeit keine Codes und ValueSets aus dem Terminologiepackage
   `hl7.terminology.r4` validiert
-
-#### ISIK2
-
-Abweichend vom allgemeinen Prüfumfang verhalten sich die ISIK2-Plugins wie folgt:
-
-- Codes aus den CodeSystemen `http://snomed.info/sct`, `http://fhir.de/CodeSystem/bfarm/icd-10-gm`,
-  `http://fhir.de/CodeSystem/bfarm/atc`, `http://fhir.de/CodeSystem/ifa/pzn` und `http://fhir.de/CodeSystem/bfarm/ops`
-  werden nicht validiert
-- Folgende ValueSets werden nicht validiert: `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/ProzedurenCodesSCT`,
-  `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/DiagnosesSCT`,
-  `https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/ProzedurenKategorieSCT`,
-  `https://gematik.de/fhir/isik/v2/Terminplanung/ValueSet/ISiKTerminPriority`,
-  `https://gematik.de/fhir/isik/v2/Medikation/ValueSet/SctRouteOfAdministration` und `http://fhir.de/ValueSet/bfarm/ops`
-- Validierung ausgewählter [KBV-Schlüsseltabellen](https://applications.kbv.de/overview.xhtml), siehe Package
-  gematik.kbv.sfhir.cs.vs im Plugin
 
 #### DIGA
 
