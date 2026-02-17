@@ -69,7 +69,7 @@ benötigt werden; eine Lösung ist geplant, hat aber aktuell keine Priorität.
 
 #### ISIK5
 
-Abweichend vom allgemeinen Prüfumfang verhalten sich die ISIK3-Plugins wie folgt:
+Abweichend vom allgemeinen Prüfumfang verhalten sich das ISIK5-Plugin wie folgt:
 
 - Codes aus den CodeSystemen `http://snomed.info/sct`, `http://fhir.de/CodeSystem/bfarm/icd-10-gm`,
   `http://fhir.de/CodeSystem/bfarm/atc`, `http://fhir.de/CodeSystem/ifa/pzn`, `http://fhir.de/CodeSystem/bfarm/ops` und
