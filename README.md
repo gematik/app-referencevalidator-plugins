@@ -42,6 +42,7 @@ werden.
 | VSDM-Ersatzbescheinigung                                                                         | 1.0         | eeb                       |
 | Elektronische Patientenakte Basisfunktionalitäten                                                | 1.1.0       | epa3-basic                |
 | Elektronische Patientenakte Medication                                                           | 1.4.0       | epa3-medication           |
+| Elektronische Rezept für die EU (ERP-EU)                                                         | 1.0.0       | erp-eu                    |
 | [KIM-Nachrichten für das E-Rezept](https://gemspec.gematik.de/ig/fhir/erp-servicerequest/1.2.0/) | 1.2.0       | erp-servicerequest        |
 
 Die Bezeichnung in der Spalte `ID` dient dem Aufruf des Plugins aus der Referenzvalidator-Konsolenanwendung.
@@ -128,6 +129,18 @@ Abweichend vom allgemeinen Prüfumfang verhält sich das Plugin wie folgt:
     - "https://terminologieserver.bfarm.de/fhir/CodeSystem/arzneimittel-referenzdaten-pharmazeutisches-produkt"
 
 Zur erfolgreichen Validierung muss zusätzlich die Abgängikeit `kbv.all.st#1.24.0` eingebunden werden.
+
+#### E-Rezept für die EU (ERP-EU)
+
+bweichend vom allgemeinen Prüfumfang verhält sich das EPA-Medication-Plugin wie folgt:
+
+- Codes aus den folgenden Codesystemen werden nicht validiert:
+    - `http://fhir.de/CodeSystem/bfarm/atc`
+    - `http://fhir.de/CodeSystem/ifa/pzn`
+
+_Zusatzinformation:_ Das Plugin lädt derzeit große HL7-Terminologiepakete (je ~5 MB), was die Paketgröße und damit
+die Validierungsdauer deutlich erhöht, obwohl vermutlich nur wenige enthaltene ValueSets/CodeSystems tatsächlich
+benötigt werden; eine Lösung ist geplant, hat aber aktuell keine Priorität.
 
 ## Nutzung mit dem Referenzvalidator
 
@@ -241,7 +254,7 @@ Testinstanzen hin.
 Im Ordner `src-packages` können FHIR-Packages
 im [FHIR Package Standard](https://confluence.hl7.org/display/FHIR/NPM+Package+Specification) hinterlegt werden. Die
 hier hinterlegten FHIR-Packages werden zusätzlich zu den Abhängigkeiten des Plugin-Pakets (siehe
-`validation.fhirPackage`) für die Validaierung von FHIR-Ressourcen verwendet.
+`validation.fhirPackage`) für die Validierung von FHIR-Ressourcen verwendet.
 
 #### Patches für die Quell-FHIR-Packages
 

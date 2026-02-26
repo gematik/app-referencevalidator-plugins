@@ -94,7 +94,7 @@
         </sonar.junit.reportPaths>
         <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
         <version.maven-gpg-plugin>3.2.8</version.maven-gpg-plugin>
-        <version.referencevalidator>2.13.0</version.referencevalidator>
+        <version.referencevalidator>2.14.1</version.referencevalidator>
         <version.snapshot-generator>0.6.0</version.snapshot-generator>
         <checker-qual.version>3.53.1</checker-qual.version>
         <commons-codec.version>1.21.0</commons-codec.version>
@@ -615,6 +615,7 @@
                 <module>valmodule-isik5</module>
                 <module>valmodule-epa3-basic</module>
                 <module>valmodule-epa3-medication</module>
+                <module>valmodule-erp-eu</module>
             </modules>
         </profile>
 

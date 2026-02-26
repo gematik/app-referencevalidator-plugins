@@ -1,0 +1,19 @@
+configSpecVersion: "2.0"
+id: "erp-eu"
+author: "gematik GmbH"
+description: "Referenzvalidator-Plugin für die Spezifikation 'Elektronische Rezept - Erweiterung für die Europäische Union (ePA-EU)'"
+specUrl: "https://simplifier.net/packages/de.gematik.erezept.eu/1.1.1"
+version: "${project.version}"
+validation:
+  dependencyLists:
+    - fhirPackage: "de.gematik.erezept.eu#1.1.1"
+      dependencies:
+        - "kbv.all.st#1.34.0"
+        - "hl7.fhir.uv.xver-r5.r4#0.0.1-snapshot-2"
+  errorOnUnknownProfile: "false"
+  anyExtensionsAllowed: "true"
+  ignoredCodeSystems:
+    - "http://fhir.de/CodeSystem/ifa/pzn"
+    - "http://fhir.de/CodeSystem/bfarm/atc"
+  ignoredValueSets:
+    - "http://hl7.org/fhir/uv/ips/ValueSet/medicine-doseform" # Erfordert eine Expansion (aktuell nicht implementiert)
