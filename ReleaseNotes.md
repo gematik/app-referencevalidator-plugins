@@ -2,6 +2,12 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## ERP-EU 1.0.1 (2026-02)
+
+### changed
+
+- Upgraded Package Version de.gematik.erp.eu to 1.1.2
+
 ## ERP-EU 1.0.0 (2026-02)
 
 ### added
