@@ -42,7 +42,7 @@ werden.
 | VSDM-Ersatzbescheinigung                                                                         | 1.0         | eeb                       |
 | Elektronische Patientenakte Basisfunktionalitäten                                                | 1.1.0       | epa3-basic                |
 | Elektronische Patientenakte Medication                                                           | 1.4.0       | epa3-medication           |
-| Elektronische Rezept für die EU (ERP-EU)                                                         | 1.0.0       | erp-eu                    |
+| Elektronische Rezept für die EU (ERP-EU)                                                         | 1.0.1       | erp-eu                    |
 | [KIM-Nachrichten für das E-Rezept](https://gemspec.gematik.de/ig/fhir/erp-servicerequest/1.2.0/) | 1.2.0       | erp-servicerequest        |
 
 Die Bezeichnung in der Spalte `ID` dient dem Aufruf des Plugins aus der Referenzvalidator-Konsolenanwendung.
