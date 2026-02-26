@@ -2,6 +2,12 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## ERP-EU 1.0.0 (2026-02)
+
+### added
+
+- Plugin for the FHIR package de.gematik.erp.eu 1.1.1
+
 ## ISIK5 1.0.1 (2026-02)
 
 ### changed
@@ -9,7 +15,7 @@
 - Exclusion of KDL ValueSet and CodeSystem 2025 from validation, due to the presence of two different versions of the
   same ValueSet/CodeSystem (one with and one without definitions) in the FHIR package. The issue is caused by a problem
   in the FHIR package, which will be fixed in a future release.
-
+  
 ## PluginBuilder 2.0.2 (2026-02)
 
 ### changed
