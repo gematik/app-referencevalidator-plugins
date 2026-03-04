@@ -2,6 +2,18 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## ePA Basic 1.2.0 (2026-03)
+
+### added
+
+- Added support for the [Simplifier 1.3.0 FHIR package](https://simplifier.net/packages/de.gematik.epa/1.3.0) and [Implementation Guide for 1.3.0](https://gemspec.gematik.de/ig/fhir/epa/1.3.0/).
+
+## ePA Medication 1.5.0 (2026-03)
+
+### added
+
+- Added support for the [Simplifier 1.3.0 FHIR package](https://simplifier.net/packages/de.gematik.epa.medication/1.3.0) and [Implementation Guide for 1.3.0](https://gemspec.gematik.de/ig/fhir/epa-medication/1.3.0/).
+
 ## ERP-EU 1.0.1 (2026-02)
 
 ### changed

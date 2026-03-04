@@ -14,7 +14,7 @@
         "coding": [
           {
             "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-ms-operation-outcome-details",
-            "code": "MEDICATIONSVC_NO_VALID_STRUCTURE",
+            "code": "MEDSVC_NO_VALID_STRUCTURE",
             "display": "Invalid Data Structure in Medication Service"
           }
         ]

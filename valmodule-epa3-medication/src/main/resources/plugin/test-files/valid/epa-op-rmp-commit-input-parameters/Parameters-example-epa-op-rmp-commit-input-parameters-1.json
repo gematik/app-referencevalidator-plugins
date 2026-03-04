@@ -1,0 +1,11 @@
+{
+  "resourceType" : "Parameters",
+  "id" : "example-epa-op-rmp-commit-input-parameters-1",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-rmp-commit-input-parameters|1.3.0"]
+  },
+  "parameter" : [{
+    "name" : "acknowledgedChronologyId",
+    "valueId" : "b467ce05-e0e5-4d71-9a0b-d824dbb492ef"
+  }]
+}

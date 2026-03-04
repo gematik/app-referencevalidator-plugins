@@ -1,0 +1,92 @@
+{
+  "resourceType" : "Medication",
+  "id" : "1254591a-dd2d-4d17-b8f8-ee3155da0699",
+  "meta" : {
+    "versionId" : "2",
+    "lastUpdated" : "2025-10-19T14:43:33.244Z",
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.3.0"]
+  },
+  "extension" : [{
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension",
+    "valueIdentifier" : {
+      "system" : "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+      "value" : "160.112.925.848.156.74_20251019"
+    }
+  },
+  {
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+    "valueCoding" : {
+      "system" : "http://snomed.info/sct",
+      "code" : "763158003",
+      "display" : "Medicinal product (product)"
+    }
+  },
+  {
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+    "valueCoding" : {
+      "system" : "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+      "code" : "00"
+    }
+  },
+  {
+    "url" : "http://fhir.de/StructureDefinition/normgroesse",
+    "valueCode" : "N1"
+  },
+  {
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+    "valueBoolean" : false
+  }],
+  "identifier" : [{
+    "system" : "https://gematik.de/fhir/epa-medication/sid/epa-medication-unique-identifier",
+    "value" : "F030A155EEC02D14FC2E82C227267F3AF6A583D5D29D644B7F55A5D32321FA90"
+  },
+  {
+    "system" : "https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier",
+    "value" : "56b51cb2-6503-43c5-85ba-d709a0cbb3f2.112.925.848.156.74"
+  }],
+  "code" : {
+    "coding" : [{
+      "system" : "http://fhir.de/CodeSystem/ifa/pzn",
+      "code" : "17550609"
+    }],
+    "text" : "COTRIM K-ratiopharm 200mg/5ml + 40mg/5ml Susp.z.E."
+  },
+  "status" : "active",
+  "form" : {
+    "coding" : [{
+      "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+      "code" : "SUE"
+    }]
+  },
+  "amount" : {
+    "numerator" : {
+      "extension" : [{
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+        "valueString" : "100"
+      }],
+      "unit" : "ml"
+    },
+    "denominator" : {
+      "value" : 1
+    }
+  },
+  "ingredient" : [{
+    "itemCodeableConcept" : {
+      "coding" : [{
+        "system" : "http://fhir.de/CodeSystem/ask",
+        "code" : "02895"
+      }],
+      "text" : "Sulfamethoxazol"
+    },
+    "strength" : {
+      "numerator" : {
+        "value" : 200,
+        "unit" : "mg"
+      },
+      "denominator" : {
+        "value" : 5,
+        "unit" : "ml"
+      }
+    }
+  }]
+}

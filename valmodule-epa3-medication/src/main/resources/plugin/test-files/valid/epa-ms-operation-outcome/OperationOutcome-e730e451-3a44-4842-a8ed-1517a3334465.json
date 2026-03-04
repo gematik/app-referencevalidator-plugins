@@ -14,7 +14,7 @@
         "coding": [
           {
             "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-ms-operation-outcome-details",
-            "code": "MEDICATIONSVC_PARAMETERS_REFERENCE_NO_EXIST",
+            "code": "MEDSVC_PARAMETERS_REFERENCE_NO_EXIST",
             "display": "Unresolved Reference in Parameters"
           }
         ]

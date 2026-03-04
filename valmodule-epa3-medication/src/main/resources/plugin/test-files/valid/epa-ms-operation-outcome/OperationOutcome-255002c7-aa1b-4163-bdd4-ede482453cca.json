@@ -14,7 +14,7 @@
         "coding": [
           {
             "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-ms-operation-outcome-details",
-            "code": "MEDICATIONSVC_OPERATION_SUCCESS",
+            "code": "MEDSVC_OPERATION_SUCCESS",
             "display": "Operation Successfully Completed in Medication Service"
           }
         ]

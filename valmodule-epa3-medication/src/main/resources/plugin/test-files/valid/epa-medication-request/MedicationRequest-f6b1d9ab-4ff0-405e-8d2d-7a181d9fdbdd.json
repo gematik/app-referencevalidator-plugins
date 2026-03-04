@@ -1,0 +1,78 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id" : "f6b1d9ab-4ff0-405e-8d2d-7a181d9fdbdd",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-request|1.3.0"]
+  },
+  "extension" : [{
+    "extension" : [{
+      "url" : "indicator",
+      "valueBoolean" : false
+    }],
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/multiple-prescription-extension"
+  },
+  {
+    "extension" : [{
+      "url" : "off-label",
+      "valueBoolean" : false
+    },
+    {
+      "url" : "childbearing-potential",
+      "valueBoolean" : true
+    },
+    {
+      "url" : "security-compliance",
+      "valueBoolean" : true
+    },
+    {
+      "url" : "hand-out-information-material",
+      "valueBoolean" : true
+    },
+    {
+      "url" : "declaration-of-expertise",
+      "valueBoolean" : true
+    }],
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/teratogenic-extension"
+  }],
+  "identifier" : [{
+    "system" : "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+    "value" : "166.112.925.848.156.74_20251019"
+  },
+  {
+    "system" : "https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier",
+    "value" : "f6b1d9ab-4ff0-405e-8d2d-7a181d9fdbdd_166.112.925.848.156.74"
+  }],
+  "status" : "completed",
+  "intent" : "filler-order",
+  "medicationReference" : {
+    "reference" : "Medication/1412aa4f-a9ed-45f2-8916-063fee7eb025"
+  },
+  "subject" : {
+    "identifier" : {
+      "system" : "http://fhir.de/sid/gkv/kvid-10",
+      "value" : "X110411319"
+    }
+  },
+  "authoredOn" : "2025-10-19",
+  "requester" : {
+    "reference" : "PractitionerRole/73a551f8-d8cd-4b44-823d-ab5f8aeab1aa"
+  },
+  "basedOn" : [{
+    "identifier" : {
+      "system" : "https://gematik.de/fhir/sid/emp-identifier",
+      "value" : "00000000-0000-0000-0000-000000000000"
+    }
+  }],
+  "dosageInstruction" : [{
+    "text" : "morgens 1 Stück"
+  }],
+  "dispenseRequest" : {
+    "quantity" : {
+      "value" : 1,
+      "unit" : "Packung"
+    }
+  },
+  "substitution" : {
+    "allowedBoolean" : true
+  }
+}

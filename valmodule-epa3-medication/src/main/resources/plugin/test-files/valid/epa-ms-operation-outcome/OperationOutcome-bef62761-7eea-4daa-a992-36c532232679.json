@@ -14,7 +14,7 @@
         "coding": [
           {
             "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-ms-operation-outcome-details",
-            "code": "MEDICATIONSVC_PRESCRIPTION_STATUS",
+            "code": "MEDSVC_PRESCRIPTION_STATUS",
             "display": "Operation Not Permitted on Current Prescription Status"
           }
         ]

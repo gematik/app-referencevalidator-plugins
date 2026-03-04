@@ -1,0 +1,84 @@
+{
+  "resourceType" : "MedicationStatement",
+  "id" : "f29f1d0c-be05-4b0d-a335-3e508da39c0c",
+  "meta" : {
+    "versionId" : "2",
+    "lastUpdated" : "2026-11-01T15:43:33.244Z",
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-statement|1.3.0"]
+  },
+  "text" : {
+    "status" : "extensions",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: MedicationStatement f29f1d0c-be05-4b0d-a335-3e508da39c0c</b></p><a name=\"f29f1d0c-be05-4b0d-a335-3e508da39c0c\"> </a><a name=\"hcf29f1d0c-be05-4b0d-a335-3e508da39c0c\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">version: 2; Last updated: 2026-11-01 15:43:33+0000</p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-epa-medication-statement.html\">EPA MedicationStatementversion: null1.3.0)</a></p></div><p><b>RxPrescriptionProcessIdentifierExtension</b>: <code>https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier</code>/160.100.000.000.007.24_20261101</p><p><b>ContextExtension</b>: PRESCRIPTION</p><p><b>Extension Definition for MedicationStatement.renderedDosageInstruction for Version 5.0</b>: </p><div><p>1-0-0-0 Stück</p>\n</div><blockquote><p><b>Generated Dosage Instructions Meta</b></p><ul><li>algorithmVersion: 1.0.1</li><li>language: de-DE</li></ul></blockquote><p><b>basedOn</b>: <a href=\"MedicationRequest-266620a9-2c26-41c1-b0cb-a10947b867f5.html\">MedicationRequest: extension = EMP,akuten Behandlung von Migräneanfällen mit und ohne Aura,Bitte schützen Sie das Arzneimittel vor hohen Temperaturen und direkter Sonneneinstrahlung.,2026-12-01 --&gt; 2027-02-01,-&gt;Medication 06313728,1-0-0-0 Stück,,; identifier = https://gematik.de/fhir/sid/emp-identifier#266620a9-2c26-41c1-b0cb-a10947b867f5; status = active; intent = plan; medication[x] = -&gt;Medication 06313728; authoredOn = 2026-11-01; note = Hinweis für den LE</a></p><p><b>status</b>: Unknown</p><p><b>medication</b>: <a href=\"Medication-fc7b28e8-05ac-4ac8-86d7-7677d9c6134e.html\">Medication 06313728</a></p><p><b>subject</b>: Identifier: NamingSystemKVID/X110411319</p><p><b>effective</b>: 2025-11-01 --&gt; (ongoing)</p><p><b>dateAsserted</b>: 2026-11-01</p><p><b>derivedFrom</b>: </p><ul><li><a href=\"MedicationRequest-4dd6f19d-002c-44ac-ae2f-3c9d08ad35b8.html\">MedicationRequest: extension = ,1-0-0-0 Stück,; identifier = https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier#160.100.000.000.007.24_20250425,https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier#5f4bc41c-480e-4ee4-b58e-a99268c1a1d0_160.100.000.000.007.24; status = active; intent = filler-order; medication[x] = -&gt;Medication 06313728; authoredOn = 2026-11-01</a></li><li><a href=\"MedicationDispense-fa0c29e1-c4e7-4f08-91ab-598a2233867c.html\">MedicationDispense: extension = https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier#160.100.000.000.007.24_20261101; identifier = https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier#1da91bd3-d5cb-459b-a270-32fad7d5d5d5_160.100.000.000.007.24; status = completed; medication[x] = -&gt;Medication 06313728; whenHandedOver = 2026-11-01</a></li></ul><blockquote><p><b>dosage</b></p><p><b>timing</b>: Morning, Once per 1 day</p><h3>DoseAndRates</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Dose[x]</b></td></tr><tr><td style=\"display: none\">*</td><td>1 Stück<span style=\"background: LightGoldenRodYellow\"> (Details: KBV_CS_SFHIR_BMP_DOSIEREINHEIT  code1 = '1')</span></td></tr></table></blockquote></div>"
+  },
+  "extension" : [{
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension",
+    "valueIdentifier" : {
+      "system" : "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+      "value" : "160.100.000.000.007.24_20261101"
+    }
+  },
+  {
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+    "valueCode" : "PRESCRIPTION"
+  },
+  {
+    "url" : "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationStatement.renderedDosageInstruction",
+    "valueMarkdown" : "1-0-0-0 Stück"
+  },
+  {
+    "extension" : [{
+      "url" : "algorithmVersion",
+      "valueString" : "1.0.1"
+    },
+    {
+      "url" : "language",
+      "valueCode" : "de-DE"
+    }],
+    "url" : "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta"
+  }],
+  "basedOn" : [{
+    "extension" : [{
+      "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/is-emp-extension",
+      "valueBoolean" : true
+    }],
+    "reference" : "MedicationRequest/266620a9-2c26-41c1-b0cb-a10947b867f5"
+  }],
+  "status" : "unknown",
+  "medicationReference" : {
+    "reference" : "Medication/fc7b28e8-05ac-4ac8-86d7-7677d9c6134e"
+  },
+  "subject" : {
+    "identifier" : {
+      "system" : "http://fhir.de/sid/gkv/kvid-10",
+      "value" : "X110411319"
+    }
+  },
+  "effectivePeriod" : {
+    "start" : "2025-11-01"
+  },
+  "dateAsserted" : "2026-11-01",
+  "derivedFrom" : [{
+    "reference" : "MedicationRequest/4dd6f19d-002c-44ac-ae2f-3c9d08ad35b8"
+  },
+  {
+    "reference" : "MedicationDispense/fa0c29e1-c4e7-4f08-91ab-598a2233867c"
+  }],
+  "dosage" : [{
+    "timing" : {
+      "repeat" : {
+        "frequency" : 1,
+        "period" : 1,
+        "periodUnit" : "d",
+        "when" : ["MORN"]
+      }
+    },
+    "doseAndRate" : [{
+      "doseQuantity" : {
+        "value" : 1,
+        "unit" : "Stück",
+        "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
+        "code" : "1"
+      }
+    }]
+  }]
+}

@@ -1,0 +1,80 @@
+{
+  "resourceType" : "Medication",
+  "id" : "56ca34f1-a3f3-42f7-95a2-f5a6423c2031",
+  "meta" : {
+    "versionId" : "2",
+    "lastUpdated" : "2025-02-27T14:43:33.244Z",
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.3.0"]
+  },
+  "extension" : [{
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension",
+    "valueIdentifier" : {
+      "system" : "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+      "value" : "160.100.000.000.001.39_20250227"
+    }
+  },
+  {
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+    "valueCoding" : {
+      "system" : "http://snomed.info/sct",
+      "code" : "763158003",
+      "display" : "Medicinal product (product)"
+    }
+  },
+  {
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+    "valueCoding" : {
+      "system" : "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+      "code" : "00"
+    }
+  },
+  {
+    "url" : "http://fhir.de/StructureDefinition/normgroesse",
+    "valueCode" : "N3"
+  },
+  {
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+    "valueBoolean" : false
+  }],
+  "identifier" : [{
+    "system" : "https://gematik.de/fhir/epa-medication/sid/epa-medication-unique-identifier",
+    "value" : "A88662F2325484C7FF91398CACF90D38D688248B97B3624DADCD474CA3F3BBC1"
+  },
+  {
+    "system" : "https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier",
+    "value" : "33f1aed7-ecf2-4bb4-be3a-5ec375b656b8_160.100.000.000.001.39"
+  }],
+  "code" : {
+    "coding" : [{
+      "system" : "http://fhir.de/CodeSystem/ifa/pzn",
+      "code" : "05392039"
+    }],
+    "text" : "Venlafaxin - 1 A Pharma® 75mg 100 Tabl. N3"
+  },
+  "status" : "active",
+  "form" : {
+    "coding" : [{
+      "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+      "code" : "TAB"
+    }]
+  },
+  "ingredient" : [{
+    "itemCodeableConcept" : {
+      "coding" : [{
+        "system" : "http://fhir.de/CodeSystem/ask",
+        "code" : "24421"
+      }],
+      "text" : "Venlafaxin"
+    },
+    "strength" : {
+      "numerator" : {
+        "value" : 75,
+        "unit" : "mg"
+      },
+      "denominator" : {
+        "value" : 1,
+        "unit" : "Tbl."
+      }
+    }
+  }]
+}

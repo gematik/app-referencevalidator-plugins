@@ -1,0 +1,44 @@
+{
+  "resourceType": "MedicationStatement",
+  "id": "cfb84928-15d6-468c-8e17-e77f1ed44904",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2025-08-22T14:44:00.244Z",
+    "profile": [
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-statement|1.3.0"
+    ]
+  },
+  "text": {
+    "status": "extensions",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: MedicationStatement cfb84928-15d6-468c-8e17-e77f1ed44904</b></p><a name=\"cfb84928-15d6-468c-8e17-e77f1ed44904\"> </a><a name=\"hccfb84928-15d6-468c-8e17-e77f1ed44904\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">version: 2; Last updated: 2025-08-22 14:44:00+0000</p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-epa-medication-statement.html\">EPA MedicationStatementversion: null1.3.0)</a></p></div><p><b>RxPrescriptionProcessIdentifierExtension</b>: <code>https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier</code>/160.100.000.000.014.97_20250821</p><p><b>ContextExtension</b>: PRESCRIPTION</p><p><b>status</b>: Unknown</p><p><b>medication</b>: <a href=\"Medication-312d581c-f5e7-4faa-9de5-c4e1568c6db2.html\">Medication 08671219</a></p><p><b>subject</b>: Identifier: NamingSystemKVID/X110411319</p><p><b>effective</b>: 2025-08-22 --&gt; (ongoing)</p><p><b>dateAsserted</b>: 2025-08-21</p><p><b>derivedFrom</b>: </p><ul><li><a href=\"MedicationRequest-6461edff-13ec-4dc7-b9f3-aea66bcb0643.html\">MedicationRequest: extension = ; identifier = https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier#160.100.000.000.014.97_20250821,https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier#daf6b2a0-ae87-460c-9b4a-99aa6da48453_160.100.000.000.014.97; status = completed; intent = filler-order; medication[x] = -&gt;Medication 08671219; authoredOn = 2025-08-21</a></li><li><a href=\"MedicationDispense-b2911d1e-fc63-47bb-8887-63b701bc49c4.html\">MedicationDispense: extension = https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier#160.100.000.000.014.97_20250821; identifier = https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier#af53f96d-9084-4c99-ae67-b2be27fdcc2a_160.100.000.000.014.9; status = completed; medication[x] = -&gt;Medication 08671219; whenHandedOver = 2025-08-22</a></li></ul></div>"
+  },
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension",
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+        "value": "160.100.000.000.014.97_20250821"
+      }
+    },
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+      "valueCode": "PRESCRIPTION"
+    }
+  ],
+  "status": "unknown",
+  "medicationReference": {
+    "reference": "Medication/312d581c-f5e7-4faa-9de5-c4e1568c6db2"
+  },
+  "effectivePeriod": {
+    "start": "2025-08-22"
+  },
+  "dateAsserted": "2025-08-21",
+  "derivedFrom": [
+    {
+      "reference": "MedicationRequest/6461edff-13ec-4dc7-b9f3-aea66bcb0643"
+    },
+    {
+      "reference": "MedicationDispense/b2911d1e-fc63-47bb-8887-63b701bc49c4"
+    }
+  ]
+}

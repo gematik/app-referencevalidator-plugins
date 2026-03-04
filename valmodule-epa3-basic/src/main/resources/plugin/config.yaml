@@ -1,11 +1,15 @@
 configSpecVersion: "2.0"
 id: "epa3-basic"
 author: "gematik GmbH"
-description: "Referenzvalidator-Plugin für die Spezifikation der Basisfunktionalitäten der elektronischen Patientenakte"
-specUrl: "https://simplifier.net/packages/de.gematik.epa/1.0.2"
+description: "Referenzvalidator-Plugin für die Spezifikation der Basisfunktionalitäten der elektronischen Patientenakte Version 3.1.3-1"
+specUrl: "https://simplifier.net/packages/de.gematik.epa/1.3.0"
 version: "${project.version}"
 validation:
   dependencyLists:
-    - fhirPackage: "de.gematik.epa#1.0.2"
+    - fhirPackage: "de.gematik.epa#1.3.0"
   errorOnUnknownProfile: "false"
   anyExtensionsAllowed: "true"
+
+# used examples from:
+# - https://simplifier.net/packages/de.gematik.epa/1.3.0/~files
+# - https://gemspec.gematik.de/ig/fhir/epa/1.3.0/artifacts.html#beispielinstanzen

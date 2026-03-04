@@ -1,0 +1,78 @@
+{
+  "resourceType" : "MedicationStatement",
+  "id" : "f3988023-2313-4645-bd6b-f9e37cfb6fc7",
+  "meta" : {
+    "versionId" : "2",
+    "lastUpdated" : "2025-05-22T14:43:34.244Z",
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-statement|1.3.0"]
+  },
+  "text" : {
+    "status" : "extensions",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: MedicationStatement f3988023-2313-4645-bd6b-f9e37cfb6fc7</b></p><a name=\"f3988023-2313-4645-bd6b-f9e37cfb6fc7\"> </a><a name=\"hcf3988023-2313-4645-bd6b-f9e37cfb6fc7\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">version: 2; Last updated: 2025-05-22 14:43:34+0000</p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-epa-medication-statement.html\">EPA MedicationStatementversion: null1.3.0)</a></p></div><p><b>RxPrescriptionProcessIdentifierExtension</b>: <code>https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier</code>/160.100.000.000.006.24_20250520</p><p><b>ContextExtension</b>: PRESCRIPTION</p><p><b>Extension Definition for MedicationStatement.renderedDosageInstruction for Version 5.0</b>: </p><div><p>1-0-1-0 Stück</p>\n</div><blockquote><p><b>Generated Dosage Instructions Meta</b></p><ul><li>algorithmVersion: 1.0.1</li><li>language: de-DE</li></ul></blockquote><p><b>status</b>: Unknown</p><p><b>medication</b>: <a href=\"Medication-bb91cde8-0426-4f4b-a766-5d818d0605bd.html\">Medication 00814665</a></p><p><b>subject</b>: Identifier: NamingSystemKVID/X110411319</p><p><b>effective</b>: 2025-05-22 --&gt; (ongoing)</p><p><b>dateAsserted</b>: 2025-05-22</p><p><b>derivedFrom</b>: </p><ul><li><a href=\"MedicationRequest-3191d752-3adf-4c7f-848d-8d43766fed72.html\">MedicationRequest: extension = ,1-0-1-0 Stück,; identifier = https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier#160.100.000.000.006.24_20250520,https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier#bb91cde8-0426-4f4b-a766-5d818d0605bd_160.100.000.000.006.24; status = active; intent = filler-order; medication[x] = -&gt;Medication 00814665; authoredOn = 2025-05-20</a></li><li><a href=\"MedicationDispense-4e6e1623-778e-44a3-b208-8479f5339e43.html\">MedicationDispense: extension = https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier#160.100.000.000.006.24_20250520; identifier = https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier#5d8fbf7c-bdb0-44c2-95fe-423ae0404ccd_160.100.000.000.006.24; status = completed; medication[x] = -&gt;Medication 00814665; whenHandedOver = 2025-05-22</a></li></ul><blockquote><p><b>dosage</b></p><p><b>timing</b>: Morning, Evening, 2 per 1 day</p><h3>DoseAndRates</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Dose[x]</b></td></tr><tr><td style=\"display: none\">*</td><td>1 Stück<span style=\"background: LightGoldenRodYellow\"> (Details: KBV_CS_SFHIR_BMP_DOSIEREINHEIT  code1 = '1')</span></td></tr></table></blockquote></div>"
+  },
+  "extension" : [{
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension",
+    "valueIdentifier" : {
+      "system" : "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+      "value" : "160.100.000.000.006.24_20250520"
+    }
+  },
+  {
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+    "valueCode" : "PRESCRIPTION"
+  },
+  {
+    "url" : "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationStatement.renderedDosageInstruction",
+    "valueMarkdown" : "1-0-1-0 Stück"
+  },
+  {
+    "extension" : [{
+      "url" : "algorithmVersion",
+      "valueString" : "1.0.1"
+    },
+    {
+      "url" : "language",
+      "valueCode" : "de-DE"
+    }],
+    "url" : "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta"
+  }],
+  "status" : "unknown",
+  "medicationReference" : {
+    "reference" : "Medication/bb91cde8-0426-4f4b-a766-5d818d0605bd"
+  },
+  "subject" : {
+    "identifier" : {
+      "system" : "http://fhir.de/sid/gkv/kvid-10",
+      "value" : "X110411319"
+    }
+  },
+  "effectivePeriod" : {
+    "start" : "2025-05-22"
+  },
+  "dateAsserted" : "2025-05-22",
+  "derivedFrom" : [{
+    "reference" : "MedicationRequest/3191d752-3adf-4c7f-848d-8d43766fed72"
+  },
+  {
+    "reference" : "MedicationDispense/4e6e1623-778e-44a3-b208-8479f5339e43"
+  }],
+  "dosage" : [{
+    "timing" : {
+      "repeat" : {
+        "frequency" : 2,
+        "period" : 1,
+        "periodUnit" : "d",
+        "when" : ["MORN",
+        "EVE"]
+      }
+    },
+    "doseAndRate" : [{
+      "doseQuantity" : {
+        "value" : 1,
+        "unit" : "Stück",
+        "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
+        "code" : "1"
+      }
+    }]
+  }]
+}

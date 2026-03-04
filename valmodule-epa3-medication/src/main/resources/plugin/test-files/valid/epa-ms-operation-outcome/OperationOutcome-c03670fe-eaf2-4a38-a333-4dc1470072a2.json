@@ -14,7 +14,7 @@
         "coding": [
           {
             "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-ms-operation-outcome-details",
-            "code": "MEDICATIONSVC_DISPENSATION_NO_EXIST",
+            "code": "MEDSVC_DISPENSATION_NO_EXIST",
             "display": "Dispensation Not Found in Medication Service"
           }
         ]

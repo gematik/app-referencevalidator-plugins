@@ -1,0 +1,97 @@
+{
+  "resourceType" : "Parameters",
+  "id" : "example-epa-op-add-emp-entry-input-parameters-1",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-add-emp-entry-input-parameters|1.3.0"]
+  },
+  "parameter" : [{
+    "name" : "acknowledgedChronologyId",
+    "valueId" : "0b383501-f078-464b-b984-9fdb6751601b"
+  },
+  {
+    "name" : "medication",
+    "part" : [{
+      "name" : "resource",
+      "resource" : {
+        "resourceType" : "Medication",
+        "id" : "1193c409-3df4-4b55-b672-811665aaa1b7",
+        "meta" : {
+          "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/emp-medication|1.3.0"]
+        },
+        "extension" : [{
+          "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+          "valueCode" : "EMP"
+        },
+        {
+          "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+          "valueCoding" : {
+            "system" : "http://snomed.info/sct",
+            "code" : "763158003",
+            "display" : "Medicinal product (product)"
+          }
+        },
+        {
+          "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding" : {
+            "system" : "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+            "code" : "00"
+          }
+        },
+        {
+          "url" : "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode" : "N3"
+        },
+        {
+          "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean" : false
+        }],
+        "code" : {
+          "coding" : [{
+            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
+            "code" : "04351736",
+            "display" : "Benazepril AL 20mg 98 Filmtabletten N3"
+          }],
+          "text" : "Benazepril AL 20mg 98 Filmtabletten N3"
+        },
+        "status" : "active",
+        "form" : {
+          "coding" : [{
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code" : "FTA"
+          }]
+        },
+        "amount" : {
+          "numerator" : {
+            "extension" : [{
+              "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+              "valueString" : "98"
+            }],
+            "unit" : "Stück"
+          },
+          "denominator" : {
+            "value" : 1
+          }
+        },
+        "ingredient" : [{
+          "itemCodeableConcept" : {
+            "coding" : [{
+              "system" : "http://fhir.de/CodeSystem/ask",
+              "code" : "23413"
+            }],
+            "text" : "Benazepril hydrochlorid"
+          },
+          "strength" : {
+            "numerator" : {
+              "value" : 20,
+              "unit" : "mg"
+            },
+            "denominator" : {
+              "value" : 1,
+              "unit" : "Filmtbl."
+            }
+          }
+        }]
+      }
+    }]
+  }]
+}

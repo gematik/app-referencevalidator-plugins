@@ -1,0 +1,73 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id" : "ed2eeb8c-9ab6-4f4f-be9d-7e1a3784045e",
+  "meta" : {
+    "versionId" : "2",
+    "lastUpdated" : "2025-10-27T14:45:00.244Z",
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-request|1.3.0"]
+  },
+  "extension" : [{
+    "extension" : [{
+      "url" : "indicator",
+      "valueBoolean" : true
+    },
+    {
+      "url" : "counter",
+      "valueRatio" : {
+        "numerator" : {
+          "value" : 1
+        },
+        "denominator" : {
+          "value" : 4
+        }
+      }
+    },
+    {
+      "url" : "period",
+      "valuePeriod" : {
+        "start" : "2025-10-27",
+        "end" : "2025-12-31"
+      }
+    },
+    {
+      "url" : "id",
+      "valueIdentifier" : {
+        "system" : "urn:ietf:rfc:3986",
+        "value" : "urn:uuid:24e2e10d-e962-4d1c-be4f-8760e690a5f0"
+      }
+    }],
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/multiple-prescription-extension"
+  }],
+  "identifier" : [{
+    "system" : "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+    "value" : "160.100.000.000.010.12_20251027"
+  },
+  {
+    "system" : "https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier",
+    "value" : "1cbdb2cf-0578-464c-b028-6d1d1a470b02_160.100.000.000.010.12"
+  }],
+  "status" : "completed",
+  "intent" : "filler-order",
+  "medicationReference" : {
+    "reference" : "Medication/deecd514-235d-41df-a664-e3672208f410"
+  },
+  "subject" : {
+    "identifier" : {
+      "system" : "http://fhir.de/sid/gkv/kvid-10",
+      "value" : "X110411319"
+    }
+  },
+  "authoredOn" : "2025-10-27",
+  "requester" : {
+    "reference" : "PractitionerRole/73a551f8-d8cd-4b44-823d-ab5f8aeab1aa"
+  },
+  "dispenseRequest" : {
+    "quantity" : {
+      "value" : 1,
+      "unit" : "Packung"
+    }
+  },
+  "substitution" : {
+    "allowedBoolean" : false
+  }
+}

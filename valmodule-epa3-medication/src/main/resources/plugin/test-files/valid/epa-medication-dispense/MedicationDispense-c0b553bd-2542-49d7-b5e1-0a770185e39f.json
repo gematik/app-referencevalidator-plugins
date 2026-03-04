@@ -1,0 +1,54 @@
+{
+  "resourceType" : "MedicationDispense",
+  "id" : "c0b553bd-2542-49d7-b5e1-0a770185e39f",
+  "meta" : {
+    "versionId" : "1",
+    "lastUpdated" : "2025-02-27T14:43:33.244Z",
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense|1.3.0"]
+  },
+  "extension" : [{
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension",
+    "valueIdentifier" : {
+      "system" : "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+      "value" : "160.100.000.000.001.39_20250227"
+    }
+  }],
+  "identifier" : [{
+    "system" : "https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier",
+    "value" : "9475102b-7677-4ab8-9449-91b91c6aeaa3_160.100.000.000.001.39"
+  }],
+  "status" : "completed",
+  "medicationReference" : {
+    "reference" : "Medication/56ca34f1-a3f3-42f7-95a2-f5a6423c2031"
+  },
+  "subject" : {
+    "identifier" : {
+      "system" : "http://fhir.de/sid/gkv/kvid-10",
+      "value" : "X110411319"
+    }
+  },
+  "performer" : [{
+    "actor" : {
+      "reference" : "Organization/151f1697-7512-4e21-9466-1b75207475d8",
+      "identifier" : {
+        "type" : {
+          "coding" : [{
+            "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code" : "PRN",
+            "display" : "Provider number"
+          }]
+        },
+        "system" : "https://gematik.de/fhir/sid/telematik-id",
+        "value" : "9-2.58.00000023"
+      },
+      "display" : "gematik Apotheke"
+    }
+  }],
+  "authorizingPrescription" : [{
+    "reference" : "MedicationRequest/7efae80a-a4d9-4e26-a1b9-92c72e79cfaa"
+  }],
+  "whenHandedOver" : "2025-02-27",
+  "substitution" : {
+    "wasSubstituted" : false
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "resourceType" : "Medication",
+  "id" : "87f08ba2-da7e-467e-86aa-404d9035297c",
+  "meta" : {
+    "versionId" : "1",
+    "lastUpdated" : "2026-11-01T14:00:00.200Z",
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/emp-medication|1.3.0"]
+  },
+  "extension" : [{
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+    "valueCode" : "EMP"
+  },
+  {
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+    "valueCoding" : {
+      "system" : "http://snomed.info/sct",
+      "code" : "781405001",
+      "display" : "Medicinal product package (product)"
+    }
+  },
+  {
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+    "valueCoding" : {
+      "system" : "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+      "code" : "00"
+    }
+  },
+  {
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+    "valueBoolean" : false
+  },
+  {
+    "url" : "http://fhir.de/StructureDefinition/normgroesse",
+    "valueCode" : "N1"
+  }],
+  "identifier" : [{
+    "system" : "https://gematik.de/fhir/epa-medication/sid/epa-medication-unique-identifier",
+    "value" : "5CA9B89A31D81FFF6869E6A93B192C03C7F715FC4A568FB060630DD639F94EF1"
+  }],
+  "code" : {
+    "coding" : [{
+      "system" : "http://fhir.de/CodeSystem/ifa/pzn",
+      "code" : "06313728"
+    }],
+    "text" : "Sumatriptan-1a Pharma 100 mg Tabletten"
+  },
+  "status" : "active",
+  "form" : {
+    "coding" : [{
+      "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+      "code" : "TAB",
+      "display" : "Tabletten"
+    }]
+  },
+  "amount" : {
+    "numerator" : {
+      "extension" : [{
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+        "valueString" : "20 St."
+      }],
+      "value" : 20,
+      "unit" : "St"
+    },
+    "denominator" : {
+      "value" : 1
+    }
+  }
+}

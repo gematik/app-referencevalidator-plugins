@@ -1,0 +1,27 @@
+{
+  "resourceType" : "Medication",
+  "id" : "ef5d5baf-0c42-4240-9604-7fba9cea926d",
+  "meta" : {
+    "versionId" : "1",
+    "lastUpdated" : "2026-08-18T14:43:33.244Z",
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.3.0"]
+  },
+  "identifier" : [{
+    "system" : "https://gematik.de/fhir/epa-medication/sid/epa-medication-unique-identifier",
+    "value" : "004C0F718C63EFADC20D838B772BD4DC4C4E6EB31293B6F689E624534A9C56CD"
+  }],
+  "code" : {
+    "coding" : [{
+      "system" : "http://fhir.de/CodeSystem/ifa/pzn",
+      "code" : "11722423"
+    }],
+    "text" : "IBU-RATIOPHARM direkt 400 mg Pulver zum Einnehmen 20 St Pulver"
+  },
+  "form" : {
+    "coding" : [{
+      "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+      "code" : "PUE",
+      "display" : "Pulver zum Einnehmen"
+    }]
+  }
+}
