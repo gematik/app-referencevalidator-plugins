@@ -1,0 +1,68 @@
+{
+  "resourceType" : "Parameters",
+  "id" : "example-epa-op-add-eml-entry-input-parameters-1",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-add-eml-entry-input-parameters|1.3.0"]
+  },
+  "parameter" : [{
+    "name" : "medicationStatement",
+    "resource" : {
+      "resourceType" : "MedicationStatement",
+      "id" : "36581a11-806e-4455-a1c9-9173b7d247fd",
+      "meta" : {
+        "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-statement|1.3.0"]
+      },
+      "extension" : [{
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+        "valueCode" : "MANUAL"
+      },
+      {
+        "url" : "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationStatement.renderedDosageInstruction",
+        "valueMarkdown" : "1-0-1-0 Stück"
+      },
+      {
+        "extension" : [{
+          "url" : "algorithmVersion",
+          "valueString" : "1.0.1"
+        },
+        {
+          "url" : "language",
+          "valueCode" : "de-DE"
+        }],
+        "url" : "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta"
+      }],
+      "status" : "unknown",
+      "medicationReference" : {
+        "reference" : "Medication/fe79ff64-42e5-4cf8-a8d1-5ce527323dcc"
+      },
+      "subject" : {
+        "identifier" : {
+          "system" : "http://fhir.de/sid/gkv/kvid-10",
+          "value" : "X110411319"
+        }
+      },
+      "effectivePeriod" : {
+        "start" : "2026-02-10"
+      },
+      "dosage" : [{
+        "timing" : {
+          "repeat" : {
+            "frequency" : 2,
+            "period" : 1,
+            "periodUnit" : "d",
+            "when" : ["MORN",
+            "EVE"]
+          }
+        },
+        "doseAndRate" : [{
+          "doseQuantity" : {
+            "value" : 1,
+            "unit" : "Stück",
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
+            "code" : "1"
+          }
+        }]
+      }]
+    }
+  }]
+}

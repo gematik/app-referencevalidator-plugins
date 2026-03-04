@@ -1,24 +1,21 @@
 {
-  "resourceType": "Parameters",
-  "id": "example-epa-op-cancel-prescription-erp-input-parameters-1",
-  "meta": {
-    "profile": [
-      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-cancel-prescription-erp-input-parameters"
-    ]
+  "resourceType" : "Parameters",
+  "id" : "example-epa-op-cancel-prescription-erp-input-parameters-1",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-cancel-prescription-erp-input-parameters|1.3.0"]
   },
-  "parameter": [
+  "parameter" : [{
+    "name" : "rxPrescription",
+    "part" : [{
+      "name" : "prescriptionId",
+      "valueIdentifier" : {
+        "system" : "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value" : "160.100.000.000.011.09"
+      }
+    },
     {
-      "name": "rxPrescription",
-      "part": [
-        {
-          "name": "prescriptionId",
-          "valueIdentifier": {
-            "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
-            "value": "160.153.303.257.459"
-          }
-        },
-        { "name": "authoredOn", "valueDate": "2025-01-22" }
-      ]
-    }
-  ]
+      "name" : "authoredOn",
+      "valueDate" : "2025-09-06"
+    }]
+  }]
 }

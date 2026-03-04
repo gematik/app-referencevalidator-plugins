@@ -1,0 +1,41 @@
+{
+  "resourceType" : "MedicationStatement",
+  "id" : "Technical-Exp-NachtragEmpMedicationStatementEml",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-statement|1.3.0"]
+  },
+  "text" : {
+    "status" : "extensions",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: MedicationStatement Technical-Exp-NachtragEmpMedicationStatementEml</b></p><a name=\"Technical-Exp-NachtragEmpMedicationStatementEml\"> </a><a name=\"hcTechnical-Exp-NachtragEmpMedicationStatementEml\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-epa-medication-statement.html\">EPA MedicationStatementversion: null1.3.0)</a></p></div><p><b>ContextExtension</b>: MANUAL</p><p><b>basedOn</b>: <a href=\"MedicationRequest-Technical-Exp-NachtragEmpMedicationRequestEmp.html\">MedicationRequest: extension = ,1-0-1-0 Stück,,EMP; identifier = https://gematik.de/fhir/sid/emp-identifier#41cdeeaf-60a7-4b7c-bb26-7fb682e8c3ba; status = active; intent = plan; medication[x] = -&gt;Medication 0123456789; authoredOn = 2026-01-01</a></p><p><b>status</b>: Unknown</p><p><b>medication</b>: <a href=\"Medication-Technical-Exp-NachtragEmpMedicationEml.html\">Medication 0123456789</a></p><p><b>subject</b>: Identifier: Krankenversichertennummer/A123456789</p><p><b>effective</b>: 2026-01-01 --&gt; (ongoing)</p></div>"
+  },
+  "extension" : [{
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+    "valueCode" : "MANUAL"
+  }],
+  "basedOn" : [{
+    "extension" : [{
+      "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/is-emp-extension",
+      "valueBoolean" : true
+    }],
+    "reference" : "MedicationRequest/Technical-Exp-NachtragEmpMedicationRequestEmp"
+  }],
+  "status" : "unknown",
+  "medicationReference" : {
+    "reference" : "Medication/Technical-Exp-NachtragEmpMedicationEml"
+  },
+  "subject" : {
+    "identifier" : {
+      "type" : {
+        "coding" : [{
+          "system" : "http://fhir.de/CodeSystem/identifier-type-de-basis",
+          "code" : "KVZ10"
+        }]
+      },
+      "system" : "http://fhir.de/sid/gkv/kvid-10",
+      "value" : "A123456789"
+    }
+  },
+  "effectivePeriod" : {
+    "start" : "2026-01-01"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "resourceType" : "Parameters",
+  "id" : "example-epa-op-update-emp-entry-input-parameters-1",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-update-emp-entry-input-parameters|1.3.0"]
+  },
+  "parameter" : [{
+    "name" : "acknowledgedChronologyId",
+    "valueId" : "b467ce05-e0e5-4d71-9a0b-d824dbb492ef"
+  },
+  {
+    "name" : "empEntry",
+    "resource" : {
+      "resourceType" : "MedicationRequest",
+      "id" : "3dfe8327-dd4c-4e53-a695-cd2e0b21e699",
+      "meta" : {
+        "versionId" : "1",
+        "lastUpdated" : "2026-12-01T14:00:00.400Z",
+        "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/emp-medication-request|1.3.0"]
+      },
+      "extension" : [{
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+        "valueCode" : "EMP"
+      },
+      {
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/reason-patient-instruction-extension",
+        "valueString" : "Bluthochdruck"
+      },
+      {
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/patient-note-extension",
+        "valueAnnotation" : {
+          "text" : "Benazepril kann anfangs Schwindel verursachen - daher zuerst in Ruhe einnehmen und Autofahren vermeiden."
+        }
+      },
+      {
+        "url" : "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod",
+        "valuePeriod" : {
+          "start" : "2026-12-01"
+        }
+      },
+      {
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/emp-origin-medication-extension",
+        "valueReference" : {
+          "reference" : "Medication/13c66845-d0ce-43e1-9b0b-884cbbe8df7f"
+        }
+      },
+      {
+        "url" : "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction",
+        "valueMarkdown" : "1-0-1-0 Stück"
+      },
+      {
+        "extension" : [{
+          "url" : "algorithmVersion",
+          "valueString" : "1.0.1"
+        },
+        {
+          "url" : "language",
+          "valueCode" : "de-DE"
+        }],
+        "url" : "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta"
+      }],
+      "identifier" : [{
+        "system" : "https://gematik.de/fhir/sid/emp-identifier",
+        "value" : "3dfe8327-dd4c-4e53-a695-cd2e0b21e699"
+      }],
+      "status" : "active",
+      "intent" : "plan",
+      "medicationReference" : {
+        "reference" : "Medication/13c66845-d0ce-43e1-9b0b-884cbbe8df7f"
+      },
+      "subject" : {
+        "identifier" : {
+          "system" : "http://fhir.de/sid/gkv/kvid-10",
+          "value" : "X110411319"
+        }
+      },
+      "authoredOn" : "2026-12-01",
+      "note" : [{
+        "text" : "Hinweis für den LE"
+      }],
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "frequency" : 2,
+            "period" : 1,
+            "periodUnit" : "d",
+            "when" : ["MORN",
+            "EVE"]
+          }
+        },
+        "doseAndRate" : [{
+          "doseQuantity" : {
+            "value" : 1,
+            "unit" : "Stück",
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
+            "code" : "1"
+          }
+        }]
+      }]
+    }
+  }]
+}

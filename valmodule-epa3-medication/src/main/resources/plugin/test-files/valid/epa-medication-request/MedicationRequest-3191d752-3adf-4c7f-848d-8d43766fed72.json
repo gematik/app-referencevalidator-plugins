@@ -1,0 +1,83 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id" : "3191d752-3adf-4c7f-848d-8d43766fed72",
+  "meta" : {
+    "versionId" : "2",
+    "lastUpdated" : "2025-05-22T14:43:33.244Z",
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-request|1.3.0"]
+  },
+  "extension" : [{
+    "extension" : [{
+      "url" : "indicator",
+      "valueBoolean" : false
+    }],
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/multiple-prescription-extension"
+  },
+  {
+    "url" : "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction",
+    "valueMarkdown" : "1-0-1-0 Stück"
+  },
+  {
+    "extension" : [{
+      "url" : "algorithmVersion",
+      "valueString" : "1.0.1"
+    },
+    {
+      "url" : "language",
+      "valueCode" : "de-DE"
+    }],
+    "url" : "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta"
+  }],
+  "identifier" : [{
+    "system" : "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+    "value" : "160.100.000.000.006.24_20250520"
+  },
+  {
+    "system" : "https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier",
+    "value" : "bb91cde8-0426-4f4b-a766-5d818d0605bd_160.100.000.000.006.24"
+  }],
+  "status" : "active",
+  "intent" : "filler-order",
+  "medicationReference" : {
+    "reference" : "Medication/bb91cde8-0426-4f4b-a766-5d818d0605bd"
+  },
+  "subject" : {
+    "identifier" : {
+      "system" : "http://fhir.de/sid/gkv/kvid-10",
+      "value" : "X110411319"
+    }
+  },
+  "authoredOn" : "2025-05-20",
+  "requester" : {
+    "reference" : "PractitionerRole/73a551f8-d8cd-4b44-823d-ab5f8aeab1aa"
+  },
+  "dosageInstruction" : [{
+    "timing" : {
+      "repeat" : {
+        "frequency" : 2,
+        "period" : 1,
+        "periodUnit" : "d",
+        "when" : ["MORN",
+        "EVE"]
+      }
+    },
+    "doseAndRate" : [{
+      "doseQuantity" : {
+        "value" : 1,
+        "unit" : "Stück",
+        "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
+        "code" : "1"
+      }
+    }]
+  }],
+  "dispenseRequest" : {
+    "quantity" : {
+      "value" : 1,
+      "system" : "http://unitsofmeasure.org",
+      "code" : "{Package}"
+    }
+  },
+  "substitution" : {
+    "allowedBoolean" : true
+  }
+}

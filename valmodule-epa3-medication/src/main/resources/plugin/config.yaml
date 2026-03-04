@@ -1,15 +1,15 @@
 configSpecVersion: "2.0"
 id: "epa3-medication"
 author: "gematik GmbH"
-description: "Referenzvalidator-Plugin für die ePA-Medication Spezifikation"
-specUrl: "https://simplifier.net/packages/de.gematik.epa.medication/1.1.5"
+description: "Referenzvalidator-Plugin für die ePA-Medication Spezifikation Version 3.1.3-1"
+specUrl: "https://simplifier.net/packages/de.gematik.epa.medication/1.3.0"
 version: "${project.version}"
 validation:
   dependencyLists:
-    - fhirPackage: "de.gematik.epa.medication#1.1.5"
+    - fhirPackage: "de.gematik.epa.medication#1.3.0"
       dependencies:
       - "kbv.all.st#1.23.0"
-      - "hl7.fhir.uv.ips#1.1.0"
+      - "hl7.fhir.uv.xver-r5.r4#0.0.1-snapshot-2" # https://hl7.org/fhir/uv/xver-r5.r4/history.html
   errorOnUnknownProfile: "false"
   anyExtensionsAllowed: "true"
   ignoredCodeSystems:
@@ -18,3 +18,7 @@ validation:
     - "http://fhir.de/CodeSystem/ifa/pzn"
     - "http://snomed.info/sct"
     - "https://terminologieserver.bfarm.de/fhir/CodeSystem/arzneimittel-referenzdaten-pharmazeutisches-produkt"
+
+# used examples from:
+# - https://simplifier.net/packages/de.gematik.epa.medication/1.3.0/~files
+# - https://gemspec.gematik.de/ig/fhir/epa-medication/1.3.0/artifacts.html#beispielinstanzen

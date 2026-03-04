@@ -14,7 +14,7 @@
         "coding": [
           {
             "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-ms-operation-outcome-details",
-            "code": "MEDICATIONSVC_PRESCRIPTION_DUPLICATE",
+            "code": "MEDSVC_PRESCRIPTION_DUPLICATE",
             "display": "Duplicate Prescription Detected in Medication Service"
           }
         ]

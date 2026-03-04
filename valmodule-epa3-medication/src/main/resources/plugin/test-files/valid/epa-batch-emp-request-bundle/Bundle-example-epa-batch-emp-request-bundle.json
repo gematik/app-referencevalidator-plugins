@@ -1,0 +1,400 @@
+{
+  "resourceType": "Bundle",
+  "id": "example-epa-batch-emp-request-bundle",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-batch-emp-request-bundle|1.3.0"
+    ]
+  },
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:42a697f3-3989-4be8-bf27-92c05a025e79",
+      "resource": {
+        "resourceType": "Parameters",
+        "id": "517301af-f07c-4694-9780-451132352d95",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-add-emp-entry-input-parameters|1.3.0"
+          ]
+        },
+        "parameter": [
+          {
+            "name": "medication",
+            "part": [
+              {
+                "name": "resource",
+                "resource": {
+                  "resourceType": "Medication",
+                  "id": "1193c409-3df4-4b55-b672-811665aaa1b7",
+                  "meta": {
+                    "profile": [
+                      "https://gematik.de/fhir/epa-medication/StructureDefinition/emp-medication|1.3.0"
+                    ]
+                  },
+                  "extension": [
+                    {
+                      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+                      "valueCode": "EMP"
+                    },
+                    {
+                      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+                      "valueCoding": {
+                        "system": "http://snomed.info/sct",
+                        "code": "763158003",
+                        "display": "Medicinal product (product)"
+                      }
+                    },
+                    {
+                      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+                      "valueCoding": {
+                        "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+                        "code": "00"
+                      }
+                    },
+                    {
+                      "url": "http://fhir.de/StructureDefinition/normgroesse",
+                      "valueCode": "N3"
+                    },
+                    {
+                      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+                      "valueBoolean": false
+                    }
+                  ],
+                  "code": {
+                    "coding": [
+                      {
+                        "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                        "code": "04351736",
+                        "display": "Benazepril AL 20mg 98 Filmtabletten N3"
+                      }
+                    ],
+                    "text": "Benazepril AL 20mg 98 Filmtabletten N3"
+                  },
+                  "status": "active",
+                  "form": {
+                    "coding": [
+                      {
+                        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+                        "code": "FTA"
+                      }
+                    ]
+                  },
+                  "amount": {
+                    "numerator": {
+                      "extension": [
+                        {
+                          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+                          "valueString": "98"
+                        }
+                      ],
+                      "unit": "Stück"
+                    },
+                    "denominator": {
+                      "value": 1
+                    }
+                  },
+                  "ingredient": [
+                    {
+                      "itemCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://fhir.de/CodeSystem/ask",
+                            "code": "23413"
+                          }
+                        ],
+                        "text": "Benazepril hydrochlorid"
+                      },
+                      "strength": {
+                        "numerator": {
+                          "value": 20,
+                          "unit": "mg"
+                        },
+                        "denominator": {
+                          "value": 1,
+                          "unit": "Filmtbl."
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "name": "empEntry",
+            "resource": {
+              "resourceType": "MedicationRequest",
+              "id": "881f3c6d-20e6-443e-b7dc-580a40fa3d14",
+              "meta": {
+                "profile": [
+                  "https://gematik.de/fhir/epa-medication/StructureDefinition/emp-medication-request|1.3.0"
+                ]
+              },
+              "extension": [
+                {
+                  "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+                  "valueCode": "EMP"
+                },
+                {
+                  "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/reason-patient-instruction-extension",
+                  "valueString": "Bluthochdruck"
+                },
+                {
+                  "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/patient-note-extension",
+                  "valueAnnotation": {
+                    "text": "Benazepril kann anfangs Schwindel verursachen - daher zuerst in Ruhe einnehmen und Autofahren vermeiden."
+                  }
+                },
+                {
+                  "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod",
+                  "valuePeriod": {
+                    "start": "2026-12-01"
+                  }
+                },
+                {
+                  "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/emp-origin-medication-extension",
+                  "valueReference": {
+                    "reference": "Medication/13c66845-d0ce-43e1-9b0b-884cbbe8df7f"
+                  }
+                },
+                {
+                  "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction",
+                  "valueMarkdown": "1-0-1-0 Stück"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "algorithmVersion",
+                      "valueString": "1.0.1"
+                    },
+                    {
+                      "url": "language",
+                      "valueCode": "de-DE"
+                    }
+                  ],
+                  "url": "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta"
+                }
+              ],
+              "status": "active",
+              "intent": "plan",
+              "medicationReference": {
+                "reference": "Medication/1193c409-3df4-4b55-b672-811665aaa1b7"
+              },
+              "subject": {
+                "identifier": {
+                  "system": "http://fhir.de/sid/gkv/kvid-10",
+                  "value": "X110411319"
+                }
+              },
+              "authoredOn": "2026-12-01",
+              "note": [
+                {
+                  "text": "Hinweis für den LE"
+                }
+              ],
+              "dosageInstruction": [
+                {
+                  "timing": {
+                    "repeat": {
+                      "frequency": 2,
+                      "period": 1,
+                      "periodUnit": "d",
+                      "when": [
+                        "MORN",
+                        "EVE"
+                      ]
+                    }
+                  },
+                  "doseAndRate": [
+                    {
+                      "doseQuantity": {
+                        "value": 1,
+                        "unit": "Stück",
+                        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
+                        "code": "1"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "$add-emp-entry"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:cae0c349-08bc-4fe5-9233-ca5a9a4c4673",
+      "resource": {
+        "resourceType": "Parameters",
+        "id": "7ccb2670-7178-4f82-912a-de70f68ecd51",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-update-emp-entry-input-parameters|1.3.0"
+          ]
+        },
+        "parameter": [
+          {
+            "name": "medicationPlanIdentifier",
+            "valueIdentifier": {
+              "system": "https://gematik.de/fhir/sid/emp-identifier",
+              "value": "266620a9-2c26-41c1-b0cb-a10947b867f5"
+            }
+          },
+          {
+            "name": "empEntry",
+            "resource": {
+              "resourceType": "MedicationRequest",
+              "id": "266620a9-2c26-41c1-b0cb-a10947b867f5",
+              "meta": {
+                "versionId": "2",
+                "lastUpdated": "2026-11-01T15:43:33.244Z",
+                "profile": [
+                  "https://gematik.de/fhir/epa-medication/StructureDefinition/emp-medication-request|1.3.0"
+                ]
+              },
+              "extension": [
+                {
+                  "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+                  "valueCode": "EMP"
+                },
+                {
+                  "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/reason-patient-instruction-extension",
+                  "valueString": "akuten Behandlung von Migräneanfällen mit und ohne Aura"
+                },
+                {
+                  "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/patient-note-extension",
+                  "valueAnnotation": {
+                    "text": "Bitte schützen Sie das Arzneimittel vor hohen Temperaturen und direkter Sonneneinstrahlung."
+                  }
+                },
+                {
+                  "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod",
+                  "valuePeriod": {
+                    "start": "2026-12-01",
+                    "end": "2027-02-01"
+                  }
+                },
+                {
+                  "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/emp-origin-medication-extension",
+                  "valueReference": {
+                    "reference": "Medication/87f08ba2-da7e-467e-86aa-404d9035297c"
+                  }
+                },
+                {
+                  "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction",
+                  "valueMarkdown": "1-0-0-0 Stück"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "algorithmVersion",
+                      "valueString": "1.0.1"
+                    },
+                    {
+                      "url": "language",
+                      "valueCode": "de-DE"
+                    }
+                  ],
+                  "url": "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "reference",
+                      "valueReference": {
+                        "reference": "MedicationStatement/f29f1d0c-be05-4b0d-a335-3e508da39c0c"
+                      }
+                    },
+                    {
+                      "url": "addedOn",
+                      "valueDateTime": "2026-11-01T15:43:33.244Z"
+                    }
+                  ],
+                  "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/emp-medicationrequest-activity-extension"
+                }
+              ],
+              "identifier": [
+                {
+                  "system": "https://gematik.de/fhir/sid/emp-identifier",
+                  "value": "266620a9-2c26-41c1-b0cb-a10947b867f5"
+                }
+              ],
+              "status": "active",
+              "intent": "plan",
+              "medicationReference": {
+                "reference": "Medication/fc7b28e8-05ac-4ac8-86d7-7677d9c6134e"
+              },
+              "subject": {
+                "identifier": {
+                  "system": "http://fhir.de/sid/gkv/kvid-10",
+                  "value": "X110411319"
+                }
+              },
+              "authoredOn": "2026-11-01",
+              "note": [
+                {
+                  "text": "Hinweis für den LE"
+                }
+              ],
+              "dosageInstruction": [
+                {
+                  "timing": {
+                    "repeat": {
+                      "frequency": 1,
+                      "period": 1,
+                      "periodUnit": "d",
+                      "when": [
+                        "MORN"
+                      ]
+                    }
+                  },
+                  "doseAndRate": [
+                    {
+                      "doseQuantity": {
+                        "value": 1,
+                        "unit": "Stück",
+                        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
+                        "code": "1"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "$update-emp-entry"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ba863a1b-f6bc-45f7-92ba-cc8bf79cf8c2",
+      "resource": {
+        "resourceType": "Parameters",
+        "id": "4beaf1af-daec-4c7a-930d-c2062517b42c",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-rmp-commit-input-parameters|1.3.0"
+          ]
+        },
+        "parameter": [
+          {
+            "name": "acknowledgedChronologyId",
+            "valueId": "b467ce05-e0e5-4d71-9a0b-d824dbb492ef"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "$emp-commit"
+      }
+    }
+  ]
+}
