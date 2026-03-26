@@ -1,0 +1,181 @@
+{
+     "resourceType": "Parameters",
+     "id": "b63f6a2d-9c9e-4c35-9fca-587a3c7acb84",
+     "meta": {
+       "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-add-emp-entry-input-parameters" ]
+     },
+     "parameter": [ {
+       "name": "empEntry",
+       "resource": {
+           "resourceType": "MedicationRequest",
+           "id": "5d6baa10-4b5e-4586-9f64-f910cd531402",
+           "meta": {
+               "versionId": "1",
+               "lastUpdated": "2026-12-01T14:00:00.400Z",
+               "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/emp-medication-request|1.3.0" ]
+             },
+           "extension": [ {
+               "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+               "valueCode": "EMP"
+             }, {
+               "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/reason-patient-instruction-extension",
+               "valueString": "Bluthochdruck"
+             }, {
+               "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/patient-note-extension",
+               "valueAnnotation": {
+                   "text": "kann Schwindel verursachen"
+                 }
+             }, {
+               "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod",
+               "valuePeriod": {
+                   "start": "2026-12-01"
+                 }
+             }, {
+               "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/emp-origin-medication-extension",
+               "valueReference": {
+                   "reference": "Medication/aead7dcd-e372-410a-b981-a8f62350bcb1"
+                 }
+             }, {
+               "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction",
+               "valueMarkdown": "1-0-0-0 Stück"
+             }, {
+               "url": "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta",
+               "extension": [ {
+                   "url": "algorithmVersion",
+                   "valueString": "1.0.0"
+                 }, {
+                   "url": "language",
+                   "valueCode": "de-DE"
+                 } ]
+             } ],
+           "status": "active",
+           "intent": "plan",
+           "medicationReference": {
+               "reference": "Medication/aead7dcd-e372-410a-b981-a8f62350bcb1"
+             },
+           "subject": {
+               "identifier": {
+                   "system": "http://fhir.de/sid/gkv/kvid-10",
+                   "value": "X110680129"
+                 }
+             },
+           "authoredOn": "2026-12-01",
+           "reasonCode": [ {
+               "coding": [ {
+                   "system": "http://fhir.de/CodeSystem/bfarm/icd-10-gm",
+                   "version": "2025",
+                   "code": "I11.90",
+                   "display": "Hypertensive Herzkrankheit ohne (kongestive) Herzinsuffizienz"
+                 } ]
+             } ],
+           "note": [ {
+               "text": "Hinweis für den LE"
+             } ],
+           "dosageInstruction": [ {
+               "timing": {
+                   "repeat": {
+                       "frequency": 1,
+                       "period": 1,
+                       "periodUnit": "d",
+                       "when": [ "MORN" ]
+                     }
+                 },
+               "doseAndRate": [ {
+                   "doseQuantity": {
+                       "value": 1,
+                       "unit": "Stück",
+                       "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
+                       "code": "1"
+                     }
+                 } ]
+             } ]
+         }
+     }, {
+       "name": "medication",
+       "part": [ {
+           "name": "resource",
+           "resource": {
+               "resourceType": "Medication",
+               "id": "aead7dcd-e372-410a-b981-a8f62350bcb1",
+               "meta": {
+                   "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/emp-medication|1.3.0" ]
+                 },
+               "extension": [ {
+                   "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+                   "valueCode": "EMP"
+                 }, {
+                   "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+                   "valueCoding": {
+                       "system": "http://snomed.info/sct",
+                       "code": "763158003",
+                       "display": "Medicinal product (product)"
+                     }
+                 }, {
+                   "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+                   "valueCoding": {
+                       "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+                       "code": "00"
+                     }
+                 }, {
+                   "url": "http://fhir.de/StructureDefinition/normgroesse",
+                   "valueCode": "N3"
+                 }, {
+                   "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+                   "valueBoolean": false
+                 } ],
+               "code": {
+                   "coding": [ {
+                       "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                       "code": "04351736",
+                       "display": "Ramipril"
+                     }, {
+                       "system": "http://fhir.de/CodeSystem/bfarm/atc",
+                       "version": "2024",
+                       "code": "C09AA05",
+                       "display": "Ramipril"
+                     } ],
+                   "text": "Ramipril"
+                 },
+               "status": "active",
+               "form": {
+                   "coding": [ {
+                       "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+                       "code": "TAB",
+                       "display": "Tabletten"
+                     } ]
+                 },
+               "amount": {
+                   "numerator": {
+                       "extension": [ {
+                           "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+                           "valueString": "98"
+                         } ],
+                       "unit": "Stück"
+                     },
+                   "denominator": {
+                       "value": 1
+                     }
+                 },
+               "ingredient": [ {
+                   "itemCodeableConcept": {
+                       "coding": [ {
+                           "system": "http://fhir.de/CodeSystem/ask",
+                           "code": "22686"
+                         } ],
+                       "text": "Ramipril"
+                     },
+                   "strength": {
+                       "numerator": {
+                           "value": 5,
+                           "unit": "mg"
+                         },
+                       "denominator": {
+                           "value": 1,
+                           "unit": "Tbl."
+                         }
+                     }
+                 } ]
+             }
+         } ]
+     } ]
+   }
