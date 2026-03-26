@@ -18,7 +18,7 @@ validation:
     - "http://fhir.de/CodeSystem/ifa/pzn"
     - "http://snomed.info/sct"
     - "https://terminologieserver.bfarm.de/fhir/CodeSystem/arzneimittel-referenzdaten-pharmazeutisches-produkt"
-
+    - "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
 # used examples from:
 # - https://simplifier.net/packages/de.gematik.epa.medication/1.3.0/~files
 # - https://gemspec.gematik.de/ig/fhir/epa-medication/1.3.0/artifacts.html#beispielinstanzen

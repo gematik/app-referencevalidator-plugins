@@ -2,6 +2,12 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## eEB 1.0.1 (2026-03)
+
+### changed
+
+- Extended validity of Profile 1.0.1 to 30.06.2026
+
 ## ePA Basic 1.2.0 (2026-03)
 
 ### added

@@ -8,7 +8,7 @@ validation:
   dependencyLists:
     - fhirPackage: "de.gematik.elektronische-versicherungsbescheinigung#1.0.1"
       validFrom: "2022-01-01"
-      validTill: "2026-03-31"
+      validTill: "2026-06-30"
       creationDateLocators:
         - profile: "https://gematik.de/fhir/eeb/StructureDefinition/EEBAnfrageBundle"
           fhirPath: "Bundle.timestamp"
