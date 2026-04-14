@@ -20,6 +20,8 @@
 In diesem Projekt sind Plugins für den [gematik Referenzvalidator](https://github.com/gematik/app-referencevalidator)
 und ein Werkzeug (PluginBuilder) enthalten, mit dem eigene Plugins erstellt werden können.
 
+**Hinweis**: Der Referenzvalididator ist nicht für die Prüfung von KIM Payloads in der Produktivumgebung gedacht.
+
 ### Release Notes
 
 Siehe [ReleaseNotes.md](./ReleaseNotes.md)
