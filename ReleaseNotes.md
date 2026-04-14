@@ -2,6 +2,13 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## PluginBuilder 2.0.3 (2026-04)
+
+### changed
+
+- Added Information Notice for KIM
+- Updated Dependencies
+
 ## eEB 1.0.1 (2026-03)
 
 ### changed
