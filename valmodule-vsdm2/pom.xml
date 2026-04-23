@@ -9,8 +9,9 @@
         <version>2.0.4-SNAPSHOT</version>
     </parent>
 
-    <artifactId>valmodule-epa3-basic</artifactId>
-    <version>1.4.0-SNAPSHOT</version>
+    <artifactId>valmodule-vsdm2</artifactId>
+    <version>1.0.0</version>
+    <description>Plugin for validating VSDM2 Resources</description>
 
     <build>
         <plugins>
@@ -49,7 +50,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -65,7 +65,7 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>target/epa3-basic-${project.version}.zip</file>
+                                    <file>target/vsdm2-${project.version}.zip</file>
                                     <type>zip</type>
                                     <classifier>refv-plugin</classifier>
                                 </artifact>

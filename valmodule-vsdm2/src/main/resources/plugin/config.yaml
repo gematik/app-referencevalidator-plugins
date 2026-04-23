@@ -1,0 +1,15 @@
+configSpecVersion: "2.0"
+id: "vsdm2"
+author: "gematik GmbH"
+description: "Referenzvalidator-Plugin für die Spezifikation 'VSDM 2'"
+specUrl: "https://simplifier.net/packages/de.gematik.vsdm2/1.0.0"
+version: "${project.version}"
+validation:
+  dependencyLists:
+    - fhirPackage: "de.gematik.vsdm2#1.0.0"
+      validationMessageTransformations: # HAPI-Version 6.6.2 unterstützt keine mehrfachen Profil-Typ-Constraints auf die contained-Ressourcen und wirft diesen Fehler. In der Praxis wurden allerdings keine weiteren Implikationen entdeckt - die contained ePA-Medications werden korrekt validiert
+        - severityLevelFrom: "error"
+          severityLevelTo: "information"
+          messageId: "BUNDLE_BUNDLE_ENTRY_MULTIPLE_PROFILES"
+  errorOnUnknownProfile: "false"
+  anyExtensionsAllowed: "true"
