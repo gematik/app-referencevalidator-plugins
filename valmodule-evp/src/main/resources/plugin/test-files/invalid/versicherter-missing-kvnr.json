@@ -1,0 +1,60 @@
+{
+  "resourceType": "Patient",
+  "id": "PatientExample",
+  "meta": {
+    "profile": [
+      "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Versicherter|1.0"
+    ]
+  },
+  "name": [
+    {
+      "use": "official",
+      "family": "Muster",
+      "given": [
+        "Max"
+      ]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "email",
+      "value": "max.muster@mail.de"
+    },
+    {
+      "system": "phone",
+      "value": "0123-45678910"
+    }
+  ],
+  "_birthDate": {
+    "extension": [
+      {
+        "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+        "valueCode": "unknown"
+      }
+    ]
+  },
+  "address": [
+    {
+      "type": "both",
+      "line": [
+        "Musterstr. 3"
+      ],
+      "_line": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+              "valueString": "Musterstr."
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+              "valueString": "3"
+            }
+          ]
+        }
+      ],
+      "city": "Musterhausen",
+      "postalCode": "77777"
+    }
+  ]
+}

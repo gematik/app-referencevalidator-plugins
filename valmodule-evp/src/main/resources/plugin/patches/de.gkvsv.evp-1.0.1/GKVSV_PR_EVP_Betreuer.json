@@ -1,0 +1,473 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "GKVSV-PR-EVP-Betreuer",
+  "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Betreuer",
+  "version": "1.0",
+  "name": "GKVSV_PR_EVP_Betreuer",
+  "status": "active",
+  "date": "2023-04-28T12:28:48.9284497+00:00",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "RelatedPerson",
+  "baseDefinition": "https://fhir.kbv.de/StructureDefinition/KBV_PR_Base_RelatedPerson",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "RelatedPerson.meta",
+        "path": "RelatedPerson.meta",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.meta.versionId",
+        "path": "RelatedPerson.meta.versionId",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.meta.lastUpdated",
+        "path": "RelatedPerson.meta.lastUpdated",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.meta.source",
+        "path": "RelatedPerson.meta.source",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.meta.profile",
+        "path": "RelatedPerson.meta.profile",
+        "min": 1,
+        "max": "1",
+        "patternCanonical": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Betreuer|1.0",
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.meta.security",
+        "path": "RelatedPerson.meta.security",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.meta.tag",
+        "path": "RelatedPerson.meta.tag",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.implicitRules",
+        "path": "RelatedPerson.implicitRules",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.language",
+        "path": "RelatedPerson.language",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.text",
+        "path": "RelatedPerson.text",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.contained",
+        "path": "RelatedPerson.contained",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.extension",
+        "path": "RelatedPerson.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "rules": "closed"
+        },
+        "min": 0
+      },
+      {
+        "id": "RelatedPerson.extension:Hinweis",
+        "path": "RelatedPerson.extension",
+        "sliceName": "Hinweis",
+        "min": 0,
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.identifier",
+        "path": "RelatedPerson.identifier",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.active",
+        "path": "RelatedPerson.active",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.patient",
+        "path": "RelatedPerson.patient",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Versicherter"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "RelatedPerson.patient.reference",
+        "path": "RelatedPerson.patient.reference",
+        "min": 1
+      },
+      {
+        "id": "RelatedPerson.patient.type",
+        "path": "RelatedPerson.patient.type",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.patient.identifier",
+        "path": "RelatedPerson.patient.identifier",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.patient.display",
+        "path": "RelatedPerson.patient.display",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.relationship",
+        "path": "RelatedPerson.relationship",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.relationship.coding",
+        "path": "RelatedPerson.relationship.coding",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.relationship.coding.system",
+        "path": "RelatedPerson.relationship.coding.system",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.relationship.coding.code",
+        "path": "RelatedPerson.relationship.coding.code",
+        "min": 1,
+        "fixedCode": "GUARD",
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.name",
+        "path": "RelatedPerson.name",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.name.use",
+        "path": "RelatedPerson.name.use",
+        "fixedCode": "official",
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.name.family",
+        "path": "RelatedPerson.name.family",
+        "maxLength": 45,
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.name.family.extension",
+        "path": "RelatedPerson.name.family.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "rules": "closed"
+        },
+        "min": 0
+      },
+      {
+        "id": "RelatedPerson.name.family.extension:namenszusatz",
+        "path": "RelatedPerson.name.family.extension",
+        "sliceName": "namenszusatz",
+        "min": 0,
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.name.family.extension:nachname",
+        "path": "RelatedPerson.name.family.extension",
+        "sliceName": "nachname",
+        "min": 0,
+        "max": "0",
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.name.family.extension:nachname.value[x]",
+        "path": "RelatedPerson.name.family.extension.value[x]",
+        "maxLength": 45,
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.name.family.extension:vorsatzwort",
+        "path": "RelatedPerson.name.family.extension",
+        "sliceName": "vorsatzwort",
+        "min": 0,
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.name.given",
+        "path": "RelatedPerson.name.given",
+        "min": 1,
+        "maxLength": 45,
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.name.prefix",
+        "path": "RelatedPerson.name.prefix",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.name.suffix",
+        "path": "RelatedPerson.name.suffix",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.name.period",
+        "path": "RelatedPerson.name.period",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.telecom",
+        "path": "RelatedPerson.telecom",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "closed"
+        },
+        "max": "2"
+      },
+      {
+        "id": "RelatedPerson.telecom:email",
+        "path": "RelatedPerson.telecom",
+        "sliceName": "email"
+      },
+      {
+        "id": "RelatedPerson.telecom:email.system",
+        "path": "RelatedPerson.telecom.system",
+        "fixedCode": "email",
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.telecom:email.value",
+        "path": "RelatedPerson.telecom.value",
+        "maxLength": 50,
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.telecom:telefon",
+        "path": "RelatedPerson.telecom",
+        "sliceName": "telefon"
+      },
+      {
+        "id": "RelatedPerson.telecom:telefon.system",
+        "path": "RelatedPerson.telecom.system",
+        "fixedCode": "phone",
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.telecom:telefon.value",
+        "path": "RelatedPerson.telecom.value",
+        "maxLength": 25,
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.gender",
+        "path": "RelatedPerson.gender",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.birthDate",
+        "path": "RelatedPerson.birthDate",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.address",
+        "path": "RelatedPerson.address",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "type"
+            }
+          ],
+          "rules": "closed"
+        },
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift",
+        "path": "RelatedPerson.address",
+        "sliceName": "Strassenanschrift",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.extension",
+        "path": "RelatedPerson.address.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "rules": "closed"
+        },
+        "min": 0
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.extension:Stadtteil",
+        "path": "RelatedPerson.address.extension",
+        "sliceName": "Stadtteil",
+        "min": 0,
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.use",
+        "path": "RelatedPerson.address.use",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.type",
+        "path": "RelatedPerson.address.type",
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.text",
+        "path": "RelatedPerson.address.text",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.line",
+        "path": "RelatedPerson.address.line",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.line.extension",
+        "path": "RelatedPerson.address.line.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "rules": "closed"
+        },
+        "min": 2
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.line.extension:Strasse",
+        "path": "RelatedPerson.address.line.extension",
+        "sliceName": "Strasse",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.line.extension:Strasse.value[x]",
+        "path": "RelatedPerson.address.line.extension.value[x]",
+        "maxLength": 46,
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.line.extension:Hausnummer",
+        "path": "RelatedPerson.address.line.extension",
+        "sliceName": "Hausnummer",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.line.extension:Hausnummer.value[x]",
+        "path": "RelatedPerson.address.line.extension.value[x]",
+        "maxLength": 9,
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.line.extension:Adresszusatz",
+        "path": "RelatedPerson.address.line.extension",
+        "sliceName": "Adresszusatz",
+        "min": 0,
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.city",
+        "path": "RelatedPerson.address.city",
+        "min": 1,
+        "maxLength": 40,
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.state",
+        "path": "RelatedPerson.address.state",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.postalCode",
+        "path": "RelatedPerson.address.postalCode",
+        "min": 1,
+        "maxLength": 10,
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.country",
+        "path": "RelatedPerson.address.country",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.address:Strassenanschrift.period",
+        "path": "RelatedPerson.address.period",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.address:Postfach",
+        "path": "RelatedPerson.address",
+        "sliceName": "Postfach",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.photo",
+        "path": "RelatedPerson.photo",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.period",
+        "path": "RelatedPerson.period",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.communication",
+        "path": "RelatedPerson.communication",
+        "max": "0"
+      }
+    ]
+  }
+}

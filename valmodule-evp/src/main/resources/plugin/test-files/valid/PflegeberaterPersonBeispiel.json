@@ -1,0 +1,1 @@
+{"resourceType":"Practitioner","id":"PflegeberaterPerson","meta":{"profile":["https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_PflegeBerater|1.0"]},"name":[{"family":"Müller","given":["Heinz"]}],"telecom":[{"system":"email","value":"heinz.mueller@gmail.com"},{"system":"phone","value":"01234-567891"}]}

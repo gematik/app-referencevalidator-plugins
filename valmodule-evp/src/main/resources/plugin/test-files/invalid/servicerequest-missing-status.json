@@ -1,0 +1,45 @@
+{
+  "resourceType": "ServiceRequest",
+  "id": "ServiceRequestAnfrage",
+  "meta": {
+    "profile": [
+      "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_ServiceRequestMassnahme|1.0"
+    ],
+    "security": [
+      {
+        "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_EVP_Datenweitergabe",
+        "code": "1"
+      }
+    ]
+  },
+  "intent": "plan",
+  "code": {
+    "text": "Anfrage Vorrätigkeit des Wannenlifts beim Sanitätshaus"
+  },
+  "subject": {
+    "reference": "Patient/PatientExample"
+  },
+  "occurrencePeriod": {
+    "end": "2021-06-30"
+  },
+  "performer": [
+    {
+      "extension": [
+        {
+          "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_EVP_Verantwortlich",
+          "valueBoolean": false
+        }
+      ],
+      "display": "Heike"
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_EVP_Verantwortlich",
+          "valueBoolean": true
+        }
+      ],
+      "display": "Karl-Heinz"
+    }
+  ]
+}

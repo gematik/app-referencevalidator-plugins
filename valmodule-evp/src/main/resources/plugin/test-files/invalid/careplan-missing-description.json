@@ -1,0 +1,47 @@
+{
+  "resourceType": "CarePlan",
+  "id": "CarePlanBadelift",
+  "meta": {
+    "profile": [
+      "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_CarePlanBedarf|1.0"
+    ]
+  },
+  "status": "active",
+  "intent": "plan",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_EVP_BedarfsKategorie",
+          "code": "2",
+          "display": "alltägliche Lebensführung"
+        }
+      ]
+    }
+  ],
+  "subject": {
+    "reference": "Patient/PatientExample"
+  },
+  "goal": [
+    {
+      "display": "Patient soll sich wieder selbständig baden können"
+    }
+  ],
+  "activity": [
+    {
+      "reference": {
+        "reference": "ServiceRequest/ServiceRequestVerordnung"
+      }
+    },
+    {
+      "reference": {
+        "reference": "ServiceRequest/ServiceRequestAnfrage"
+      }
+    },
+    {
+      "reference": {
+        "reference": "ServiceRequest/ServiceRequestInstallation"
+      }
+    }
+  ]
+}

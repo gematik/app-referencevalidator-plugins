@@ -1,0 +1,317 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "GKVSV-PR-EVP-Pflegekasse",
+  "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Pflegekasse",
+  "version": "1.0",
+  "name": "GKVSV_PR_EVP_Pflegekasse",
+  "status": "active",
+  "date": "2023-11-03T15:26:42.7032002+00:00",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Organization",
+  "baseDefinition": "https://fhir.kbv.de/StructureDefinition/KBV_PR_Base_Organization",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Organization.meta",
+        "path": "Organization.meta",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.meta.versionId",
+        "path": "Organization.meta.versionId",
+        "max": "0"
+      },
+      {
+        "id": "Organization.meta.lastUpdated",
+        "path": "Organization.meta.lastUpdated",
+        "max": "0"
+      },
+      {
+        "id": "Organization.meta.source",
+        "path": "Organization.meta.source",
+        "max": "0"
+      },
+      {
+        "id": "Organization.meta.profile",
+        "path": "Organization.meta.profile",
+        "min": 1,
+        "max": "1",
+        "patternCanonical": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Pflegekasse|1.0",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.meta.security",
+        "path": "Organization.meta.security",
+        "max": "0"
+      },
+      {
+        "id": "Organization.meta.tag",
+        "path": "Organization.meta.tag",
+        "max": "0"
+      },
+      {
+        "id": "Organization.implicitRules",
+        "path": "Organization.implicitRules",
+        "max": "0"
+      },
+      {
+        "id": "Organization.language",
+        "path": "Organization.language",
+        "max": "0"
+      },
+      {
+        "id": "Organization.text",
+        "path": "Organization.text",
+        "max": "0"
+      },
+      {
+        "id": "Organization.contained",
+        "path": "Organization.contained",
+        "max": "0"
+      },
+      {
+        "id": "Organization.extension:ergaenzende_Angaben",
+        "path": "Organization.extension",
+        "sliceName": "ergaenzende_Angaben",
+        "max": "0"
+      },
+      {
+        "id": "Organization.identifier",
+        "path": "Organization.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "type"
+            }
+          ],
+          "rules": "closed"
+        },
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:Institutionskennzeichen",
+        "path": "Organization.identifier",
+        "sliceName": "Institutionskennzeichen",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:Institutionskennzeichen.use",
+        "path": "Organization.identifier.use",
+        "max": "0"
+      },
+      {
+        "id": "Organization.identifier:Institutionskennzeichen.type",
+        "path": "Organization.identifier.type",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:Institutionskennzeichen.type.coding",
+        "path": "Organization.identifier.type.coding",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:Institutionskennzeichen.type.coding.system",
+        "path": "Organization.identifier.type.coding.system",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:Institutionskennzeichen.type.coding.code",
+        "path": "Organization.identifier.type.coding.code",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:Institutionskennzeichen.system",
+        "path": "Organization.identifier.system",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:Institutionskennzeichen.value",
+        "path": "Organization.identifier.value",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:Institutionskennzeichen.period",
+        "path": "Organization.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "Organization.identifier:Institutionskennzeichen.assigner",
+        "path": "Organization.identifier.assigner",
+        "max": "0"
+      },
+      {
+        "id": "Organization.identifier:Betriebsstaettennummer",
+        "path": "Organization.identifier",
+        "sliceName": "Betriebsstaettennummer",
+        "max": "0"
+      },
+      {
+        "id": "Organization.identifier:VKNR",
+        "path": "Organization.identifier",
+        "sliceName": "VKNR",
+        "max": "0"
+      },
+      {
+        "id": "Organization.identifier:KZV-Abrechnungsnummer",
+        "path": "Organization.identifier",
+        "sliceName": "KZV-Abrechnungsnummer",
+        "max": "0"
+      },
+      {
+        "id": "Organization.identifier:Telematik-ID",
+        "path": "Organization.identifier",
+        "sliceName": "Telematik-ID",
+        "max": "0"
+      },
+      {
+        "id": "Organization.active",
+        "path": "Organization.active",
+        "max": "0"
+      },
+      {
+        "id": "Organization.type",
+        "path": "Organization.type",
+        "max": "0"
+      },
+      {
+        "id": "Organization.name",
+        "path": "Organization.name",
+        "short": "Name der Pflegekasse",
+        "maxLength": 45
+      },
+      {
+        "id": "Organization.alias",
+        "path": "Organization.alias",
+        "max": "0"
+      },
+      {
+        "id": "Organization.telecom",
+        "path": "Organization.telecom",
+        "max": "0"
+      },
+      {
+        "id": "Organization.address",
+        "path": "Organization.address",
+        "slicing": {
+          "description": "none",
+          "rules": "closed"
+        },
+        "max": "1"
+      },
+      {
+        "id": "Organization.address:Strassenanschrift",
+        "path": "Organization.address",
+        "sliceName": "Strassenanschrift",
+        "max": "1"
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.extension:Stadtteil",
+        "path": "Organization.address.extension",
+        "sliceName": "Stadtteil",
+        "max": "0"
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.use",
+        "path": "Organization.address.use",
+        "max": "0"
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.type",
+        "path": "Organization.address.type",
+        "fixedCode": "both",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.text",
+        "path": "Organization.address.text",
+        "max": "0"
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.line",
+        "path": "Organization.address.line",
+        "max": "1"
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.line.extension:Strasse",
+        "path": "Organization.address.line.extension",
+        "sliceName": "Strasse"
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.line.extension:Strasse.value[x]",
+        "path": "Organization.address.line.extension.value[x]",
+        "maxLength": 46
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.line.extension:Hausnummer",
+        "path": "Organization.address.line.extension",
+        "sliceName": "Hausnummer"
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.line.extension:Hausnummer.value[x]",
+        "path": "Organization.address.line.extension.value[x]",
+        "maxLength": 9
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.line.extension:Adresszusatz",
+        "path": "Organization.address.line.extension",
+        "sliceName": "Adresszusatz",
+        "max": "0"
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.city",
+        "path": "Organization.address.city",
+        "maxLength": 40
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.state",
+        "path": "Organization.address.state",
+        "max": "0"
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.postalCode",
+        "path": "Organization.address.postalCode",
+        "maxLength": 10
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.country",
+        "path": "Organization.address.country",
+        "max": "0"
+      },
+      {
+        "id": "Organization.address:Strassenanschrift.period",
+        "path": "Organization.address.period",
+        "max": "0"
+      },
+      {
+        "id": "Organization.address:Postfach",
+        "path": "Organization.address",
+        "sliceName": "Postfach",
+        "max": "0"
+      },
+      {
+        "id": "Organization.partOf",
+        "path": "Organization.partOf",
+        "max": "0"
+      },
+      {
+        "id": "Organization.contact",
+        "path": "Organization.contact",
+        "max": "0"
+      },
+      {
+        "id": "Organization.endpoint",
+        "path": "Organization.endpoint",
+        "max": "0"
+      }
+    ]
+  }
+}

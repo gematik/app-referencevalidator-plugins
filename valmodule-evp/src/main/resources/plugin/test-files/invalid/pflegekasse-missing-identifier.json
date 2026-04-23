@@ -1,0 +1,34 @@
+{
+  "resourceType": "Organization",
+  "id": "PflegekasseBeispiel",
+  "meta": {
+    "profile": [
+      "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Pflegekasse|1.0"
+    ]
+  },
+  "name": "Pflegekasse Beispiel",
+  "address": [
+    {
+      "type": "both",
+      "line": [
+        "Musterstr. 3"
+      ],
+      "_line": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+              "valueString": "Musterweg"
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+              "valueString": "3"
+            }
+          ]
+        }
+      ],
+      "city": "Musterhausen",
+      "postalCode": "77777"
+    }
+  ]
+}
