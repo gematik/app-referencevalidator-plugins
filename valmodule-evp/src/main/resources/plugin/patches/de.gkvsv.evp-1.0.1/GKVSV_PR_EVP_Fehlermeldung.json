@@ -1,0 +1,172 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "GKVSV-PR-EVP-FehlermeldungOperationOutcome",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Foundation.Other"
+    }
+  ],
+  "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_FehlermeldungOperationOutcome",
+  "version": "1.0",
+  "name": "GKVSV_PR_EVP_FehlermeldungOperationOutcome",
+  "title": "Fehlermeldung",
+  "status": "active",
+  "date": "2023-11-03T15:44:46.8388096+00:00",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "OperationOutcome",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/OperationOutcome",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "OperationOutcome.meta",
+        "path": "OperationOutcome.meta",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "OperationOutcome.meta.versionId",
+        "path": "OperationOutcome.meta.versionId",
+        "max": "0"
+      },
+      {
+        "id": "OperationOutcome.meta.lastUpdated",
+        "path": "OperationOutcome.meta.lastUpdated",
+        "max": "0"
+      },
+      {
+        "id": "OperationOutcome.meta.source",
+        "path": "OperationOutcome.meta.source",
+        "max": "0"
+      },
+      {
+        "id": "OperationOutcome.meta.profile",
+        "path": "OperationOutcome.meta.profile",
+        "min": 1,
+        "max": "1",
+        "patternCanonical": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_FehlermeldungOperationOutcome|1.0",
+        "mustSupport": true
+      },
+      {
+        "id": "OperationOutcome.meta.security",
+        "path": "OperationOutcome.meta.security",
+        "max": "0"
+      },
+      {
+        "id": "OperationOutcome.meta.tag",
+        "path": "OperationOutcome.meta.tag",
+        "max": "0"
+      },
+      {
+        "id": "OperationOutcome.implicitRules",
+        "path": "OperationOutcome.implicitRules",
+        "max": "0"
+      },
+      {
+        "id": "OperationOutcome.language",
+        "path": "OperationOutcome.language",
+        "max": "0"
+      },
+      {
+        "id": "OperationOutcome.text",
+        "path": "OperationOutcome.text",
+        "max": "0"
+      },
+      {
+        "id": "OperationOutcome.contained",
+        "path": "OperationOutcome.contained",
+        "max": "0"
+      },
+      {
+        "id": "OperationOutcome.issue",
+        "path": "OperationOutcome.issue",
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "OperationOutcome.issue.extension",
+        "path": "OperationOutcome.issue.extension",
+        "min": 1
+      },
+      {
+        "id": "OperationOutcome.issue.extension:ZuordnungsIdentifier",
+        "path": "OperationOutcome.issue.extension",
+        "sliceName": "ZuordnungsIdentifier",
+        "definition": "Diese Extension dient dazu, die Bundle-Identifier der Nachricht abzubilden, welche den Fehler verursacht hat.",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_EVP_ZuordnungsIdentifier"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "OperationOutcome.issue.severity",
+        "path": "OperationOutcome.issue.severity",
+        "mustSupport": true
+      },
+      {
+        "id": "OperationOutcome.issue.code",
+        "path": "OperationOutcome.issue.code",
+        "short": "Fehlercode",
+        "definition": "Schlüssel Fehlercode gemäß Schlüsselverzeichnis 6.1",
+        "mustSupport": true
+      },
+      {
+        "id": "OperationOutcome.issue.details",
+        "path": "OperationOutcome.issue.details",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "OperationOutcome.issue.details.coding",
+        "path": "OperationOutcome.issue.details.coding",
+        "max": "0"
+      },
+      {
+        "id": "OperationOutcome.issue.details.text",
+        "path": "OperationOutcome.issue.details.text",
+        "short": "Fehlertext",
+        "definition": "Fehlertext, der eine Prüfung und Korrektur ermöglicht; ggf. Parsernachricht",
+        "min": 1,
+        "maxLength": 2000,
+        "mustSupport": true
+      },
+      {
+        "id": "OperationOutcome.issue.diagnostics",
+        "path": "OperationOutcome.issue.diagnostics",
+        "max": "0"
+      },
+      {
+        "id": "OperationOutcome.issue.location",
+        "path": "OperationOutcome.issue.location",
+        "max": "0"
+      },
+      {
+        "id": "OperationOutcome.issue.expression",
+        "path": "OperationOutcome.issue.expression",
+        "max": "0"
+      }
+    ]
+  }
+}

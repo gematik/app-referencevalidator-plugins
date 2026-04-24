@@ -1,0 +1,9 @@
+{
+  "resourceType": "OperationOutcome",
+  "id": "aa359072-cb9a-46f9-b161-8c217e166329",
+  "meta": {
+    "profile": [
+      "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_FehlermeldungOperationOutcome|1.0"
+    ]
+  }
+}

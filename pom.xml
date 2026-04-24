@@ -616,6 +616,7 @@
                 <module>valmodule-epa3-basic</module>
                 <module>valmodule-epa3-medication</module>
                 <module>valmodule-erp-eu</module>
+                <module>valmodule-evp</module>
                 <module>valmodule-vsdm2</module>
             </modules>
         </profile>

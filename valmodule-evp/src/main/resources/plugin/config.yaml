@@ -1,0 +1,13 @@
+configSpecVersion: "2.0"
+id: "evp"
+author: "GKV-Spitzenverband"
+description: "Referenzvalidator-Plugin für den elektronischen Versorgungsplan Pflege (EVP) gemäß § 17 Abs. 1a Satz 4 SGB XI"
+specUrl: "https://simplifier.net/EVP"
+version: "${project.version}"
+validation:
+  dependencyLists:
+    - fhirPackage: "de.gkvsv.evp#1.0.1"
+  errorOnUnknownProfile: "true"
+  anyExtensionsAllowed: "false"
+  ignoredCodeSystems:
+    - "http://fhir.de/CodeSystem/bfarm/ops"

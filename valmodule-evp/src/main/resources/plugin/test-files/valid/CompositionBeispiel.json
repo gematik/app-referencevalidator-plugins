@@ -1,0 +1,147 @@
+{
+  "resourceType": "Composition",
+  "id": "a123c4f5-6789-1d23-a0b1-bedec2f3d4ea",
+  "meta": {
+    "lastUpdated": "2022-12-25T14:35:45+00:00",
+    "profile": [
+      "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Versorgungsplan_Composition|1.0"
+    ],
+    "security": [
+      {
+        "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_EVP_Datenweitergabe",
+        "code": "2",
+        "display": "Pflegekasse"
+      },
+      {
+        "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_EVP_Datenweitergabe",
+        "code": "3",
+        "display": "Arzt"
+      }
+    ]
+  },
+  "extension": [
+    {
+      "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_EVP_EmpfaengerBeratung",
+      "valueCoding": {
+        "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_EVP_EmpfaengerBeratung",
+        "code": "1",
+        "display": "Anspruchsberechtigte Person"
+      }
+    },
+    {
+      "extension": [
+        {
+          "url": "IdentifikationIKNR",
+          "valueIdentifier": {
+            "system": "http://fhir.de/sid/arge-ik/iknr",
+            "value": "123456789"
+          }
+        },
+        {
+          "url": "Name",
+          "valueString": "Erich Empfänger"
+        }
+      ],
+      "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_EVP_Empfaenger"
+    },
+    {
+      "extension": [
+        {
+          "url": "IdentifikationIKNR",
+          "valueIdentifier": {
+            "system": "http://fhir.de/sid/arge-ik/iknr",
+            "value": "987654321"
+          }
+        },
+        {
+          "url": "Name",
+          "valueString": "Alex Absender"
+        }
+      ],
+      "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_EVP_Absender"
+    },
+    {
+      "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_EVP_Verfahrenskennung",
+      "valueCoding": {
+        "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_EVP_Verfahrenskennung",
+        "code": "TEVP0",
+        "display": "Testdaten elektronischer Versorgungsplan Pflege"
+      }
+    },
+    {
+      "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_EVP_Pflegeberatungsdatum",
+      "valueDate": "2022-11-16"
+    },
+    {
+      "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_EVP_LogischeVersion",
+      "valueString": "1.1.0"
+    },
+    {
+      "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_EVP_Betreuungsverhaeltnis",
+      "valueBoolean": true
+    }
+  ],
+  "status": "final",
+  "type": {
+    "coding": [
+      {
+        "code": "VPL"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/PatientExample"
+  },
+  "date": "2022-07-10",
+  "author": [
+    {
+      "reference": "Practitioner/PflegeberaterPerson"
+    }
+  ],
+  "title": "Versorgungsplan Pflege",
+  "custodian": {
+    "reference": "Organization/PflegeOrganisation"
+  },
+  "section": [
+    {
+      "title": "Pflegekasse",
+      "entry": [
+        {
+          "reference": "Organization/PflegekasseBeispiel"
+        }
+      ]
+    },
+    {
+      "title": "Pflegegrad",
+      "entry": [
+        {
+          "reference": "Observation/PflegegradBeispiel"
+        }
+      ]
+    },
+    {
+      "title": "Betreuer",
+      "entry": [
+        {
+          "reference": "RelatedPerson/BetreuerBeispiel"
+        }
+      ]
+    },
+    {
+      "title": "Bedarf",
+      "entry": [
+        {
+          "reference": "CarePlan/CarePlanBadelift"
+        }
+      ]
+    },
+    {
+      "title": "Behinderung",
+      "entry": [
+        {
+          "reference": "Observation/BehinderungsBeispiel"
+        }
+      ]
+    }
+  ]
+}

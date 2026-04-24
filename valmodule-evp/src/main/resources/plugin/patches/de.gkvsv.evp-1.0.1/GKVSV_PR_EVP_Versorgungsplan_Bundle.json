@@ -1,0 +1,628 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "GKVSV-PR-EVP-Versorgungsplan-Bundle",
+  "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Versorgungsplan_Bundle",
+  "version": "1.0",
+  "name": "GKVSV_PR_EVP_Versorgungsplan_Bundle",
+  "status": "active",
+  "date": "2023-11-03T15:39:51.2904616+00:00",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Bundle",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Bundle",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Bundle.meta",
+        "path": "Bundle.meta",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.meta.versionId",
+        "path": "Bundle.meta.versionId",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.meta.lastUpdated",
+        "path": "Bundle.meta.lastUpdated",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.meta.source",
+        "path": "Bundle.meta.source",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.meta.profile",
+        "path": "Bundle.meta.profile",
+        "min": 1,
+        "max": "1",
+        "patternCanonical": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Versorgungsplan_Bundle|1.0",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.meta.security",
+        "path": "Bundle.meta.security",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.meta.tag",
+        "path": "Bundle.meta.tag",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.implicitRules",
+        "path": "Bundle.implicitRules",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.language",
+        "path": "Bundle.language",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.identifier",
+        "path": "Bundle.identifier",
+        "short": "Versorgungsplan-ID",
+        "definition": "eindeutige Versorgungsplan-ID, die vom Ersteller des Versorgungsplans vergeben wurde",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.identifier.system",
+        "path": "Bundle.identifier.system",
+        "min": 1,
+        "patternUri": "http://gkv-sv.de/fhir/sid/versorgungsplan-id",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.identifier.value",
+        "path": "Bundle.identifier.value",
+        "min": 1,
+        "maxLength": 40,
+        "constraint": [
+          {
+            "key": "ele-1",
+            "severity": "error",
+            "human": "Dieser Wert darf die Länge von 40 nicht überschreiten",
+            "expression": "length()<41"
+          },
+          {
+            "key": "Aufbau-Versorgungsplan-ID",
+            "severity": "error",
+            "human": "Die Versorungsplan-ID muss gemäß dem regulären Ausdruck aufgebaut sein.",
+            "expression": "matches('^VPL_[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.identifier.period",
+        "path": "Bundle.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.identifier.assigner",
+        "path": "Bundle.identifier.assigner",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.type",
+        "path": "Bundle.type",
+        "fixedCode": "document",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.timestamp",
+        "path": "Bundle.timestamp",
+        "short": "Erstellungsdatum Erstellungsuhrzeit",
+        "definition": "Datum und Uhrzeit der Erstellung der Nutzdatendatei",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.total",
+        "path": "Bundle.total",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.link",
+        "path": "Bundle.link",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry",
+        "path": "Bundle.entry",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "profile",
+              "path": "resource"
+            }
+          ],
+          "rules": "closed"
+        },
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry.link",
+        "path": "Bundle.entry.link",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Dokumenteninformation",
+        "path": "Bundle.entry",
+        "sliceName": "Dokumenteninformation",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:Dokumenteninformation.link",
+        "path": "Bundle.entry.link",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Dokumenteninformation.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "min": 1
+      },
+      {
+        "id": "Bundle.entry:Dokumenteninformation.resource",
+        "path": "Bundle.entry.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "Resource",
+            "profile": [
+              "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Versorgungsplan_Composition"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:Dokumenteninformation.search",
+        "path": "Bundle.entry.search",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Dokumenteninformation.request",
+        "path": "Bundle.entry.request",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Dokumenteninformation.response",
+        "path": "Bundle.entry.response",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Versicherter",
+        "path": "Bundle.entry",
+        "sliceName": "Versicherter",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Bundle.entry:Versicherter.link",
+        "path": "Bundle.entry.link",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Versicherter.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:Versicherter.resource",
+        "path": "Bundle.entry.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "Resource",
+            "profile": [
+              "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Versicherter"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:Versicherter.search",
+        "path": "Bundle.entry.search",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Versicherter.request",
+        "path": "Bundle.entry.request",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Versicherter.response",
+        "path": "Bundle.entry.response",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Betreuer",
+        "path": "Bundle.entry",
+        "sliceName": "Betreuer",
+        "max": "1"
+      },
+      {
+        "id": "Bundle.entry:Betreuer.link",
+        "path": "Bundle.entry.link",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Betreuer.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:Betreuer.resource",
+        "path": "Bundle.entry.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "Resource",
+            "profile": [
+              "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Betreuer"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:Betreuer.search",
+        "path": "Bundle.entry.search",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Betreuer.request",
+        "path": "Bundle.entry.request",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Betreuer.response",
+        "path": "Bundle.entry.response",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Pflegegrad",
+        "path": "Bundle.entry",
+        "sliceName": "Pflegegrad",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Bundle.entry:Pflegegrad.link",
+        "path": "Bundle.entry.link",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Pflegegrad.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:Pflegegrad.resource",
+        "path": "Bundle.entry.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "Resource",
+            "profile": [
+              "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Pflegegrad"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:Pflegegrad.search",
+        "path": "Bundle.entry.search",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Pflegegrad.request",
+        "path": "Bundle.entry.request",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Pflegegrad.response",
+        "path": "Bundle.entry.response",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Pflegekasse",
+        "path": "Bundle.entry",
+        "sliceName": "Pflegekasse",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Bundle.entry:Pflegekasse.link",
+        "path": "Bundle.entry.link",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Pflegekasse.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:Pflegekasse.resource",
+        "path": "Bundle.entry.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "Resource",
+            "profile": [
+              "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Pflegekasse"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:Pflegekasse.search",
+        "path": "Bundle.entry.search",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Pflegekasse.request",
+        "path": "Bundle.entry.request",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Pflegekasse.response",
+        "path": "Bundle.entry.response",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Bedarf",
+        "path": "Bundle.entry",
+        "sliceName": "Bedarf",
+        "min": 1,
+        "max": "99"
+      },
+      {
+        "id": "Bundle.entry:Bedarf.link",
+        "path": "Bundle.entry.link",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Bedarf.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:Bedarf.resource",
+        "path": "Bundle.entry.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "Resource",
+            "profile": [
+              "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_CarePlanBedarf"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:Bedarf.search",
+        "path": "Bundle.entry.search",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Bedarf.request",
+        "path": "Bundle.entry.request",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Bedarf.response",
+        "path": "Bundle.entry.response",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Behinderung",
+        "path": "Bundle.entry",
+        "sliceName": "Behinderung",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Bundle.entry:Behinderung.link",
+        "path": "Bundle.entry.link",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Behinderung.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:Behinderung.resource",
+        "path": "Bundle.entry.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "Resource",
+            "profile": [
+              "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_Behinderung"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:Behinderung.search",
+        "path": "Bundle.entry.search",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Behinderung.request",
+        "path": "Bundle.entry.request",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Behinderung.response",
+        "path": "Bundle.entry.response",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Pflegeberater",
+        "path": "Bundle.entry",
+        "sliceName": "Pflegeberater",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Bundle.entry:Pflegeberater.link",
+        "path": "Bundle.entry.link",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Pflegeberater.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:Pflegeberater.resource",
+        "path": "Bundle.entry.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "Resource",
+            "profile": [
+              "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_PflegeBerater"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:Pflegeberater.search",
+        "path": "Bundle.entry.search",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Pflegeberater.request",
+        "path": "Bundle.entry.request",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:Pflegeberater.response",
+        "path": "Bundle.entry.response",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:PflegeberaterOrganisation",
+        "path": "Bundle.entry",
+        "sliceName": "PflegeberaterOrganisation",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Bundle.entry:PflegeberaterOrganisation.link",
+        "path": "Bundle.entry.link",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:PflegeberaterOrganisation.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:PflegeberaterOrganisation.resource",
+        "path": "Bundle.entry.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "Resource",
+            "profile": [
+              "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_PflegeOrganisation"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:PflegeberaterOrganisation.search",
+        "path": "Bundle.entry.search",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:PflegeberaterOrganisation.request",
+        "path": "Bundle.entry.request",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:PflegeberaterOrganisation.response",
+        "path": "Bundle.entry.response",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:ServiceRequestAnfrage",
+        "path": "Bundle.entry",
+        "sliceName": "ServiceRequestAnfrage"
+      },
+      {
+        "id": "Bundle.entry:ServiceRequestAnfrage.link",
+        "path": "Bundle.entry.link",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:ServiceRequestAnfrage.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:ServiceRequestAnfrage.resource",
+        "path": "Bundle.entry.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "Resource",
+            "profile": [
+              "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_ServiceRequestMassnahme"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:ServiceRequestAnfrage.search",
+        "path": "Bundle.entry.search",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:ServiceRequestAnfrage.request",
+        "path": "Bundle.entry.request",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:ServiceRequestAnfrage.response",
+        "path": "Bundle.entry.response",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.signature",
+        "path": "Bundle.signature",
+        "max": "0"
+      }
+    ]
+  }
+}

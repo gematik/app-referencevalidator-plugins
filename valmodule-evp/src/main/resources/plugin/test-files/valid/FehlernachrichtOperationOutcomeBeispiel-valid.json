@@ -1,0 +1,39 @@
+{
+  "resourceType": "OperationOutcome",
+  "id": "aa359072-cb9a-46f9-b161-8c217e166329",
+  "meta": {
+    "profile": [
+      "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_EVP_FehlermeldungOperationOutcome|1.0"
+    ]
+  },
+  "issue": [
+    {
+      "extension": [
+        {
+          "extension": [
+            {
+              "url": "Message-ID",
+              "valueIdentifier": {
+                "system": "http://gkv-sv.de/fhir/sid/message-id",
+                "value": "0ec22bfe-2967-48f9-8796-642b26777869@kim.de"
+              }
+            },
+            {
+              "url": "Versorgungsplan-ID",
+              "valueIdentifier": {
+                "system": "http://gkv-sv.de/fhir/sid/versorgungsplan-id",
+                "value": "VPL_4102c639-e47a-47d8-9e4f-bf5532e8996d"
+              }
+            }
+          ],
+          "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_EVP_ZuordnungsIdentifier"
+        }
+      ],
+      "severity": "error",
+      "code": "invalid",
+      "details": {
+        "text": "ungültige Versionsnummer logische Version"
+      }
+    }
+  ]
+}
