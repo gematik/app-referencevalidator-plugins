@@ -47,6 +47,7 @@ werden.
 | Elektronische Rezept für die EU (ERP-EU)                                                         | 1.0.1      | erp-eu                    |
 | VSDM 2                                                                                           | 1.0.0      | vsdm2                     |
 | [KIM-Nachrichten für das E-Rezept](https://gemspec.gematik.de/ig/fhir/erp-servicerequest/1.2.0/) | 1.2.0      | erp-servicerequest        |
+| Elektronischer Versorgungsplan Pflege (EVP)                                                      | 1.0.0      | evp                       |
 
 Die Bezeichnung in der Spalte `ID` dient dem Aufruf des Plugins aus der Referenzvalidator-Konsolenanwendung.
 
@@ -107,9 +108,13 @@ Abweichend vom allgemeinen Prüfumfang verhält sich das DIGA-Plugin wie folgt:
 - Instanzen mit unbekannten Profilen führen zum invaliden Ergebnis
 - Instanzen mit unbekannten Extensions führen zum invaliden Ergebnis
 
+#### EVP
+
+Mit dem Modul können die Instanzen der Version [1.0.1](https://simplifier.net/packages/de.gkvsv.evp/) validiert werden
+
 #### VSDM2
 
-Mit dem Modul können die Instanzen der [1.0.0](https://simplifier.net/packages/de.gematik.vsdm2/) validiert werden
+Mit dem Modul können die Instanzen der Version [1.0.0](https://simplifier.net/packages/de.gematik.vsdm2/) validiert werden
 
 #### VSDM-Ersatzbescheinigung
 

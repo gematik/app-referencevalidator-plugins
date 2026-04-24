@@ -2,6 +2,12 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## EVP 1.0.0 (2026-04)
+
+### added
+
+- Plugin for EVP (Elektronischer Versorgungsplan Pflege)
+
 ## VSDM2 1.0.0 (2026-04)
 
 ### added
