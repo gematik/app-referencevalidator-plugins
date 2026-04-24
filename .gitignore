@@ -9,4 +9,3 @@ target/
 **/*.versionsBackup
 .jenkins/
 .githubignore
-.sdkmanrc
