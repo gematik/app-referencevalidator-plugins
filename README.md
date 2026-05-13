@@ -38,7 +38,7 @@ werden.
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Vitalparameter)           | 1.1.0      | isik3-vitalparameter      |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Medikation)               | 1.1.0      | isik3-medikation          |
 | Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Dokumentenaustausch)      | 2.1.0      | isik3-dokumentenaustausch |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 5 (Unified)                        | 1.0.1      | isik5                     |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 5 (Unified)                        | 1.0.2      | isik5                     |
 | Informationstechnische Systeme in der Pflege (ISIP) Stufe 1                                      | 1.1        | isip1                     |
 | DiGA Toolkit                                                                                     | 0.10       | diga                      |
 | VSDM-Ersatzbescheinigung                                                                         | 1.0.1      | eeb                       |
