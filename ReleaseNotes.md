@@ -2,6 +2,12 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## ISIK5 1.0.2 (2026-05)
+
+### changed
+
+- New ISIK5 5.1.2 Package configured
+
 ## EVP 1.0.0 (2026-04)
 
 ### added
