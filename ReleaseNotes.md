@@ -2,6 +2,12 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## VSDM2 1.0.1 (2026-05)
+
+### changed
+
+- Updated Plugin to Specification Version 1.0.1
+
 ## ISIK5 1.0.2 (2026-05)
 
 ### changed

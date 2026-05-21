@@ -45,7 +45,7 @@ werden.
 | Elektronische Patientenakte Basisfunktionalitäten 3.1.3-1                                        | 1.2.0      | epa3-basic                |
 | Elektronische Patientenakte Medication 3.1.3-1                                                   | 1.5.0      | epa3-medication           |
 | Elektronische Rezept für die EU (ERP-EU)                                                         | 1.0.1      | erp-eu                    |
-| VSDM 2                                                                                           | 1.0.0      | vsdm2                     |
+| VSDM 2                                                                                           | 1.0.1      | vsdm2                     |
 | [KIM-Nachrichten für das E-Rezept](https://gemspec.gematik.de/ig/fhir/erp-servicerequest/1.2.0/) | 1.2.0      | erp-servicerequest        |
 | Elektronischer Versorgungsplan Pflege (EVP)                                                      | 1.0.0      | evp                       |
 
