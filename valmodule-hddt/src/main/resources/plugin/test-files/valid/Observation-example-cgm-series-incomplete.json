@@ -1,0 +1,52 @@
+{
+  "resourceType": "Observation",
+  "id": "example-cgm-series-incomplete",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
+    ]
+  },
+  "valueSampledData": {
+    "origin": {
+      "system": "http://unitsofmeasure.org",
+      "value": 0,
+      "unit": "mg/dl",
+      "code": "mg/dL"
+    },
+    "period": 60000,
+    "dimensions": 1,
+    "data": "110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129"
+  },
+  "status": "preliminary",
+  "code": {
+    "coding": [
+      {
+        "code": "99504-3",
+        "system": "http://loinc.org",
+        "display": "Glucose [Mass/volume] in Interstitial fluid"
+      }
+    ]
+  },
+  "effectivePeriod": {
+    "start": "2025-08-28T08:00:00Z",
+    "end": "2025-08-28T09:00:00Z"
+  },
+  "device": {
+    "reference": "DeviceMetric/example-devicemetric-cgm"
+  },
+  "method": {
+    "coding": [
+      {
+        "code": "463729000",
+        "system": "http://snomed.info/sct",
+        "version": "http://snomed.info/sct/11000274103/version/20251115",
+        "display": "Point-of-care blood glucose continuous monitoring system (physical object)"
+      }
+    ]
+  },
+  "note": [
+    {
+      "text": "Example CGM data series with 1-minute intervals over 20 minutes (20 samples), but status incomplete."
+    }
+  ]
+}

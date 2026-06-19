@@ -1,0 +1,33 @@
+{
+  "resourceType": "Device",
+  "id": "example-device-blood-pressure-cuff",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
+    ]
+  },
+  "status": "active",
+  "type": {
+    "coding": [
+      {
+        "code": "70665002",
+        "system": "http://snomed.info/sct",
+        "version": "http://snomed.info/sct/11000274103/version/20251115",
+        "display": "Blood pressure cuff, device (physical object)"
+      }
+    ]
+  },
+  "definition": {
+    "reference": "DeviceDefinition/device-definition-blood-pressure-cuff-001"
+  },
+  "deviceName": [
+    {
+      "name": "BP Cuff Pro",
+      "type": "user-friendly-name"
+    }
+  ],
+  "modelNumber": "Digital BT 2",
+  "manufacturer": "HealthTech GmbH",
+  "serialNumber": "BPC0011223345",
+  "expirationDate": "2027-12-15"
+}

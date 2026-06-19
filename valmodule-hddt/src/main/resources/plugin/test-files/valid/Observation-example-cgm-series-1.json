@@ -1,0 +1,52 @@
+{
+  "resourceType": "Observation",
+  "id": "example-cgm-series-1",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
+    ]
+  },
+  "valueSampledData": {
+    "origin": {
+      "system": "http://unitsofmeasure.org",
+      "value": 0,
+      "unit": "mg/dl",
+      "code": "mg/dL"
+    },
+    "period": 300000,
+    "dimensions": 1,
+    "data": "123 122 126 134 129 128 130 131 129 127 127 133"
+  },
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "code": "99504-3",
+        "system": "http://loinc.org",
+        "display": "Glucose [Mass/volume] in Interstitial fluid"
+      }
+    ]
+  },
+  "effectivePeriod": {
+    "start": "2025-09-26T16:00:00Z",
+    "end": "2025-09-26T16:59:59Z"
+  },
+  "device": {
+    "reference": "DeviceMetric/example-devicemetric-cgm"
+  },
+  "method": {
+    "coding": [
+      {
+        "code": "463729000",
+        "system": "http://snomed.info/sct",
+        "version": "http://snomed.info/sct/11000274103/version/20251115",
+        "display": "Point-of-care blood glucose continuous monitoring system (physical object)"
+      }
+    ]
+  },
+  "note": [
+    {
+      "text": "Example CGM data series with 5-minute intervals over 1 hour (12 samples)."
+    }
+  ]
+}

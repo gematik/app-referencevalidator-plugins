@@ -2,6 +2,12 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## HDDT 1.0.0 (2026-06)
+
+### added
+
+- Plugin to Specification Version 1.0.1
+
 ## VSDM2 1.0.1 (2026-05)
 
 ### changed
