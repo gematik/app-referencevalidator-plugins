@@ -1,0 +1,45 @@
+{
+  "resourceType": "DeviceMetric",
+  "id": "example-devicemetric-cgm",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
+    ]
+  },
+  "type": {
+    "coding": [
+      {
+        "code": "160212",
+        "system": "urn:iso:std:iso:11073:10101",
+        "display": "MDC_CONC_GLU_ISF"
+      }
+    ]
+  },
+  "unit": {
+    "coding": [
+      {
+        "code": "mg/dL",
+        "system": "http://unitsofmeasure.org",
+        "display": "mg/dL"
+      }
+    ]
+  },
+  "source": {
+    "reference": "Device/example-device-cgm"
+  },
+  "operationalStatus": "on",
+  "category": "measurement",
+  "measurementPeriod": {
+    "repeat": {
+      "frequency": 1,
+      "period": 1,
+      "periodUnit": "min"
+    }
+  },
+  "calibration": [
+    {
+      "type": "unspecified",
+      "state": "calibrated"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "resourceType": "Device",
+  "id": "example-device-peak-flow-meter",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
+    ]
+  },
+  "status": "active",
+  "type": {
+    "coding": [
+      {
+        "code": "334990001",
+        "system": "http://snomed.info/sct",
+        "version": "http://snomed.info/sct/11000274103/version/20251115",
+        "display": "Peak flow meter (physical object)"
+      }
+    ]
+  },
+  "definition": {
+    "reference": "DeviceDefinition/device-definition-peak-flow-001"
+  },
+  "deviceName": [
+    {
+      "name": "Peak Flow Pro",
+      "type": "user-friendly-name"
+    }
+  ],
+  "modelNumber": "Smart 2",
+  "manufacturer": "HealthTech GmbH",
+  "serialNumber": "PFM0011223344",
+  "expirationDate": "2027-12-15"
+}

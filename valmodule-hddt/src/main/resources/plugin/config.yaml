@@ -1,0 +1,21 @@
+configSpecVersion: "2.0"
+id: "hddt"
+author: "gematik GmbH"
+description: "Referenzvalidator-Plugin für die Spezifikation 'Health Device Data Transfer (HDDT) to DiGA (§374a SGB V)'"
+specUrl: "https://simplifier.net/packages/de.gematik.hddt/1.0.1"
+version: "${project.version}"
+validation:
+  dependencyLists:
+    - fhirPackage: "de.gematik.hddt#1.0.1"
+  errorOnUnknownProfile: "false"
+  anyExtensionsAllowed: "true"
+  ignoredCodeSystems:
+    - "http://loinc.org"
+    - "http://snomed.info/sct"
+    - "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
+    - "http://fhir.de/CodeSystem/bfarm/atc"
+    - "http://fhir.de/CodeSystem/bfarm/ops"
+    - "http://dvmd.de/fhir/CodeSystem/kdl"
+  ignoredValueSets:
+    - "http://fhir.de/ValueSet/bfarm/ops" # Code System not available as FHIR
+    - "http://dvmd.de/fhir/ValueSet/kdl"

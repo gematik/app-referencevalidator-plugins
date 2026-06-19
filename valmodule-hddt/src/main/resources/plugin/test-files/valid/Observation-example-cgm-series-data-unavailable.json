@@ -1,0 +1,40 @@
+{
+  "resourceType": "Observation",
+  "id": "example-cgm-series-data-unavailable",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
+    ]
+  },
+  "status": "preliminary",
+  "code": {
+    "coding": [
+      {
+        "code": "99504-3",
+        "system": "http://loinc.org",
+        "display": "Glucose [Mass/volume] in Interstitial fluid"
+      }
+    ]
+  },
+  "effectivePeriod": {
+    "start": "2025-09-01T08:00:00+02:00",
+    "end": "2025-09-01T10:00:00+02:00"
+  },
+  "dataAbsentReason": {
+    "coding": [
+      {
+        "code": "temp-unknown",
+        "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+        "display": "Temporarily Unknown"
+      }
+    ]
+  },
+  "device": {
+    "reference": "DeviceMetric/example-devicemetric-cgm"
+  },
+  "note": [
+    {
+      "text": "Sensor warm-up phase, values not yet validated."
+    }
+  ]
+}

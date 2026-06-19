@@ -618,6 +618,7 @@
                 <module>valmodule-erp-eu</module>
                 <module>valmodule-evp</module>
                 <module>valmodule-vsdm2</module>
+                <module>valmodule-hddt</module>
             </modules>
         </profile>
 

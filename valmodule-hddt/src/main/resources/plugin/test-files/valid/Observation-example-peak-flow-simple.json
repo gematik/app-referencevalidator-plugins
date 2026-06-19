@@ -1,0 +1,29 @@
+{
+  "resourceType": "Observation",
+  "id": "example-peak-flow-simple",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing"
+    ]
+  },
+  "valueQuantity": {
+    "system": "http://unitsofmeasure.org",
+    "value": 612,
+    "code": "L/min",
+    "unit": "L/min"
+  },
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "code": "19935-6",
+        "system": "http://loinc.org",
+        "display": "Maximum expiratory gas flow Respiratory system airway by Peak flow meter"
+      }
+    ]
+  },
+  "effectiveDateTime": "2025-12-28T08:00:00Z",
+  "device": {
+    "reference": "Device/example-device-peak-flow-meter"
+  }
+}

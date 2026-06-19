@@ -1,0 +1,169 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hddt-blood-pressure-value",
+  "url": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-pressure-value",
+  "version": "1.0.0-rc",
+  "name": "HddtBloodPressureValue",
+  "title": "Observation - HDDT Blood Pressure Value",
+  "status": "active",
+  "date": "2026-01-23",
+  "publisher": "gematik GmbH",
+  "description": "Profile for capturing blood pressure value as FHIR Observation resources.\n\nThis profile defines the exchange of blood pressure value data for the Mandatory Interoperable Value (MIV) \\\"Blood Pressure Monitoring\\\" which is technically defined \nby the ValueSet _hddt-miv-blood-pressure-value_. This MIV is e.g. implemented by automated sphygmomanometers (oszillometric, auscultatory) that can connect to \na Personal Health Gateway (e.g. a mobile app for tracking blood pressure values) through wireless communication.\n\nBlood pressure measurements consist of multiple components: systolic blood pressure, diastolic blood pressure, and optionally mean blood pressure. \nThis profile uses the LOINC panel code #85354-9 \"Blood pressure panel with all children optional\" defined in the MIV _hddt-miv-blood-pressure-value_ to represent the complete measurement.\n\n**Obligations and Conventions:**\n\nEach Blood Pressure Measurement MUST hold a reference to a _Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource. \nBlood pressure devices typically do not require calibration.\n\nThis profile inherits from the FHIR Blood Pressure profile (`http://hl7.org/fhir/StructureDefinition/bp`) and adds HDDT-specific constraints. The blood pressure components \n(systolic and diastolic are mandatory; mean is optional) are inherited from the parent profile with the MeanBP component added as an optional slice.\nEach component MUST include a value in mmHg (millimeters of mercury).\n\nCaution: For privacy and data protection, the subject reference MUST only use pseudonymized or anonymized identifiers. Direct patient identification is not permitted.\n\n**Constraints applied:** \n- `status` is restricted to _final_\n- `code.coding[BPCode]` is constrained to ValueSet HddtMivBloodPressureValue containing LOINC panel code 85354-9\n- `component` cardinality is set to 2..3 to require systolic and diastolic components (inherited from parent), with mean blood pressure as optional\n- `component[MeanBP]` is added as an optional slice (0..1) for mean blood pressure with LOINC code 8478-0\n- Each component's `valueQuantity` MUST use UCUM code mm[Hg] for the unit\n- `device` is mandatory and restricted to reference only HddtPersonalHealthDevice",
+  "copyright": "Copyright (c) 2025 gematik GmbH",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/bp",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.status",
+        "path": "Observation.status",
+        "short": "Measurement status",
+        "definition": "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented.",
+        "fixedCode": "final"
+      },
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "short": "Type of blood pressure measurement",
+        "binding": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+              "valueString": "VitalSigns"
+            }
+          ],
+          "strength": "extensible",
+          "description": "Specifies the type of blood pressure measurement using codes from the ValueSet for blood pressure measurements.",
+          "valueSet": "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"
+        }
+      },
+      {
+        "id": "Observation.code.coding:BPCode",
+        "path": "Observation.code.coding",
+        "sliceName": "BPCode",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-pressure-value"
+        }
+      },
+      {
+        "id": "Observation.subject",
+        "path": "Observation.subject",
+        "short": "Patient reference in anonymized or pseudonymized form only",
+        "definition": "Reference to the patient. The patient MUST NOT be identified directly. Only anonymized or pseudonymized forms are permitted."
+      },
+      {
+        "id": "Observation.device",
+        "path": "Observation.device",
+        "short": "Reference to the blood pressure measurement device",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.component",
+        "path": "Observation.component",
+        "max": "3"
+      },
+      {
+        "id": "Observation.component:SystolicBP",
+        "path": "Observation.component",
+        "sliceName": "SystolicBP"
+      },
+      {
+        "id": "Observation.component:SystolicBP.code.coding",
+        "path": "Observation.component.code.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Observation.component:DiastolicBP",
+        "path": "Observation.component",
+        "sliceName": "DiastolicBP"
+      },
+      {
+        "id": "Observation.component:DiastolicBP.code.coding",
+        "path": "Observation.component.code.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Observation.component:MeanBP",
+        "path": "Observation.component",
+        "sliceName": "MeanBP",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "Observation.component:MeanBP.code",
+        "path": "Observation.component.code"
+      },
+      {
+        "id": "Observation.component:MeanBP.code.coding",
+        "path": "Observation.component.code.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Observation.component:MeanBP.code.coding.system",
+        "path": "Observation.component.code.coding.system",
+        "min": 1,
+        "fixedUri": "http://loinc.org"
+      },
+      {
+        "id": "Observation.component:MeanBP.code.coding.code",
+        "path": "Observation.component.code.coding.code",
+        "min": 1,
+        "fixedCode": "8478-0"
+      },
+      {
+        "id": "Observation.component:MeanBP.code.coding.display",
+        "path": "Observation.component.code.coding.display",
+        "fixedString": "Mean blood pressure"
+      },
+      {
+        "id": "Observation.component:MeanBP.value[x]",
+        "path": "Observation.component.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "Quantity"
+          }
+        ]
+      },
+      {
+        "id": "Observation.component:MeanBP.value[x].value",
+        "path": "Observation.component.value[x].value",
+        "min": 1
+      },
+      {
+        "id": "Observation.component:MeanBP.value[x].unit",
+        "path": "Observation.component.value[x].unit",
+        "min": 1
+      },
+      {
+        "id": "Observation.component:MeanBP.value[x].system",
+        "path": "Observation.component.value[x].system",
+        "min": 1,
+        "fixedUri": "http://unitsofmeasure.org",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.component:MeanBP.value[x].code",
+        "path": "Observation.component.value[x].code",
+        "fixedCode": "mm[Hg]"
+      }
+    ]
+  }
+}

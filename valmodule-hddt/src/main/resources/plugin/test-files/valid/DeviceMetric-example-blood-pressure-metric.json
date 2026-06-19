@@ -1,0 +1,40 @@
+{
+  "resourceType": "DeviceMetric",
+  "id": "example-blood-pressure-metric",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
+    ]
+  },
+  "type": {
+    "coding": [
+      {
+        "code": "70665002",
+        "system": "http://snomed.info/sct",
+        "version": "http://snomed.info/sct/11000274103/version/20251115",
+        "display": "Blood pressure cuff"
+      }
+    ]
+  },
+  "unit": {
+    "coding": [
+      {
+        "code": "mm[Hg]",
+        "system": "http://unitsofmeasure.org",
+        "display": "mm[Hg]"
+      }
+    ]
+  },
+  "source": {
+    "reference": "Device/example-device-blood-pressure-cuff"
+  },
+  "operationalStatus": "on",
+  "category": "measurement",
+  "calibration": [
+    {
+      "type": "unspecified",
+      "state": "calibrated",
+      "time": "2025-09-01T09:08:04+02:00"
+    }
+  ]
+}

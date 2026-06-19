@@ -9,9 +9,8 @@
         <version>2.0.4-SNAPSHOT</version>
     </parent>
 
-    <artifactId>valmodule-vsdm2</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
-    <description>Plugin for validating VSDM2 Resources</description>
+    <artifactId>valmodule-hddt</artifactId>
+    <version>1.0.0</version>
 
     <build>
         <plugins>
@@ -65,7 +64,7 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>target/vsdm2-${project.version}.zip</file>
+                                    <file>target/hddt-${project.version}.zip</file>
                                     <type>zip</type>
                                     <classifier>refv-plugin</classifier>
                                 </artifact>

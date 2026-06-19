@@ -1,0 +1,100 @@
+{
+  "resourceType": "Observation",
+  "id": "example-blood-pressure-value",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-pressure-value"
+    ]
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "vital-signs"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "85354-9",
+        "display": "Blood pressure panel with all children optional"
+      }
+    ]
+  },
+  "component": [
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "8480-6",
+            "display": "Systolic blood pressure"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "system": "http://unitsofmeasure.org",
+        "code": "mm[Hg]",
+        "value": 124,
+        "unit": "mm[Hg]"
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "8462-4",
+            "display": "Diastolic blood pressure"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "system": "http://unitsofmeasure.org",
+        "code": "mm[Hg]",
+        "value": 82,
+        "unit": "mm[Hg]"
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "8478-0",
+            "display": "Mean blood pressure"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "system": "http://unitsofmeasure.org",
+        "code": "mm[Hg]",
+        "value": 94,
+        "unit": "mm[Hg]"
+      }
+    }
+  ],
+  "status": "final",
+  "subject": {
+    "reference": "Patient/patientExample"
+  },
+  "effectiveDateTime": "2025-10-23T09:15:00+02:00",
+  "device": {
+    "reference": "Device/example-device-blood-pressure-cuff"
+  },
+  "interpretation": [
+    {
+      "coding": [
+        {
+          "code": "N",
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "display": "Normal"
+        }
+      ]
+    }
+  ]
+}
