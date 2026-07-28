@@ -1,0 +1,292 @@
+{
+  "resourceType" : "Bundle",
+  "id" : "example-searchset-medicationstatement",
+  "type" : "searchset",
+  "total" : 100,
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-statement|1.3.2"
+    ]
+  },
+  "link" : [{
+    "relation" : "self",
+    "url" : "/epa/medication/api/v1/fhir/MedicationStatement?_offset=20&_count=10"
+  },
+  {
+    "relation" : "previous",
+    "url" : "/epa/medication/api/v1/fhir/MedicationStatement?_offset=10&_count=10"
+  },
+  {
+    "relation" : "next",
+    "url" : "/epa/medication/api/v1/fhir/MedicationStatement?_offset=30&_count=10"
+  }],
+  "entry" : [{
+    "fullUrl" : "http://epa4all/epa/medication/api/v1/fhir/MedicationStatement/b87b0908-7765-4ec0-8662-7d3daff08f6e",
+    "resource" : {
+      "resourceType" : "MedicationStatement",
+      "id" : "b87b0908-7765-4ec0-8662-7d3daff08f6e",
+      "meta" : {
+        "versionId" : "2",
+        "lastUpdated" : "2025-02-27T14:43:33.244Z",
+        "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-statement|1.3.2"]
+      },
+      "extension" : [{
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension",
+        "valueIdentifier" : {
+          "system" : "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+          "value" : "160.100.000.000.001.39_20250227"
+        }
+      },
+      {
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+        "valueCode" : "PRESCRIPTION"
+      }],
+      "status" : "unknown",
+      "medicationReference" : {
+        "reference" : "Medication/56ca34f1-a3f3-42f7-95a2-f5a6423c2031"
+      },
+      "subject" : {
+        "identifier" : {
+          "system" : "http://fhir.de/sid/gkv/kvid-10",
+          "value" : "X110411319"
+        }
+      },
+      "effectivePeriod" : {
+        "start" : "2025-02-27"
+      },
+      "dateAsserted" : "2025-02-27",
+      "derivedFrom" : [{
+        "reference" : "MedicationRequest/7efae80a-a4d9-4e26-a1b9-92c72e79cfaa"
+      },
+      {
+        "reference" : "MedicationDispense/c0b553bd-2542-49d7-b5e1-0a770185e39f"
+      }]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  },
+  {
+    "fullUrl" : "http://epa4all/epa/medication/api/v1/fhir/MedicationStatement/f3988023-2313-4645-bd6b-f9e37cfb6fc7",
+    "resource" : {
+      "resourceType" : "MedicationStatement",
+      "id" : "f3988023-2313-4645-bd6b-f9e37cfb6fc7",
+      "meta" : {
+        "versionId" : "2",
+        "lastUpdated" : "2025-05-22T14:43:34.244Z",
+        "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-statement|1.3.2"]
+      },
+      "extension" : [{
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension",
+        "valueIdentifier" : {
+          "system" : "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+          "value" : "160.100.000.000.006.24_20250520"
+        }
+      },
+      {
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+        "valueCode" : "PRESCRIPTION"
+      },
+      {
+        "url" : "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationStatement.renderedDosageInstruction",
+        "valueMarkdown" : "1-0-1-0 Stück"
+      },
+      {
+        "extension" : [{
+          "url" : "algorithmVersion",
+          "valueString" : "1.0.1"
+        },
+        {
+          "url" : "language",
+          "valueCode" : "de-DE"
+        }],
+        "url" : "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta"
+      }],
+      "status" : "unknown",
+      "medicationReference" : {
+        "reference" : "Medication/bb91cde8-0426-4f4b-a766-5d818d0605bd"
+      },
+      "subject" : {
+        "identifier" : {
+          "system" : "http://fhir.de/sid/gkv/kvid-10",
+          "value" : "X110411319"
+        }
+      },
+      "effectivePeriod" : {
+        "start" : "2025-05-22"
+      },
+      "dateAsserted" : "2025-05-22",
+      "derivedFrom" : [{
+        "reference" : "MedicationRequest/3191d752-3adf-4c7f-848d-8d43766fed72"
+      },
+      {
+        "reference" : "MedicationDispense/4e6e1623-778e-44a3-b208-8479f5339e43"
+      }],
+      "dosage" : [{
+        "timing" : {
+          "repeat" : {
+            "frequency" : 2,
+            "period" : 1,
+            "periodUnit" : "d",
+            "when" : ["MORN",
+            "EVE"]
+          }
+        },
+        "doseAndRate" : [{
+          "doseQuantity" : {
+            "value" : 1,
+            "unit" : "Stück",
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
+            "code" : "1"
+          }
+        }]
+      }]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  },
+  {
+    "fullUrl" : "http://epa4all/epa/medication/api/v1/fhir/MedicationStatement/1b88713c-64cc-40ad-9665-70ca5f7dfb08",
+    "resource" : {
+      "resourceType" : "MedicationStatement",
+      "id" : "1b88713c-64cc-40ad-9665-70ca5f7dfb08",
+      "meta" : {
+        "versionId" : "2",
+        "lastUpdated" : "2025-11-27T14:43:42.244Z",
+        "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-statement|1.3.2"]
+      },
+      "extension" : [{
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension",
+        "valueIdentifier" : {
+          "system" : "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+          "value" : "160.100.000.000.002.36_20251127"
+        }
+      },
+      {
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+        "valueCode" : "PRESCRIPTION"
+      },
+      {
+        "url" : "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationStatement.renderedDosageInstruction",
+        "valueMarkdown" : "2mal tägl. 5ml"
+      },
+      {
+        "extension" : [{
+          "url" : "algorithmVersion",
+          "valueString" : "1.0.1"
+        },
+        {
+          "url" : "language",
+          "valueCode" : "de-DE"
+        }],
+        "url" : "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta"
+      }],
+      "status" : "unknown",
+      "medicationReference" : {
+        "reference" : "Medication/ab8addbd-c4c7-48d2-bf4b-4a7c99f9fd6e"
+      },
+      "subject" : {
+        "identifier" : {
+          "system" : "http://fhir.de/sid/gkv/kvid-10",
+          "value" : "X110411319"
+        }
+      },
+      "effectivePeriod" : {
+        "start" : "2025-11-22"
+      },
+      "dateAsserted" : "2025-11-27",
+      "derivedFrom" : [{
+        "reference" : "MedicationRequest/40df19aa-40e2-4ebc-a11d-9d232dcb0f67"
+      },
+      {
+        "reference" : "MedicationDispense/3c10c1ad-1d7a-47e8-abab-00b8299b49b8"
+      }],
+      "dosage" : [{
+        "text" : "2mal tägl. 5ml"
+      }]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  },
+  {
+    "fullUrl" : "http://epa4all/epa/medication/api/v1/fhir/MedicationStatement/0fc1f006-5793-4501-81b6-fe3918fcfa2d",
+    "resource" : {
+      "resourceType" : "MedicationStatement",
+      "id" : "0fc1f006-5793-4501-81b6-fe3918fcfa2d",
+      "meta" : {
+        "versionId" : "2",
+        "lastUpdated" : "2025-12-03T14:00:00.244Z",
+        "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-statement|1.3.2"]
+      },
+      "extension" : [{
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension",
+        "valueIdentifier" : {
+          "system" : "https://gematik.de/fhir/epa-medication/sid/rx-prescription-process-identifier",
+          "value" : "160.100.000.000.019.82_20251202"
+        }
+      },
+      {
+        "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+        "valueCode" : "PRESCRIPTION"
+      },
+      {
+        "url" : "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationStatement.renderedDosageInstruction",
+        "valueMarkdown" : "1-0-0-0 Stück"
+      },
+      {
+        "extension" : [{
+          "url" : "algorithmVersion",
+          "valueString" : "1.0.1"
+        },
+        {
+          "url" : "language",
+          "valueCode" : "de-DE"
+        }],
+        "url" : "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta"
+      }],
+      "status" : "unknown",
+      "medicationReference" : {
+        "reference" : "Medication/3f0b0cb0-e8cf-4aaf-bad8-01a51619417b"
+      },
+      "subject" : {
+        "identifier" : {
+          "system" : "http://fhir.de/sid/gkv/kvid-10",
+          "value" : "X110411319"
+        }
+      },
+      "effectivePeriod" : {
+        "start" : "2025-12-03"
+      },
+      "dateAsserted" : "2025-12-02",
+      "derivedFrom" : [{
+        "reference" : "MedicationRequest/0e7f16e4-d879-4a2c-8292-41c55201bbdd"
+      },
+      {
+        "reference" : "MedicationDispense/5aeaf266-a7ee-4e9d-bcb9-3c7dde96abad"
+      }],
+      "dosage" : [{
+        "timing" : {
+          "repeat" : {
+            "frequency" : 1,
+            "period" : 1,
+            "periodUnit" : "d",
+            "when" : ["MORN"]
+          }
+        },
+        "doseAndRate" : [{
+          "doseQuantity" : {
+            "value" : 1,
+            "unit" : "Stück",
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
+            "code" : "1"
+          }
+        }]
+      }]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }]
+}

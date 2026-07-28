@@ -2,17 +2,17 @@
   "resourceType" : "Parameters",
   "id" : "example-epa-op-link-emp-entry-output-parameters-1",
   "meta" : {
-    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-link-emp-entry-output-parameters|1.3.0"]
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-link-emp-entry-output-parameters|1.3.2"]
   },
   "parameter" : [{
-    "name" : "eMPEntry",
+    "name" : "empEntry",
     "resource" : {
       "resourceType" : "MedicationRequest",
       "id" : "266620a9-2c26-41c1-b0cb-a10947b867f5",
       "meta" : {
         "versionId" : "2",
         "lastUpdated" : "2026-11-01T15:43:33.244Z",
-        "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/emp-medication-request|1.3.0"]
+        "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/emp-medication-request|1.3.2"]
       },
       "extension" : [{
         "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
@@ -113,7 +113,7 @@
       "resourceType" : "Provenance",
       "id" : "b6fb1655-820e-4d7e-9255-c76b02e4d085",
       "meta" : {
-        "profile" : ["https://gematik.de/fhir/epa/StructureDefinition/epa-activity-provenance|1.3.0"]
+        "profile" : ["https://gematik.de/fhir/epa/StructureDefinition/epa-activity-provenance|1.3.2"]
       },
       "target" : [{
         "reference" : "MedicationStatement/3afe43bc-8b57-417f-9e84-a70ea5062a6c/_history/2"
@@ -158,7 +158,7 @@
       "resourceType" : "Provenance",
       "id" : "a8ebdbfb-c525-4ab0-a518-bcca6b2df45a",
       "meta" : {
-        "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/emp-chronology-provenance|1.3.0"]
+        "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/emp-chronology-provenance|1.3.2"]
       },
       "extension" : [{
         "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/is-emp-chronology-extension",

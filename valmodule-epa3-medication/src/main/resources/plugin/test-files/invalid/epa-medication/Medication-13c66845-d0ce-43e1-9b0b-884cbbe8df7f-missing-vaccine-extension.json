@@ -1,0 +1,100 @@
+{
+  "resourceType": "Medication",
+  "id": "13c66845-d0ce-43e1-9b0b-884cbbe8df7f",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2026-12-01T14:00:00.200Z",
+    "profile": [
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/emp-medication|1.3.2"
+    ]
+  },
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+      "valueCode": "EMP"
+    },
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+      "valueCoding": {
+        "system": "http://snomed.info/sct",
+        "code": "763158003"
+      }
+    },
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+      "valueCoding": {
+        "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+        "code": "00"
+      }
+    },
+    {
+      "url": "http://fhir.de/StructureDefinition/normgroesse",
+      "valueCode": "N3"
+    },
+    {
+      "valueBoolean": false
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/epa-medication/sid/epa-medication-unique-identifier",
+      "value": "D15E4956F59A13CD3BB365799857D6FA9757C62D36DBDB9578D018CA4B6D969F"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://fhir.de/CodeSystem/ifa/pzn",
+        "code": "04351736",
+        "display": "Benazepril AL 20mg 98 Filmtabletten N3"
+      }
+    ],
+    "text": "Benazepril AL 20mg 98 Filmtabletten N3"
+  },
+  "status": "active",
+  "form": {
+    "coding": [
+      {
+        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+        "code": "FTA"
+      }
+    ]
+  },
+  "amount": {
+    "numerator": {
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+          "valueString": "98"
+        }
+      ],
+      "unit": "Stück"
+    },
+    "denominator": {
+      "value": 1
+    }
+  },
+  "ingredient": [
+    {
+      "itemCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ask",
+            "code": "23413"
+          }
+        ],
+        "text": "Benazepril hydrochlorid"
+      },
+      "strength": {
+        "numerator": {
+          "value": 20,
+          "unit": "mg"
+        },
+        "denominator": {
+          "value": 1,
+          "unit": "Filmtbl."
+        }
+      }
+    }
+  ]
+}

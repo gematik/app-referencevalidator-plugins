@@ -1,0 +1,18 @@
+{
+  "resourceType" : "OperationOutcome",
+  "id" : "1a5a1db0-7bab-4d25-a43d-3ad1efb29cb5",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-ms-operation-outcome|1.3.1"]
+  },
+  "issue" : [{
+    "severity" : "error",
+    "code" : "invalid",
+    "details" : {
+      "coding" : [{
+        "system" : "https://gematik.de/fhir/epa-medication/CodeSystem/epa-ms-operation-outcome-details",
+        "code" : "MEDSVC_DOSAGE_INVALID",
+        "display" : "Invalid dosage structure or content"
+      }]
+    }
+  }]
+}

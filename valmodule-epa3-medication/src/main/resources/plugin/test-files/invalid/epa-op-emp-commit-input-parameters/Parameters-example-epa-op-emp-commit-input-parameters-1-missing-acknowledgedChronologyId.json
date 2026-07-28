@@ -1,0 +1,10 @@
+{
+  "resourceType" : "Parameters",
+  "id" : "example-epa-op-emp-commit-input-parameters-1",
+  "meta" : {
+    "profile" : [
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-emp-commit-input-parameters|1.3.2"
+    ]
+  },
+  "parameter" : []
+}

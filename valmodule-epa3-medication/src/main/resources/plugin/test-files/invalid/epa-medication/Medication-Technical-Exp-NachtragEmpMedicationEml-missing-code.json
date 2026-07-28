@@ -1,0 +1,7 @@
+{
+  "resourceType" : "Medication",
+  "id" : "Technical-Exp-NachtragEmpMedicationEml",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.3.2"]
+  }
+}

@@ -2,6 +2,18 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## PluginBuilder 2.0.4 (2026-07)
+
+### changed
+
+- Updated Dependencies
+
+## ISIK5 1.0.3 (2026-07)
+
+### changed
+
+- New ISIK5 5.1.3 Package configured
+
 ## HDDT 1.0.0 (2026-06)
 
 ### added

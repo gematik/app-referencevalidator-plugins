@@ -1,0 +1,80 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id" : "Technical-Exp-NachtragEmpMedicationRequestEmp",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/emp-medication-request|1.3.2"]
+  },
+  "extension" : [{
+    "extension" : [{
+      "url" : "reference",
+      "valueReference" : {
+        "reference" : "MedicationStatement/Technical-Exp-NachtragEmpMedicationStatementEml"
+      }
+    },
+    {
+      "url" : "addedOn",
+      "valueDateTime" : "2026-01-01T12:34:56.789Z"
+    }],
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/emp-medicationrequest-activity-extension"
+  },
+  {
+    "url" : "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction",
+    "valueMarkdown" : "1-0-1-0 Stück"
+  },
+  {
+    "extension" : [{
+      "url" : "algorithmVersion",
+      "valueString" : "1.0.1"
+    },
+    {
+      "url" : "language",
+      "valueCode" : "de-DE"
+    }],
+    "url" : "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta"
+  },
+  {
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+    "valueCode" : "EMP"
+  }],
+  "identifier" : [{
+    "system" : "https://gematik.de/fhir/sid/emp-identifier",
+    "value" : "41cdeeaf-60a7-4b7c-bb26-7fb682e8c3ba"
+  }],
+  "status" : "active",
+  "intent" : "plan",
+  "medicationReference" : {
+    "reference" : "Medication/Technical-Exp-NachtragEmpMedicationEmp"
+  },
+  "subject" : {
+    "identifier" : {
+      "type" : {
+        "coding" : [{
+          "system" : "http://fhir.de/CodeSystem/identifier-type-de-basis",
+          "code" : "KVZ10"
+        }]
+      },
+      "system" : "http://fhir.de/sid/gkv/kvid-10",
+      "value" : "A123456789"
+    }
+  },
+  "authoredOn" : "2026-01-01",
+  "dosageInstruction" : [{
+    "timing" : {
+      "repeat" : {
+        "frequency" : 2,
+        "period" : 1,
+        "periodUnit" : "d",
+        "when" : ["MORN",
+        "EVE"]
+      }
+    },
+    "doseAndRate" : [{
+      "doseQuantity" : {
+        "value" : 1,
+        "unit" : "Stück",
+        "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
+        "code" : "1"
+      }
+    }]
+  }]
+}
