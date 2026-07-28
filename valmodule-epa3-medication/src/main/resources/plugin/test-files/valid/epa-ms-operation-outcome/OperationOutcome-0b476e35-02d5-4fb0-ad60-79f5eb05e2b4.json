@@ -1,0 +1,18 @@
+{
+  "resourceType" : "OperationOutcome",
+  "id" : "0b476e35-02d5-4fb0-ad60-79f5eb05e2b4",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-ms-operation-outcome|1.3.1"]
+  },
+  "issue" : [{
+    "severity" : "error",
+    "code" : "conflict",
+    "details" : {
+      "coding" : [{
+        "system" : "https://gematik.de/fhir/epa-medication/CodeSystem/epa-ms-operation-outcome-details",
+        "code" : "MEDSVC_EMP_CHRONOLOGY_ID_MISMATCH",
+        "display" : "Mismatch between acknowledged and current eMP chronology ID"
+      }]
+    }
+  }]
+}

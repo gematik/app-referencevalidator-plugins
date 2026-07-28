@@ -1,0 +1,62 @@
+{
+  "resourceType" : "MedicationStatement",
+  "id" : "71601cdb-8a53-4f26-b5d5-e5457b498e76",
+  "meta" : {
+    "versionId" : "1",
+    "lastUpdated" : "2026-02-22T14:43:33.444Z",
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-statement|1.3.2"]
+  },
+  "text" : {
+    "status" : "extensions",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: MedicationStatement 71601cdb-8a53-4f26-b5d5-e5457b498e76</b></p><a name=\"71601cdb-8a53-4f26-b5d5-e5457b498e76\"> </a><a name=\"hc71601cdb-8a53-4f26-b5d5-e5457b498e76\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">version: 1; Last updated: 2026-02-22 14:43:33+0000</p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-epa-medication-statement.html\">EPA MedicationStatement</a> version: 1.3.2</p></div><p><b>ContextExtension</b>: MANUAL</p><p><b>Extension Definition for MedicationStatement.renderedDosageInstruction for Version 5.0</b>: </p><div><p>1-0-1-0 Stück</p>\n</div><blockquote><p><b>Generated Dosage Instructions Meta</b></p><ul><li>algorithmVersion: 1.0.1</li><li>language: de-DE</li></ul></blockquote><p><b>status</b>: Unknown</p><p><b>medication</b>: <a href=\"Medication-2571d29b-e213-40ec-b817-a1490718f491.html\">Medication Diclo-ratiopharm® bei Schmerzen und Fieber 25 mg Filmtabletten</a></p><p><b>subject</b>: Identifier: NamingSystemKVID/X110411319</p><p><b>effective</b>: 2026-02-10 --&gt; (ongoing)</p><p><b>dateAsserted</b>: 2026-02-22</p><blockquote><p><b>dosage</b></p><p><b>timing</b>: Morning, Evening, 2 per 1 day</p><h3>DoseAndRates</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Dose[x]</b></td></tr><tr><td style=\"display: none\">*</td><td>1 Stück<span style=\"background: LightGoldenRodYellow\"> (Details: KBV_CS_SFHIR_BMP_DOSIEREINHEIT  code1 = '1')</span></td></tr></table></blockquote></div>"
+  },
+  "extension" : [{
+    "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
+    "valueCode" : "MANUAL"
+  },
+  {
+    "url" : "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationStatement.renderedDosageInstruction",
+    "valueMarkdown" : "1-0-1-0 Stück"
+  },
+  {
+    "extension" : [{
+      "url" : "algorithmVersion",
+      "valueString" : "1.0.1"
+    },
+    {
+      "url" : "language",
+      "valueCode" : "de-DE"
+    }],
+    "url" : "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta"
+  }],
+  "status" : "unknown",
+  "subject" : {
+    "identifier" : {
+      "system" : "http://fhir.de/sid/gkv/kvid-10",
+      "value" : "X110411319"
+    }
+  },
+  "effectivePeriod" : {
+    "start" : "2026-02-10"
+  },
+  "dateAsserted" : "2026-02-22",
+  "dosage" : [{
+    "timing" : {
+      "repeat" : {
+        "frequency" : 2,
+        "period" : 1,
+        "periodUnit" : "d",
+        "when" : ["MORN",
+        "EVE"]
+      }
+    },
+    "doseAndRate" : [{
+      "doseQuantity" : {
+        "value" : 1,
+        "unit" : "Stück",
+        "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
+        "code" : "1"
+      }
+    }]
+  }]
+}

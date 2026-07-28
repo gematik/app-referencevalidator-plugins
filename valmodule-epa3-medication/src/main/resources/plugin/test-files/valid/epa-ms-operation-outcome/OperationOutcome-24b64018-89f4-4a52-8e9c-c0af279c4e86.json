@@ -1,0 +1,18 @@
+{
+  "resourceType" : "OperationOutcome",
+  "id" : "24b64018-89f4-4a52-8e9c-c0af279c4e86",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-ms-operation-outcome|1.3.1"]
+  },
+  "issue" : [{
+    "severity" : "error",
+    "code" : "processing",
+    "details" : {
+      "coding" : [{
+        "system" : "https://gematik.de/fhir/epa-medication/CodeSystem/epa-medicationstatement-processing-event-code",
+        "code" : "LINKING_NOT_SUCCESSFUL",
+        "display" : "Fehlerhafte eMP Zuordnung"
+      }]
+    }
+  }]
+}

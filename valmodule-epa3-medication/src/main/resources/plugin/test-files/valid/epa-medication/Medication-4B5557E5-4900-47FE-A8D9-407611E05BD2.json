@@ -4,7 +4,7 @@
   "meta" : {
     "versionId" : "1",
     "lastUpdated" : "2026-08-08T14:43:33.244Z",
-    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.3.0"]
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.3.2"]
   },
   "identifier" : [{
     "system" : "https://gematik.de/fhir/epa-medication/sid/epa-medication-unique-identifier",

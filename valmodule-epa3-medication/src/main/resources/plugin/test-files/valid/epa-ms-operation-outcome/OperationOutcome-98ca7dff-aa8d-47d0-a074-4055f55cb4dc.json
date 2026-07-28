@@ -1,0 +1,19 @@
+{
+  "resourceType" : "OperationOutcome",
+  "id" : "98ca7dff-aa8d-47d0-a074-4055f55cb4dc",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-ms-operation-outcome|1.3.1"]
+  },
+  "issue" : [{
+    "severity" : "error",
+    "code" : "not-found",
+    "details" : {
+      "coding" : [{
+        "system" : "https://gematik.de/fhir/epa-medication/CodeSystem/epa-ms-operation-outcome-details",
+        "code" : "MEDSVC_EMP_NO_EXIST",
+        "display" : "eMP does not exist"
+      }]
+    },
+    "diagnostics" : "eMP does not exist"
+  }]
+}

@@ -2,7 +2,7 @@
   "resourceType" : "Provenance",
   "id" : "2e1ba746-1aef-4eef-b741-2dfc771c7001",
   "meta" : {
-    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/emp-chronology-provenance|1.3.0"]
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/emp-chronology-provenance|1.3.2"]
   },
   "extension" : [{
     "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/is-emp-chronology-extension",

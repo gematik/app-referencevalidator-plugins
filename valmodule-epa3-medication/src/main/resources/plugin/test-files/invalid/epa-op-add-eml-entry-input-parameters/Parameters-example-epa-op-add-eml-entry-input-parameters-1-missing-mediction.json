@@ -2,7 +2,7 @@
   "resourceType" : "Parameters",
   "id" : "example-epa-op-add-eml-entry-input-parameters-1",
   "meta" : {
-    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-add-eml-entry-input-parameters|1.3.0"]
+    "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-add-eml-entry-input-parameters|1.3.2"]
   },
   "parameter" : [{
     "name" : "medicationStatement",
@@ -10,7 +10,7 @@
       "resourceType" : "MedicationStatement",
       "id" : "36581a11-806e-4455-a1c9-9173b7d247fd",
       "meta" : {
-        "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-statement|1.3.0"]
+        "profile" : ["https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-statement|1.3.2"]
       },
       "extension" : [{
         "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/context-extension",
