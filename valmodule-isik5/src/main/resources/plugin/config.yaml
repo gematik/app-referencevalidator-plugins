@@ -29,6 +29,7 @@ validation:
     - "http://fhir.de/CodeSystem/bfarm/atc"
     - "http://fhir.de/CodeSystem/bfarm/ops"
     - "http://dvmd.de/fhir/CodeSystem/kdl"
+    - "urn:iso:std:iso:11073:10101"
   ignoredValueSets:
     - "https://gematik.de/fhir/isik/ValueSet/ProzedurenCodesSCT" # Erfordert eine Expansion von SNOMED-CT (aktuell nicht implementiert)
     - "https://gematik.de/fhir/isik/ValueSet/DiagnosesSCT"

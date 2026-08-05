@@ -2,6 +2,12 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## ISIK5 1.0.4 (2026-08)
+
+### changed
+
+- Relaxed the validation of ICU Profiles by ignoring the code system `urn:iso:std:iso:11073:10101`
+
 ## PluginBuilder 2.0.4 (2026-07)
 
 ### changed
