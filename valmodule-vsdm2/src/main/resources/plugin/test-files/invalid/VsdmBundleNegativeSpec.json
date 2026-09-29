@@ -2,13 +2,13 @@
   "resourceType": "Bundle",
   "id": "019b0758-2d32-7576-99c7-f90818235c4f",
   "meta": {
-    "lastUpdated": "2025-07-14T15:16:17.89+01:00",
     "profile": [
-      "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMBundle|1.0.1"
-    ]
+      "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMBundle|1.1.3"
+    ],
+    "lastUpdated": "2025-07-14T15:16:17.890+01:00"
   },
   "type": "collection",
-  "timestamp": "2025-07-14T15:16:17.89+01:00",
+  "timestamp": "2025-07-14T15:16:17.890+01:00",
   "entry": [
     {
       "fullUrl": "https://gematik.de/fhir/Patient/019b0758-985e-7703-b4f7-c5064736aed2",
@@ -17,7 +17,7 @@
         "id": "019b0758-985e-7703-b4f7-c5064736aed2",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMPatient|1.0.1"
+            "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMPatient|1.1.3"
           ]
         },
         "identifier": [
@@ -47,11 +47,9 @@
         "telecom": [
           {
             "system": "url",
-            "value": "matrix:@a123456780:demo-ti-messenger"
+            "value": "matrix:a123456780:demo-ti-messenger"
           }
         ],
-        "gender": "female",
-        "birthDate": "2009-06-08",
         "address": [
           {
             "type": "physical",
@@ -78,23 +76,27 @@
             "_country": {
               "extension": [
                 {
-                  "url": "http://hl7.org/fhir/StructureDefinition/iso21090-codedString",
                   "valueCoding": {
                     "system": "https://gematik.de/fhir/vsdm2/CodeSystem/VSDMISO3166ErgaenzungCS",
+                    "version": "1.1.3",
                     "code": "XK"
-                  }
+                  },
+                  "url": "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMISO3166Ergaenzung"
                 },
                 {
-                  "url": "http://hl7.org/fhir/StructureDefinition/iso21090-codedString",
                   "valueCoding": {
                     "system": "http://fhir.de/CodeSystem/deuev/anlage-8-laenderkennzeichen",
+                    "version": "8.00",
                     "code": "KOS"
-                  }
+                  },
+                  "url": "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMLaenderkennzeichenAnlage8"
                 }
               ]
             }
           }
-        ]
+        ],
+        "birthDate": "2009-06-08",
+        "gender": "female"
       }
     },
     {
@@ -104,7 +106,18 @@
         "id": "019b0758-5ce0-7711-a5da-cffbb256cffd",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMCoverageGKV|1.0.1"
+            "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMCoverageGKV|1.1.3"
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "GKV",
+              "system": "http://fhir.de/CodeSystem/versicherungsart-de-basis",
+              "version": "1.6.0",
+              "display": "gesetzliche Krankenversicherung"
+            }
           ]
         },
         "extension": [
@@ -112,6 +125,7 @@
             "url": "http://fhir.de/StructureDefinition/gkv/wop",
             "valueCoding": {
               "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_ITA_WOP",
+              "version": "1.00",
               "code": "52",
               "display": "Baden-Württemberg"
             }
@@ -120,11 +134,13 @@
             "url": "http://fhir.de/StructureDefinition/gkv/versichertenart",
             "valueCoding": {
               "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_VERSICHERTENSTATUS",
+              "version": "1.02",
               "code": "3",
               "display": "Familienangehoerige"
             }
           },
           {
+            "url": "http://fhir.de/StructureDefinition/gkv/zuzahlungsstatus",
             "extension": [
               {
                 "url": "status",
@@ -134,36 +150,25 @@
                 "url": "gueltigBis",
                 "valueDate": "2027-06-09"
               }
-            ],
-            "url": "http://fhir.de/StructureDefinition/gkv/zuzahlungsstatus"
+            ]
           }
         ],
-        "status": "active",
-        "type": {
-          "coding": [
-            {
-              "system": "http://fhir.de/CodeSystem/versicherungsart-de-basis",
-              "code": "GKV",
-              "display": "gesetzliche Krankenversicherung"
-            }
-          ]
-        },
+        "payor": [
+          {
+            "identifier": {
+              "system": "http://fhir.de/sid/arge-ik/iknr",
+              "value": "107668422"
+            },
+            "reference": "https://gematik.de/fhir/Organization/019aa691-efa4-7cfc-8f83-82387d397bce",
+            "display": "Beispielkostenträger Offenburg"
+          }
+        ],
         "beneficiary": {
           "reference": "https://gematik.de/fhir/Patient/019b0758-985e-7703-b4f7-c5064736aed2"
         },
         "period": {
           "start": "2009-06-08"
-        },
-        "payor": [
-          {
-            "reference": "https://gematik.de/fhir/Organization/019aa691-efa4-7cfc-8f83-82387d397bce",
-            "identifier": {
-              "system": "http://fhir.de/sid/arge-ik/iknr",
-              "value": "107668422"
-            },
-            "display": "Beispielkostenträger Offenburg"
-          }
-        ]
+        }
       }
     },
     {
@@ -173,7 +178,7 @@
         "id": "019aa691-efa4-7cfc-8f83-82387d397bce",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMPayorOrganization|1.0.1"
+            "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMPayorOrganization|1.1.3"
           ]
         },
         "identifier": [
@@ -182,7 +187,6 @@
             "value": "107668422"
           }
         ],
-        "name": "Beispielkostenträger Offenburg",
         "address": [
           {
             "country": "Deutschland",
@@ -191,21 +195,23 @@
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/iso21090-codedString",
                   "valueCoding": {
-                    "system": "urn:iso:std:iso:3166",
-                    "code": "DE"
+                    "code": "DE",
+                    "system": "urn:iso:std:iso:3166"
                   }
                 },
                 {
-                  "url": "http://hl7.org/fhir/StructureDefinition/iso21090-codedString",
                   "valueCoding": {
                     "system": "http://fhir.de/CodeSystem/deuev/anlage-8-laenderkennzeichen",
+                    "version": "8.00",
                     "code": "D"
-                  }
+                  },
+                  "url": "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMLaenderkennzeichenAnlage8"
                 }
               ]
             }
           }
-        ]
+        ],
+        "name": "Beispielkostenträger Offenburg"
       }
     }
   ]

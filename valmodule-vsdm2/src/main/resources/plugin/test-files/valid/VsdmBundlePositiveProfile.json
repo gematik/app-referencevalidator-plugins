@@ -2,13 +2,13 @@
   "resourceType": "Bundle",
   "id": "019aa697-f160-72cd-b2eb-923d24dcce1a",
   "meta": {
-    "lastUpdated": "2025-07-14T15:16:17.89+01:00",
     "profile": [
-      "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMBundle|1.0.1"
-    ]
+      "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMBundle|1.1.3"
+    ],
+    "lastUpdated": "2025-07-14T15:16:17.890+01:00"
   },
   "type": "collection",
-  "timestamp": "2025-07-14T15:16:17.89+01:00",
+  "timestamp": "2025-07-14T15:16:17.890+01:00",
   "entry": [
     {
       "fullUrl": "https://gematik.de/fhir/Patient/019aa694-8cec-78d8-aadb-cb6af636e899",
@@ -17,7 +17,7 @@
         "id": "019aa694-8cec-78d8-aadb-cb6af636e899",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMPatient|1.0.1"
+            "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMPatient|1.1.3"
           ]
         },
         "identifier": [
@@ -29,6 +29,19 @@
         "name": [
           {
             "use": "official",
+            "prefix": [
+              "Dr. med."
+            ],
+            "_prefix": [
+              {
+                "extension": [
+                  {
+                    "valueCode": "AC",
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier"
+                  }
+                ]
+              }
+            ],
             "text": "Dr. med. Bernd Benjamin Graf von und zu Buntspecht",
             "family": "Graf von und zu Buntspecht",
             "_family": {
@@ -49,24 +62,9 @@
             },
             "given": [
               "Bernd Benjamin"
-            ],
-            "prefix": [
-              "Dr. med."
-            ],
-            "_prefix": [
-              {
-                "extension": [
-                  {
-                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier",
-                    "valueCode": "AC"
-                  }
-                ]
-              }
             ]
           }
         ],
-        "gender": "male",
-        "birthDate": "1988-06-22",
         "address": [
           {
             "type": "physical",
@@ -95,21 +93,24 @@
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/iso21090-codedString",
                   "valueCoding": {
-                    "system": "urn:iso:std:iso:3166",
-                    "code": "DE"
+                    "code": "DE",
+                    "system": "urn:iso:std:iso:3166"
                   }
                 },
                 {
-                  "url": "http://hl7.org/fhir/StructureDefinition/iso21090-codedString",
                   "valueCoding": {
                     "system": "http://fhir.de/CodeSystem/deuev/anlage-8-laenderkennzeichen",
+                    "version": "8.00",
                     "code": "D"
-                  }
+                  },
+                  "url": "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMLaenderkennzeichenAnlage8"
                 }
               ]
             }
           }
-        ]
+        ],
+        "birthDate": "1988-06-22",
+        "gender": "male"
       }
     },
     {
@@ -119,7 +120,18 @@
         "id": "019aa696-69e7-79e0-8cb2-8149ab064196",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMCoverageGKV|1.0.1"
+            "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMCoverageGKV|1.1.3"
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "GKV",
+              "system": "http://fhir.de/CodeSystem/versicherungsart-de-basis",
+              "version": "1.6.0",
+              "display": "gesetzliche Krankenversicherung"
+            }
           ]
         },
         "extension": [
@@ -127,6 +139,7 @@
             "url": "http://fhir.de/StructureDefinition/gkv/wop",
             "valueCoding": {
               "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_ITA_WOP",
+              "version": "1.00",
               "code": "03",
               "display": "Bremen"
             }
@@ -135,54 +148,46 @@
             "url": "http://fhir.de/StructureDefinition/gkv/versichertenart",
             "valueCoding": {
               "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_VERSICHERTENSTATUS",
+              "version": "1.02",
               "code": "3",
               "display": "Familienangehoerige"
             }
           },
           {
-            "url": "http://fhir.de/StructureDefinition/gkv/besondere-personengruppe",
             "valueCoding": {
               "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_PERSONENGRUPPE",
+              "version": "1.03",
               "code": "04",
               "display": "SOZ"
-            }
+            },
+            "url": "http://fhir.de/StructureDefinition/gkv/besondere-personengruppe"
           }
         ],
-        "status": "active",
-        "type": {
-          "coding": [
-            {
-              "system": "http://fhir.de/CodeSystem/versicherungsart-de-basis",
-              "code": "GKV",
-              "display": "gesetzliche Krankenversicherung"
-            }
-          ]
-        },
+        "payor": [
+          {
+            "identifier": {
+              "system": "http://fhir.de/sid/arge-ik/iknr",
+              "value": "103169760"
+            },
+            "reference": "https://gematik.de/fhir/Organization/019aa692-edfe-7659-bd03-1b492c557077",
+            "display": "Beispielkostenträger Bremen"
+          },
+          {
+            "identifier": {
+              "system": "http://fhir.de/sid/arge-ik/iknr",
+              "value": "103215857"
+            },
+            "reference": "https://gematik.de/fhir/Organization/019aa692-a944-756a-bc42-e857b709b862",
+            "display": "Beispielkostenträger Bremerhaven"
+          }
+        ],
         "beneficiary": {
           "reference": "https://gematik.de/fhir/Patient/019aa694-8cec-78d8-aadb-cb6af636e899"
         },
         "period": {
           "start": "2011-04-01",
           "end": "2024-12-31"
-        },
-        "payor": [
-          {
-            "reference": "https://gematik.de/fhir/Organization/019aa692-edfe-7659-bd03-1b492c557077",
-            "identifier": {
-              "system": "http://fhir.de/sid/arge-ik/iknr",
-              "value": "103169760"
-            },
-            "display": "Beispielkostenträger Bremen"
-          },
-          {
-            "reference": "https://gematik.de/fhir/Organization/019aa692-a944-756a-bc42-e857b709b862",
-            "identifier": {
-              "system": "http://fhir.de/sid/arge-ik/iknr",
-              "value": "103215857"
-            },
-            "display": "Beispielkostenträger Bremerhaven"
-          }
-        ]
+        }
       }
     },
     {
@@ -192,7 +197,7 @@
         "id": "019aa692-edfe-7659-bd03-1b492c557077",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMPayorOrganization|1.0.1"
+            "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMPayorOrganization|1.1.3"
           ]
         },
         "identifier": [
@@ -201,7 +206,6 @@
             "value": "103169760"
           }
         ],
-        "name": "Beispielkostenträger Bremen",
         "address": [
           {
             "country": "Deutschland",
@@ -210,21 +214,23 @@
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/iso21090-codedString",
                   "valueCoding": {
-                    "system": "urn:iso:std:iso:3166",
-                    "code": "DE"
+                    "code": "DE",
+                    "system": "urn:iso:std:iso:3166"
                   }
                 },
                 {
-                  "url": "http://hl7.org/fhir/StructureDefinition/iso21090-codedString",
                   "valueCoding": {
                     "system": "http://fhir.de/CodeSystem/deuev/anlage-8-laenderkennzeichen",
+                    "version": "8.00",
                     "code": "D"
-                  }
+                  },
+                  "url": "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMLaenderkennzeichenAnlage8"
                 }
               ]
             }
           }
-        ]
+        ],
+        "name": "Beispielkostenträger Bremen"
       }
     },
     {
@@ -234,7 +240,7 @@
         "id": "019aa692-a944-756a-bc42-e857b709b862",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMPayorOrganization|1.0.1"
+            "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMPayorOrganization|1.1.3"
           ]
         },
         "identifier": [
@@ -243,7 +249,6 @@
             "value": "103215857"
           }
         ],
-        "name": "Beispielkostenträger Bremerhaven",
         "address": [
           {
             "country": "Deutschland",
@@ -252,21 +257,23 @@
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/iso21090-codedString",
                   "valueCoding": {
-                    "system": "urn:iso:std:iso:3166",
-                    "code": "DE"
+                    "code": "DE",
+                    "system": "urn:iso:std:iso:3166"
                   }
                 },
                 {
-                  "url": "http://hl7.org/fhir/StructureDefinition/iso21090-codedString",
                   "valueCoding": {
                     "system": "http://fhir.de/CodeSystem/deuev/anlage-8-laenderkennzeichen",
+                    "version": "8.00",
                     "code": "D"
-                  }
+                  },
+                  "url": "https://gematik.de/fhir/vsdm2/StructureDefinition/VSDMLaenderkennzeichenAnlage8"
                 }
               ]
             }
           }
-        ]
+        ],
+        "name": "Beispielkostenträger Bremerhaven"
       }
     }
   ]

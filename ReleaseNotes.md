@@ -2,6 +2,12 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## ePA Basic 1.4.0 (2026-09)
+
+### added
+
+- Added support for the [Simplifier 1.3.2 FHIR package](https://simplifier.net/packages/de.gematik.epa/1.3.2) and [Implementation Guide for 1.3.2](https://gemspec.gematik.de/ig/fhir/epa/1.3.2/).
+
 ## ISIK5 1.0.4 (2026-08)
 
 ### changed
