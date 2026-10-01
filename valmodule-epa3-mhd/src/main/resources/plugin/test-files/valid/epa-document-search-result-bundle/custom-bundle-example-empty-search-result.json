@@ -1,0 +1,17 @@
+{
+  "resourceType": "Bundle",
+  "id": "example-empty-document-search-result",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/epa-mhd/StructureDefinition/epa-document-search-result-bundle"
+    ]
+  },
+  "type": "searchset",
+  "total": 0,
+  "link": [
+    {
+      "relation": "self",
+      "url": "/epa/mhd/api/v1/fhir/DocumentReference?_offset=0&_count=25"
+    }
+  ]
+}

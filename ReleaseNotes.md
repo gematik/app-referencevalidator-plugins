@@ -2,6 +2,21 @@
 
 # Release Notes gematik Referenzvalidator Plugins
 
+## ePA Medication 1.6.0 (2026-09)
+
+### changed
+
+- Updated the FHIR package to 1.3.5 [Simplifier 1.3.5 FHIR package](https://simplifier.net/packages/de.gematik.epa.medication/1.3.5) and [Implementation Guide for 1.3.5](https://gemspec.gematik.de/ig/fhir/epa-medication/1.3.5/).
+
+## ePA MHD 1.0.0 (2026-09)
+
+### added
+
+- Added support for the [Simplifier 1.1.3 FHIR package](https://simplifier.net/packages/de.gematik.epa.mhd/1.1.3) and [Implementation Guide for 1.1.3](https://gemspec.gematik.de/ig/fhir/epa-mhd/1.1.3/).
+
+### fixed
+- Skip non-JSON entries and strip UTF-8 BOM in ProfileUrlExtractor to prevent JsonParseException during profile URL extraction.
+
 ## ePA Basic 1.4.0 (2026-09)
 
 ### added

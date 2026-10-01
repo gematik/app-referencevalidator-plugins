@@ -1,0 +1,101 @@
+{
+  "resourceType": "Bundle",
+  "id": "example-document-search-result-without-fulltext-extensions",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/epa-mhd/StructureDefinition/epa-document-search-result-bundle"
+    ]
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "/epa/mhd/api/v1/fhir/DocumentReference?_offset=0&_count=25"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "http://epa4all/epa/mhd/api/v1/fhir/DocumentReference/minimal-document-reference-example",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "minimal-document-reference-example",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/epa-mhd/StructureDefinition/epa-mhd-document-reference"
+          ]
+        },
+        "masterIdentifier": {
+          "use": "usual",
+          "system": "urn:ietf:rfc:3986",
+          "value": "urn:oid:2.25.104666037230925920288492414767863731215"
+        },
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:ietf:rfc:3986",
+            "value": "urn:oid:2.25.104666037230925920288492414767863731215"
+          }
+        ],
+        "status": "current",
+        "type": {
+          "coding": [
+            {
+              "system": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.9",
+              "code": "ADCH",
+              "display": "Administrative Checklisten"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.8",
+                "code": "BEF",
+                "display": "Befundbericht"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "type": "Patient",
+          "identifier": {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/identifier-type-de-basis",
+                  "code": "KVZ10",
+                  "display": "Krankenversichertennummer"
+                }
+              ]
+            },
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "G995030566"
+          },
+          "display": "Gundlach, Monika"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "application/pdf",
+              "language": "de-DE",
+              "url": "http://epa4all/epa/mhd/retrieve/v1/content/minimal-document-reference-example.pdf",
+              "title": "Minimalbeispiel.pdf",
+              "creation": "2025-12-01T09:03:24Z"
+            },
+            "format": {
+              "system": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.6",
+              "code": "urn:ihe-d:spec:PDF_A1:2005",
+              "display": "PDF/A-1"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match",
+        "score": 1.0
+      }
+    }
+  ]
+}

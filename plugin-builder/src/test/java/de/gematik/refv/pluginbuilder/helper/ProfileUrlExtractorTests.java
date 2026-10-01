@@ -25,6 +25,7 @@
 
 package de.gematik.refv.pluginbuilder.helper;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import de.gematik.refv.plugins.configuration.FhirPackage;
@@ -34,14 +35,33 @@ import org.junit.jupiter.api.Test;
 
 class ProfileUrlExtractorTests {
 
-  @Test
-  void testGetAllPluginProfileUrls() throws IOException {
-    String packageFolderPath = "src/test/resources/package/";
-    FhirPackage fhirPackage = new FhirPackage("minimalvalidationmodule.test", "1.0.0");
-    List<String> profileUrls =
-        ProfileUrlExtractor.getAllPluginProfileUrls(packageFolderPath, fhirPackage);
-    assertTrue(
-        profileUrls.contains(
-            "http://example.gematik.de/fhir/StructureDefinition/patient-with-birthdate|1.0.0"));
-  }
+    private static final String PACKAGE_FOLDER_PATH = "src/test/resources/package/";
+    private static final String EXPECTED_PROFILE_URL =
+            "http://example.gematik.de/fhir/StructureDefinition/some-profile|1.0.0";
+
+    @Test
+    void testGetAllPluginProfileUrls() throws IOException {
+        List<String> profileUrls =
+                ProfileUrlExtractor.getAllPluginProfileUrls(
+                        PACKAGE_FOLDER_PATH, new FhirPackage("minimalvalidationmodule.test", "1.0.0"));
+        assertTrue(
+                profileUrls.contains(
+                        "http://example.gematik.de/fhir/StructureDefinition/patient-with-birthdate|1.0.0"));
+    }
+
+    @Test
+    void testNonJsonEntriesAreSkipped() throws IOException {
+        List<String> profileUrls =
+                ProfileUrlExtractor.getAllPluginProfileUrls(
+                        PACKAGE_FOLDER_PATH, new FhirPackage("non.json.entries.test", "1.0.0"));
+        assertEquals(List.of(EXPECTED_PROFILE_URL), profileUrls);
+    }
+
+    @Test
+    void testJsonEntryWithByteOrderMarkIsParsed() throws IOException {
+        List<String> profileUrls =
+                ProfileUrlExtractor.getAllPluginProfileUrls(
+                        PACKAGE_FOLDER_PATH, new FhirPackage("bom.entry.test", "1.0.0"));
+        assertEquals(List.of(EXPECTED_PROFILE_URL), profileUrls);
+    }
 }
