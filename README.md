@@ -31,24 +31,25 @@ Siehe [ReleaseNotes.md](./ReleaseNotes.md)
 Die Plugins können unter [Releases](https://github.com/gematik/app-referencevalidator-plugins/releases) heruntergeladen
 werden.
 
-| **Plugin**                                                                                       | **Version** | **ID**                    |
-|--------------------------------------------------------------------------------------------------|-------------|---------------------------|
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Basis)                    | 1.1.1       | isik3-basismodul          |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Terminplanung)            | 1.2.0       | isik3-terminplanung       |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Vitalparameter)           | 1.1.0       | isik3-vitalparameter      |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Medikation)               | 1.1.0       | isik3-medikation          |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Dokumentenaustausch)      | 2.1.0       | isik3-dokumentenaustausch |
-| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 5 (Unified)                        | 1.0.4       | isik5                     |
-| Informationstechnische Systeme in der Pflege (ISIP) Stufe 1                                      | 1.1         | isip1                     |
-| DiGA Toolkit                                                                                     | 0.10        | diga                      |
-| VSDM-Ersatzbescheinigung                                                                         | 1.0.1       | eeb                       |
-| Elektronische Patientenakte Basisfunktionalitäten 3.1.3-1                                        | 1.4.0       | epa3-basic                |
-| Elektronische Patientenakte Medication 3.1.3-1                                                   | 1.5.0       | epa3-medication           |
-| Elektronische Rezept für die EU (ERP-EU)                                                         | 1.0.1       | erp-eu                    |
-| VSDM 2                                                                                           | 1.1.3       | vsdm2                     |
-| [KIM-Nachrichten für das E-Rezept](https://gemspec.gematik.de/ig/fhir/erp-servicerequest/1.2.0/) | 1.2.0       | erp-servicerequest        |
-| Elektronischer Versorgungsplan Pflege (EVP)                                                      | 1.0.0       | evp                       |
-| Health Data Transfer from Devices (HDDT)                                                         | 1.0.0       | hddt                      |
+| **Plugin**                                                                                       | **Plugin Version** | **ID**             | **Package Version** |
+|--------------------------------------------------------------------------------------------------|--------------------|---------------------------|---------------------|   
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Basis)                    | 1.1.1              | isik3-basismodul          |                     |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Terminplanung)            | 1.2.0              | isik3-terminplanung       |                     |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Vitalparameter)           | 1.1.0              | isik3-vitalparameter      |                     |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Medikation)               | 1.1.0              | isik3-medikation          |                     |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 3 (Modul Dokumentenaustausch)      | 2.1.0              | isik3-dokumentenaustausch |                     |
+| Informationstechnische Systeme in Krankenhäusern (ISIK) Stufe 5 (Unified)                        | 1.0.4              | isik5                     |                     |
+| Informationstechnische Systeme in der Pflege (ISIP) Stufe 1                                      | 1.1                | isip1                     |                     |
+| DiGA Toolkit                                                                                     | 0.10               | diga                      |                     |
+| VSDM-Ersatzbescheinigung                                                                         | 1.0.1              | eeb                       |                     |
+| Elektronische Patientenakte Basisfunktionalitäten 3.1.3-1                                        | 1.4.0              | epa3-basic                | 1.3.2               |
+| Elektronische Patientenakte Medication 3.1.3-1                                                   | 1.6.0              | epa3-medication           | 1.3.5               |
+| Elektronische Patientenakte MHD Service 3.1.3-1                                                  | 1.0.0              | epa3-mhd                  | 1.1.3               |
+| Elektronische Rezept für die EU (ERP-EU)                                                         | 1.0.1              | erp-eu                    |                     |
+| VSDM 2                                                                                           | 1.1.3              | vsdm2                     |                     |
+| [KIM-Nachrichten für das E-Rezept](https://gemspec.gematik.de/ig/fhir/erp-servicerequest/1.2.0/) | 1.2.0              | erp-servicerequest        |                     |
+| Elektronischer Versorgungsplan Pflege (EVP)                                                      | 1.0.0              | evp                       |                     |
+| Health Data Transfer from Devices (HDDT)                                                         | 1.0.0              | hddt                      |                     |
 
 Die Bezeichnung in der Spalte `ID` dient dem Aufruf des Plugins aus der Referenzvalidator-Konsolenanwendung.
 

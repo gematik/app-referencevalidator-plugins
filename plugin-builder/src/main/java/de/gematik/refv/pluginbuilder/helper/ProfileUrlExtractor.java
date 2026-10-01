@@ -26,6 +26,7 @@
 package de.gematik.refv.pluginbuilder.helper;
 
 import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
@@ -145,25 +146,31 @@ public class ProfileUrlExtractor {
         .collect(Collectors.toList());
   }
 
-  private static List<String> findProfileUrlsInTarArchive(TarArchiveInputStream tarInputStream)
-      throws IOException {
-    List<String> profileUrls = new ArrayList<>();
-    TarArchiveEntry currentEntry;
-    while ((currentEntry = tarInputStream.getNextEntry()) != null) {
-      if (!currentEntry.isDirectory()) {
-        String jsonString =
-            buildJsonString(new BufferedReader(new InputStreamReader(tarInputStream)));
-        if (isStructureDefinition(jsonString) && isResource(jsonString)) {
-          String url = parseJsonFieldAsString(jsonString, "url");
-          String profileVersion = parseJsonFieldAsString(jsonString, "version");
-          String profileUrl = String.format("%s|%s", url, profileVersion);
-          profileUrls.add(profileUrl);
-        }
-      }
-    }
-    return profileUrls;
-  }
+    private static List<String> findProfileUrlsInTarArchive(TarArchiveInputStream tarInputStream)
+            throws IOException {
+        List<String> profileUrls = new ArrayList<>();
+        TarArchiveEntry currentEntry;
+        while ((currentEntry = tarInputStream.getNextEntry()) != null) {
+            // If the entry is a directory or does not end with ".json", skip it
+            if (currentEntry.isDirectory() || !currentEntry.getName().endsWith(".json")) {
+                continue;
+            }
 
+            String jsonString =
+                    buildJsonString(new BufferedReader(new InputStreamReader(tarInputStream)));
+            try {
+                if (isStructureDefinition(jsonString) && isResource(jsonString)) {
+                    String url = parseJsonFieldAsString(jsonString, "url");
+                    String profileVersion = parseJsonFieldAsString(jsonString, "version");
+                    String profileUrl = String.format("%s|%s", url, profileVersion);
+                    profileUrls.add(profileUrl);
+                }
+            } catch (JsonParseException e) {
+                log.debug("Skipping non-parsable JSON entry '{}' in package", currentEntry.getName(), e);
+            }
+        }
+        return profileUrls;
+    }
   private static List<String> extractProfileUrlsFromFhirPackage(InputStream inputStream)
       throws IOException {
     List<String> profileUrls;
@@ -231,9 +238,14 @@ public class ProfileUrlExtractor {
 
   /**
    * @param bufferedReader The BufferedReader of the resource.
-   * @return Returns the read resource as a String.
+   * @return Returns the read resource as a String, with a possible leading UTF-8 BOM removed.
    */
   private static String buildJsonString(BufferedReader bufferedReader) {
-    return bufferedReader.lines().collect(Collectors.joining());
+      String json = bufferedReader.lines().collect(Collectors.joining());
+      if(!json.isEmpty() && json.charAt(0) == '\uFEFF') {
+          json = json.substring(1);
+
+      }
+    return json;
   }
 }

@@ -1,0 +1,159 @@
+{
+  "resourceType" : "DocumentReference",
+  "id" : "b2d5f8db-48ca-43c4-a540-6c8f2e853913",
+  "meta" : {
+    "profile" : [
+      "https://gematik.de/fhir/epa-mhd/StructureDefinition/epa-mhd-document-reference"
+  ]
+  },
+  "masterIdentifier" : {
+    "use" : "usual",
+    "system" : "urn:ietf:rfc:3986",
+    "value" : "urn:oid:2.25.104666037230925920288492414767863731214"
+  },
+  "identifier" : [
+    {
+      "use" : "official",
+      "system" : "urn:ietf:rfc:3986",
+      "value" : "urn:uuid:b2d5f8db-48ca-43c4-a540-6c8f2e853913"
+    },
+    {
+      "use" : "usual",
+      "system" : "urn:ietf:rfc:3986",
+      "value" : "urn:oid:2.25.104666037230925920288492414767863731214"
+    }
+  ],
+  "status" : "current",
+  "type" : {
+    "coding" : [
+      {
+        "system" : "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.9",
+        "code" : "ADCH",
+        "display" : "Administrative Checklisten"
+      }
+    ]
+  },
+  "category" : [
+    {
+      "coding" : [
+        {
+          "system" : "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.8",
+          "code" : "BEF",
+          "display" : "Befundbericht"
+        }
+      ]
+    }
+  ],
+  "subject" : {
+    "type" : "Patient",
+    "identifier" : {
+      "type" : {
+        "coding" : [
+          {
+            "system" : "http://fhir.de/CodeSystem/identifier-type-de-basis",
+            "code" : "KVZ10",
+            "display" : "Krankenversichertennummer"
+          }
+        ]
+      },
+      "system" : "http://fhir.de/sid/gkv/kvid-10",
+      "value" : "G995030566"
+    },
+    "display" : "Gundlach, Monika"
+  },
+  "author" : [
+    {
+      "type" : "Organization",
+      "identifier" : {
+        "system" : "https://gematik.de/fhir/sid/telematik-id",
+        "value" : "1-2c47sd-e518"
+      },
+      "display" : "Arztpraxis Dr. Thilo Weber"
+    }
+  ],
+  "description" : "Beispieldokument",
+  "securityLabel" : [
+    {
+      "coding" : [
+        {
+          "system" : "urn:oid:2.16.840.1.113883.5.25",
+          "code" : "N",
+          "display" : "normal"
+        }
+      ]
+    },
+    {
+      "coding" : [
+        {
+          "system" : "urn:oid:1.2.276.0.76.5.511",
+          "code" : "reports",
+          "display" : "Befunde/Diagnosen/Berichte"
+        }
+      ]
+    }
+  ],
+  "content" : [
+    {
+      "attachment" : {
+        "contentType" : "application/pdf",
+        "language" : "de-DE",
+        "url" : "http://epa4all/epa/mhd/retrieve/v1/content/b2d5f8db-48ca-43c4-a540-6c8f2e853913.pdf",
+        "size" : 3654,
+        "hash" : "yPnibUHWIkRejf1euZCDWQ==",
+        "title" : "Neurologischer_Untersuchungsbefund.pdf",
+        "creation" : "2025-12-01T09:03:24Z"
+      },
+      "format" : {
+        "system" : "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.6",
+        "code" : "urn:ihe-d:spec:PDF_A1:2005",
+        "display" : "PDF/A-1"
+      }
+    }
+  ],
+  "context" : {
+    "event" : [
+      {
+        "coding" : [
+          {
+            "system" : "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.16",
+            "code" : "E200",
+            "display" : "stationärer Aufenthalt"
+          }
+        ]
+      }
+    ],
+    "period" : {
+      "start" : "2025-11-28"
+    },
+    "facilityType" : {
+      "coding" : [
+        {
+          "system" : "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.2",
+          "code" : "KHS",
+          "display" : "Krankenhaus"
+        }
+      ]
+    },
+    "practiceSetting" : {
+      "coding" : [
+        {
+          "system" : "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4",
+          "code" : "NEUR",
+          "display" : "Neurologie"
+        }
+      ]
+    },
+    "related" : [
+      {
+        "identifier" : {
+          "system" : "urn:gematik:iti:xds:2023:rootDocumentUniqueId"
+        }
+      },
+      {
+        "identifier" : {
+          "value" : "http://epa4all/epa/mhd/retrieve/v1/content/2.25.31457958586625016607071363908764203414.pdf"
+        }
+      }
+    ]
+  }
+}
